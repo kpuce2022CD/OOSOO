@@ -16,6 +16,13 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="ubuntu@3.37.39.106:22 (3)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/ubuntu/django_server/Django" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
     </serverData>
   </component>
 </project>
