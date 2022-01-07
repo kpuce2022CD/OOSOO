@@ -129,8 +129,7 @@
 <br />
 
 ## Usage
-![image](https://user-images.githubusercontent.com/78994323/148479535-a21236bc-a69d-42dc-8697-1096c15cf50c.jpg)
-<br />
+<img src = "https://user-images.githubusercontent.com/78994323/148479535-a21236bc-a69d-42dc-8697-1096c15cf50c.jpg" width="30%" height="30%">
 Plz look forward to it..😅
 
 
