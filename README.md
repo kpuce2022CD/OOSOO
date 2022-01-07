@@ -26,7 +26,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/kpuce2022CD/OOSOO">
-    <img src="Document/testpic.png" alt="Logo">
+    <img src = "https://user-images.githubusercontent.com/78994323/148485426-b4673791-d032-412c-acc5-5b24c5dadf2e.png" width="30%" height="30%">
   </a>
 
 <h3 align="center">OTT 서비스 연동 어플리케이션</h3>
