@@ -36,7 +36,7 @@
     <br />
     <a href="https://github.com/kpuce2022CD/OOSOO"><strong>프로토타입(준비중) »</strong></a>
     <br />
-    <a href="https://github.com/github_username/repo_name/issues">Project Proposal</a> · <a href="https://trello.com/b/LZtvi1s0">Trello</a>
+    <a href="https://www.miricanvas.com/v/1ss123">Project Proposal</a> · <a href="https://trello.com/b/LZtvi1s0">Trello</a>
   </p>
 </div>
 
@@ -72,13 +72,23 @@
 ## About The Project
 
 
-
+<!-- 프로젝트 main description field-->
 
 ### Background
+ * 최근 넷플릭스, 왓챠 등 영상 스트리밍 플랫폼이 늘어나며 **여러 플랫폼의 구독권을 동시에 구매하는 사용자가 증가**
+ * 각각의 [OTT서비스](https://ko.wikipedia.org/wiki/OTT_%EC%84%9C%EB%B9%84%EC%8A%A4)는 각자 분리되어 있어 여러 플랫폼을 이용하고 있는 사용자는 **각각의 플랫폼마다 별도로
+관리해줘야 하는 불편함**
 
 
+ 
 ### Goals
 
+* 웹 크롤링을 통해 각각의 OTT 서비스를 **하나의 통합된 앱으로 관리**할 수 있도록 하는 OTT 통합 연동 플랫폼을 개발
+  - 통합검색 서비스를 만들고 **해당 컨텐츠가 어떤 플랫폼에 존재**하는지 알려주며 원할 때 해당 플랫폼의 앱으로 리다이렉션
+  - 여러 플랫폼에서 **시청중인 컨텐츠와 찜 목록을 하나의 앱에서 확인**하고 각 OTT에 동기화  
+  
+* 다양한 컨텐츠를 즐기는 기존 사용자들과 희망하던 잠재적 사용자들에게 편리함을 제공
+* 각 OTT플랫폼의 사용자들에 동시 구독의 장벽을 낮출 수 있으며, 이로 인한 각 OTT 플랫폼에 추가적인 경제적 효과도 기대할 수 있음
 
 ### Built With
 
@@ -98,15 +108,29 @@
 <!-- DESCRIPTION -->
 ## Description
 
+<summary><strong>주요 기능</strong></summary>
+<ol>
+  <li>통합 검색 서비스</li>
+  <li><strong>컨텐츠 추천 알고리즘</strong></li>
+  <li><strong>구독중인 OTT 컨텐츠 제공</strong></li>
+  <li><strong>시청 중인 컨텐츠나 찜한 목록을 조회 및 동기화</strong></li>
+  <li>사용자 연령에 맞는 추천 컨텐츠 제공</li>
+  <li>게시판을 통한 구독 서비스를 추천 및 가격 비교</li>
+  <li>추가적인 UI 디자인 제공</li>
+</ol>
 
 
 ### System Scenario
-
+<img src = "https://user-images.githubusercontent.com/78994323/148479674-9cddf23b-8cea-46f6-a8ea-7daaf6cca931.png" width="50%" height="50%">
+<br />
 
 ### System Config
-
+<img src = "https://user-images.githubusercontent.com/78994323/148479749-f1a5b87e-5be5-447d-9948-c09c897d0873.png" width="70%" height="70%">
+<br />
 
 ## Usage
+![image](https://user-images.githubusercontent.com/78994323/148479535-a21236bc-a69d-42dc-8697-1096c15cf50c.jpg)
+<br />
 Plz look forward to it..😅
 
 
