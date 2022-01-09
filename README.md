@@ -34,7 +34,7 @@
   <p align="center">
     여러 OTT 서비스를 하나의 어플리케이션에서 연동시켜 이용할 수 있도록 하는 서비스입니다.
     <br />
-    <a href="https://github.com/kpuce2022CD/OOSOO"><strong>프로토타입(준비중) »</strong></a>
+    <a href="https://ovenapp.io/view/9Le85BqDAqYOPNOC3RZbMeC2QqoU0BSO/"><strong>프로토타입 보러가기 »</strong></a>
     <br />
     <a href="https://www.miricanvas.com/v/1ss123">Project Proposal</a> · <a href="https://trello.com/b/LZtvi1s0">Trello</a>
   </p>
