@@ -36,7 +36,7 @@
     <br />
     <a href="https://ovenapp.io/view/9Le85BqDAqYOPNOC3RZbMeC2QqoU0BSO/"><strong>프로토타입 보러가기 »</strong></a>
     <br />
-    <a href="https://www.miricanvas.com/v/1ss123">Project Proposal</a> · <a href="https://trello.com/b/LZtvi1s0">Trello</a>
+    <a href="https://www.miricanvas.com/v/1ss123">Project Proposal</a> · <a href="https://github.com/kpuce2022CD/OOSOO/wiki">Wiki</a> · <a href="https://trello.com/b/LZtvi1s0">Trello</a>
   </p>
 </div>
 
