@@ -11,7 +11,9 @@ watchings = driver.find_elements(By.CLASS_NAME, 'fallback-text')
 time.sleep(1)
 
 print("        < 시청중인 목록 >        ")
+print("------------------------------")
 for content in watchings:
     print(content.text)
+print("------------------------------")
 
 driver.quit()
