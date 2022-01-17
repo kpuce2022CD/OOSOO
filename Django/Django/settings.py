@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-0^auooh()1=l8*ry&*a(6%_szs6j&ow5!_j&e(pq52qms0u%y6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['3.37.39.106']
+ALLOWED_HOSTS = ['3.37.39.106']  # PyCharm에서 테스트시 '*' 로 변경
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
     'api',
 ]
@@ -79,8 +80,12 @@ WSGI_APPLICATION = 'Django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'oosooDB',
+        'USER': 'eoeo0326',
+        'PASSWORD': '2017150009',
+        'HOST': 'oosoords.cqo7bp08tx6h.ap-northeast-2.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
 
@@ -107,13 +112,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
+
+USE_TZ = True
 
 USE_I18N = True
 
-USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
