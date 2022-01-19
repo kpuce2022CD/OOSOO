@@ -18,6 +18,7 @@ URL = 'https://www.wavve.com/'
 driver = webdriver.Chrome(executable_path = 'chromedriver')
 driver.get(url=URL)
 time.sleep(1)
+driver.implicitly_wait(10)
 driver.maximize_window()
 
 #팝업창 끄기
@@ -33,7 +34,6 @@ login.click()
 driver.execute_script('window.scrollTo(0,600);')
 skt_login = driver.find_element_by_xpath('//*[@id="app"]/div[1]/main/div/div[2]/div[2]/ul/li[2]/a/span[1]')
 skt_login.click()
-time.sleep(2)
 
 #로그인 액션체인
 id_box = driver.find_element_by_css_selector('#userId')
@@ -41,14 +41,11 @@ passwd_box = driver.find_element_by_css_selector('#password')
 login_button = driver.find_element_by_css_selector('#content > div:nth-child(3) > div.content-bottom > div:nth-child(1)')
 
 login_act = ActionChains(driver)
-
-login_act.send_keys_to_element(id_box,'T멤버쉽 아이디').send_keys_to_element(passwd_box,'비밀번호').click(login_button).perform()
-time.sleep(2)
+login_act.send_keys_to_element(id_box,'wlsgh980118@gmail.com').send_keys_to_element(passwd_box,'gPwls0228@').click(login_button).perform()
 
 #프로필 선택
 profile = driver.find_element_by_xpath('//*[@id="app"]/div[1]/div/div[2]/div/div[1]/a[1]/div/img')
 profile.click()
-time.sleep(1)
 
 #시청중인 VOD 페이지 이동
 driver.get(url = 'https://www.wavve.com/my/use_list_vod_history')
