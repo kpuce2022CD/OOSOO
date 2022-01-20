@@ -7,14 +7,14 @@ from pyvirtualdisplay import Display
 import time
 
 
-def w_wishes():
+def w_wishes(email, pwd, name):
     result = list()
 
-    display = Display(visible=0, size=(1920, 1080))
-    display.start()
+    display = Display(visible=0, size=(1920, 1080))     # PyCharm 테스트시 주석처리
+    display.start()                                     # PyCharm 테스트시 주석처리
 
-    # chrome창(웹드라이버) 열기
-    driver = webdriver.Chrome("/home/ubuntu/django_server/chromedriver")
+    # chrome창(웹드라이버) 열기  (AWS 경로 : "/home/ubuntu/django_server/chromedriver")
+    driver = webdriver.Chrome("/home/ubuntu/django_server/chromedriver")  # PyCharm 테스트시  r"D:\2022 Capston\OOSOO\Python\Watcha\chromedriver.exe"
 
     # 실행할 웹페이지 불러오기(왓챠 로그인 화면)
     driver.get("https://watcha.com/sign_in")
@@ -22,8 +22,8 @@ def w_wishes():
     # driver.set_window_size(1900, 1000)
 
     # 로그인
-    driver.find_element_by_name('email').send_keys('   ')  # 좌측 괄호 안에 회원 아이디(이메일) 입력
-    driver.find_element_by_name('password').send_keys('   ')  # 좌측 괄호 안에 회원 비밀번호 입력
+    driver.find_element_by_name('email').send_keys(email)  # 좌측 괄호 안에 회원 아이디(이메일) 입력
+    driver.find_element_by_name('password').send_keys(pwd)  # 좌측 괄호 안에 회원 비밀번호 입력
     driver.find_element_by_class_name('css-11a3zmg').click()
 
     # 프로필 선택 화면 로딩이 완료될때까지 대기
@@ -36,7 +36,7 @@ def w_wishes():
 
     for profile in profiles:
         print(profile.text)
-        if profile.text == "   ":  # 죄측 큰따옴표 안에 회원 프로필명 입력
+        if profile.text == name:  # 죄측 큰따옴표 안에 회원 프로필명 입력
             profile.click()
 
     time.sleep(5)

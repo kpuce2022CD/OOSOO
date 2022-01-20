@@ -54,6 +54,7 @@ class WatchingLogListAPI(APIView):
 
 
 class WatchaWishesListAPI(APIView):
-    def get(self, request):
-        result = w_wishes()
+    def post(self, request):
+        data = request.data
+        result = w_wishes(data.get('email'), data.get('pwd'), data.get('name'))
         return Response(result)
