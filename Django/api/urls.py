@@ -24,4 +24,5 @@ urlpatterns = [
     path('jjim/', JjimListAPI.as_view()),
     path('users/', UsersListAPI.as_view()),
     path('watching_log/', WatchingLogListAPI.as_view()),
+    path('watcha_wishes/', WatchaWishesListAPI.as_view()),
 ]
