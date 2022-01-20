@@ -22,8 +22,8 @@ def w_wishes(email, pwd, name):
     # driver.set_window_size(1900, 1000)
 
     # 로그인
-    driver.find_element_by_name('email').send_keys(email)  # 좌측 괄호 안에 회원 아이디(이메일) 입력
-    driver.find_element_by_name('password').send_keys(pwd)  # 좌측 괄호 안에 회원 비밀번호 입력
+    driver.find_element_by_name('email').send_keys(email)
+    driver.find_element_by_name('password').send_keys(pwd)
     driver.find_element_by_class_name('css-11a3zmg').click()
 
     # 프로필 선택 화면 로딩이 완료될때까지 대기
@@ -36,7 +36,7 @@ def w_wishes(email, pwd, name):
 
     for profile in profiles:
         print(profile.text)
-        if profile.text == name:  # 죄측 큰따옴표 안에 회원 프로필명 입력
+        if profile.text == name:
             profile.click()
 
     time.sleep(5)

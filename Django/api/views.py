@@ -2,7 +2,8 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import *
-from api.Watcha.Watcha_Wishes import w_wishes
+from api.Watcha.Wishes import w_wishes
+from api.Watcha.Watchings import w_watchings
 
 
 class ContentsListAPI(APIView):
@@ -57,4 +58,11 @@ class WatchaWishesListAPI(APIView):
     def post(self, request):
         data = request.data
         result = w_wishes(data.get('email'), data.get('pwd'), data.get('name'))
+        return Response(result)
+
+
+class WatchaWatchingsListAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = w_watchings(data.get('email'), data.get('pwd'), data.get('name'))
         return Response(result)
