@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from .serializers import *
 from api.Watcha.Wishes import w_wishes
 from api.Watcha.Watchings import w_watchings
+from api.Watcha.AddWish import w_addwish
 
 
 class ContentsListAPI(APIView):
@@ -65,4 +66,11 @@ class WatchaWatchingsListAPI(APIView):
     def post(self, request):
         data = request.data
         result = w_watchings(data.get('email'), data.get('pwd'), data.get('name'))
+        return Response(result)
+
+
+class WatchaAddWishAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = w_addwish(data.get('email'), data.get('pwd'), data.get('name'), data.get('title'))
         return Response(result)

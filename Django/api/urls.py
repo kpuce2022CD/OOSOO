@@ -26,4 +26,5 @@ urlpatterns = [
     path('watching_log/', WatchingLogListAPI.as_view()),
     path('w_wishes/', WatchaWishesListAPI.as_view()),
     path('w_watchings/', WatchaWatchingsListAPI.as_view()),
+    path('w_addwish/', WatchaAddWishAPI.as_view()),
 ]

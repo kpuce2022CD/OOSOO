@@ -3,13 +3,12 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from pyvirtualdisplay import Display
 import time
 
 
-def w_wishes(email, pwd, name):
-    result = list()
-
+def w_addwish(email, pwd, name, title):
     display = Display(visible=0, size=(1920, 1080))     # PyCharm 테스트시 주석처리
     display.start()                                     # PyCharm 테스트시 주석처리
 
@@ -42,33 +41,26 @@ def w_wishes(email, pwd, name):
 
     # ----------------------------------------------------------------------------------------------------------------------#
 
-    # '보고싶어요' 에 있는 항목들 불러오기
-    driver.get("https://watcha.com/wishes")
+    # 해당 영화 검색
+
+    search = driver.find_element_by_xpath('//*[@id="top_navigation"]/nav/div[1]/div/div/form/label/input')
+    search.send_keys(title)
+    time.sleep(2)
+    search.send_keys(Keys.RETURN)
 
     time.sleep(3)
     driver.implicitly_wait(5)
-    WebDriverWait(driver, timeout=10).until(EC.presence_of_element_located((By.CLASS_NAME, "css-1g3awd")))
+    WebDriverWait(driver, timeout=10).until(EC.presence_of_element_located((By.CLASS_NAME, "css-1hqk0rn")))
 
-    # 페이지 스크롤
-    last_height = driver.execute_script("return document.body.scrollHeight")
+    results = driver.find_elements_by_class_name('css-1hqk0rn')
 
-    while True:
-        scroll_down = 0
-        while scroll_down < 10:
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            time.sleep(0.2)
-            scroll_down += 1
-
-        # 스크롤 내린 후 스크롤 높이 다시 가져옴
-        new_height = driver.execute_script("return document.body.scrollHeight")
-        if new_height == last_height:
-            break
-        last_height = new_height
-
-    wishes = driver.find_elements_by_class_name('css-1g3awd')
-    print("< Wishlist >")
-    for wish in wishes:
-        print(wish.text)
-        result.append(wish.text)
-
-    return result
+    for result in results:
+        print(result.text)
+        if result.text == title:
+            webdriver.ActionChains(driver).move_to_element(result).perform()
+            time.sleep(2)
+            driver.find_element_by_class_name('css-16g6nz2').click()
+            time.sleep(2)
+            return "success"
+        else:
+            return "fail"

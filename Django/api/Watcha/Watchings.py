@@ -18,16 +18,14 @@ def w_watchings(email, pwd, name):
 
     # 실행할 웹페이지 불러오기(왓챠 로그인 화면)
     driver.get("https://watcha.com/sign_in")
-    # driver.set_window_position(0, 0)
-    # driver.set_window_size(1900, 1000)
 
     # 로그인
-    driver.find_element_by_name('email').send_keys(email)
-    driver.find_element_by_name('password').send_keys(pwd)
-    driver.find_element_by_class_name('css-11a3zmg').click()
+    driver.find_element_by_xpath('//*[@id="root"]/div[1]/main/div[1]/main/div/form/div[1]/input').send_keys(email)
+    driver.find_element_by_xpath('//*[@id="root"]/div[1]/main/div[1]/main/div/form/div[2]/input').send_keys(pwd)
+    driver.find_element_by_xpath('//*[@id="root"]/div[1]/main/div[1]/main/div/form/div[3]/button').click()
 
     # 프로필 선택 화면 로딩이 완료될때까지 대기
-    time.sleep(5)
+    time.sleep(3)
     driver.implicitly_wait(5)
     WebDriverWait(driver, timeout=10).until(EC.presence_of_element_located((By.CLASS_NAME, "css-1blyq76")))
 
@@ -39,7 +37,7 @@ def w_watchings(email, pwd, name):
         if profile.text == name:
             profile.click()
 
-    time.sleep(5)
+    time.sleep(3)
     driver.implicitly_wait(5)
 
     # ----------------------------------------------------------------------------------------------------------------------#
@@ -47,7 +45,7 @@ def w_watchings(email, pwd, name):
     # '이어보기' 에 있는 항목들 불러오기
     driver.get("https://watcha.com/watchings")
 
-    time.sleep(5)
+    time.sleep(3)
     driver.implicitly_wait(5)
     WebDriverWait(driver, timeout=10).until(EC.presence_of_element_located((By.CLASS_NAME, "css-1g3awd")))
 

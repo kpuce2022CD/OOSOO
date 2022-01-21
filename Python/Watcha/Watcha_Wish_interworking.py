@@ -52,7 +52,3 @@ for result in results:
         webdriver.ActionChains(driver).move_to_element(result).perform()
         time.sleep(1)
         driver.find_element_by_class_name('css-16g6nz2').click()
-
-
-
-
