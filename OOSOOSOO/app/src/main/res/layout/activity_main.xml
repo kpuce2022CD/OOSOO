@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/radio_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="조회할 정보를 선택"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_title"
+        app:layout_constraintVertical_bias="0.75" />
+
+    <TextView
+        android:id="@+id/main_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="컨텐츠 정보"
+        android:textColor="@color/purple_700"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07999998" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio_contents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="컨텐츠 정보" />
+
+            <RadioButton
+                android:id="@+id/radio_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="컨텐츠 평가(리뷰)" />
+
+            <RadioButton
+                android:id="@+id/radio_jjim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="찜목록" />
+
+            <RadioButton
+                android:id="@+id/radio_users"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="유저정보" />
+
+            <RadioButton
+                android:id="@+id/radio_watcha_wish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Watcha 찜목록" />
+
+            <RadioButton
+                android:id="@+id/radio_watcha_watching"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Watcha 시청목록" />
+
+        </RadioGroup>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#777777"
+        android:text="이동"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
