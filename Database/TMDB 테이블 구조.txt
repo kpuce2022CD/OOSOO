@@ -1,0 +1,44 @@
+배열은 ", "로 구분해서 배열 형태로
+
+contents_movie
+------------------------------------------------------------------------------------------------------
+ID			int		not null		자동증가
+title			varchar(100)	not null		제목
+genre			varchar(100)	not null		장르(배열)	
+production_countries		varchar(200)	not null		제작 국가(배열)
+release_date		date		not null		출시일
+adult			boolean		not null		청불
+vote_average		float(3,1)		not null		평점
+vote_count		int		not null		평점 매긴 수
+homepage		varchar(200)	    - 		홈페이지 주소
+poster_path		varchar(200)	    -		영화 포스터 주소
+runtime			int		    -		런타임
+overview			varchar(1000)	    -		영화 설명	
+flatrate			varchar(100)	    -		구독 서비스(배열)
+rent			varchar(100)	    -		대여 서비스(배열)
+buy			varchar(100)	    -		구매 서비스(배열)
+---------------------------------------------------------------------------------------------------------
+
+contents_tv
+----------------------------------------------------------------------------------------------------------
+ID			int 		not null		auto-increment
+title			varchar(100)	not null		제목
+genre			varchar(100)	not null		장르(배열)
+production_countries		varchar(200)	not null		제작 국가(배열)
+vote_average		float(3,1)		not null		평점
+vote_count		int		not null		평점 매긴 수
+overview			varchar(1000)	not null		콘텐츠 설명
+homepage		varchar(200)	not null		홈페이지 주소
+number_of_seasons		int		not null		시즌 갯수
+number_of_episodes		int		not null		에피소드 갯수
+now_status		varchar(100)	not null		콘텐츠 방영 상태
+first_air_date		date		    -		출시일
+last_air_date		date		    -		마지막 방영일
+poster_path		varchar(200)	    -		콘텐츠 포스터 주소
+flatrate			varchar(100)	    -		구독 서비스(배열)
+rent			varchar(100)	    -		대여 서비스(배열)
+buy			varchar(100)	    -		구매 서비스(배열)
+---------------------------------------------------------------------------------------------------------
+
+TV contents _ season 테이블
+
