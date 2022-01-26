@@ -25,6 +25,7 @@ def w_login(email, pwd, name, driver):
         print(profile.text)
         if profile.text == name:
             profile.click()
+            break
 
     time.sleep(3)
     driver.implicitly_wait(5)

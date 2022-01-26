@@ -24,7 +24,10 @@ urlpatterns = [
     path('jjim/', JjimListAPI.as_view()),
     path('users/', UsersListAPI.as_view()),
     path('watching_log/', WatchingLogListAPI.as_view()),
+
     path('w_wishes/', WatchaWishesListAPI.as_view()),
     path('w_watchings/', WatchaWatchingsListAPI.as_view()),
     path('w_addwish/', WatchaAddWishAPI.as_view()),
+
+    path('n_wishes/', NetflixWishesListAPI.as_view()),
 ]

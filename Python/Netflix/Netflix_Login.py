@@ -4,7 +4,6 @@ import time
 import getpass #비밀번호 입력 프롬프트
 
 
-
 netflix_userId = input("넷플릭스 로그인 이메일 또는 전화번호를 입력해주세요 : ")
 netflix_userPasswd = input("넷플릭스 비밀번호를 입력해주세요 : ") #!!getpass 오류!!
 print("로그인 중...")
