@@ -7,6 +7,8 @@ from api.Watcha.Watchings import w_watchings
 from api.Watcha.AddWish import w_addwish
 from api.Netflix.Wishes import n_wishes
 from api.Netflix.Watchings import n_watchings
+from api.Netflix.AddWish import n_addwish
+
 
 class ContentsListAPI(APIView):
     def get(self, request):
@@ -88,4 +90,11 @@ class NetflixWatchingsListAPI(APIView):
     def post(self, request):
         data = request.data
         result = n_watchings(data.get('email'), data.get('pwd'), data.get('name'))
+        return Response(result)
+
+
+class NetflixAddWishAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = n_addwish(data.get('email'), data.get('pwd'), data.get('name'), data.get('title'))
         return Response(result)

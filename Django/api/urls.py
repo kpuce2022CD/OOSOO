@@ -31,4 +31,5 @@ urlpatterns = [
 
     path('n_wishes/', NetflixWishesListAPI.as_view()),
     path('n_watchings/', NetflixWatchingsListAPI.as_view()),
+    path('n_addwish/', NetflixAddWishAPI.as_view()),
 ]
