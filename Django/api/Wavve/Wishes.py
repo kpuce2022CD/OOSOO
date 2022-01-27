@@ -30,11 +30,13 @@ def wav_wishes(email, pwd, name):
 
     # 찜한 영화 목록 출력
     for k in page:
+        page_URL = 'https://www.wavve.com/my/like_movie?page=' + str(k)
         wishes = driver.find_elements_by_class_name('con-tit')
         for wish in wishes:
             print(wish.text)
             result.append(wish.text)
-        page_URL = 'https://www.wavve.com/my/like_movie?page=' + str(k)
         driver.get(page_URL)
         time.sleep(2)
         driver.implicitly_wait(5)
+
+    return result
