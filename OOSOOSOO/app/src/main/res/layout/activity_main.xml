@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/radio_title_text"
+        android:id="@+id/content_id_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="조회할 정보를 선택"
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="컨텐츠 정보"
+        android:text="메뉴"
         android:textColor="@color/purple_700"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -56,6 +56,7 @@
                 android:id="@+id/radio_contents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="컨텐츠 정보" />
 
             <RadioButton
