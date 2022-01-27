@@ -8,6 +8,8 @@ from api.Watcha.AddWish import w_addwish
 from api.Netflix.Wishes import n_wishes
 from api.Netflix.Watchings import n_watchings
 from api.Netflix.AddWish import n_addwish
+from api.Wavve.Wishes import wav_wishes
+from api.Wavve.Watchings import wav_watchings
 
 
 class ContentsListAPI(APIView):
@@ -98,3 +100,18 @@ class NetflixAddWishAPI(APIView):
         data = request.data
         result = n_addwish(data.get('email'), data.get('pwd'), data.get('name'), data.get('title'))
         return Response(result)
+
+
+class WavveWishesListAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = wav_wishes(data.get('email'), data.get('pwd'), data.get('name'))
+        return Response(result)
+
+
+class WavveWatchingsListAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = wav_watchings(data.get('email'), data.get('pwd'), data.get('name'))
+        return Response(result)
+
