@@ -30,11 +30,11 @@ def wav_watchings(email, pwd, name):
 
     # 시청중인 VOD 목록
     for k in page:
+        page_URL = 'https://www.wavve.com/my/use_list_vod_history?page=' + str(k)
         watching_vods = driver.find_elements_by_class_name('con-tit')
         for vod in watching_vods:
             print(vod.text)
             result.append(vod.text)
-        page_URL = 'https://www.wavve.com/my/use_list_vod_history?page=' + str(k)
         driver.get(page_URL)
         time.sleep(2)
         driver.implicitly_wait(5)
@@ -50,11 +50,13 @@ def wav_watchings(email, pwd, name):
 
     # 시청중인 영화 목록
     for k in page:
+        page_URL = 'https://www.wavve.com/my/use_list_movie_history?page=' + str(k)
         watching_movies = driver.find_elements_by_class_name('con-tit')
         for movie in watching_movies:
             print(movie.text)
             result.append(movie.text)
-        page_URL = 'https://www.wavve.com/my/use_list_movie_history?page=' + str(k)
         driver.get(page_URL)
         time.sleep(2)
         driver.implicitly_wait(5)
+
+    return result

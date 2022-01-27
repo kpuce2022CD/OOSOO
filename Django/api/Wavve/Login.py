@@ -12,6 +12,8 @@ def wav_login(email, pwd, name, driver):
     driver.execute_script('window.scrollTo(0,600);')
     skt_login = driver.find_element_by_xpath('//*[@id="app"]/div[1]/main/div/div[2]/div[2]/ul/li[2]/a/span[1]')
     skt_login.click()
+    time.sleep(2)
+    driver.implicitly_wait(5)
 
     # 로그인 액션체인
     id_box = driver.find_element_by_css_selector('#userId')
@@ -24,8 +26,15 @@ def wav_login(email, pwd, name, driver):
     # 프로필 선택 화면 로딩이 완료될때까지 대기
     time.sleep(3)
     driver.implicitly_wait(5)
-    WebDriverWait(driver, timeout=10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="app"]/div[1]/div/div[2]/div/div[1]/a[1]/div/img')))
+    WebDriverWait(driver, timeout=10).until(EC.presence_of_element_located((By.CLASS_NAME, 'user-style')))
 
     # 프로필 선택
-    profile = driver.find_element_by_xpath('//*[@id="app"]/div[1]/div/div[2]/div/div[1]/a[1]/div/img')
-    profile.click()
+    profiles = driver.find_elements_by_class_name('user-style')
+    for profile in profiles:
+        print(profile.text)
+        if profile.text == name:
+            profile.click()
+            break
+
+    time.sleep(3)
+    driver.implicitly_wait(5)
