@@ -12,7 +12,7 @@ def wav_watchings(email, pwd, name):
     # chrome창(웹드라이버) 열기  (AWS 경로 : "/home/ubuntu/django_server/chromedriver")
     driver = webdriver.Chrome("/home/ubuntu/django_server/chromedriver")  # PyCharm 테스트시  r"D:\2022 Capston\OOSOO\Python\Watcha\chromedriver.exe"
 
-    # 왓챠 로그인
+    # 웨이브 로그인
     wav_login(email, pwd, name, driver)
 
     # ----------------------------------------------------------------------------------------------------------------------#

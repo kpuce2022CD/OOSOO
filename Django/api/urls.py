@@ -35,4 +35,5 @@ urlpatterns = [
 
     path('wav_wishes/', WavveWishesListAPI.as_view()),
     path('wav_watchings/', WavveWatchingsListAPI.as_view()),
+    path('wav_addwish/', WavveAddWishAPI.as_view()),
 ]
