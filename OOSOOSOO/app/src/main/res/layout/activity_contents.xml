@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/main_title"
+        android:id="@+id/main_title_contents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -40,7 +40,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_contents_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_title" />
+        app:layout_constraintTop_toBottomOf="@+id/main_title_contents" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
