@@ -16,7 +16,7 @@ except mariadb.Error as e:
     print(f"failed: Error connecting to Mariadb: {e}")
     sys.exit(1)
 
-for i in range(1, 1000):
+for i in range(101, 200):
     try:
         # 영화 제공 플랫폼 get
         url = "https://api.themoviedb.org/3/movie/" + str(
@@ -40,11 +40,11 @@ for i in range(1, 1000):
             # 영화정보 입력
             if "title" in movie_json:
 
-                id = movie_provider_json["id"]
+                id = "m_" + str(movie_provider_json["id"])
+
+                type = "movie"
 
                 title = movie_json["title"]
-
-                poster_path = movie_json["poster_path"]
 
                 genre = ""
                 for k in movie_json["genres"]:
@@ -54,23 +54,19 @@ for i in range(1, 1000):
                 for j in movie_json["production_countries"]:
                     country += j["name"] + ", "
 
-                runtime = movie_json["runtime"]
+                vote_average = movie_json["vote_average"]
 
-                overview = movie_json["overview"]
+                vote_count = movie_json["vote_count"]
 
                 release_date = movie_json["release_date"]
 
                 adult = movie_json["adult"]
 
-                vote_average = movie_json["vote_average"]
+                poster_path = movie_json["poster_path"]
 
-                vote_count = movie_json["vote_count"]
+                runtime = movie_json["runtime"]
 
-                homepage = movie_json["homepage"]
-
-                company = ""
-                for l in movie_json["production_companies"]:
-                    company += l["name"] + ", "
+                overview = movie_json["overview"]
 
                 subs = ""
                 # 구독, 대여, 구매 정보 확인
@@ -95,13 +91,13 @@ for i in range(1, 1000):
 
                 try:
                     cur = conn.cursor()
-                    use_db_query = "use tmdb"
-                    insert_query = "INSERT INTO contents_movie(id, title, genre, production_countries, release_date, adult, vote_average, vote_count, homepage, poster_path, runtime, overview, flatrate, rent, buy) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "
+                    use_db_query = "use oosooDB"
+                    insert_query = "INSERT INTO contents(id, _type, title, genre, production_countries, vote_count, vote_average, release_date, adult, poster_path, runtime, overview, flatrate, rent, buy) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "
 
                     cur.execute(use_db_query)
                     cur.execute(insert_query, (
-                    id, title, genre, country, release_date, adult, vote_average, vote_count, homepage, poster_path,
-                    runtime, overview, subs, rentrent, buybuy))
+                    id, type, title, genre, country, vote_count, vote_average, release_date,
+                    adult, poster_path, runtime, overview, subs, rentrent, buybuy))
                     conn.commit()
 
                 except mariadb.Error as e:
