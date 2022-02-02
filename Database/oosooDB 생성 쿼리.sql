@@ -23,8 +23,6 @@ CREATE TABLE contents(
 	buy VARCHAR(100)
 );
 
-
-
 CREATE TABLE users(
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	email VARCHAR(50) NOT NULL,
@@ -61,4 +59,51 @@ CREATE TABLE contents_review(
 	_datetime DATETIME NOT NULL,
 	FOREIGN KEY(c_id) REFERENCES contents(id),
 	FOREIGN KEY(u_id) REFERENCES users(id)
+);
+
+CREATE TABLE contents_seasons(
+	_id VARCHAR(100) NOT NULL PRIMARY KEY,
+	c_id VARCHAR(100) NOT NULL,
+	air_date DATE NOT NULL,
+	title VARCHAR(100) NOT NULL,
+	NUMBER INT NOT NULL,
+	overview VARCHAR(2000),
+	poster_path VARCHAR(200),
+	FOREIGN KEY(c_id) REFERENCES contents(id)
+);
+
+CREATE TABLE contents_episodes(
+	_id VARCHAR(100) NOT NULL PRIMARY KEY,
+	c_id VARCHAR(100) NOT NULL,
+	season_num INT NOT NULL,
+	title VARCHAR(100) NOT NULL,
+	NUMBER INT NOT NULL,
+	air_date DATE,
+	vote_count INT,
+	vote_average FLOAT(3, 1),
+	overview VARCHAR(2000),
+	still_path VARCHAR(200),
+	crew VARCHAR(1000),
+	guests VARCHAR(1000),
+	FOREIGN KEY(c_id) REFERENCES contents(id)
+);
+
+CREATE TABLE wish_list(
+	id VARCHAR(100) NOT NULL PRIMARY KEY,
+	c_id VARCHAR(100) NOT NULL,
+	i_id VARCHAR(50) NOT NULL,
+	_type VARCHAR(10) NOT NULL,
+	state BOOLEAN NOT NULL,
+	wish_date DATE NOT NULL,
+	FOREIGN KEY(c_id) REFERENCES contents(id),
+	FOREIGN KEY(i_id) REFERENCES user_interworking(i_id)
+);
+
+CREATE TABLE watching_log(
+	id VARCHAR(100) NOT NULL PRIMARY KEY,
+	c_id VARCHAR(100) NOT NULL,
+	i_id VARCHAR(50) NOT NULL,
+	time_log TIME NOT NULL,
+	FOREIGN KEY(c_id) REFERENCES contents(id),
+	FOREIGN KEY(i_id) REFERENCES user_interworking(i_id)
 );
