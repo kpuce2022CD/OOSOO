@@ -21,6 +21,14 @@ class ContentsListAPI(APIView):
         return Response(serializer.data)
 
 
+class ContentsEpisodesListAPI(APIView):
+    def get(self, request):
+        queryset = ContentsEpisodes.objects.all()
+        print(queryset)
+        serializer = ContentsEpisodesSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
 class ContentsReviewListAPI(APIView):
     def get(self, request):
         queryset = ContentsReview.objects.all()
@@ -29,19 +37,19 @@ class ContentsReviewListAPI(APIView):
         return Response(serializer.data)
 
 
-class InterworkingListAPI(APIView):
+class ContentsSeasonsListAPI(APIView):
     def get(self, request):
-        queryset = Interworking.objects.all()
+        queryset = ContentsSeasons.objects.all()
         print(queryset)
-        serializer = InterworkingSerializer(queryset, many=True)
+        serializer = ContentsSeasonsSerializer(queryset, many=True)
         return Response(serializer.data)
 
 
-class JjimListAPI(APIView):
+class UserInterworkingListAPI(APIView):
     def get(self, request):
-        queryset = Jjim.objects.all()
+        queryset = UserInterworking.objects.all()
         print(queryset)
-        serializer = JjimSerializer(queryset, many=True)
+        serializer = UserInterworkingSerializer(queryset, many=True)
         return Response(serializer.data)
 
 
@@ -58,6 +66,14 @@ class WatchingLogListAPI(APIView):
         queryset = WatchingLog.objects.all()
         print(queryset)
         serializer = WatchingLogSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class WishListAPI(APIView):
+    def get(self, request):
+        queryset = WishList.objects.all()
+        print(queryset)
+        serializer = WishListSerializer(queryset, many=True)
         return Response(serializer.data)
 
 

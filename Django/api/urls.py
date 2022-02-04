@@ -19,11 +19,13 @@ from api.views import *
 
 urlpatterns = [
     path('contents/', ContentsListAPI.as_view()),
+    path('contents_episodes/', ContentsEpisodesListAPI.as_view()),
     path('contents_review/', ContentsReviewListAPI.as_view()),
-    path('interworking/', InterworkingListAPI.as_view()),
-    path('jjim/', JjimListAPI.as_view()),
+    path('contents_seasons/', ContentsSeasonsListAPI.as_view()),
+    path('user_interworking/', UserInterworkingListAPI.as_view()),
     path('users/', UsersListAPI.as_view()),
     path('watching_log/', WatchingLogListAPI.as_view()),
+    path('wishlist/', WishListAPI.as_view()),
 
     path('w_wishes/', WatchaWishesListAPI.as_view()),
     path('w_watchings/', WatchaWatchingsListAPI.as_view()),

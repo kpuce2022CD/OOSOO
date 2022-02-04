@@ -8,22 +8,28 @@ class ContentsSerializer(serializers.ModelSerializer):
         fields = '__all__'      # 모든 필드 포함
 
 
+class ContentsEpisodesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContentsEpisodes    # ContentsEpisodes 모델 사용
+        fields = '__all__'          # 모든 필드 포함
+
+
 class ContentsReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContentsReview  # ContentsReview 모델 사용
         fields = '__all__'      # 모든 필드 포함
 
 
-class InterworkingSerializer(serializers.ModelSerializer):
+class ContentsSeasonsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Interworking    # Interworking 모델 사용
-        fields = '__all__'      # 모든 필드 포함
+        model = ContentsSeasons     # ContentsSeasons 모델 사용
+        fields = '__all__'          # 모든 필드 포함
 
 
-class JjimSerializer(serializers.ModelSerializer):
+class UserInterworkingSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Jjim            # Jjim 모델 사용
-        fields = '__all__'      # 모든 필드 포함
+        model = UserInterworking    # UserInterworking 모델 사용
+        fields = '__all__'          # 모든 필드 포함
 
 
 class UsersSerializer(serializers.ModelSerializer):
@@ -35,4 +41,10 @@ class UsersSerializer(serializers.ModelSerializer):
 class WatchingLogSerializer(serializers.ModelSerializer):
     class Meta:
         model = WatchingLog     # WatchingLog 모델 사용
+        fields = '__all__'      # 모든 필드 포함
+
+
+class WishListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WishList        # Wishlist 모델 사용
         fields = '__all__'      # 모든 필드 포함
