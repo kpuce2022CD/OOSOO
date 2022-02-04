@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.33240740740740743" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/app_gradient_background.xml" value="0.33240740740740743" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/ic_launcher_background.xml" value="0.33240740740740743" />
         <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_contents.xml" value="0.21" />
         <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_netflix_wishes.xml" value="0.36614583333333334" />

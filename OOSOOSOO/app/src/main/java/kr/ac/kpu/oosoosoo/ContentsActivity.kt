@@ -59,37 +59,50 @@ class ContentsActivity : AppCompatActivity() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PagerViewHolder((parent))
 
-
         override fun getItemCount(): Int = item.size
 
         override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
             //각 item에 저장된 리스트 값 지정
-            holder.id.text = item[position].c_id.toString()
-            holder.genre.text = item[position].c_genre.toString()
-            holder.name.text = item[position].c_name.toString()
-            holder.release.text = item[position].c_release_date.toString()
-            holder.cast.text = item[position].c_cast.toString()
-            holder.ageLimit.text = item[position].c_age_limit.toString()
-            holder.rating.text = item[position].c_rating.toString()
-            holder.platform.text = item[position].c_platform.toString()
-            holder.information.text = item[position].c_information.toString()
-            holder.previewURL.text = item[position].c_preview_url.toString()
-            holder.number.text = item[position].c_number.toString()
+            holder.id.text = item[position].id.toString()
+            holder.title.text = item[position].title.toString()
+            holder.genre.text = item[position].genre.toString()
+            holder.production_countries.text = item[position].production_countries.toString()
+            holder.vote_count.text = "("+item[position].vote_count.toString()+")"
+            holder.vote_average.text = item[position].vote_average.toString()
+            holder.number_of_seasons.text = item[position].number_of_seasons.toString()
+            holder.number_of_episodes.text = item[position].number_of_episodes.toString()
+            holder.release_date.text = item[position].release_date.toString()
+            holder.runtime.text = item[position].runtime.toString()+"분"
+            holder.overview.text = item[position].overview.toString()
+            holder.flatrate.text = item[position].flatrate.toString()
+            holder.rent.text = item[position].rent.toString()
+            holder.buy.text = item[position].buy.toString()
+
+            if(item[position].number_of_seasons.toString() == "null") {
+                holder.number_of_seasons.visibility = View.INVISIBLE
+            }
+
+            if(item[position].number_of_episodes.toString() == "null") {
+                holder.number_of_episodes.visibility = View.INVISIBLE
+            }
         }
 
         inner class PagerViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.content_item, parent, false)) {
             //이너 클래스의 변수값 -> layout id 값과 연결
             val id = itemView.content_id
+            val title = itemView.content_title
             val genre = itemView.content_genre
-            val name = itemView.content_name
-            val release = itemView.content_release
-            val cast = itemView.content_cast
-            val ageLimit = itemView.content_age_limit
-            val rating = itemView.content_rating
-            val platform = itemView.content_platform
-            val information = itemView.content_information
-            val previewURL = itemView.content_url
-            val number = itemView.content_number
+            val production_countries = itemView.content_production_countries
+            val vote_count = itemView.content_vote_count
+            val vote_average = itemView.content_vote_average
+            val number_of_seasons = itemView.content_number_of_seasons
+            val number_of_episodes = itemView.content_number_of_episodes
+            val release_date = itemView.content_release_date
+            val runtime = itemView.content_runtime
+            val overview = itemView.content_overview
+            val flatrate = itemView.content_flatrate
+            val rent = itemView.content_rent
+            val buy = itemView.content_buy
         }
     }
 }

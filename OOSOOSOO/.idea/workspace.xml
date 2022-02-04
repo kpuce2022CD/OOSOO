@@ -27,18 +27,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae67b715-e87f-4561-a21e-fb516145301b" name="Default Changelist" comment="Android : ViewPager2 &amp; AdapterView 적용(가변 수량 컨텐츠 출력 가능)">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/NetflixUserInfo.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWishesActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_netflix_wishes.xml" afterDir="false" />
+    <list default="true" id="ae67b715-e87f-4561-a21e-fb516145301b" name="Default Changelist" comment="Android : POST방식 Test(Netflix Wishes)">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/RetrofitBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/RetrofitBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_contents.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_contents.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/ContentInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/ContentInfo.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/ContentsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/ContentsActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_item.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +50,7 @@
       <list>
         <option value="layoutResourceFile" />
         <option value="Kotlin Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -73,11 +68,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="android.template.-1269401511">
+      <recent name="kr.ac.kpu.oosoosoo" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\2022 Capston\OOSOO\OOSOOSOO\app\src\main\res\layout" />
       <recent name="D:\2022 Capston\OOSOO\OOSOOSOO\app\src\main\java\kr\ac\kpu\oosoosoo" />
@@ -176,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643298410030</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Android : POST방식 Test(Netflix Wishes)">
+      <created>1643392268133</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1643392268133</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -194,6 +199,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Android Code 재업로드" />
     <MESSAGE value="Android : ViewPager2 &amp; AdapterView 적용(가변 수량 컨텐츠 출력 가능)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Android : ViewPager2 &amp; AdapterView 적용(가변 수량 컨텐츠 출력 가능)" />
+    <MESSAGE value="Android : POST방식 Test(Netflix Wishes)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Android : POST방식 Test(Netflix Wishes)" />
   </component>
 </project>
