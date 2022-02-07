@@ -29,14 +29,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae67b715-e87f-4561-a21e-fb516145301b" name="Default Changelist" comment="Android : POST방식 Test(Netflix Wishes)">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/LoginActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+    <list default="true" id="ae67b715-e87f-4561-a21e-fb516145301b" name="Default Changelist" comment="Login Activity 생성">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/SignupActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/LoginActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643392268133</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Login Activity 생성">
+      <created>1644226806288</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1644226806288</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -209,13 +215,18 @@
     <MESSAGE value="Android Code 재업로드" />
     <MESSAGE value="Android : ViewPager2 &amp; AdapterView 적용(가변 수량 컨텐츠 출력 가능)" />
     <MESSAGE value="Android : POST방식 Test(Netflix Wishes)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Android : POST방식 Test(Netflix Wishes)" />
+    <MESSAGE value="Login Activity 생성" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login Activity 생성" />
   </component>
   <component name="WindowStateProjectService">
     <state x="141" y="70" key="MergeDialog" timestamp="1644219366151">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="141" y="70" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1644219366151" />
+    <state x="467" y="210" key="Vcs.Push.Dialog.v2" timestamp="1644226810377">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="467" y="210" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1644226810377" />
     <state x="1027" y="404" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1644219378388">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

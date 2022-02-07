@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OOSOOSOO"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".SignupActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity
             android:name=".NetflixWishesActivity"
             android:exported="false" />
