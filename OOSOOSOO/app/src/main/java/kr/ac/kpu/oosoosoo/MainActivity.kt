@@ -5,6 +5,7 @@ import android.graphics.Paint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.radio_netflix_wish -> startActivity(Intent(this, NetflixWishesActivity::class.java))
 
             }
+        }
+
+        btn_to_login.setOnClickListener {
+            startActivity<LoginActivity>()
         }
 
         radio_jjim.paintFlags = radio_jjim.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG

@@ -2,7 +2,9 @@
 <project version="4">
   <component name="AndroidLayouts">
     <shared>
-      <config />
+      <config>
+        <target>android-30</target>
+      </config>
     </shared>
   </component>
   <component name="AutoImportSettings">
@@ -28,18 +30,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae67b715-e87f-4561-a21e-fb516145301b" name="Default Changelist" comment="Android : POST방식 Test(Netflix Wishes)">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/LoginActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/ContentInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/ContentInfo.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/ContentsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/ContentsActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\ncclu\.android\avd\Pixel_4_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\Kim\.android\avd\Pixel_2_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -58,7 +62,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="24BdJWKFJYLxnAts1shiswRriEn" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -73,15 +79,18 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="android.template.-944699488">
+      <recent name="kr.ac.kpu.oosoosoo" />
+    </key>
     <key name="android.template.-1269401511">
+      <recent name="kr.ac.kpu.oosoosoo" />
+    </key>
+    <key name="android.template.-327071526">
       <recent name="kr.ac.kpu.oosoosoo" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\2022 Capston\OOSOO\OOSOOSOO\app\src\main\res\layout" />
       <recent name="D:\2022 Capston\OOSOO\OOSOOSOO\app\src\main\java\kr\ac\kpu\oosoosoo" />
-    </key>
-    <key name="android.template.-944699488">
-      <recent name="kr.ac.kpu.oosoosoo" />
     </key>
   </component>
   <component name="RunManager">
@@ -201,5 +210,15 @@
     <MESSAGE value="Android : ViewPager2 &amp; AdapterView 적용(가변 수량 컨텐츠 출력 가능)" />
     <MESSAGE value="Android : POST방식 Test(Netflix Wishes)" />
     <option name="LAST_COMMIT_MESSAGE" value="Android : POST방식 Test(Netflix Wishes)" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="141" y="70" key="MergeDialog" timestamp="1644219366151">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="141" y="70" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1644219366151" />
+    <state x="1027" y="404" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1644219378388">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1027" y="404" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1644219378388" />
   </component>
 </project>
