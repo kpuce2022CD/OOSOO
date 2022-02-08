@@ -96,6 +96,7 @@ class UserInterworking(models.Model):
 
 
 class Users(models.Model):
+    id = models.IntegerField(primary_key=True)
     email = models.CharField(max_length=50)
     passwd = models.CharField(max_length=20)
     name = models.CharField(max_length=20)
