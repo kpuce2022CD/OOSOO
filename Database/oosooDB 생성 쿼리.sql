@@ -92,9 +92,6 @@ CREATE TABLE wish_list(
 	id VARCHAR(100) NOT NULL PRIMARY KEY,
 	c_id VARCHAR(100) NOT NULL,
 	i_id VARCHAR(50) NOT NULL,
-	_type VARCHAR(10) NOT NULL,
-	state BOOLEAN NOT NULL,
-	wish_date DATE NOT NULL,
 	FOREIGN KEY(c_id) REFERENCES contents(id),
 	FOREIGN KEY(i_id) REFERENCES user_interworking(i_id)
 );
@@ -103,7 +100,6 @@ CREATE TABLE watching_log(
 	id VARCHAR(100) NOT NULL PRIMARY KEY,
 	c_id VARCHAR(100) NOT NULL,
 	i_id VARCHAR(50) NOT NULL,
-	time_log TIME NOT NULL,
 	FOREIGN KEY(c_id) REFERENCES contents(id),
 	FOREIGN KEY(i_id) REFERENCES user_interworking(i_id)
 );
