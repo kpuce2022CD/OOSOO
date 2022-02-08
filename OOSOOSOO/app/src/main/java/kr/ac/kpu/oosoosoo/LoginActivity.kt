@@ -10,9 +10,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-    signup_btn.setOnClickListener {
-        startActivity<SignupActivity>()
-    }
+        signup_btn.setOnClickListener {
+            startActivity<SignupActivity>()
+        }
 
 
     }

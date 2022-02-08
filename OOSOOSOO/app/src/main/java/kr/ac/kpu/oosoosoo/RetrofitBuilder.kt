@@ -6,12 +6,20 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 class RetrofitBuilder {
 
+    val okHttpClient = OkHttpClient.Builder()
+        .connectTimeout(1, TimeUnit.MINUTES)
+        .readTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(15, TimeUnit.SECONDS)
+        .build()
+
     val retrofit = Retrofit.Builder()
         .baseUrl("http://3.37.39.106/")
-        .client(OkHttpClient())
+        .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
@@ -25,9 +33,7 @@ interface ContentsAPI {
 }
 
 interface NetflixWishAPI {
-    @Headers(
-        "Content-Type: application/x-www-form-urlencoded"
-    )
-    @POST("api/n_wishes")
-    fun getNetflixWishes(@QueryMap parameters: Map<String, String>? = null): Call<JSONObject>
+    @FormUrlEncoded
+    @POST("api/n_wishes/")
+    fun getNetflixWishes(@FieldMap params: HashMap<String, String>): Call<List<String>>
 }
