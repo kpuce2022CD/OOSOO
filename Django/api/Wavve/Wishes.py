@@ -39,4 +39,7 @@ def wav_wishes(email, pwd, name):
         time.sleep(2)
         driver.implicitly_wait(5)
 
+    driver.quit()
+    display.stop()
+
     return result

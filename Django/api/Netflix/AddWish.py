@@ -38,8 +38,15 @@ def n_addwish(email, pwd, name, title):
             driver.find_elements(By.CLASS_NAME, "ltr-79elbk")[0].click()
             time.sleep(3)
             driver.implicitly_wait(5)
+
+            driver.quit()
+            display.stop()
+
             return "success"
         else:
             continue
+
+    driver.quit()
+    display.stop()
 
     return "fail"

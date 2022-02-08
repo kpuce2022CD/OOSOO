@@ -117,7 +117,6 @@ class WatchingLog(models.Model):
     id = models.CharField(primary_key=True, max_length=100)
     c = models.ForeignKey(Contents, models.DO_NOTHING)
     i = models.ForeignKey(UserInterworking, models.DO_NOTHING)
-    time_log = models.TimeField()
 
     class Meta:
         managed = False
@@ -128,9 +127,6 @@ class WishList(models.Model):
     id = models.CharField(primary_key=True, max_length=100)
     c = models.ForeignKey(Contents, models.DO_NOTHING)
     i = models.ForeignKey(UserInterworking, models.DO_NOTHING)
-    field_type = models.CharField(db_column='_type', max_length=10)  # Field renamed because it started with '_'.
-    state = models.IntegerField()
-    wish_date = models.DateField()
 
     class Meta:
         managed = False

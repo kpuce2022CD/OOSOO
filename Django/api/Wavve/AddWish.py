@@ -50,4 +50,8 @@ def wav_addwish(email, pwd, name, title):
     alert.accept()
 
     time.sleep(2)
+
+    driver.quit()
+    display.stop()
+
     return "success"

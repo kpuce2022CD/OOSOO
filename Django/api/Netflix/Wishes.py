@@ -37,4 +37,7 @@ def n_wishes(email, pwd, name):
         print(wish.text)
         result.append(wish.text)
 
+    driver.quit()
+    display.stop()
+
     return result

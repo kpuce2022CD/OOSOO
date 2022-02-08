@@ -36,4 +36,7 @@ def n_watchings(email, pwd, name):
         print(watch.text)
         result.append(watch.text)
 
+    driver.quit()
+    display.stop()
+
     return result

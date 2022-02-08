@@ -43,10 +43,17 @@ def w_addwish(email, pwd, name, title):
             try:
                 driver.find_element_by_class_name('css-zuimwg').click()
                 time.sleep(2)
+                driver.quit()
+                display.stop()
                 return "success"
             except:
+                driver.quit()
+                display.stop()
                 return "fail"
         else:
             continue
+
+    driver.quit()
+    display.stop()
 
     return "fail"
