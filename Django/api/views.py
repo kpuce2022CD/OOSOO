@@ -11,6 +11,8 @@ from api.Netflix.AddWish import n_addwish
 from api.Wavve.Wishes import wav_wishes
 from api.Wavve.Watchings import wav_watchings
 from api.Wavve.AddWish import wav_addwish
+from api.Sign.SignIn import signIn
+from api.Sign.SignUp import signUp
 
 
 class ContentsListAPI(APIView):
@@ -136,4 +138,18 @@ class WavveAddWishAPI(APIView):
     def post(self, request):
         data = request.data
         result = wav_addwish(data.get('email'), data.get('pwd'), data.get('name'), data.get('title'))
+        return Response(result)
+
+
+class SignInAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = signIn(data.get('email'), data.get('pwd'))
+        return Response(result)
+
+
+class SignUpAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = signUp(data.get('email'), data.get('pwd'), data.get('name'), data.get('phone_num'), data.get('nickname'), data.get('gender'), data.get('age'), data.get('job'), data.get('overview'))
         return Response(result)
