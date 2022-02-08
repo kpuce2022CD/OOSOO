@@ -11,9 +11,6 @@ import retrofit2.Response
 import kotlin.concurrent.thread
 
 class NetflixWishesActivity : AppCompatActivity() {
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_netflix_wishes)
@@ -47,14 +44,10 @@ class NetflixWishesActivity : AppCompatActivity() {
                             netflix_wishes_result_text.append("\n")
                         }
                     }
-
                 }
-
-
             })
 
         }
-
         //돌아가기 버튼
         btn_n_wish_back.setOnClickListener{
             finish()

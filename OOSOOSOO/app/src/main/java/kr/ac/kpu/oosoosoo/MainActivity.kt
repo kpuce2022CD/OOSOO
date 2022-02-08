@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
             when (radioGroup.checkedRadioButtonId) {
                 R.id.radio_contents -> startActivity(Intent(this, ContentsActivity::class.java))
                 R.id.radio_netflix_wish -> startActivity(Intent(this, NetflixWishesActivity::class.java))
-
+                R.id.radio_netflix_watching -> startActivity<NetflixWatchingActivity>()
             }
         }
 
