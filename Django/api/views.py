@@ -153,3 +153,4 @@ class SignUpAPI(APIView):
         data = request.data
         result = signUp(data.get('email'), data.get('pwd'), data.get('name'), data.get('phone_num'), data.get('nickname'), data.get('gender'), data.get('age'), data.get('job'), data.get('overview'))
         return Response(result)
+
