@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NetflixWishesActivity">
-
     <TextView
         android:id="@+id/main_title_netflix_wishes"
         android:layout_width="wrap_content"
@@ -55,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/n_wish_testInfo" />
 
     <EditText
         android:id="@+id/netflix_wish_passwd_edtext"
@@ -84,7 +83,7 @@
         app:layout_constraintTop_toBottomOf="@+id/netflix_wish_passwd_edtext" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/n_wish_testInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -125,3 +124,4 @@
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

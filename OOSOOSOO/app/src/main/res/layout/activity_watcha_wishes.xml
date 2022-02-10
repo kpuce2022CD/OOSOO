@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NetflixWatchingActivity">
+    tools:context=".WatchaWishesActivity">
 
     <TextView
-        android:id="@+id/main_title_netflix_watching"
+        android:id="@+id/main_title_watcha_wishes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Netflix 시청중인 목록"
+        android:text="Watcha 찜 목록"
         android:textColor="@color/purple_700"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.023" />
 
     <Button
-        android:id="@+id/btn_n_watching_back"
+        android:id="@+id/btn_w_wish_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#777777"
@@ -30,21 +30,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_n_watching_request" />
+        app:layout_constraintStart_toEndOf="@+id/btn_w_wish_request" />
 
     <Button
-        android:id="@+id/btn_n_watching_request"
+        android:id="@+id/btn_w_wish_request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#333333"
         android:text="요청하기"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_n_watching_back"
+        app:layout_constraintEnd_toStartOf="@+id/btn_w_wish_back"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/netflix_watching_email_edtext"
+        android:id="@+id/watcha_wish_email_edtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -55,10 +55,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/n_watching_testInfo" />
+        app:layout_constraintTop_toBottomOf="@+id/w_wish_testInfo" />
 
     <EditText
-        android:id="@+id/netflix_watching_passwd_edtext"
+        android:id="@+id/watcha_wish_passwd_edtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -68,10 +68,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/netflix_watching_email_edtext" />
+        app:layout_constraintTop_toBottomOf="@+id/watcha_wish_email_edtext" />
 
     <EditText
-        android:id="@+id/netflix_watching_profile_edtext"
+        android:id="@+id/watcha_wish_profile_edtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -81,22 +81,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/netflix_watching_passwd_edtext" />
+        app:layout_constraintTop_toBottomOf="@+id/watcha_wish_passwd_edtext" />
 
     <TextView
-        android:id="@+id/n_watching_testInfo"
+        android:id="@+id/w_wish_testInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="Netflix 정보를 입력해주세요. \n (Test)"
+        android:text="Watcha 정보를 입력해주세요. \n (Test)"
         android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/netflix_watching_email_edtext"
+        app:layout_constraintBottom_toTopOf="@+id/watcha_wish_email_edtext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_title_netflix_watching" />
+        app:layout_constraintTop_toBottomOf="@+id/main_title_watcha_wishes" />
 
     <ScrollView
         android:layout_width="409dp"
@@ -104,14 +104,14 @@
         android:layout_marginTop="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/netflix_watching_profile_edtext">
+        app:layout_constraintTop_toBottomOf="@+id/watcha_wish_profile_edtext">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/netflix_watching_result_text"
+                android:id="@+id/watcha_wishes_result_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#3F51B5"

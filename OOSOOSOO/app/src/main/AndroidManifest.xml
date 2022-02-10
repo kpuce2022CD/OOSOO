@@ -15,6 +15,12 @@
         android:theme="@style/Theme.OOSOOSOO"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".WatchaWishesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WatchaWatchingActivity"
+            android:exported="false" />
+        <activity
             android:name=".NetflixWatchingActivity"
             android:exported="false" />
         <activity android:name=".SignupActivity" />

@@ -72,6 +72,18 @@
                 android:text="Netflix 시청목록" />
 
             <RadioButton
+                android:id="@+id/radio_watcha_wish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Watcha 찜목록" />
+
+            <RadioButton
+                android:id="@+id/radio_watcha_watching"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Watcha 시청목록" />
+
+            <RadioButton
                 android:id="@+id/radio_review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,20 +103,6 @@
                 android:layout_height="wrap_content"
                 android:clickable="false"
                 android:text="유저정보" />
-
-            <RadioButton
-                android:id="@+id/radio_watcha_wish"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:text="Watcha 찜목록" />
-
-            <RadioButton
-                android:id="@+id/radio_watcha_watching"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:text="Watcha 시청목록" />
 
         </RadioGroup>
     </ScrollView>

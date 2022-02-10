@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 
-
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +17,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.radio_contents -> startActivity(Intent(this, ContentsActivity::class.java))
                 R.id.radio_netflix_wish -> startActivity(Intent(this, NetflixWishesActivity::class.java))
                 R.id.radio_netflix_watching -> startActivity<NetflixWatchingActivity>()
+                R.id.radio_watcha_watching -> startActivity<WatchaWatchingActivity>()
+                R.id.radio_watcha_wish -> startActivity<WatchaWishesActivity>()
+
             }
         }
 
@@ -28,11 +30,5 @@ class MainActivity : AppCompatActivity() {
         radio_jjim.paintFlags = radio_jjim.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         radio_review.paintFlags = radio_jjim.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         radio_users.paintFlags = radio_jjim.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-        radio_watcha_watching.paintFlags = radio_jjim.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-        radio_watcha_wish.paintFlags = radio_jjim.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-
-
     }
-
-
 }

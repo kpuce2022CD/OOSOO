@@ -53,7 +53,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/content_genre_text" />
+                app:layout_constraintTop_toBottomOf="@+id/content_production_countries_text" />
 
             <TextView
                 android:id="@+id/content_release_date_text"
@@ -121,14 +121,13 @@
                 android:id="@+id/content_production_countries_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="32dp"
                 android:text="국가 : "
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/content_genre"
-                app:layout_constraintTop_toBottomOf="@+id/content_title" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_genre_text" />
 
             <TextView
                 android:id="@+id/content_number_of_episodes_text"
@@ -151,7 +150,7 @@
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/content_production_countries"
+                app:layout_constraintBottom_toTopOf="@+id/content_genre_text"
                 app:layout_constraintStart_toEndOf="@+id/imageView" />
 
             <TextView
@@ -163,7 +162,7 @@
                 android:textColor="@android:color/darker_gray"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/content_production_countries"
+                app:layout_constraintBottom_toTopOf="@+id/content_genre_text"
                 app:layout_constraintStart_toEndOf="@+id/content_vote_average" />
 
             <TextView
@@ -187,7 +186,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/content_number_of_seasons_text"
-                app:layout_constraintTop_toBottomOf="@+id/content_genre" />
+                app:layout_constraintTop_toBottomOf="@+id/content_production_countries" />
 
             <TextView
                 android:id="@+id/content_release_date"
@@ -250,13 +249,12 @@
                 android:id="@+id/content_production_countries"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="국가"
                 android:textColor="@android:color/holo_red_light"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/content_production_countries_text"
-                app:layout_constraintTop_toBottomOf="@+id/content_title" />
+                app:layout_constraintTop_toBottomOf="@+id/content_genre" />
 
             <TextView
                 android:id="@+id/content_number_of_episodes"
@@ -317,7 +315,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/content_production_countries"
+                app:layout_constraintBottom_toTopOf="@+id/content_genre_text"
                 app:layout_constraintStart_toEndOf="@+id/content_title"
                 app:srcCompat="@android:drawable/btn_star_big_on" />
 
