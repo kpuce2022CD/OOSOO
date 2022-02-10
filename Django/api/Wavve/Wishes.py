@@ -5,7 +5,7 @@ from api.Wavve.Login import wav_login
 import time
 
 
-def wav_wishes(email, pwd, name):
+def wav_wishes(login_way,email, pwd, name):
     display = Display(visible=0, size=(1920, 1080))  # PyCharm 테스트시 주석처리
     display.start()  # PyCharm 테스트시 주석처리
 
@@ -13,7 +13,7 @@ def wav_wishes(email, pwd, name):
     driver = webdriver.Chrome("/home/ubuntu/django_server/chromedriver")  # PyCharm 테스트시  r"D:\2022 Capston\OOSOO\Python\Watcha\chromedriver.exe"
 
     # 웨이브 로그인
-    wav_login(email, pwd, name, driver)
+    wav_login(login_way, email, pwd, name, driver)
 
     # ----------------------------------------------------------------------------------------------------------------------#
 

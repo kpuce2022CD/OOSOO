@@ -124,20 +124,20 @@ class NetflixAddWishAPI(APIView):
 class WavveWishesListAPI(APIView):
     def post(self, request):
         data = request.data
-        result = wav_wishes(data.get('email'), data.get('pwd'), data.get('name'))
+        result = wav_wishes(data.get('login_way'), data.get('email'), data.get('pwd'), data.get('name'))
         return Response(result)
 
 
 class WavveWatchingsListAPI(APIView):
     def post(self, request):
         data = request.data
-        result = wav_watchings(data.get('email'), data.get('pwd'), data.get('name'))
+        result = wav_watchings(data.get('login_way'), data.get('email'), data.get('pwd'), data.get('name'))
         return Response(result)
 
 class WavveAddWishAPI(APIView):
     def post(self, request):
         data = request.data
-        result = wav_addwish(data.get('email'), data.get('pwd'), data.get('name'), data.get('title'))
+        result = wav_addwish(data.get('login_way'), data.get('email'), data.get('pwd'), data.get('name'), data.get('title'))
         return Response(result)
 
 
