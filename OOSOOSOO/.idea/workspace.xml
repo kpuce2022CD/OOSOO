@@ -29,22 +29,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae67b715-e87f-4561-a21e-fb516145301b" name="Default Changelist" comment="Login Activity 생성">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWatchingActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_netflix_watching.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="ae67b715-e87f-4561-a21e-fb516145301b" name="Default Changelist" comment="Signup Activity 연결">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWishesActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWishesActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/RetrofitBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/RetrofitBuilder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\ncclu\.android\avd\Pixel_4_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\Kim\.android\avd\Pixel_2_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -80,21 +75,18 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="android.template.-944699488">
+      <recent name="kr.ac.kpu.oosoosoo" />
+    </key>
     <key name="android.template.-1269401511">
+      <recent name="kr.ac.kpu.oosoosoo" />
+    </key>
+    <key name="android.template.-327071526">
       <recent name="kr.ac.kpu.oosoosoo" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\2022 Capston\OOSOO\OOSOOSOO\app\src\main\res\layout" />
       <recent name="D:\2022 Capston\OOSOO\OOSOOSOO\app\src\main\java\kr\ac\kpu\oosoosoo" />
-    </key>
-    <key name="android.template.-327071526">
-      <recent name="kr.ac.kpu.oosoosoo" />
-    </key>
-    <key name="android.template.-1892681688">
-      <recent name="kr.ac.kpu.oosoosoo" />
-    </key>
-    <key name="android.template.-944699488">
-      <recent name="kr.ac.kpu.oosoosoo" />
     </key>
   </component>
   <component name="RunManager">
@@ -222,5 +214,19 @@
     <MESSAGE value="Android : POST방식 Test(Netflix Wishes)" />
     <MESSAGE value="Login Activity 생성" />
     <option name="LAST_COMMIT_MESSAGE" value="Login Activity 생성" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="141" y="70" key="MergeDialog" timestamp="1644330855021">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="141" y="70" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1644330855021" />
+    <state x="467" y="210" key="Vcs.Push.Dialog.v2" timestamp="1644229110849">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="467" y="210" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1644229110849" />
+    <state x="1027" y="404" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1644219378388">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1027" y="404" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1644219378388" />
   </component>
 </project>

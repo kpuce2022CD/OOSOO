@@ -9,8 +9,14 @@ def wav_wishes(login_way,email, pwd, name):
     display = Display(visible=0, size=(1920, 1080))  # PyCharm 테스트시 주석처리
     display.start()  # PyCharm 테스트시 주석처리
 
-    # chrome창(웹드라이버) 열기  (AWS 경로 : "/home/ubuntu/django_server/chromedriver")
-    driver = webdriver.Chrome("/home/ubuntu/django_server/chromedriver")  # PyCharm 테스트시  r"D:\2022 Capston\OOSOO\Python\Watcha\chromedriver.exe"
+    # chrome창(웹드라이버) 열기  (Docker 경로 : "/webserver/chromedriver")
+    path = "/webserver/chromedriver"    # PyCharm 테스트시  r"D:\2022 Capston\OOSOO\Python\Watcha\chromedriver.exe"
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('disable-gpu')
+    driver = webdriver.Chrome(path, chrome_options=options)
+    driver.maximize_window()
 
     # 웨이브 로그인
     wav_login(login_way, email, pwd, name, driver)
