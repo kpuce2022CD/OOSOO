@@ -19,7 +19,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.radio_netflix_watching -> startActivity<NetflixWatchingActivity>()
                 R.id.radio_watcha_watching -> startActivity<WatchaWatchingActivity>()
                 R.id.radio_watcha_wish -> startActivity<WatchaWishesActivity>()
-
+                R.id.radio_wavve_watching -> startActivity<WavveWatchingActivity>()
+                R.id.radio_wavve_wish -> startActivity<WavveWishesActivity>()
             }
         }
 
@@ -27,8 +28,6 @@ class MainActivity : AppCompatActivity() {
             startActivity<LoginActivity>()
         }
 
-        radio_jjim.paintFlags = radio_jjim.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-        radio_review.paintFlags = radio_jjim.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-        radio_users.paintFlags = radio_jjim.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        radio_users.paintFlags = radio_wavve_watching.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
     }
 }

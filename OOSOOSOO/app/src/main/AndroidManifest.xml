@@ -15,6 +15,12 @@
         android:theme="@style/Theme.OOSOOSOO"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".WavveWishesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WavveWatchingActivity"
+            android:exported="false" />
+        <activity
             android:name=".WatchaWishesActivity"
             android:exported="false" />
         <activity

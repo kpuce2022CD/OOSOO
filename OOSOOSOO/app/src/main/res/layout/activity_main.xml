@@ -84,18 +84,16 @@
                 android:text="Watcha 시청목록" />
 
             <RadioButton
-                android:id="@+id/radio_review"
+                android:id="@+id/radio_wavve_wish"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="false"
-                android:text="컨텐츠 평가(리뷰)" />
+                android:text="Wavve 찜목록" />
 
             <RadioButton
-                android:id="@+id/radio_jjim"
+                android:id="@+id/radio_wavve_watching"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="false"
-                android:text="찜목록" />
+                android:text="Wavve 시청목록" />
 
             <RadioButton
                 android:id="@+id/radio_users"

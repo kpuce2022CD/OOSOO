@@ -13,8 +13,8 @@ class RetrofitBuilder {
 
     val okHttpClient = OkHttpClient.Builder()
         .connectTimeout(1, TimeUnit.MINUTES)
-        .readTimeout(30, TimeUnit.SECONDS)
-        .writeTimeout(15, TimeUnit.SECONDS)
+        .readTimeout(1, TimeUnit.MINUTES)
+        .writeTimeout(1, TimeUnit.MINUTES)
         .build()
 
     val retrofit = Retrofit.Builder()
@@ -28,6 +28,8 @@ class RetrofitBuilder {
     val callNetflixWatching = retrofit.create(NetflixWatchingAPI::class.java)
     val callWatchaWishes = retrofit.create(WatchaWishAPI::class.java)
     val callWatchaWatching = retrofit.create(WatchaWatchingAPI::class.java)
+    val callWavveWishes = retrofit.create(WavveWishAPI::class.java)
+    val callWavveWatching = retrofit.create(WavveWatchingAPI::class.java)
     val callLogin = retrofit.create(SignInAPI::class.java)
     val callSignUp = retrofit.create(SignUpAPI::class.java)
 }
@@ -59,6 +61,18 @@ interface WatchaWatchingAPI {
     @FormUrlEncoded
     @POST("api/w_watchings/")
     fun getWatchaWatching(@FieldMap params: HashMap<String, String>): Call<List<String>>
+}
+
+interface WavveWishAPI {
+    @FormUrlEncoded
+    @POST("api/wav_wishes/")
+    fun getWavveWishes(@FieldMap params: HashMap<String, String>): Call<List<String>>
+}
+
+interface WavveWatchingAPI {
+    @FormUrlEncoded
+    @POST("api/wav_watchings/")
+    fun getWavveWatching(@FieldMap params: HashMap<String, String>): Call<List<String>>
 }
 
 interface SignInAPI {
