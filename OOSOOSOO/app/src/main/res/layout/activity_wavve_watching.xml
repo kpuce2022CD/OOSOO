@@ -47,7 +47,6 @@
         android:id="@+id/wavve_watching_email_edtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
@@ -55,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wav_watching_testInfo" />
+        app:layout_constraintTop_toBottomOf="@+id/wavve_watching_login_ways" />
 
     <EditText
         android:id="@+id/wavve_watching_passwd_edtext"
@@ -123,4 +122,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <Spinner
+        android:id="@+id/wavve_watching_login_ways"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/wavve_watching_email_edtext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wav_watching_testInfo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
