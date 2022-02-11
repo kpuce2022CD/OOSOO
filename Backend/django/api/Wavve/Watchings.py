@@ -6,8 +6,8 @@ import time
 
 
 def wav_watchings(login_way, email, pwd, name):
-    display = Display(visible=0, size=(1920, 1080))  # PyCharm 테스트시 주석처리
-    display.start()  # PyCharm 테스트시 주석처리
+    #display = Display(visible=0, size=(1920, 1080))  # PyCharm 테스트시 주석처리
+    #display.start()  # PyCharm 테스트시 주석처리
 
     # chrome창(웹드라이버) 열기  (Docker 경로 : "/webserver/chromedriver")
     path = "/webserver/chromedriver"    # PyCharm 테스트시  r"D:\2022 Capston\OOSOO\Python\Watcha\chromedriver.exe"
@@ -15,6 +15,7 @@ def wav_watchings(login_way, email, pwd, name):
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('disable-gpu')
+    options.add_argument('--disable-dev-shm-usage')
     driver = webdriver.Chrome(path, chrome_options=options)
     driver.maximize_window()
 
@@ -24,15 +25,17 @@ def wav_watchings(login_way, email, pwd, name):
     # ----------------------------------------------------------------------------------------------------------------------#
 
     result = list()
+    page = list()
 
     # 시청중인 VOD 페이지 이동
     driver.get('https://www.wavve.com/my/use_list_vod_history')
 
     # VOD 페이지 수
-    driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
-    vod_page = driver.find_elements_by_class_name('paging-type02')
+    vod_page = driver.find_elements_by_css_selector('#contents > div.mypooq-inner-wrap > section > div > div > div.paging-type02 > a')
     for i in vod_page:
-        page = i.text
+        print(i.text)
+        print('\n')
+        page.append(i.text)
 
     # 시청중인 VOD 목록
     for k in page:
@@ -49,10 +52,12 @@ def wav_watchings(login_way, email, pwd, name):
     driver.get('https://www.wavve.com/my/use_list_movie_history')
 
     # 시청중인 영화 페이지 수
-    driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
-    watching_movie_page = driver.find_elements_by_class_name('paging-type02')
+    watching_movie_page = driver.find_elements_by_css_selector('#contents > div.mypooq-inner-wrap > section > div > div > div.paging-type02 > a')
+    page.clear()
     for i in watching_movie_page:
-        page = i.text
+        print(i.text)
+        print('\n')
+        page.append(i.text)
 
     # 시청중인 영화 목록
     for k in page:
@@ -66,6 +71,6 @@ def wav_watchings(login_way, email, pwd, name):
         driver.implicitly_wait(5)
 
     driver.quit()
-    display.stop()
+    #display.stop()
 
     return result

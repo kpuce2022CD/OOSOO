@@ -87,7 +87,7 @@ class UserInterworking(models.Model):
     id = models.CharField(max_length=50)
     passwd = models.CharField(max_length=20)
     profile_name = models.CharField(max_length=20)
-    expiration_date = models.DateField()
+    expiration_date = models.DateField(null=True)
     simple_login = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:

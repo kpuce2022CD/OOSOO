@@ -9,8 +9,8 @@ import time
 
 
 def w_watchings(email, pwd, name):
-    display = Display(visible=0, size=(1920, 1080))  # PyCharm 테스트시 주석처리
-    display.start()  # PyCharm 테스트시 주석처리
+    #display = Display(visible=0, size=(1920, 1080))  # PyCharm 테스트시 주석처리
+    #display.start()  # PyCharm 테스트시 주석처리
 
     # chrome창(웹드라이버) 열기  (Docker 경로 : "/webserver/chromedriver")
     path = "/webserver/chromedriver"    # PyCharm 테스트시  r"D:\2022 Capston\OOSOO\Python\Watcha\chromedriver.exe"
@@ -58,6 +58,6 @@ def w_watchings(email, pwd, name):
             result.append(watch.text)
 
     driver.quit()
-    display.stop()
+    #display.stop()
 
     return result
