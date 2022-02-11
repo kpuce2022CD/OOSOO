@@ -72,6 +72,12 @@
                 android:text="Netflix 시청목록" />
 
             <RadioButton
+                android:id="@+id/radio_netflix_add_wish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Netflix 찜목록 추가" />
+
+            <RadioButton
                 android:id="@+id/radio_watcha_wish"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,13 +100,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Wavve 시청목록" />
-
-            <RadioButton
-                android:id="@+id/radio_users"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:text="유저정보" />
 
         </RadioGroup>
     </ScrollView>

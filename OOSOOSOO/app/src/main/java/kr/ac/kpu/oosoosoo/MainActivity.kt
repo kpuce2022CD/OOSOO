@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.radio_contents -> startActivity(Intent(this, ContentsActivity::class.java))
                 R.id.radio_netflix_wish -> startActivity(Intent(this, NetflixWishesActivity::class.java))
                 R.id.radio_netflix_watching -> startActivity<NetflixWatchingActivity>()
+                R.id.radio_netflix_add_wish -> startActivity<NetflixAddWishActivity>()
                 R.id.radio_watcha_watching -> startActivity<WatchaWatchingActivity>()
                 R.id.radio_watcha_wish -> startActivity<WatchaWishesActivity>()
                 R.id.radio_wavve_watching -> startActivity<WavveWatchingActivity>()
@@ -28,6 +29,6 @@ class MainActivity : AppCompatActivity() {
             startActivity<LoginActivity>()
         }
 
-        radio_users.paintFlags = radio_wavve_watching.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        //radio_netflix_add_wish.paintFlags = radio_wavve_watching.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
     }
 }

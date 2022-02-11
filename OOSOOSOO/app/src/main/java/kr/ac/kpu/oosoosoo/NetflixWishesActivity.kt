@@ -13,6 +13,11 @@ class NetflixWishesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_netflix_wishes)
 
+        if(intent.hasExtra("email") || intent.hasExtra("pwd") || intent.hasExtra("name")) {
+            netflix_wish_email_edtext.setText(intent.getStringExtra("email"))
+            netflix_wish_passwd_edtext.setText(intent.getStringExtra("pwd"))
+            netflix_wish_profile_edtext.setText(intent.getStringExtra("name"))
+        }
         val call = RetrofitBuilder().callNetflixWishes  //Retrofit Call
 
         btn_n_wish_request.setOnClickListener {
