@@ -32,8 +32,8 @@ class WavveWatchingActivity : AppCompatActivity() {
                 loginWaySelectedItem = when(position) {
                     0   -> "wavve"
                     1   -> "kakao"
-                    2   -> "NAVER"
-                    3   -> "SKT"
+                    2   -> "naver"
+                    3   -> "skt"
                     4   -> "facebook"
                     5   -> "apple"
                     else -> ""
