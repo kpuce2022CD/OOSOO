@@ -47,6 +47,7 @@
         android:id="@+id/wavve_watching_email_edtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
@@ -54,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wavve_watching_login_ways" />
+        app:layout_constraintTop_toBottomOf="@+id/main_title_wavve_watching" />
 
     <EditText
         android:id="@+id/wavve_watching_passwd_edtext"
@@ -82,21 +83,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wavve_watching_passwd_edtext" />
 
-    <TextView
-        android:id="@+id/wav_watching_testInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="Wavve 정보를 입력해주세요. \n (Test)"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/wavve_watching_email_edtext"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_title_wavve_watching" />
-
     <ScrollView
         android:layout_width="409dp"
         android:layout_height="410dp"
@@ -123,13 +109,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <Spinner
-        android:id="@+id/wavve_watching_login_ways"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/wavve_watching_email_edtext"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wav_watching_testInfo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
