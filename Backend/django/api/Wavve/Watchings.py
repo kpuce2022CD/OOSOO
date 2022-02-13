@@ -5,7 +5,7 @@ from api.Wavve.Login import wav_login
 import time
 
 
-def wav_watchings(login_way, email, pwd, name):
+def wav_watchings(email, pwd, name):
     #display = Display(visible=0, size=(1920, 1080))  # PyCharm 테스트시 주석처리
     #display.start()  # PyCharm 테스트시 주석처리
 
@@ -20,7 +20,7 @@ def wav_watchings(login_way, email, pwd, name):
     driver.maximize_window()
 
     # 웨이브 로그인
-    wav_login(login_way, email, pwd, name, driver)
+    wav_login(email, pwd, name, driver)
 
     # ----------------------------------------------------------------------------------------------------------------------#
 
@@ -33,8 +33,6 @@ def wav_watchings(login_way, email, pwd, name):
     # VOD 페이지 수
     vod_page = driver.find_elements_by_css_selector('#contents > div.mypooq-inner-wrap > section > div > div > div.paging-type02 > a')
     for i in vod_page:
-        print(i.text)
-        print('\n')
         page.append(i.text)
 
     # 시청중인 VOD 목록
@@ -42,7 +40,6 @@ def wav_watchings(login_way, email, pwd, name):
         page_URL = 'https://www.wavve.com/my/use_list_vod_history?page=' + str(k)
         watching_vods = driver.find_elements_by_class_name('con-tit')
         for vod in watching_vods:
-            print(vod.text)
             result.append(vod.text)
         driver.get(page_URL)
         time.sleep(2)
@@ -55,8 +52,6 @@ def wav_watchings(login_way, email, pwd, name):
     watching_movie_page = driver.find_elements_by_css_selector('#contents > div.mypooq-inner-wrap > section > div > div > div.paging-type02 > a')
     page.clear()
     for i in watching_movie_page:
-        print(i.text)
-        print('\n')
         page.append(i.text)
 
     # 시청중인 영화 목록
@@ -64,7 +59,6 @@ def wav_watchings(login_way, email, pwd, name):
         page_URL = 'https://www.wavve.com/my/use_list_movie_history?page=' + str(k)
         watching_movies = driver.find_elements_by_class_name('con-tit')
         for movie in watching_movies:
-            print(movie.text)
             result.append(movie.text)
         driver.get(page_URL)
         time.sleep(2)

@@ -5,6 +5,9 @@ FROM python:3.8
 RUN mkdir -p /webserver/src
 WORKDIR /webserver/src
 
+ENV PYTHONUNBUFFERED=0
+ENV PYTHONIOENCODING=utf-8
+
 # Chrome, xvfb 설치 & Chromedriver 다운로드
 RUN sed -i 's@archive.ubuntu.com@mirror.kakao.com@g' /etc/apt/sources.list
 RUN apt-get update

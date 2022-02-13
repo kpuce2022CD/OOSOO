@@ -5,7 +5,7 @@ from api.Wavve.Login import wav_login
 import time
 
 
-def wav_addwish(login_way, email, pwd, name, title):
+def wav_addwish(email, pwd, name, title):
     display = Display(visible=0, size=(1920, 1080))  # PyCharm 테스트시 주석처리
     display.start()  # PyCharm 테스트시 주석처리
 
@@ -15,11 +15,12 @@ def wav_addwish(login_way, email, pwd, name, title):
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('disable-gpu')
+    options.add_argument('--disable-dev-shm-usage')
     driver = webdriver.Chrome(path, chrome_options=options)
     driver.maximize_window()
 
     # 웨이브 로그인
-    wav_login(login_way, email, pwd, name, driver)
+    wav_login(email, pwd, name, driver)
 
     # ----------------------------------------------------------------------------------------------------------------------#
 
