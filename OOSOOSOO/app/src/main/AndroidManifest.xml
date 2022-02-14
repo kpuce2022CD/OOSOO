@@ -49,6 +49,8 @@
         </activity>
         <activity android:name=".ContentsActivity" />
         <activity android:name=".ReviewActivity" />
+        <activity android:name=".InterworkingActivity"/>
+        <activity android:name=".SelectIwActivity"/>
     </application>
 
 </manifest>

@@ -33,6 +33,7 @@ class RetrofitBuilder {
     val callWavveWatching = retrofit.create(WavveWatchingAPI::class.java)
     val callLogin = retrofit.create(SignInAPI::class.java)
     val callSignUp = retrofit.create(SignUpAPI::class.java)
+    val callInterworking = retrofit.create(InterworkingAPI::class.java)
 }
 
 interface ContentsAPI {
@@ -92,4 +93,10 @@ interface SignUpAPI {
     @FormUrlEncoded
     @POST("api/sign_up/")
     fun getSignUp(@FieldMap params: HashMap<String, String>): Call<Boolean>
+}
+
+interface InterworkingAPI {
+    @FormUrlEncoded
+    @POST("api/interworking/")
+    fun getInterworking(@FieldMap params: HashMap<String, String>): Call<Boolean>
 }

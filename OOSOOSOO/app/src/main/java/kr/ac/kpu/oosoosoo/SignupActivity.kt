@@ -1,5 +1,6 @@
 package kr.ac.kpu.oosoosoo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,8 @@ class SignupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup)
 
         val call = RetrofitBuilder().callSignUp  //Retrofit Call
+
+        val nextintent = Intent(this, SelectIwActivity::class.java)
 
         var gender_checked = 0
 
@@ -54,7 +57,12 @@ class SignupActivity : AppCompatActivity() {
 
                         Log.d("log_signup", body.toString())
                         if (body != null) {
-                            signup_tv.text = "회원가입 $body !"
+                            if(body == true){
+                                signup_tv.text = "회원가입 $body !"
+                                startActivity(nextintent)
+                            } else {
+                                signup_tv.text = "회원가입 $body !"
+                            }
                         }
                     }
                 })
