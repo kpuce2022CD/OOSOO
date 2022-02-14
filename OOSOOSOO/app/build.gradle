@@ -25,6 +25,7 @@ android {
         }
     }
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -45,11 +46,17 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
 
-    //anko
+    // anko
     implementation "org.jetbrains.anko:anko-commons:0.10.8"
 
-    //retrofit2
+    // retrofit2
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+
+    // Amplify core dependency
+    implementation 'com.amplifyframework:core:1.31.3'
+
+    // Support for Java 8 features
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 }
