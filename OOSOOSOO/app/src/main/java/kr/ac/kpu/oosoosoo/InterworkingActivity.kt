@@ -1,11 +1,14 @@
 package kr.ac.kpu.oosoosoo
 
+
+import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_interworking.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,47 +22,38 @@ class InterworkingActivity : AppCompatActivity() {
 
         val call = RetrofitBuilder().callInterworking  //Retrofit Call
 
-        val result_intent_iw = Intent(this, SelectIwActivity::class.java) // 결과를 SelectIwActivity로 보낼 인텐트
-
-        var platform_name = ""
-
         //돌아가기 버튼
         iw_back_btn.setOnClickListener {
             finish()
         }
 
-        //인텐트가 넘어오면 화면 다시 구성
-        if(intent.hasExtra("platform")) {
-            platform_name = intent.getStringExtra("platform").toString()
+        val platform_name = intent.getStringExtra("platform_name")
+        val user_id = intent.getStringExtra("u_id")?.toInt()
 
-            if(platform_name == "netfilx") {
-                platform_img.setImageResource(R.drawable.netfilx_logo)
-            } else if (platform_name == "watcha") {
-                platform_img.setImageResource(R.drawable.watcha_logo)
-            } else if (platform_name == "wavve") {
-                platform_img.setImageResource(R.drawable.wavve_logo)
-            } else if (platform_name == "tving") {
-                platform_img.setImageResource(R.drawable.tving_logo)
-            } else if (platform_name == "disney") {
-                platform_img.setImageResource(R.drawable.disney_logo)
-            } else {
-                platform_img.visibility = View.INVISIBLE
-            }
-            i_platformName_tv.text = platform_name
-            i_id_tv.text = platform_name + " 아이디"
-            i_pwd_tv.text = platform_name + " 비밀번호"
-            i_profileName_tv.text = platform_name + " 프로필 이름"
+        if (platform_name == "netfilx") {
+            platform_img.setImageResource(R.drawable.netfilx_logo)
+        } else if (platform_name == "watcha") {
+            platform_img.setImageResource(R.drawable.watcha_logo)
+        } else if (platform_name == "wavve") {
+            platform_img.setImageResource(R.drawable.wavve_logo)
+        } else if (platform_name == "tving") {
+            platform_img.setImageResource(R.drawable.tving_logo)
+        } else if (platform_name == "disney") {
+            platform_img.setImageResource(R.drawable.disney_logo)
         } else {
-            Toast.makeText(this, "인텐트 전달 실패", Toast.LENGTH_LONG).show()
+            platform_img.visibility = View.INVISIBLE
         }
+        i_platformName_tv.text = platform_name
+        i_id_tv.text = platform_name + " 아이디"
+        i_pwd_tv.text = platform_name + " 비밀번호"
+        i_profileName_tv.text = platform_name + " 프로필 이름"
 
         //플랫폼 연동 시도
         i_login_btn.setOnClickListener {
             if (i_id_edt.length() != 0 && i_pwd_edt.length() != 0 && i_profileName_edt.length() != 0){
                 var input = HashMap<String, String>()
-                // 유저 아이디 받아와서 같이 넘겨야함
-                // input["u_id"] = 123
-                input["platform"] = platform_name
+                input["u_id"] = user_id.toString()
+                input["platform"] = platform_name.toString()
                 input["id"] = i_id_edt.text.toString()
                 input["passwd"] = i_pwd_edt.text.toString()
                 input["profile_name"] = i_profileName_edt.text.toString()
@@ -78,12 +72,16 @@ class InterworkingActivity : AppCompatActivity() {
                         Log.d("log_interworking", body.toString())
                         if (body != null) {
                             if(body == true){
+                                val intent_result = Intent()
                                 i_result_tv.text = "$platform_name 에 연동 로그인 성공!"
-                                result_intent_iw.putExtra("iw_status", platform_name + "_ok")
-                                setResult(RESULT_OK)
+                                val intent_msg = platform_name + "_ok"
+                                intent_result.putExtra("result", intent_msg)
+                                Log.d("log_interworking", "$intent_msg")
+                                setResult(Activity.RESULT_OK, intent_result)
                                 finish()
                             }else{
                                 i_result_tv.text = "*$platform_name 에 연동 로그인 실패*"
+                                Log.d("log_interworking", "연동 로그인 실패")
                             }
                         }
                     }

@@ -92,7 +92,7 @@ interface SignInAPI {
 interface SignUpAPI {
     @FormUrlEncoded
     @POST("api/sign_up/")
-    fun getSignUp(@FieldMap params: HashMap<String, String>): Call<Boolean>
+    fun getSignUp(@FieldMap params: HashMap<String, String>): Call<Int>
 }
 
 interface InterworkingAPI {

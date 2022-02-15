@@ -44,25 +44,24 @@ class SignupActivity : AppCompatActivity() {
 
             if(input["email"] != "" && input["pwd"] != "" && input["name"] != "" &&
                 input["phone_num"] != "" && input["nickname"] != "" && input["gender"] != "" && input["age"] != "" ){
-                call.getSignUp(input).enqueue(object : Callback<Boolean> {
-                    override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                call.getSignUp(input).enqueue(object : Callback<Int> {
+                    override fun onFailure(call: Call<Int>, t: Throwable) {
                         Log.d("log_signup", t.message.toString())
                         signup_tv.text = "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요."
                     }
 
-                    override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                        val body : Boolean? = response.body()
+                    override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                        val body : Int? = response.body()
                         Log.d("log_signup", "통신 성공")
-                        signup_tv.text = "통신 $body ..."
+                        signup_tv.text = "통신 성공"
 
                         Log.d("log_signup", body.toString())
                         if (body != null) {
-                            if(body == true){
-                                signup_tv.text = "회원가입 $body !"
-                                startActivity(nextintent)
-                            } else {
-                                signup_tv.text = "회원가입 $body !"
-                            }
+                            signup_tv.text = "회원가입 성공 u_id: $body"
+                            nextintent.putExtra("u_id", body)
+                            startActivity(nextintent)
+                        } else {
+                            signup_tv.text = "회원가입 실패 u_id: $body"
                         }
                     }
                 })
