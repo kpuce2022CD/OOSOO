@@ -10,19 +10,26 @@ def n_login(email, pwd, name, driver):
     driver.get('https://www.netflix.com/kr/login')
 
     # 로그인 자동화
-    driver.find_element(By.NAME, 'userLoginId').send_keys(email)
-    driver.find_element(By.NAME, 'password').send_keys(pwd)
-    driver.find_element(By.CSS_SELECTOR, '#appMountPoint > div > div.login-body > div > div > div.hybrid-login-form-main > form > button').click()
+    driver.find_element_by_xpath('//*[@id="id_userLoginId"]').send_keys(email)
+    driver.find_element_by_xpath('//*[@id="id_password"]').send_keys(pwd)
+    driver.find_element_by_xpath('//*[@id="appMountPoint"]/div/div[3]/div/div/div[1]/form/button').click()
 
     # 프로필 선택 화면 로딩이 완료될때까지 대기
     time.sleep(3)
     driver.implicitly_wait(5)
-    WebDriverWait(driver, timeout=10).until(EC.presence_of_element_located((By.CLASS_NAME, "profile-name")))
+    print(driver.current_url)
+
+    driver.get('https://www.netflix.com/profiles')
+
+    time.sleep(3)
+    driver.implicitly_wait(5)
+    print(driver.current_url)
 
     # 프로필 선택
     userProfiles = driver.find_elements(By.CLASS_NAME, 'profile-name')
 
     for profile in userProfiles:
+        print(profile.text)
         if profile.text == name:
             profile.click()
             break

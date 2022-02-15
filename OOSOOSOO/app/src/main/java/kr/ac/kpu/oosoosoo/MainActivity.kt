@@ -3,7 +3,9 @@ package kr.ac.kpu.oosoosoo
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 
@@ -11,6 +13,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // AWS Auth Session 테스트 코드
+        Amplify.Auth.fetchAuthSession(
+            { Log.i("AWS AmplifyQuickstart", "Auth session = $it") },
+            { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }
+        )
 
         btn_main.setOnClickListener { view ->
             when (radioGroup.checkedRadioButtonId) {

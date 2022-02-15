@@ -10,8 +10,8 @@ import time
 
 
 def w_addwish(email, pwd, name, title):
-    display = Display(visible=0, size=(1920, 1080))  # PyCharm 테스트시 주석처리
-    display.start()  # PyCharm 테스트시 주석처리
+    #display = Display(visible=0, size=(1920, 1080))  # PyCharm 테스트시 주석처리
+    #display.start()  # PyCharm 테스트시 주석처리
 
     # chrome창(웹드라이버) 열기  (Docker 경로 : "/webserver/chromedriver")
     path = "/webserver/chromedriver"    # PyCharm 테스트시  r"D:\2022 Capston\OOSOO\Python\Watcha\chromedriver.exe"
@@ -19,6 +19,7 @@ def w_addwish(email, pwd, name, title):
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('disable-gpu')
+    options.add_argument('--disable-dev-shm-usage')
     driver = webdriver.Chrome(path, chrome_options=options)
 
     # 왓챠 로그인
@@ -36,7 +37,6 @@ def w_addwish(email, pwd, name, title):
 
     time.sleep(3)
     driver.implicitly_wait(5)
-    WebDriverWait(driver, timeout=10).until(EC.presence_of_element_located((By.CLASS_NAME, "css-1u94e99")))
 
     results = driver.find_elements_by_class_name('css-1u94e99')
 
@@ -49,16 +49,16 @@ def w_addwish(email, pwd, name, title):
                 driver.find_element_by_class_name('css-zuimwg').click()
                 time.sleep(2)
                 driver.quit()
-                display.stop()
+                #display.stop()
                 return "success"
             except:
                 driver.quit()
-                display.stop()
+                #display.stop()
                 return "fail"
         else:
             continue
 
     driver.quit()
-    display.stop()
+    #display.stop()
 
     return "fail"

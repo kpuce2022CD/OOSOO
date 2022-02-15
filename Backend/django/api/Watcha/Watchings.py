@@ -18,6 +18,7 @@ def w_watchings(email, pwd, name):
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('disable-gpu')
+    options.add_argument('--disable-dev-shm-usage')
     driver = webdriver.Chrome(path, chrome_options=options)
 
     # 왓챠 로그인
@@ -32,7 +33,6 @@ def w_watchings(email, pwd, name):
 
     time.sleep(3)
     driver.implicitly_wait(5)
-    WebDriverWait(driver, timeout=10).until(EC.presence_of_element_located((By.CLASS_NAME, "css-1ponucs")))
 
     # 페이지 스크롤
     last_height = driver.execute_script("return document.body.scrollHeight")
