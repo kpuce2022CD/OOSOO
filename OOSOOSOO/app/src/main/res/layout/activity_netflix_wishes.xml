@@ -97,31 +97,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_title_netflix_wishes" />
 
-    <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="410dp"
-        android:layout_marginTop="2dp"
+    <TextView
+        android:id="@+id/netflix_wishes_result_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColor="#3F51B5"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/netflix_wish_profile_edtext">
+        app:layout_constraintTop_toBottomOf="@+id/netflix_wish_profile_edtext" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/netflix_wish_recyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_n_wish_request"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/netflix_wishes_result_text" />
 
-            <TextView
-                android:id="@+id/netflix_wishes_result_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#3F51B5"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
