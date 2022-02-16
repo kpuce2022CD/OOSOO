@@ -2,11 +2,9 @@ package kr.ac.kpu.oosoosoo
 
 import android.app.Activity
 import android.content.Intent
-import org.jetbrains.anko.startActivityForResult
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_select_interworking.*
 
 
@@ -15,82 +13,74 @@ class SelectIwActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_interworking)
 
-        var user_id = -1
-
         if (intent.hasExtra("u_id")){
-            user_id = intent.getIntExtra("u_id", -1)
+            val user_id = intent.getIntExtra("u_id", -1)
             u_id_tv.text = "유저 아이디: " + user_id.toString()
+
+            netfilx_btn.setOnClickListener {
+                val to_iw_intent = Intent(this, InterworkingActivity::class.java)
+                to_iw_intent.putExtra("platform", "netflix")
+                to_iw_intent.putExtra("u_id", user_id)
+                startActivityForResult(to_iw_intent, 9898)
+            }
+
+            watcha_btn.setOnClickListener {
+                val to_iw_intent = Intent(this, InterworkingActivity::class.java)
+                to_iw_intent.putExtra("platform", "watcha")
+                to_iw_intent.putExtra("u_id", user_id)
+                startActivityForResult(to_iw_intent, 9898)
+            }
+
+            wavve_btn.setOnClickListener {
+                val to_iw_intent = Intent(this, InterworkingActivity::class.java)
+                to_iw_intent.putExtra("platform", "wavve")
+                to_iw_intent.putExtra("u_id", user_id)
+                startActivityForResult(to_iw_intent, 9898)
+            }
+
+            tving_btn.setOnClickListener {
+                val to_iw_intent = Intent(this, InterworkingActivity::class.java)
+                to_iw_intent.putExtra("platform", "tving")
+                to_iw_intent.putExtra("u_id", user_id)
+                startActivityForResult(to_iw_intent, 9898)
+            }
+
+            disney_btn.setOnClickListener {
+                val to_iw_intent = Intent(this, InterworkingActivity::class.java)
+                to_iw_intent.putExtra("platform", "disney")
+                to_iw_intent.putExtra("u_id", user_id)
+                startActivityForResult(to_iw_intent, 9898)
+            }
+
+            si_next_btn.setOnClickListener {
+                //다음 화면 정해야함 어느 화면으로 넘기기
+            }
+
         } else {
             Toast.makeText(this, "유저 아이디 전달 실패", Toast.LENGTH_LONG).show()
         }
 
-
-
-        netfilx_btn.setOnClickListener {
-            startActivityForResult<InterworkingActivity>(
-                9898,
-                "platform" to "netfilx",
-                "u_id" to user_id
-            )
-        }
-
-        watcha_btn.setOnClickListener {
-            startActivityForResult<InterworkingActivity>(
-                9898,
-                "platform" to "watcha",
-                "u_id" to user_id
-            )
-        }
-
-        wavve_btn.setOnClickListener {
-            startActivityForResult<InterworkingActivity>(
-                9898,
-                "platform" to "wavve",
-                "u_id" to user_id
-            )
-        }
-
-        tving_btn.setOnClickListener {
-            startActivityForResult<InterworkingActivity>(
-                9898,
-                "platform" to "tving",
-                "u_id" to user_id
-            )
-        }
-
-        disney_btn.setOnClickListener {
-            startActivityForResult<InterworkingActivity>(
-                9898,
-                "platform" to "disney",
-                "u_id" to user_id
-            )
-        }
-
-        si_next_btn.setOnClickListener {
-            //다음 화면 정해야함
-        }
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
         super.onActivityResult(requestCode, resultCode, data)
-
-        when (requestCode){
-            9898 -> {
-                if(resultCode == Activity.RESULT_OK){
+        if(resultCode == Activity.RESULT_OK){
+            when (requestCode) {
+                9898 -> {
                     var iw_check = data!!.getStringExtra("result")
-                    Log.d("log_interworking_intent", "$iw_check")
-                    if (iw_check == "netfilx_ok"){
+                    if (iw_check == "netfilx") {
                         iw_n_tv.text = "넷플 연동 완료"
-                    } else if (iw_check == "watcha_ok"){
+                    } else if (iw_check == "watcha") {
                         iw_w_tv.text = "왓챠 연동 완료"
-                    } else if (iw_check == "wavve_ok"){
+                    } else if (iw_check == "wavve") {
                         iw_wav_tv.text = "웨이브 연동 완료"
-                    } else if (iw_check == "tving_ok"){
+                    } else if (iw_check == "tving") {
                         iw_t_tv.text = "티빙 연동 완료"
-                    } else if (iw_check == "disney_ok"){
+                    } else if (iw_check == "disney") {
                         iw_d_tv.text = "디즈니플러스 연동 완료"
+                    } else {
+                        Toast.makeText(this, "$iw_check", Toast.LENGTH_LONG).show()
                     }
-                } else{
-                    Toast.makeText(this,"Intent받기 실패",Toast.LENGTH_LONG).show()
                 }
             }
         }

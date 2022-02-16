@@ -4,10 +4,8 @@ package kr.ac.kpu.oosoosoo
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_interworking.*
 import retrofit2.Call
@@ -27,8 +25,9 @@ class InterworkingActivity : AppCompatActivity() {
             finish()
         }
 
-        val platform_name = intent.getStringExtra("platform_name")
-        val user_id = intent.getStringExtra("u_id")?.toInt()
+        //인텐트로 넘어온 값으로 화면 생성
+        val platform_name = intent.getStringExtra("platform")
+        val user_id = intent.getIntExtra("u_id", -1)
 
         if (platform_name == "netfilx") {
             platform_img.setImageResource(R.drawable.netfilx_logo)
@@ -51,6 +50,7 @@ class InterworkingActivity : AppCompatActivity() {
         //플랫폼 연동 시도
         i_login_btn.setOnClickListener {
             if (i_id_edt.length() != 0 && i_pwd_edt.length() != 0 && i_profileName_edt.length() != 0){
+
                 var input = HashMap<String, String>()
                 input["u_id"] = user_id.toString()
                 input["platform"] = platform_name.toString()
@@ -60,28 +60,23 @@ class InterworkingActivity : AppCompatActivity() {
 
                 call.getInterworking(input).enqueue(object : Callback<Boolean> {
                     override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                        Log.d("log_interworking", t.message.toString())
                         i_result_tv.text = "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요."
                     }
 
                     override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
                         val body : Boolean? = response.body()
-                        Log.d("log_interworking", "통신 성공")
-                        i_result_tv.text = "통신 실패"
-
-                        Log.d("log_interworking", body.toString())
-                        if (body != null) {
-                            if(body == true){
+                        if (body.toString() == "null") {
+                            i_result_tv.text = "서버 body = null"
+                        } else {
+                            if(body == true) {
                                 val intent_result = Intent()
                                 i_result_tv.text = "$platform_name 에 연동 로그인 성공!"
-                                val intent_msg = platform_name + "_ok"
+                                val intent_msg = platform_name
                                 intent_result.putExtra("result", intent_msg)
-                                Log.d("log_interworking", "$intent_msg")
                                 setResult(Activity.RESULT_OK, intent_result)
                                 finish()
-                            }else{
+                            } else {
                                 i_result_tv.text = "*$platform_name 에 연동 로그인 실패*"
-                                Log.d("log_interworking", "연동 로그인 실패")
                             }
                         }
                     }
@@ -90,6 +85,5 @@ class InterworkingActivity : AppCompatActivity() {
                 Toast.makeText(this, "에디트텍스트에 모든 정보 입력해주세요.", Toast.LENGTH_LONG).show()
             }
         }
-
     }
 }
