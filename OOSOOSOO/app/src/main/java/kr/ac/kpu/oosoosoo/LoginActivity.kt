@@ -3,6 +3,7 @@ package kr.ac.kpu.oosoosoo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
@@ -40,6 +41,16 @@ class LoginActivity : AppCompatActivity() {
                     Log.d("log_login", body.toString())
                     if (body != null) {
                         signin_tv.text = "$body"
+                        Amplify.Auth.signIn(login_email.text.toString(), login_pwd.text.toString(),
+                            { result ->
+                                if (result.isSignInComplete) {
+                                    Log.i("AWSAuthQuickstart", "Sign in succeeded")
+                                } else {
+                                    Log.i("AWSAuthQuickstart", "Sign in not complete")
+                                }
+                            },
+                            { Log.e("AuthQuickstart", "Failed to sign in", it) }
+                        )
                     }
                 }
             })
