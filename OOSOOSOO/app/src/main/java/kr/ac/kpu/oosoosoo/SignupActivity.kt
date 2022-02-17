@@ -4,8 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.amplifyframework.auth.AuthUserAttributeKey
+import com.amplifyframework.auth.options.AuthSignUpOptions
+import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_signup.*
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,8 +20,6 @@ class SignupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup)
 
         val call = RetrofitBuilder().callSignUp  //Retrofit Call
-
-        val nextintent = Intent(this, SelectIwActivity::class.java)
 
         var gender_checked = 0
 
@@ -58,8 +60,21 @@ class SignupActivity : AppCompatActivity() {
                         Log.d("log_signup", body.toString())
                         if (body != null) {
                             signup_tv.text = "회원가입 성공 u_id: $body"
-                            nextintent.putExtra("u_id", body)
-                            startActivity(nextintent)
+                            val options = AuthSignUpOptions.builder()
+                                .userAttribute(AuthUserAttributeKey.email(), edt_email.text.toString())
+                                .build()
+                            Amplify.Auth.signUp(edt_email.text.toString(), edt_pwd.text.toString(), options,
+                                {
+                                    Log.i("AWSAuthQuickStart", "Sign up succeeded: $it")
+                                    startActivity<ConfirmSignUpActivity>(
+                                        "u_id" to body,
+                                        "email" to edt_email.text.toString()
+                                    )
+                                },
+                                {
+                                    Log.e("AWSAuthQuickStart", "Sign up failed", it)
+                                }
+                            )
                         } else {
                             signup_tv.text = "회원가입 실패 u_id: $body"
                         }
