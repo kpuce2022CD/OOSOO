@@ -15,8 +15,8 @@ def n_login(email, pwd, name, driver):
     driver.find_element_by_xpath('//*[@id="appMountPoint"]/div/div[3]/div/div/div[1]/form/button').click()
 
     # 프로필 선택 화면 로딩이 완료될때까지 대기
-    time.sleep(3)
-    driver.implicitly_wait(5)
+    time.sleep(5)
+    driver.implicitly_wait(10)
     print(driver.current_url)
 
     driver.get('https://www.netflix.com/profiles')

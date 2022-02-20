@@ -15,6 +15,7 @@ def n_watchings(email, pwd, name):
     # chrome창(웹드라이버) 열기  (Docker 경로 : "/webserver/chromedriver")
     path = "/webserver/chromedriver"    # PyCharm 테스트시  r"D:\2022 Capston\OOSOO\Python\Watcha\chromedriver.exe"
     options = webdriver.ChromeOptions()
+    #options.add_argument("--proxy-server=socks5://127.0.0.1:9150")     # Tor 설치 후 시도
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('disable-gpu')
