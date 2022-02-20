@@ -16,7 +16,7 @@ except mariadb.Error as e:
     print(f"failed: Error connecting to Mariadb: {e}")
     sys.exit(1)
 
-for i in range(101, 200):
+for i in range(90001, 100000): #100000까지 함
     try:
         # 영화 제공 플랫폼 get
         url = "https://api.themoviedb.org/3/movie/" + str(
@@ -59,6 +59,8 @@ for i in range(101, 200):
                 vote_count = movie_json["vote_count"]
 
                 release_date = movie_json["release_date"]
+                if release_date == '':
+                    release_date = '0000-00-00'
 
                 adult = movie_json["adult"]
 
@@ -102,6 +104,7 @@ for i in range(101, 200):
 
                 except mariadb.Error as e:
                     print(f"Error: {e}")
+                    print(id)
     except:
         pass
 
