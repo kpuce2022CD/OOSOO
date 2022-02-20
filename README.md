@@ -98,6 +98,7 @@
 * ![Django](https://img.shields.io/badge/-Django-000000?style=flat&logo=django)
 * ![Nginx](https://img.shields.io/badge/-Nginx-000000?style=flat&logo=nginx)
 * ![Gunicorn](https://img.shields.io/badge/-Gunicorn-000000?style=flat&logo=gunicorn)
+* ![Docker](https://img.shields.io/badge/-Docker-000000?style=flat&logo=docker)
 * ![MariaDB](https://img.shields.io/badge/-MariaDB-000000?style=flat&logo=mariadb)
 * ![Selenium](https://img.shields.io/badge/-Selenium-000000?style=flat&logo=selenium)
 
@@ -125,7 +126,7 @@
 <br />
 
 ### System Config
-<img src = "https://user-images.githubusercontent.com/78994323/148479749-f1a5b87e-5be5-447d-9948-c09c897d0873.png" width="70%" height="70%">
+<img src = "https://user-images.githubusercontent.com/78994323/154834147-79bd78f6-2888-46cf-90fa-5f99e6f9b20c.png" width="70%" height="70%">
 <br />
 
 ## Usage
