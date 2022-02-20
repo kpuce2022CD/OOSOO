@@ -31,7 +31,7 @@ CREATE TABLE users(
 	phone_number VARCHAR(20) NOT NULL,
 	nickname VARCHAR(20) NOT NULL,
 	gender BOOLEAN NOT NULL,
-	age INT NOT NULL,
+	birthday VARCHAR(10),
 	job VARCHAR(20),
 	overview VARCHAR(200),
 	coin INT
@@ -44,7 +44,7 @@ CREATE TABLE user_interworking(
 	id VARCHAR(50) NOT NULL,
 	passwd VARCHAR(20) NOT NULL,
 	profile_name VARCHAR(20) NOT NULL,
-	expiration_date DATE NOT NULL,
+	expiration_date DATE,
 	simple_login VARCHAR(20),
 	FOREIGN KEY(u_id) REFERENCES users(id)
 );
