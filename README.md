@@ -126,7 +126,7 @@
 <br />
 
 ### System Config
-<img src = "https://user-images.githubusercontent.com/78994323/154834147-79bd78f6-2888-46cf-90fa-5f99e6f9b20c.png" width="70%" height="70%">
+<img src = "https://user-images.githubusercontent.com/78994323/154837467-0e214228-5f9d-46c2-97e1-a7f6914600a5.png" width="80%" height="80%">
 <br />
 
 ## Usage
