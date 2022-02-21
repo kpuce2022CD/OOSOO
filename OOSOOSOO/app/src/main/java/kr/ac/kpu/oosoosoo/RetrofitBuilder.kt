@@ -29,6 +29,7 @@ class RetrofitBuilder {
     val callNetflixAddWish = retrofit.create(NetflixAddWishAPI::class.java)
     val callWatchaWishes = retrofit.create(WatchaWishAPI::class.java)
     val callWatchaWatching = retrofit.create(WatchaWatchingAPI::class.java)
+    val callWatchaAddWish = retrofit.create(WatchaAddWishAPI::class.java)
     val callWavveWishes = retrofit.create(WavveWishAPI::class.java)
     val callWavveWatching = retrofit.create(WavveWatchingAPI::class.java)
     val callLogin = retrofit.create(SignInAPI::class.java)
@@ -69,6 +70,12 @@ interface WatchaWatchingAPI {
     @FormUrlEncoded
     @POST("api/w_watchings/")
     fun getWatchaWatching(@FieldMap params: HashMap<String, String>): Call<List<String>>
+}
+
+interface WatchaAddWishAPI {
+    @FormUrlEncoded
+    @POST("api/w_addwish/")
+    fun getWatchaAddWish(@FieldMap params: HashMap<String, String>): Call<String>
 }
 
 interface WavveWishAPI {

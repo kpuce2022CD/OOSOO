@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.radio_netflix_add_wish -> startActivity<NetflixAddWishActivity>()
                 R.id.radio_watcha_watching -> startActivity<WatchaWatchingActivity>()
                 R.id.radio_watcha_wish -> startActivity<WatchaWishesActivity>()
+                R.id.radio_watcha_add_wish -> startActivity<WatchaAddWishActivity>()
                 R.id.radio_wavve_watching -> startActivity<WavveWatchingActivity>()
                 R.id.radio_wavve_wish -> startActivity<WavveWishesActivity>()
             }

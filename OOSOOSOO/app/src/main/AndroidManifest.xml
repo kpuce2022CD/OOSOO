@@ -15,7 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OOSOOSOO"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ConfirmSignUpActivity"></activity>
+        <activity
+            android:name=".WatchaAddWishActivity"
+            android:exported="false" />
+        <activity android:name=".ConfirmSignUpActivity" />
         <activity
             android:name=".NetflixAddWishActivity"
             android:exported="false" />

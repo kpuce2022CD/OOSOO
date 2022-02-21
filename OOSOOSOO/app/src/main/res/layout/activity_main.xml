@@ -90,6 +90,12 @@
                 android:text="Watcha 시청목록" />
 
             <RadioButton
+                android:id="@+id/radio_watcha_add_wish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Watcha 찜목록 추가" />
+
+            <RadioButton
                 android:id="@+id/radio_wavve_wish"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
