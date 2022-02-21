@@ -1,7 +1,7 @@
 import mariadb
 import sys
 
-def signUp(email, pwd, name, phone_num, nickname, gender, age, job, overview):
+def signUp(email, pwd, name, phone_num, nickname, gender, birthday, job, overview):
 
     try:
         conn = mariadb.connect(
@@ -14,11 +14,11 @@ def signUp(email, pwd, name, phone_num, nickname, gender, age, job, overview):
         cur = conn.cursor()
         use_db_query = "use oosooDB"
         insert_query = "INSERT INTO users(email, passwd, name, phone_number, " \
-                       "nickname, gender, age, job, overview) " \
+                       "nickname, gender, birthday, job, overview) " \
                        "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?) "
 
         cur.execute(use_db_query)
-        cur.execute(insert_query, (email, pwd, name, phone_num, nickname, gender, age, job, overview))
+        cur.execute(insert_query, (email, pwd, name, phone_num, nickname, gender, birthday, job, overview))
         conn.commit()
 
         select_user_id_query = f"SELECT id FROM users WHERE email = '{email}' AND passwd = '{pwd}'"

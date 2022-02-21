@@ -1,13 +1,11 @@
 package kr.ac.kpu.oosoosoo
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.auth.options.AuthSignUpOptions
 import com.amplifyframework.core.Amplify
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
@@ -40,7 +38,7 @@ class SignupActivity : AppCompatActivity() {
             input["phone_num"] = edt_phone.text.toString()
             input["nickname"] = edt_nickname.text.toString()
             input["gender"] = gender_checked.toString()
-            input["age"] = edt_age.text.toString()
+            input["birthday"] = edt_birth.text.toString()
             input["job"] = edt_job.text.toString()              //nullable
             input["overview"] = edt_overview.text.toString()    //nullable
 
