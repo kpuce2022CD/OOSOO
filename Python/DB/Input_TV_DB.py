@@ -57,6 +57,8 @@ for i in range(101, 300):
                 num_episodes = tv_json["number_of_episodes"]
 
                 release_date = tv_json["first_air_date"]
+                if release_date == '':
+                    release_date = '0000-00-00'
 
                 poster_path = tv_json["poster_path"]
 
