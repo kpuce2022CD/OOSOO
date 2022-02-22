@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OOSOOSOO"
         android:usesCleartextTraffic="true">
+        <activity android:name=".search.SearchActivity"></activity>
         <activity
             android:name=".watcha.WatchaAddWishActivity"
             android:exported="false" />
