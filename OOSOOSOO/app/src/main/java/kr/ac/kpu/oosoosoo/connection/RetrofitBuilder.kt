@@ -35,10 +35,13 @@ class RetrofitBuilder {
     val callLogin = retrofit.create(SignInAPI::class.java)
     val callSignUp = retrofit.create(SignUpAPI::class.java)
     val callInterworking = retrofit.create(InterworkingAPI::class.java)
+
+    // 검색 테스트용
+    val callSearchTest = retrofit.create(SearchTestAPI::class.java)
 }
 
 interface ContentsAPI {
-    @GET("api/contents")
+    @GET("api/contents/")
     fun getContentInfo(): Call<List<ContentInfo>>
 }
 
@@ -106,4 +109,10 @@ interface InterworkingAPI {
     @FormUrlEncoded
     @POST("api/interworking/")
     fun getInterworking(@FieldMap params: HashMap<String, String>): Call<Boolean>
+}
+
+// 검색 테스트용
+interface SearchTestAPI {
+    @GET("api/search_test/")
+    fun getSearchTest(): Call<List<ContentInfo>>
 }
