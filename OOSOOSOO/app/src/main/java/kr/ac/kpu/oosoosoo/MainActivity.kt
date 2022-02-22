@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.ac.kpu.oosoosoo.contents.ContentsActivity
+import kr.ac.kpu.oosoosoo.home.HomeActivity
 import kr.ac.kpu.oosoosoo.login.LoginActivity
 import kr.ac.kpu.oosoosoo.netflix.NetflixAddWishActivity
 import kr.ac.kpu.oosoosoo.netflix.NetflixWatchingActivity
@@ -50,6 +51,10 @@ class MainActivity : AppCompatActivity() {
 
         btn_to_search.setOnClickListener {
             startActivity<SearchActivity>()
+        }
+
+        btn_to_home.setOnClickListener {
+            startActivity<HomeActivity>()
         }
 
         //radio_netflix_add_wish.paintFlags = radio_wavve_watching.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
