@@ -47,7 +47,6 @@ class WatchaWishesActivity : AppCompatActivity() {
                     Log.d("watcha_wish", body.toString())
 
                     //현재 동적 뷰어가 담는 용량을 한참초과하므로 나중에 분리하여 출력하는 식으로 최적화 필요
-                    contentList.add("브라더 베어")       //테스트 코드*****
 
                     if (body != null) {
                         watcha_wishes_result_text.text = "<${input["name"]}님의 찜목록>\n"
