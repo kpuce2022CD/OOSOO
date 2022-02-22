@@ -11,6 +11,7 @@ import kr.ac.kpu.oosoosoo.login.LoginActivity
 import kr.ac.kpu.oosoosoo.netflix.NetflixAddWishActivity
 import kr.ac.kpu.oosoosoo.netflix.NetflixWatchingActivity
 import kr.ac.kpu.oosoosoo.netflix.NetflixWishesActivity
+import kr.ac.kpu.oosoosoo.search.SearchActivity
 import kr.ac.kpu.oosoosoo.watcha.WatchaAddWishActivity
 import kr.ac.kpu.oosoosoo.watcha.WatchaWatchingActivity
 import kr.ac.kpu.oosoosoo.watcha.WatchaWishesActivity
@@ -45,6 +46,10 @@ class MainActivity : AppCompatActivity() {
 
         btn_to_login.setOnClickListener {
             startActivity<LoginActivity>()
+        }
+
+        btn_to_search.setOnClickListener {
+            startActivity<SearchActivity>()
         }
 
         //radio_netflix_add_wish.paintFlags = radio_wavve_watching.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
