@@ -42,4 +42,6 @@ urlpatterns = [
     path('sign_in/', SignInAPI.as_view()),
     path('sign_up/', SignUpAPI.as_view()),
     path('interworking/', InterworkingAPI.as_view()),
+
+    path('search_test/', SearchTestAPI.as_view()),
 ]

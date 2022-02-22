@@ -14,6 +14,7 @@ from api.Wavve.AddWish import wav_addwish
 from api.Sign.SignIn import signIn
 from api.Sign.SignUp import signUp
 from api.Sign.Interworking import Interworking
+from api.Search.ContentsTest import contents_test
 
 
 class ContentsListAPI(APIView):
@@ -155,8 +156,18 @@ class SignUpAPI(APIView):
         result = signUp(data.get('email'), data.get('pwd'), data.get('name'), data.get('phone_num'), data.get('nickname'), data.get('gender'), data.get('age'), data.get('job'), data.get('overview'))
         return Response(result)
 
+
 class InterworkingAPI(APIView):
     def post(self, request):
         data = request.data
         result = Interworking(data.get('u_id'), data.get('platform'), data.get('id'), data.get('passwd'), data.get('profile_name'))
         return Response(result)
+
+
+# 검색 테스트용 API
+class SearchTestAPI(APIView):
+    def get(self, request):
+        queryset = contents_test()
+        print(queryset)
+        serializer = ContentsSerializer(queryset, many=True)
+        return Response(serializer.data)
