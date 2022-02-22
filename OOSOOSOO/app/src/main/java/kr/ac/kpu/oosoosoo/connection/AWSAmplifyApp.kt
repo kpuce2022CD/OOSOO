@@ -1,4 +1,4 @@
-package kr.ac.kpu.oosoosoo
+package kr.ac.kpu.oosoosoo.connection
 
 import android.app.Application
 import android.util.Log

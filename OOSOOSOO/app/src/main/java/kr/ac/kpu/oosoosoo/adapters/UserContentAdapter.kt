@@ -1,4 +1,4 @@
-package kr.ac.kpu.oosoosoo
+package kr.ac.kpu.oosoosoo.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -9,9 +9,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.user_content_item.*
-import kotlinx.android.synthetic.main.user_content_item.view.*
-import org.jetbrains.anko.startActivity
+import kr.ac.kpu.oosoosoo.R
+import kr.ac.kpu.oosoosoo.contents.ContentsActivity
 
 class UserContentAdapter: RecyclerView.Adapter<UserContentAdapter.ViewHolder>() {
 

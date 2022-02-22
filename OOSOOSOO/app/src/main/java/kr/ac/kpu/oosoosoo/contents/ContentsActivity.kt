@@ -1,6 +1,5 @@
-package kr.ac.kpu.oosoosoo
+package kr.ac.kpu.oosoosoo.contents
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,9 +11,9 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.activity_contents.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_item.view.*
-import org.json.JSONObject
+import kr.ac.kpu.oosoosoo.R
+import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -108,7 +107,8 @@ class ContentsActivity : AppCompatActivity() {
             }
         }
 
-        inner class PagerViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.content_item, parent, false)) {
+        inner class PagerViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(
+            R.layout.content_item, parent, false)) {
             //이너 클래스의 변수값 -> layout id 값과 연결
             val id = itemView.content_id
             val title = itemView.content_title

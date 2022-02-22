@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".AWSAmplifyApp"
+        android:name=".connection.AWSAmplifyApp"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,31 +16,31 @@
         android:theme="@style/Theme.OOSOOSOO"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".WatchaAddWishActivity"
+            android:name=".watcha.WatchaAddWishActivity"
             android:exported="false" />
-        <activity android:name=".ConfirmSignUpActivity" />
+        <activity android:name=".login.ConfirmSignUpActivity" />
         <activity
-            android:name=".NetflixAddWishActivity"
-            android:exported="false" />
-        <activity
-            android:name=".WavveWishesActivity"
+            android:name=".netflix.NetflixAddWishActivity"
             android:exported="false" />
         <activity
-            android:name=".WavveWatchingActivity"
+            android:name=".wavve.WavveWishesActivity"
             android:exported="false" />
         <activity
-            android:name=".WatchaWishesActivity"
+            android:name=".wavve.WavveWatchingActivity"
             android:exported="false" />
         <activity
-            android:name=".WatchaWatchingActivity"
+            android:name=".watcha.WatchaWishesActivity"
             android:exported="false" />
         <activity
-            android:name=".NetflixWatchingActivity"
+            android:name=".watcha.WatchaWatchingActivity"
             android:exported="false" />
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".LoginActivity" />
         <activity
-            android:name=".NetflixWishesActivity"
+            android:name=".netflix.NetflixWatchingActivity"
+            android:exported="false" />
+        <activity android:name=".login.SignupActivity" />
+        <activity android:name=".login.LoginActivity" />
+        <activity
+            android:name=".netflix.NetflixWishesActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -51,9 +51,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ContentsActivity" />
-        <activity android:name=".InterworkingActivity" />
-        <activity android:name=".SelectIwActivity" />
+        <activity android:name=".contents.ContentsActivity" />
+        <activity android:name=".login.InterworkingActivity" />
+        <activity android:name=".login.SelectIwActivity" />
     </application>
 
 </manifest>

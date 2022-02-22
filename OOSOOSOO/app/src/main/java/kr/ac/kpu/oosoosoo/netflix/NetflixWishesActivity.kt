@@ -1,10 +1,13 @@
-package kr.ac.kpu.oosoosoo
+package kr.ac.kpu.oosoosoo.netflix
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_netflix_wishes.*
+import kr.ac.kpu.oosoosoo.R
+import kr.ac.kpu.oosoosoo.adapters.UserContentAdapter
+import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -1,9 +1,11 @@
-package kr.ac.kpu.oosoosoo
+package kr.ac.kpu.oosoosoo.watcha
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_watcha_add_wish.*
+import kr.ac.kpu.oosoosoo.R
+import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WatchaAddWishActivity">
+    tools:context=".watcha.WatchaAddWishActivity">
 
     <TextView
         android:id="@+id/main_title_watcha_add_wish"

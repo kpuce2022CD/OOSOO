@@ -1,4 +1,4 @@
-package kr.ac.kpu.oosoosoo
+package kr.ac.kpu.oosoosoo.watcha
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_netflix_wishes.*
 import kotlinx.android.synthetic.main.activity_watcha_wishes.*
 import kotlinx.android.synthetic.main.user_content_item.*
-import org.jetbrains.anko.startActivity
+import kr.ac.kpu.oosoosoo.R
+import kr.ac.kpu.oosoosoo.adapters.UserContentAdapter
+import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

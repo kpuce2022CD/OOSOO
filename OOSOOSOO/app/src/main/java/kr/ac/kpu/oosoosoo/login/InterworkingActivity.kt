@@ -1,4 +1,4 @@
-package kr.ac.kpu.oosoosoo
+package kr.ac.kpu.oosoosoo.login
 
 
 import android.app.Activity
@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_interworking.*
+import kr.ac.kpu.oosoosoo.R
+import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WavveWatchingActivity">
+    tools:context=".wavve.WavveWatchingActivity">
 
     <TextView
         android:id="@+id/main_title_wavve_watching"

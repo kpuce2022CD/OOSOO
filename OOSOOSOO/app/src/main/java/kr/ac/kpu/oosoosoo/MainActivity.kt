@@ -1,12 +1,21 @@
 package kr.ac.kpu.oosoosoo
 
 import android.content.Intent
-import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.activity_main.*
+import kr.ac.kpu.oosoosoo.contents.ContentsActivity
+import kr.ac.kpu.oosoosoo.login.LoginActivity
+import kr.ac.kpu.oosoosoo.netflix.NetflixAddWishActivity
+import kr.ac.kpu.oosoosoo.netflix.NetflixWatchingActivity
+import kr.ac.kpu.oosoosoo.netflix.NetflixWishesActivity
+import kr.ac.kpu.oosoosoo.watcha.WatchaAddWishActivity
+import kr.ac.kpu.oosoosoo.watcha.WatchaWatchingActivity
+import kr.ac.kpu.oosoosoo.watcha.WatchaWishesActivity
+import kr.ac.kpu.oosoosoo.wavve.WavveWatchingActivity
+import kr.ac.kpu.oosoosoo.wavve.WavveWishesActivity
 import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {

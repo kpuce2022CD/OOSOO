@@ -1,4 +1,4 @@
-package kr.ac.kpu.oosoosoo
+package kr.ac.kpu.oosoosoo.contents
 
 data class ContentInfo (
     val id: String?,            //고유번호

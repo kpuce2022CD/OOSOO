@@ -1,4 +1,4 @@
-package kr.ac.kpu.oosoosoo
+package kr.ac.kpu.oosoosoo.login
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.activity_confirm_sign_up.*
+import kr.ac.kpu.oosoosoo.R
 import org.jetbrains.anko.startActivity
 
 class ConfirmSignUpActivity : AppCompatActivity() {
