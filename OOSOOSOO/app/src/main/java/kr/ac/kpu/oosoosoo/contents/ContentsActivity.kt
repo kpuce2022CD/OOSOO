@@ -27,7 +27,6 @@ class ContentsActivity : AppCompatActivity() {
 
         val call = RetrofitBuilder().callContents  //Retrofit Call
 
-
         call.getContentInfo().enqueue(object : Callback<List<ContentInfo>> {
 
             override fun onResponse(call: Call<List<ContentInfo>>, response: Response<List<ContentInfo>>) {

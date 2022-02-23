@@ -12,6 +12,7 @@ import kr.ac.kpu.oosoosoo.home.CardListData
 //부모 컨테이너 어댑터
 class ContentCardListAdapter(cardRowData: List<CardListData>?): RecyclerView.Adapter<ContentCardListAdapter.ViewHolder>() {
 
+    //출력할 하나의 item List
     private var contentRowList : List<CardListData> = cardRowData!!
 
     var onItemClick: ((CardListData) -> Unit)? = null
@@ -24,13 +25,16 @@ class ContentCardListAdapter(cardRowData: List<CardListData>?): RecyclerView.Ada
             }
         }
 
+        //layout 파일에 값 출력
         fun bind(result: CardListData, adapter: ContentCardAdapter) {
             itemView.item_row_title.text = result.cardListTitle
+            //자식 어댑터 지정(수평방향)
             itemView.card_recyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL,false)
             itemView.card_recyclerview.adapter = adapter
         }
     }
 
+    //출력할 xml파일 지정
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         LayoutInflater.from(parent.context).inflate(
             R.layout.recy_item_content_row, parent,
@@ -38,6 +42,7 @@ class ContentCardListAdapter(cardRowData: List<CardListData>?): RecyclerView.Ada
         )
     )
 
+    //bind 과정
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val contentCardAdapter = ContentCardAdapter(contentRowList[position].cardItemList)
         holder.bind(contentRowList[position], contentCardAdapter)
