@@ -38,7 +38,7 @@ class SearchContentsAdapter(private val context: Context, private val contentsLi
 
             Glide.with(context)
                 .load(url)
-                .placeholder(R.drawable.netfilx_logo)
+                .placeholder(android.R.drawable.ic_popup_sync)
                 .into(contentPhoto)
         }
     }

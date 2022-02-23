@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ottList">
+        <item>플랫폼</item>
+        <item>Netflix</item>
+        <item>Watcha</item>
+        <item>Wavve</item>
+    </string-array>
+
+    <string-array name="typeList">
+        <item>유형</item>
+        <item>영화</item>
+        <item>TV 프로그램</item>
+    </string-array>
+
+    <string-array name="genreList">
+        <item>장르</item>
+        <item>드라마</item>
+        <item>액션</item>
+        <item>모험</item>
+        <item>범죄</item>
+        <item>스릴러</item>
+        <item>공포</item>
+        <item>로맨스</item>
+        <item>판타지</item>
+        <item>SF</item>
+        <item>코미디</item>
+        <item>애니메이션</item>
+        <item>가족</item>
+        <item>액션</item>
+    </string-array>
+
+</resources>
