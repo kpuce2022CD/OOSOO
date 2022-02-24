@@ -48,10 +48,7 @@ class SearchActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
         val contentsList : ArrayList<ContentInfo> = ArrayList()

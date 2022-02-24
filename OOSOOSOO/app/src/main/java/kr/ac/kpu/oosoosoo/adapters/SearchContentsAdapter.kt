@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kr.ac.kpu.oosoosoo.R
@@ -31,15 +32,17 @@ class SearchContentsAdapter(private val context: Context, private val contentsLi
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val contentPhoto = itemView.findViewById<ImageView>(R.id.img_content_search)
+        private val contentTitle = itemView.findViewById<TextView>(R.id.tv_content_search)
 
         fun bind(content: ContentInfo, context: Context) {
             //content.poster_path 이용하여 사진 출력 (Glide 사용)
             val url = "https://image.tmdb.org/t/p/original" + content.poster_path
-
             Glide.with(context)
                 .load(url)
                 .placeholder(android.R.drawable.ic_popup_sync)
                 .into(contentPhoto)
+
+            contentTitle.text = content.title
         }
     }
 }
