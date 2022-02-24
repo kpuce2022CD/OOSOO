@@ -19,7 +19,8 @@
             android:name=".home.HomeActivity"
             android:exported="false">
         </activity>
-        <activity android:name=".search.SearchActivity" />
+        <activity android:name=".search.SearchActivity"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".watcha.WatchaAddWishActivity"
             android:exported="false" />

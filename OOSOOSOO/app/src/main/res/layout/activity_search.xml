@@ -8,7 +8,7 @@
     tools:context=".search.SearchActivity">
 
     <EditText
-        android:id="@+id/edt_serach"
+        android:id="@+id/edt_search"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="6dp"

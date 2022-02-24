@@ -56,33 +56,43 @@ class SearchActivity : AppCompatActivity() {
         val searchAdapter = SearchContentsAdapter(this, contentsList)
         recy_search.adapter = searchAdapter
 
-        val call = RetrofitBuilder().callSearchTest
-
-        call.getSearchTest().enqueue(object : Callback<List<ContentInfo>> {
-            override fun onResponse(call: Call<List<ContentInfo>>, response: Response<List<ContentInfo>>) {
-                val contents = response.body()
-
-                Log.d("search","통신 성공")
-
-                if (contents != null) {
-                    for (content in contents) {
-                        Log.d("search", content.toString())
-                        contentsList.add(content)   //Contents 리스트 셋팅
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<List<ContentInfo>>, t: Throwable) {
-                Log.d("search", t.message.toString())
-            }
-        })
-
-        btn_search.setOnClickListener {
-            searchAdapter.notifyDataSetChanged()
-            recy_search.adapter = searchAdapter
-        }
-
         val gridLayoutManager = GridLayoutManager(applicationContext, 3)
         recy_search.layoutManager = gridLayoutManager
+
+        val call = RetrofitBuilder().callSearchTitle
+
+        btn_search.setOnClickListener {
+            if (edt_search.length() != 0) {
+
+                contentsList.clear()
+
+                var input = HashMap<String, String>()
+                input["keyword"] = edt_search.text.toString()
+
+                call.getSearchTitle(input).enqueue(object : Callback<List<ContentInfo>> {
+                    override fun onResponse(call: Call<List<ContentInfo>>, response: Response<List<ContentInfo>>) {
+                        val contents = response.body()
+
+                        Log.d("search","통신 성공")
+
+                        if (contents != null) {
+                            for (content in contents) {
+                                Log.d("search", content.toString())
+                                contentsList.add(content)   //Contents 리스트 셋팅
+
+                                searchAdapter.notifyDataSetChanged()
+                                recy_search.adapter = searchAdapter
+                            }
+                        }
+                    }
+                    override fun onFailure(call: Call<List<ContentInfo>>, t: Throwable) {
+                        Log.d("search", t.message.toString())
+                    }
+                })
+
+            } else {
+                toast("검색어를 입력하세요!")
+            }
+        }
     }
 }
