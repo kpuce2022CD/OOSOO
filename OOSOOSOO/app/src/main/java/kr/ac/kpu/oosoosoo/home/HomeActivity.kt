@@ -65,7 +65,7 @@ class HomeActivity : AppCompatActivity() {
                 }
                 //부모 어댑터 지정(수직방향)
                 cardList_recyclerview.adapter =
-                    ContentCardListAdapter(contentCardRowList)
+                    ContentCardListAdapter(this@HomeActivity, contentCardRowList)
                 cardList_recyclerview.adapter!!.notifyDataSetChanged()
 
 

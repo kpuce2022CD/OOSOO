@@ -16,23 +16,22 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="5dp"
-                android:background="@android:color/darker_gray" />
+                android:background="@android:color/black" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="60dp"
-                android:layout_toEndOf="@id/img_card_item"
-                android:padding="12dp"
                 android:layout_below="@+id/img_card_item"
                 android:layout_alignParentStart="true"
-                android:orientation="vertical">
+                android:layout_toEndOf="@id/img_card_item"
+                android:orientation="vertical"
+                android:padding="12dp">
 
                 <TextView
                     android:id="@+id/card_item_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
             </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

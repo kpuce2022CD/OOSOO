@@ -1,5 +1,6 @@
 package kr.ac.kpu.oosoosoo.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +11,12 @@ import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.home.CardListData
 
 //부모 컨테이너 어댑터
-class ContentCardListAdapter(cardRowData: List<CardListData>?): RecyclerView.Adapter<ContentCardListAdapter.ViewHolder>() {
+class ContentCardListAdapter(context: Context, cardRowData: List<CardListData>?): RecyclerView.Adapter<ContentCardListAdapter.ViewHolder>() {
 
     //출력할 하나의 item List
     private var contentRowList : List<CardListData> = cardRowData!!
+
+    val context : Context = context
 
     var onItemClick: ((CardListData) -> Unit)? = null
 
@@ -44,7 +47,7 @@ class ContentCardListAdapter(cardRowData: List<CardListData>?): RecyclerView.Ada
 
     //bind 과정
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val contentCardAdapter = ContentCardAdapter(contentRowList[position].cardItemList)
+        val contentCardAdapter = ContentCardAdapter(context, contentRowList[position].cardItemList)
         holder.bind(contentRowList[position], contentCardAdapter)
     }
 
