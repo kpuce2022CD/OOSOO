@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".home.HomeActivity">
 
-    <androidx.core.widget.NestedScrollView
+    <!-- Tab & Frame 테스트 완료 후 재활성화-->
+    <!--androidx.core.widget.NestedScrollView
         android:layout_width="409dp"
         android:layout_height="729dp"
         android:layout_marginEnd="1dp"
@@ -26,5 +27,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView-->
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="kr.ac.kpu.oosoosoo.home.HomeFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
