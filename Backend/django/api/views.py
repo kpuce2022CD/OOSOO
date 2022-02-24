@@ -14,8 +14,7 @@ from api.Wavve.AddWish import wav_addwish
 from api.Sign.SignIn import signIn
 from api.Sign.SignUp import signUp
 from api.Sign.Interworking import Interworking
-from api.Search.ContentsTest import contents_test
-from api.Search.SearchTitle import searchTitle
+from api.Search.SearchTitle import search_title
 
 
 class ContentsListAPI(APIView):
@@ -165,16 +164,9 @@ class InterworkingAPI(APIView):
         return Response(result)
 
 
-# 검색 테스트용 API
-class SearchTestAPI(APIView):
-    def get(self, request):
-        queryset = contents_test()
-        print(queryset)
-        serializer = ContentsSerializer(queryset, many=True)
-        return Response(serializer.data)
-
 class SearchTitleAPI(APIView):
     def post(self, request):
         data = request.data
-        result = searchTitle(data.get('keyword'))
+        result = search_title(data.get('keyword'))
+        print(result)
         return Response(result)
