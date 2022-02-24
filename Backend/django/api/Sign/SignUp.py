@@ -1,17 +1,10 @@
 import mariadb
 import sys
+from django.db import connection
 
 def signUp(email, pwd, name, phone_num, nickname, gender, birthday, job, overview):
-
     try:
-        conn = mariadb.connect(
-            user="jinho",
-            password="2017150011",
-            host="oosoords.cqo7bp08tx6h.ap-northeast-2.rds.amazonaws.com",
-            port=3306
-        )
-
-        cur = conn.cursor()
+        cur = connection.cursor()
         use_db_query = "use oosooDB"
         insert_query = "INSERT INTO users(email, passwd, name, phone_number, " \
                        "nickname, gender, birthday, job, overview) " \
@@ -19,7 +12,7 @@ def signUp(email, pwd, name, phone_num, nickname, gender, birthday, job, overvie
 
         cur.execute(use_db_query)
         cur.execute(insert_query, (email, pwd, name, phone_num, nickname, gender, birthday, job, overview))
-        conn.commit()
+        connection.commit()
 
         select_user_id_query = f"SELECT id FROM users WHERE email = '{email}' AND passwd = '{pwd}'"
 
@@ -40,7 +33,7 @@ def signUp(email, pwd, name, phone_num, nickname, gender, birthday, job, overvie
         sys.exit(1)
         result = -1
 
-    conn.close()
+    connection.close()
 
     return result
 

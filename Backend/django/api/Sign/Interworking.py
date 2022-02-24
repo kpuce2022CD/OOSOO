@@ -1,16 +1,11 @@
 import mariadb
 import sys
+from django.db import connection
 
 def Interworking(u_id, platform, id, passwd, profile_name):
     try:
-        conn = mariadb.connect(
-            user="jinho",
-            password="2017150011",
-            host="oosoords.cqo7bp08tx6h.ap-northeast-2.rds.amazonaws.com",
-            port=3306
-        )
 
-        cur = conn.cursor()
+        cur = connection.cursor()
         use_db_query = "use oosooDB"
         insert_query = "INSERT INTO user_interworking(i_id, u_id, platform, id, passwd, profile_name)" \
                        "VALUES(?, ?, ?, ?, ?, ?) "
@@ -19,7 +14,7 @@ def Interworking(u_id, platform, id, passwd, profile_name):
 
         cur.execute(use_db_query)
         cur.execute(insert_query, (i_id, u_id, platform, id, passwd, profile_name))
-        conn.commit()
+        connection.commit()
 
         result = True
 
@@ -28,6 +23,6 @@ def Interworking(u_id, platform, id, passwd, profile_name):
         sys.exit(1)
         result = False
 
-    conn.close()
+    connection.close()
 
     return result
