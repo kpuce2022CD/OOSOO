@@ -7,11 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_home.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.PagerFragmentStateAdapter
 
 class HomeFragment : Fragment() {
+
+    private val tabTitleArray = arrayOf(
+        "플랫폼별",
+        "장르별"
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +48,11 @@ class HomeFragment : Fragment() {
                 Log.d("ViewPagerFragment", "Page ${position+1}")
             }
         })
+
+        // TabLayout attach
+        TabLayoutMediator(tabLayout_home, viewPager_home) { tab, position ->
+            tab.text = tabTitleArray[position]
+        }.attach()
     }
 
 }
