@@ -44,4 +44,5 @@ urlpatterns = [
     path('interworking/', InterworkingAPI.as_view()),
 
     path('search_test/', SearchTestAPI.as_view()),
+    path('search_title/', SearchTitleAPI.as_view()),
 ]

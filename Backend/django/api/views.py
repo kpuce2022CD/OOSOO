@@ -15,6 +15,7 @@ from api.Sign.SignIn import signIn
 from api.Sign.SignUp import signUp
 from api.Sign.Interworking import Interworking
 from api.Search.ContentsTest import contents_test
+from api.Search.SearchTitle import searchTitle
 
 
 class ContentsListAPI(APIView):
@@ -171,3 +172,9 @@ class SearchTestAPI(APIView):
         print(queryset)
         serializer = ContentsSerializer(queryset, many=True)
         return Response(serializer.data)
+
+class SearchTitleAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = searchTitle(data.get('keyword'))
+        return Response(result)
