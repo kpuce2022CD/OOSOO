@@ -1,14 +1,17 @@
 package kr.ac.kpu.oosoosoo.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.recy_item_content_card.view.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.contents.ContentInfo
+import kr.ac.kpu.oosoosoo.contents.ContentsActivity
 
 //자식 컨테이너 어댑터
 class ContentCardAdapter(context: Context, cardListData: List<ContentInfo>?): RecyclerView.Adapter<ContentCardAdapter.ViewHolder>() {
@@ -18,15 +21,7 @@ class ContentCardAdapter(context: Context, cardListData: List<ContentInfo>?): Re
 
     val context : Context = context
 
-    var onItemClick: ((String) -> Unit)? = null
-
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-        init {
-            itemView.setOnClickListener {
-                onItemClick?.invoke(contentList!![adapterPosition].title!!)
-            }
-        }
 
         //layout 파일에 값 출력
         fun bind(result: ContentInfo, context: Context) {
@@ -51,6 +46,12 @@ class ContentCardAdapter(context: Context, cardListData: List<ContentInfo>?): Re
     //bind 과정
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(contentList!![position], context)
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, ContentsActivity::class.java)
+            intent.putExtra("title", contentList!![position].title.toString())
+            ContextCompat.startActivity(holder.itemView?.context, intent, null)
+        }
+
     }
 
     override fun getItemCount(): Int = contentList!!.size
