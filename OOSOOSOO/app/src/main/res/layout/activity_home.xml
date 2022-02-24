@@ -6,30 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".home.HomeActivity">
 
-    <!-- Tab & Frame 테스트 완료 후 재활성화-->
-    <!--androidx.core.widget.NestedScrollView
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:layout_marginEnd="1dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/cardList_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView-->
-
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="kr.ac.kpu.oosoosoo.home.HomeFragment"

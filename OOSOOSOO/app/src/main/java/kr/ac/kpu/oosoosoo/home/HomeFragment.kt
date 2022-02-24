@@ -30,8 +30,8 @@ class HomeFragment : Fragment() {
         val pagerAdapter = PagerFragmentStateAdapter(requireActivity())
 
         // ***Fragment 추가***
-        pagerAdapter.addFragment(HomeGenreFragment())
         pagerAdapter.addFragment(HomePlatformFragment())
+        pagerAdapter.addFragment(HomeGenreFragment())
 
         // 어댑터 연결
         viewPager_home.adapter = pagerAdapter
