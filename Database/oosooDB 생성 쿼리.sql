@@ -24,8 +24,7 @@ CREATE TABLE contents(
 );
 
 CREATE TABLE users(
-	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-	email VARCHAR(50) NOT NULL,
+	email VARCHAR(50) NOT NULL PRIMARY KEY,
 	passwd VARCHAR(20) NOT NULL,
 	name VARCHAR(20) NOT NULL,
 	phone_number VARCHAR(20) NOT NULL,
@@ -39,26 +38,26 @@ CREATE TABLE users(
 
 CREATE TABLE user_interworking(
 	i_id VARCHAR(50) NOT NULL PRIMARY KEY,
-	u_id INT NOT NULL,
+	u_email VARCHAR(50) NOT NULL,
 	platform VARCHAR(20) NOT NULL,
 	id VARCHAR(50) NOT NULL,
 	passwd VARCHAR(20) NOT NULL,
 	profile_name VARCHAR(20) NOT NULL,
 	expiration_date DATE,
 	simple_login VARCHAR(20),
-	FOREIGN KEY(u_id) REFERENCES users(id)
+	FOREIGN KEY(u_email) REFERENCES users(email)
 );
 
 CREATE TABLE contents_review(
 	id INT NOT NULL PRIMARY KEY,
 	c_id varchar(100) NOT NULL,
-	u_id INT NOT NULL,
+	u_email VARCHAR(50) NOT NULL,
 	_like BOOLEAN NOT NULL,
 	rating FLOAT(3,1) NOT NULL,
 	review VARCHAR(1000) NOT NULL,
 	_datetime DATETIME NOT NULL,
 	FOREIGN KEY(c_id) REFERENCES contents(id),
-	FOREIGN KEY(u_id) REFERENCES users(id)
+	FOREIGN KEY(u_email) REFERENCES users(email)
 );
 
 CREATE TABLE contents_seasons(
@@ -103,3 +102,5 @@ CREATE TABLE watching_log(
 	FOREIGN KEY(c_id) REFERENCES contents(id),
 	FOREIGN KEY(i_id) REFERENCES user_interworking(i_id)
 );
+
+ALTER TABLE contents ADD FULLTEXT(title);
