@@ -55,7 +55,7 @@ class ContentsEpisodes(models.Model):
 class ContentsReview(models.Model):
     id = models.IntegerField(primary_key=True)
     c = models.ForeignKey(Contents, models.DO_NOTHING)
-    u = models.ForeignKey('Users', models.DO_NOTHING)
+    u_email = models.ForeignKey('Users', models.DO_NOTHING)
     field_like = models.IntegerField(db_column='_like')  # Field renamed because it started with '_'.
     rating = models.FloatField()
     review = models.CharField(max_length=1000)
@@ -82,7 +82,7 @@ class ContentsSeasons(models.Model):
 
 class UserInterworking(models.Model):
     i_id = models.CharField(primary_key=True, max_length=50)
-    u = models.ForeignKey('Users', models.DO_NOTHING)
+    u_email = models.ForeignKey('Users', models.DO_NOTHING)
     platform = models.CharField(max_length=20)
     id = models.CharField(max_length=50)
     passwd = models.CharField(max_length=20)
@@ -96,8 +96,7 @@ class UserInterworking(models.Model):
 
 
 class Users(models.Model):
-    id = models.IntegerField(primary_key=True)
-    email = models.CharField(max_length=50)
+    email = models.CharField(primary_key=True, max_length=50)
     passwd = models.CharField(max_length=20)
     name = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=20)
