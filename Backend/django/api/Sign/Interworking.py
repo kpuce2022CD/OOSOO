@@ -13,7 +13,7 @@ def Interworking(u_email, platform, id, passwd, profile_name):
         i_id = u_email + "_" + platform
 
         cur.execute(use_db_query)
-        cur.execute(insert_query, (i_id, u_id, platform, id, passwd, profile_name))
+        cur.execute(insert_query, (i_id, u_email, platform, id, passwd, profile_name))
         connection.commit()
 
         result = True
