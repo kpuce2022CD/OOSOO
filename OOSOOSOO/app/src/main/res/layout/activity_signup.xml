@@ -25,6 +25,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="64dp"
         android:ems="10"
+        android:hint="필수 입력"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -47,6 +48,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="64dp"
         android:ems="10"
+        android:hint="필수 입력(8자리 이상)"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_email" />
@@ -69,6 +71,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="64dp"
         android:ems="10"
+        android:hint="필수 입력"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_pwd" />
@@ -91,6 +94,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="64dp"
         android:ems="10"
+        android:hint="필수 입력 ' - ' 포함"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_name" />
@@ -113,6 +117,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="64dp"
         android:ems="10"
+        android:hint="필수 입력"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_phone" />
@@ -171,6 +176,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="64dp"
         android:ems="10"
+        android:hint="필수 입력"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radio_gender" />
