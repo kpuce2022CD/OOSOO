@@ -161,7 +161,7 @@ class SignUpAPI(APIView):
 class InterworkingAPI(APIView):
     def post(self, request):
         data = request.data
-        result = Interworking(data.get('u_id'), data.get('platform'), data.get('id'), data.get('passwd'), data.get('profile_name'))
+        result = Interworking(data.get('u_email'), data.get('platform'), data.get('id'), data.get('passwd'), data.get('profile_name'))
         return Response(result)
 
 
