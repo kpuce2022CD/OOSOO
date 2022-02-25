@@ -14,42 +14,42 @@ class SelectIwActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_interworking)
 
-        if (intent.hasExtra("u_id")){
-            val user_id = intent.getIntExtra("u_id", -1)
-            u_id_tv.text = "유저 아이디: " + user_id.toString()
+        if (intent.hasExtra("email")){
+            val user_email = intent.getStringExtra("email")
+            u_email_tv.text = "유저 이메일: " + user_email.toString()
 
             netfilx_btn.setOnClickListener {
                 val to_iw_intent = Intent(this, InterworkingActivity::class.java)
                 to_iw_intent.putExtra("platform", "netflix")
-                to_iw_intent.putExtra("u_id", user_id)
+                to_iw_intent.putExtra("u_email", user_email)
                 startActivityForResult(to_iw_intent, 9898)
             }
 
             watcha_btn.setOnClickListener {
                 val to_iw_intent = Intent(this, InterworkingActivity::class.java)
                 to_iw_intent.putExtra("platform", "watcha")
-                to_iw_intent.putExtra("u_id", user_id)
+                to_iw_intent.putExtra("u_email", user_email)
                 startActivityForResult(to_iw_intent, 9898)
             }
 
             wavve_btn.setOnClickListener {
                 val to_iw_intent = Intent(this, InterworkingActivity::class.java)
                 to_iw_intent.putExtra("platform", "wavve")
-                to_iw_intent.putExtra("u_id", user_id)
+                to_iw_intent.putExtra("u_email", user_email)
                 startActivityForResult(to_iw_intent, 9898)
             }
 
             tving_btn.setOnClickListener {
                 val to_iw_intent = Intent(this, InterworkingActivity::class.java)
                 to_iw_intent.putExtra("platform", "tving")
-                to_iw_intent.putExtra("u_id", user_id)
+                to_iw_intent.putExtra("u_email", user_email)
                 startActivityForResult(to_iw_intent, 9898)
             }
 
             disney_btn.setOnClickListener {
                 val to_iw_intent = Intent(this, InterworkingActivity::class.java)
                 to_iw_intent.putExtra("platform", "disney")
-                to_iw_intent.putExtra("u_id", user_id)
+                to_iw_intent.putExtra("u_email", user_email)
                 startActivityForResult(to_iw_intent, 9898)
             }
 

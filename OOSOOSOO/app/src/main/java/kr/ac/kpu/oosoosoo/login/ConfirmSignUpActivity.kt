@@ -14,7 +14,6 @@ class ConfirmSignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirm_sign_up)
 
-        val u_id = intent.getIntExtra("u_id", -1)
         val email = intent.getStringExtra("email")
 
         btn_confirm.setOnClickListener {
@@ -42,7 +41,7 @@ class ConfirmSignUpActivity : AppCompatActivity() {
 
         btn_confirm_next.setOnClickListener {
             startActivity<SelectIwActivity>(
-                "u_id" to u_id
+                "email" to email
             )
         }
     }

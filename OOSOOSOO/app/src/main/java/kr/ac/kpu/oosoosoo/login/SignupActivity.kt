@@ -67,7 +67,6 @@ class SignupActivity : AppCompatActivity() {
                                 {
                                     Log.i("AWSAuthQuickStart", "Sign up succeeded: $it")
                                     startActivity<ConfirmSignUpActivity>(
-                                        "u_id" to body,
                                         "email" to edt_email.text.toString()
                                     )
                                 },

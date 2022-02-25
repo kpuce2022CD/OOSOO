@@ -29,7 +29,7 @@ class InterworkingActivity : AppCompatActivity() {
 
         //인텐트로 넘어온 값으로 화면 생성
         val platform_name = intent.getStringExtra("platform")
-        val user_id = intent.getIntExtra("u_id", -1)
+        val user_email = intent.getStringExtra("email")
 
         if (platform_name == "netfilx") {
             platform_img.setImageResource(R.drawable.netfilx_logo)
@@ -54,7 +54,7 @@ class InterworkingActivity : AppCompatActivity() {
             if (i_id_edt.length() != 0 && i_pwd_edt.length() != 0 && i_profileName_edt.length() != 0){
 
                 var input = HashMap<String, String>()
-                input["u_id"] = user_id.toString()
+                input["u_email"] = user_email.toString()
                 input["platform"] = platform_name.toString()
                 input["id"] = i_id_edt.text.toString()
                 input["passwd"] = i_pwd_edt.text.toString()
