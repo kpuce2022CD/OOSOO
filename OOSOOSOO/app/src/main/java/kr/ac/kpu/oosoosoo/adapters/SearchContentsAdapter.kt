@@ -9,7 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kr.ac.kpu.oosoosoo.R
+import kr.ac.kpu.oosoosoo.contents.ContentDetailActivity
 import kr.ac.kpu.oosoosoo.contents.ContentInfo
+import org.jetbrains.anko.startActivity
 
 class SearchContentsAdapter(private val context: Context, private val contentsList: ArrayList<ContentInfo>): RecyclerView.Adapter<SearchContentsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchContentsAdapter.ViewHolder {
@@ -21,7 +23,9 @@ class SearchContentsAdapter(private val context: Context, private val contentsLi
         holder.bind(contentsList[position], context)
 
         holder.itemView.setOnClickListener {
-            // 상세정보 페이지로 이동
+            context.startActivity<ContentDetailActivity>(
+                "content" to contentsList[position]
+            )
         }
     }
 

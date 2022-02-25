@@ -1,5 +1,10 @@
 package kr.ac.kpu.oosoosoo.contents
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+
+@Parcelize
 data class ContentInfo (
     val id: String?,            //고유번호
     val field_type : String?,   //콘텐츠타입(TV or Movie)
@@ -19,4 +24,4 @@ data class ContentInfo (
     val flatrate : String?,     //구독 서비스(리스트)
     val rent : String?,         //대여 서비스(리스트)
     val buy : String?           //구매 서비스(리스트)
-)
+) : Parcelable

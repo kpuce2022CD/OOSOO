@@ -1,0 +1,54 @@
+package kr.ac.kpu.oosoosoo.contents
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.activity_content_detail.*
+import kr.ac.kpu.oosoosoo.R
+
+class ContentDetailActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_content_detail)
+
+
+        // ContentInfo 인텐트 받아오기
+        val contentInfo = intent.getParcelableExtra<ContentInfo>("content")
+
+        if (contentInfo != null) {
+            // Poster Image 출력
+            val poster_url = "https://image.tmdb.org/t/p/original" + contentInfo.poster_path
+            Glide.with(this)
+                .load(poster_url)
+                .placeholder(android.R.drawable.ic_popup_sync)
+                .into(img_poster_detail)
+
+            // 제목, 연도, 장르
+            tv_title_detail.text = contentInfo.title
+            tv_date_genre.text = contentInfo.release_date + " · " + contentInfo.genre
+
+            // Overview
+            tv_overview_detail.text = contentInfo.overview
+
+            // 더보기 기능
+            tv_overview_detail.post {
+                val lineCount = tv_overview_detail.layout.lineCount
+                if (lineCount > 0) {
+                    if (tv_overview_detail.layout.getEllipsisCount(lineCount - 1) > 0) {
+                        // 더보기 표시
+                        tv_viewmore_overview.visibility = View.VISIBLE
+
+                        // 더보기 클릭 이벤트
+                        tv_viewmore_overview.setOnClickListener {
+                            tv_overview_detail.maxLines = Int.MAX_VALUE
+                            tv_viewmore_overview.visibility = View.GONE
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+}

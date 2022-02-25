@@ -15,11 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OOSOOSOO"
         android:usesCleartextTraffic="true">
+        <activity android:name=".contents.ContentDetailActivity" />
         <activity
             android:name=".home.HomeActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".search.SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".search.SearchActivity"
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".watcha.WatchaAddWishActivity"
