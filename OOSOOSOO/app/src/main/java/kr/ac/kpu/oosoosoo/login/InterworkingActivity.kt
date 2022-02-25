@@ -29,7 +29,7 @@ class InterworkingActivity : AppCompatActivity() {
 
         //인텐트로 넘어온 값으로 화면 생성
         val platform_name = intent.getStringExtra("platform")
-        val user_email = intent.getStringExtra("email")
+        val user_email = intent.getStringExtra("u_email")
 
         if (platform_name == "netfilx") {
             platform_img.setImageResource(R.drawable.netfilx_logo)
