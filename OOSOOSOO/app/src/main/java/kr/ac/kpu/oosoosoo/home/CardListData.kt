@@ -4,5 +4,5 @@ import kr.ac.kpu.oosoosoo.contents.ContentInfo
 
 data class CardListData(
     var cardListTitle: String?,
-    var cardItemList: List<ContentInfo>?
+    var cardItemList: ArrayList<ContentInfo>?
 )

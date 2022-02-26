@@ -1,23 +1,22 @@
 package kr.ac.kpu.oosoosoo.adapters
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.recy_item_content_card.view.*
 import kr.ac.kpu.oosoosoo.R
+import kr.ac.kpu.oosoosoo.contents.ContentDetailActivity
 import kr.ac.kpu.oosoosoo.contents.ContentInfo
-import kr.ac.kpu.oosoosoo.contents.ContentsActivity
+import org.jetbrains.anko.startActivity
 
 //자식 컨테이너 어댑터
-class ContentCardAdapter(context: Context, cardListData: List<ContentInfo>?): RecyclerView.Adapter<ContentCardAdapter.ViewHolder>() {
+class ContentCardAdapter(context: Context, cardListData: ArrayList<ContentInfo>?): RecyclerView.Adapter<ContentCardAdapter.ViewHolder>() {
 
     //출력할 하나의 item List
-    private var contentList : List<ContentInfo>? = cardListData
+    private var contentList : ArrayList<ContentInfo>? = cardListData
 
     val context : Context = context
 
@@ -47,9 +46,9 @@ class ContentCardAdapter(context: Context, cardListData: List<ContentInfo>?): Re
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(contentList!![position], context)
         holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, ContentsActivity::class.java)
-            intent.putExtra("title", contentList!![position].title.toString())
-            ContextCompat.startActivity(holder.itemView?.context, intent, null)
+            context.startActivity<ContentDetailActivity>(
+                "content" to contentList!![position]
+            )
         }
 
     }

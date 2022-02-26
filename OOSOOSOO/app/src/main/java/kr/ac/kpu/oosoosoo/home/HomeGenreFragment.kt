@@ -61,13 +61,13 @@ class HomeGenreFragment : Fragment() {
                     contentCardRowList.add(
                         CardListData(
                             "Movie ${movieIndex++}",
-                            contentsRow
+                            ArrayList(contentsRow)
                         )
                     )
                 }
                 //부모 어댑터 지정(수직방향)
                 home_genre_cardList_recyclerview.adapter =
-                    ContentCardListAdapter(context!!, contentCardRowList)
+                    ContentCardListAdapter(context!!, ArrayList(contentCardRowList))
                 home_genre_cardList_recyclerview.adapter!!.notifyDataSetChanged()
             }
 

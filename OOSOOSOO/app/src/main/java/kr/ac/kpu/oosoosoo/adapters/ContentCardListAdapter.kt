@@ -11,10 +11,10 @@ import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.home.CardListData
 
 //부모 컨테이너 어댑터
-class ContentCardListAdapter(context: Context, cardRowData: List<CardListData>?): RecyclerView.Adapter<ContentCardListAdapter.ViewHolder>() {
+class ContentCardListAdapter(context: Context, cardRowData: ArrayList<CardListData>?): RecyclerView.Adapter<ContentCardListAdapter.ViewHolder>() {
 
     //출력할 하나의 item List
-    private var contentRowList : List<CardListData> = cardRowData!!
+    private var contentRowList : ArrayList<CardListData> = cardRowData!!
 
     val context : Context = context
 
@@ -26,6 +26,14 @@ class ContentCardListAdapter(context: Context, cardRowData: List<CardListData>?)
             itemView.setOnClickListener {
                 onItemClick?.invoke(contentRowList[adapterPosition])
             }
+        /* Row 슬라이드 버튼 (미완)
+            itemView.btn_swipe_next.setOnClickListener {
+                itemView.card_recyclerview.smoothScrollBy(
+                    1000,
+                    0
+
+                )
+            }*/
         }
 
         //layout 파일에 값 출력
@@ -34,6 +42,9 @@ class ContentCardListAdapter(context: Context, cardRowData: List<CardListData>?)
             //자식 어댑터 지정(수평방향)
             itemView.card_recyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL,false)
             itemView.card_recyclerview.adapter = adapter
+            // 슬라이드 버튼 앞으로
+            //itemView.btn_swipe_next.bringToFront()
+
         }
     }
 
