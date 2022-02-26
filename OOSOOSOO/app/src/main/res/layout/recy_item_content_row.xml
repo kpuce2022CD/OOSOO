@@ -8,20 +8,20 @@
         android:id="@+id/item_row_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12sp"
-        android:textSize="18sp"
-        />
+        android:layout_marginLeft="4dp"
+        android:padding="4sp"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
         android:orientation="horizontal">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/card_recyclerview"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </LinearLayout>
