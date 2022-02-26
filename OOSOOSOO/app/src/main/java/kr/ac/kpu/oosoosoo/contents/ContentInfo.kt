@@ -3,7 +3,6 @@ package kr.ac.kpu.oosoosoo.contents
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-
 @Parcelize
 data class ContentInfo (
     val id: String?,            //고유번호

@@ -4,9 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.recy_item_content_card.view.*
+import kotlinx.android.synthetic.main.recy_item_content_row.view.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.contents.ContentDetailActivity
 import kr.ac.kpu.oosoosoo.contents.ContentInfo
@@ -20,10 +22,16 @@ class ContentCardAdapter(context: Context, cardListData: ArrayList<ContentInfo>?
 
     val context : Context = context
 
+    //해당 컨텐츠 플랫폼 리스트
+    var platformList : ArrayList<String>? = null
+
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+        init {
+
+        }
         //layout 파일에 값 출력
-        fun bind(result: ContentInfo, context: Context) {
+        fun bind(result: ContentInfo, context: Context, adapter: ContentCardPlatformAdapter) {
             itemView.card_item_title.text = result.title
 
             val url = "https://image.tmdb.org/t/p/original" + contentList!![position].poster_path
@@ -31,6 +39,10 @@ class ContentCardAdapter(context: Context, cardListData: ArrayList<ContentInfo>?
             Glide.with(context)
                 .load(url)
                 .into(itemView.img_card_item)
+
+            //플랫폼 어댑터 지정(수평방향)
+            itemView.platform_recyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL,false)
+            itemView.platform_recyclerview.adapter = adapter
         }
     }
 
@@ -44,7 +56,9 @@ class ContentCardAdapter(context: Context, cardListData: ArrayList<ContentInfo>?
 
     //bind 과정
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(contentList!![position], context)
+        val platformList = ArrayList(contentList!![position].flatrate?.split(','))
+        val contentCardPlatformAdapter = ContentCardPlatformAdapter(context, platformList)
+        holder.bind(contentList!![position], context, contentCardPlatformAdapter)
         holder.itemView.setOnClickListener {
             context.startActivity<ContentDetailActivity>(
                 "content" to contentList!![position]

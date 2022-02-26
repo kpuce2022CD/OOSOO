@@ -30,4 +30,12 @@
         <item>액션</item>
     </string-array>
 
+    <string-array name="platformList">
+        <item>netflix</item>
+        <item>watcha</item>
+        <item>wavve</item>
+        <item>tving</item>
+        <item>naver</item>
+        <item>disney</item>
+    </string-array>
 </resources>
