@@ -4,13 +4,15 @@
         <item>플랫폼</item>
         <item>Netflix</item>
         <item>Watcha</item>
-        <item>Wavve</item>
+        <item>wavve</item>
+        <item>Disney Plus</item>
+        <item>tving</item>
     </string-array>
 
     <string-array name="typeList">
         <item>유형</item>
-        <item>영화</item>
-        <item>TV 프로그램</item>
+        <item>Movie</item>
+        <item>TV</item>
     </string-array>
 
     <string-array name="genreList">
