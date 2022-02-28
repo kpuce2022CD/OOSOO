@@ -26,12 +26,16 @@ class SearchActivity : AppCompatActivity() {
         val typeList = resources.getStringArray(R.array.typeList)
         val genreList = resources.getStringArray(R.array.genreList)
 
+        var ottFilter : String = ""
+        var typeFilter : String = ""
+        var genreFilter : String = ""
+
+
         spinner_ott.adapter = ArrayAdapter(this, R.layout.spinner_item, ottList)
         spinner_type.adapter = ArrayAdapter(this, R.layout.spinner_item, typeList)
         spinner_genre.adapter = ArrayAdapter(this, R.layout.spinner_item, genreList)
 
         val contentsList = ArrayList<ContentInfo>()
-        val filteredList = ArrayList<ContentInfo>()
         val originalList = ArrayList<ContentInfo>()
 
         val searchAdapter = SearchContentsAdapter(this, contentsList)
@@ -81,21 +85,20 @@ class SearchActivity : AppCompatActivity() {
         spinner_ott.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position != 0) {
-                    toast(spinner_ott.selectedItem.toString())
-                    filteredList.clear()
-                    for (content in originalList) {
-                        if (content.flatrate != null) {
-                            if (content.flatrate.contains(ottList[position])) {
-                                filteredList.add(content)
-                            }
-                        }
-                    }
-                    contentsList.clear()
-                    contentsList.addAll(filteredList)
+                    ottFilter = ottList[position]
                 }
                 else {
-                    contentsList.clear()
-                    contentsList.addAll(originalList)
+                    ottFilter = ""
+                }
+                contentsList.clear()
+                for (content in originalList) {
+                    if (content._type != null && content.flatrate != null && content.genre != null) {
+                        if (content.flatrate.contains(ottFilter)
+                            && content._type.contains(typeFilter.lowercase())
+                            && content.genre.contains(genreFilter)) {
+                            contentsList.add(content)
+                        }
+                    }
                 }
                 searchAdapter.notifyDataSetChanged()
                 recy_search.adapter = searchAdapter
@@ -106,25 +109,23 @@ class SearchActivity : AppCompatActivity() {
             }
         }
 
-        // 현재 전부 null, 필터링 불가
         spinner_type.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position != 0) {
-                    toast(spinner_ott.selectedItem.toString())
-                    filteredList.clear()
-                    for (content in originalList) {
-                        if (content._type != null) {
-                            if (content._type.contains(typeList[position])) {
-                                filteredList.add(content)
-                            }
-                        }
-                    }
-                    contentsList.clear()
-                    contentsList.addAll(filteredList)
+                    typeFilter = typeList[position]
                 }
                 else {
-                    contentsList.clear()
-                    contentsList.addAll(originalList)
+                    typeFilter = ""
+                }
+                contentsList.clear()
+                for (content in originalList) {
+                    if (content._type != null && content.flatrate != null && content.genre != null) {
+                        if (content._type.contains(typeFilter.lowercase())
+                            && content.flatrate.contains(ottFilter)
+                            && content.genre.contains(genreFilter)) {
+                            contentsList.add(content)
+                        }
+                    }
                 }
                 searchAdapter.notifyDataSetChanged()
                 recy_search.adapter = searchAdapter
@@ -138,21 +139,20 @@ class SearchActivity : AppCompatActivity() {
         spinner_genre.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position != 0) {
-                    toast(spinner_ott.selectedItem.toString())
-                    filteredList.clear()
-                    for (content in originalList) {
-                        if (content.genre != null) {
-                            if (content.genre.contains(genreList[position])) {
-                                filteredList.add(content)
-                            }
-                        }
-                    }
-                    contentsList.clear()
-                    contentsList.addAll(filteredList)
+                    genreFilter = genreList[position]
                 }
                 else {
-                    contentsList.clear()
-                    contentsList.addAll(originalList)
+                    genreFilter = ""
+                }
+                contentsList.clear()
+                for (content in originalList) {
+                    if (content._type != null && content.flatrate != null && content.genre != null) {
+                        if (content.genre.contains(genreFilter)
+                            && content.flatrate.contains(ottFilter)
+                            && content._type.contains(typeFilter.lowercase())) {
+                            contentsList.add(content)
+                        }
+                    }
                 }
                 searchAdapter.notifyDataSetChanged()
                 recy_search.adapter = searchAdapter
