@@ -10,7 +10,7 @@ from django.db import models
 
 class Contents(models.Model):
     id = models.CharField(primary_key=True, max_length=100)
-    field_type = models.CharField(db_column='_type', max_length=10)  # Field renamed because it started with '_'.
+    _type = models.CharField(max_length=10)  # Field renamed because it started with '_'.
     title = models.CharField(max_length=100)
     genre = models.CharField(max_length=100)
     production_countries = models.CharField(max_length=200)
@@ -33,68 +33,6 @@ class Contents(models.Model):
         db_table = 'contents'
 
 
-class ContentsEpisodes(models.Model):
-    field_id = models.CharField(db_column='_id', primary_key=True, max_length=100)  # Field renamed because it started with '_'.
-    c = models.ForeignKey(Contents, models.DO_NOTHING)
-    season_num = models.IntegerField()
-    title = models.CharField(max_length=100)
-    number = models.IntegerField(db_column='NUMBER')  # Field name made lowercase.
-    air_date = models.DateField(blank=True, null=True)
-    vote_count = models.IntegerField(blank=True, null=True)
-    vote_average = models.FloatField(blank=True, null=True)
-    overview = models.CharField(max_length=2000, blank=True, null=True)
-    still_path = models.CharField(max_length=200, blank=True, null=True)
-    crew = models.CharField(max_length=1000, blank=True, null=True)
-    guests = models.CharField(max_length=1000, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'contents_episodes'
-
-
-class ContentsReview(models.Model):
-    id = models.IntegerField(primary_key=True)
-    c = models.ForeignKey(Contents, models.DO_NOTHING)
-    u_email = models.ForeignKey('Users', models.DO_NOTHING)
-    field_like = models.IntegerField(db_column='_like')  # Field renamed because it started with '_'.
-    rating = models.FloatField()
-    review = models.CharField(max_length=1000)
-    field_datetime = models.DateTimeField(db_column='_datetime')  # Field renamed because it started with '_'.
-
-    class Meta:
-        managed = False
-        db_table = 'contents_review'
-
-
-class ContentsSeasons(models.Model):
-    field_id = models.CharField(db_column='_id', primary_key=True, max_length=100)  # Field renamed because it started with '_'.
-    c = models.ForeignKey(Contents, models.DO_NOTHING)
-    air_date = models.DateField()
-    title = models.CharField(max_length=100)
-    number = models.IntegerField(db_column='NUMBER')  # Field name made lowercase.
-    overview = models.CharField(max_length=2000, blank=True, null=True)
-    poster_path = models.CharField(max_length=200, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'contents_seasons'
-
-
-class UserInterworking(models.Model):
-    i_id = models.CharField(primary_key=True, max_length=50)
-    u_email = models.ForeignKey('Users', models.DO_NOTHING)
-    platform = models.CharField(max_length=20)
-    id = models.CharField(max_length=50)
-    passwd = models.CharField(max_length=20)
-    profile_name = models.CharField(max_length=20)
-    expiration_date = models.DateField(null=True)
-    simple_login = models.CharField(max_length=20, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'user_interworking'
-
-
 class Users(models.Model):
     email = models.CharField(primary_key=True, max_length=50)
     passwd = models.CharField(max_length=20)
@@ -112,10 +50,72 @@ class Users(models.Model):
         db_table = 'users'
 
 
+class ContentsEpisodes(models.Model):
+    _id = models.CharField(primary_key=True, max_length=100)  # Field renamed because it started with '_'.
+    c_id = models.ForeignKey(Contents, models.DO_NOTHING)
+    season_num = models.IntegerField()
+    title = models.CharField(max_length=100)
+    NUMBER = models.IntegerField()  # Field name made lowercase.
+    air_date = models.DateField(blank=True, null=True)
+    vote_count = models.IntegerField(blank=True, null=True)
+    vote_average = models.FloatField(blank=True, null=True)
+    overview = models.CharField(max_length=2000, blank=True, null=True)
+    still_path = models.CharField(max_length=200, blank=True, null=True)
+    crew = models.CharField(max_length=1000, blank=True, null=True)
+    guests = models.CharField(max_length=1000, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'contents_episodes'
+
+
+class ContentsReview(models.Model):
+    id = models.IntegerField(primary_key=True)
+    c_id = models.ForeignKey(Contents, models.DO_NOTHING)
+    u_email = models.ForeignKey(Users, models.DO_NOTHING)
+    _like = models.IntegerField()  # Field renamed because it started with '_'.
+    rating = models.FloatField()
+    review = models.CharField(max_length=1000)
+    _datetime = models.DateTimeField()  # Field renamed because it started with '_'.
+
+    class Meta:
+        managed = False
+        db_table = 'contents_review'
+
+
+class ContentsSeasons(models.Model):
+    _id = models.CharField(primary_key=True, max_length=100)  # Field renamed because it started with '_'.
+    c_id = models.ForeignKey(Contents, models.DO_NOTHING)
+    air_date = models.DateField()
+    title = models.CharField(max_length=100)
+    NUMBER = models.IntegerField()  # Field name made lowercase.
+    overview = models.CharField(max_length=2000, blank=True, null=True)
+    poster_path = models.CharField(max_length=200, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'contents_seasons'
+
+
+class UserInterworking(models.Model):
+    i_id = models.CharField(primary_key=True, max_length=50)
+    u_email = models.ForeignKey(Users, models.DO_NOTHING)
+    platform = models.CharField(max_length=20)
+    id = models.CharField(max_length=50)
+    passwd = models.CharField(max_length=20)
+    profile_name = models.CharField(max_length=20)
+    expiration_date = models.DateField(null=True)
+    simple_login = models.CharField(max_length=20, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_interworking'
+
+
 class WatchingLog(models.Model):
     id = models.CharField(primary_key=True, max_length=100)
-    c = models.ForeignKey(Contents, models.DO_NOTHING)
-    i = models.ForeignKey(UserInterworking, models.DO_NOTHING)
+    c_id = models.ForeignKey(Contents, models.DO_NOTHING)
+    i_id = models.ForeignKey(UserInterworking, models.DO_NOTHING)
 
     class Meta:
         managed = False
@@ -124,8 +124,8 @@ class WatchingLog(models.Model):
 
 class WishList(models.Model):
     id = models.CharField(primary_key=True, max_length=100)
-    c = models.ForeignKey(Contents, models.DO_NOTHING)
-    i = models.ForeignKey(UserInterworking, models.DO_NOTHING)
+    c_id = models.ForeignKey(Contents, models.DO_NOTHING)
+    i_id = models.ForeignKey(UserInterworking, models.DO_NOTHING)
 
     class Meta:
         managed = False

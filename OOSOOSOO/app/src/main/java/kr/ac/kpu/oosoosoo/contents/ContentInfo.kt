@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class ContentInfo (
     val id: String?,            //고유번호
-    val field_type : String?,   //콘텐츠타입(TV or Movie)
+    val _type : String?,   //콘텐츠타입(TV or Movie)
     val title : String?,        //제목
     val genre : String?,        //장르(리스트)
     val production_countries : String?, //제작 나라
