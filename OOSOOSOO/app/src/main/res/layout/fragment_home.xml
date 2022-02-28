@@ -8,25 +8,31 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/top_btn_layout"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:gravity="right"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="2dp">
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_home_login"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/ic_baseline_login_24" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:backgroundTint="#FFFFFFFF"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_baseline_login_24" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_home_search"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/ic_baseline_search_24"
-            android:backgroundTint="@color/primaryColor" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:backgroundTint="#FFFFFFFF"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_baseline_search_24" />
+
     </LinearLayout>
 
     <com.google.android.material.tabs.TabLayout

@@ -4,6 +4,7 @@
     xmlns:bind="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    app:cardBackgroundColor="#000000"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp"
     app:layout_constraintStart_toStartOf="parent"
@@ -14,7 +15,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
+        android:backgroundTint="#000000"
+        android:scaleType="fitXY"
         bind:imageUrl="@{item.image}" />
 
 </androidx.cardview.widget.CardView>

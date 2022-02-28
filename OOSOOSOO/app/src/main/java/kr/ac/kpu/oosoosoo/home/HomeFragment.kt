@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -39,7 +38,7 @@ class HomeFragment : Fragment() {
         }
 
         //홈화면 로그인 버튼
-        view.btn_home_login.setOnClickListener{
+        view.top_btn_layout.setOnClickListener{
             //로그인 시 이미지 변환 필요
             requireContext().toast("Login Click")
         }
