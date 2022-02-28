@@ -113,8 +113,8 @@ class SearchActivity : AppCompatActivity() {
                     toast(spinner_ott.selectedItem.toString())
                     filteredList.clear()
                     for (content in originalList) {
-                        if (content.field_type != null) {
-                            if (content.field_type.contains(typeList[position])) {
+                        if (content._type != null) {
+                            if (content._type.contains(typeList[position])) {
                                 filteredList.add(content)
                             }
                         }
