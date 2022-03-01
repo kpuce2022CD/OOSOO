@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
+import com.amplifyframework.core.Amplify
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.PagerFragmentStateAdapter
 import kr.ac.kpu.oosoosoo.login.LoginActivity
+import kr.ac.kpu.oosoosoo.login.SelectIwActivity
 import kr.ac.kpu.oosoosoo.search.SearchActivity
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -35,6 +37,18 @@ class HomeFragment : Fragment() {
     ): View? {
         val view: View = inflater!!.inflate(R.layout.fragment_home, container, false)
 
+        Amplify.Auth.fetchAuthSession(
+            {
+                if (it.isSignedIn) {
+                    Log.d("AWS Auth E-Mail", Amplify.Auth.currentUser.username)
+                    view.btn_home_login.setImageResource(R.drawable.ic_baseline_user)
+                } else {
+                    view.btn_home_login.setImageResource(R.drawable.ic_baseline_login_24)
+                }
+            },
+            { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }
+        )
+
         //홈화면 검색 돋보기 버튼
         view.btn_home_search.setOnClickListener {
             requireContext().startActivity<SearchActivity>()
@@ -42,8 +56,34 @@ class HomeFragment : Fragment() {
 
         //홈화면 로그인 버튼
         view.btn_home_login.setOnClickListener{
-            //로그인 시 이미지 변환 필요
-            requireContext().startActivity<LoginActivity>()
+            Amplify.Auth.fetchAuthSession(
+                {
+                    if (it.isSignedIn) {
+                        Log.d("AWS Auth E-Mail", Amplify.Auth.currentUser.username)
+                        // 로그인 되어있을시 유저 정보 출력화면으로 이동하도록 변경 필요
+                    } else {
+                        requireContext().startActivity<LoginActivity>()
+                    }
+                },
+                { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }
+            )
+        }
+
+        //홈화면 플랫폼 추가 버튼
+        view.btn_home_add_platform.setOnClickListener{
+            Amplify.Auth.fetchAuthSession(
+                {
+                    if (it.isSignedIn) {
+                        Log.d("AWS Auth E-Mail", Amplify.Auth.currentUser.username)
+                        requireContext().startActivity<SelectIwActivity>(
+                            "email" to Amplify.Auth.currentUser.username
+                        )
+                    } else {
+                        requireContext().toast("로그인 후 이용해주세요!")
+                    }
+                },
+                { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }
+            )
         }
 
         return view
