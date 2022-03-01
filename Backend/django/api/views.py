@@ -16,6 +16,8 @@ from api.Sign.SignUp import signUp
 from api.Sign.Interworking import Interworking
 from api.Search.SearchTest import search_test
 from api.Search.SearchTitle import search_title
+from api.User.WishList import wishlist
+from api.User.WatchingLog import watchinglog
 
 
 class ContentsListAPI(APIView):
@@ -178,5 +180,21 @@ class SearchTitleAPI(APIView):
     def post(self, request):
         data = request.data
         result = search_title(data.get('keyword'))
+        print(result)
+        return Response(result)
+
+
+class UserWishListAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = wishlist(data.get('email'))
+        print(result)
+        return Response(result)
+
+
+class UserWatchingLogAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = watchinglog(data.get('email'))
         print(result)
         return Response(result)

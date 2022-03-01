@@ -52,7 +52,7 @@ class Users(models.Model):
 
 class ContentsEpisodes(models.Model):
     _id = models.CharField(primary_key=True, max_length=100)  # Field renamed because it started with '_'.
-    c_id = models.ForeignKey(Contents, models.DO_NOTHING)
+    c_id = models.ForeignKey(Contents, on_delete=models.DO_NOTHING, db_column="c_id")
     season_num = models.IntegerField()
     title = models.CharField(max_length=100)
     NUMBER = models.IntegerField()  # Field name made lowercase.
@@ -71,8 +71,8 @@ class ContentsEpisodes(models.Model):
 
 class ContentsReview(models.Model):
     id = models.IntegerField(primary_key=True)
-    c_id = models.ForeignKey(Contents, models.DO_NOTHING)
-    u_email = models.ForeignKey(Users, models.DO_NOTHING)
+    c_id = models.ForeignKey(Contents, on_delete=models.DO_NOTHING, db_column="c_id")
+    u_email = models.ForeignKey(Users, on_delete=models.DO_NOTHING, db_column="u_email")
     _like = models.IntegerField()  # Field renamed because it started with '_'.
     rating = models.FloatField()
     review = models.CharField(max_length=1000)
@@ -85,7 +85,7 @@ class ContentsReview(models.Model):
 
 class ContentsSeasons(models.Model):
     _id = models.CharField(primary_key=True, max_length=100)  # Field renamed because it started with '_'.
-    c_id = models.ForeignKey(Contents, models.DO_NOTHING)
+    c_id = models.ForeignKey(Contents, on_delete=models.DO_NOTHING, db_column="c_id")
     air_date = models.DateField()
     title = models.CharField(max_length=100)
     NUMBER = models.IntegerField()  # Field name made lowercase.
@@ -99,7 +99,7 @@ class ContentsSeasons(models.Model):
 
 class UserInterworking(models.Model):
     i_id = models.CharField(primary_key=True, max_length=50)
-    u_email = models.ForeignKey(Users, models.DO_NOTHING)
+    u_email = models.ForeignKey(Users, on_delete=models.DO_NOTHING, db_column="u_email")
     platform = models.CharField(max_length=20)
     id = models.CharField(max_length=50)
     passwd = models.CharField(max_length=20)
@@ -114,8 +114,8 @@ class UserInterworking(models.Model):
 
 class WatchingLog(models.Model):
     id = models.CharField(primary_key=True, max_length=100)
-    c_id = models.ForeignKey(Contents, models.DO_NOTHING)
-    i_id = models.ForeignKey(UserInterworking, models.DO_NOTHING)
+    c_id = models.ForeignKey(Contents, on_delete=models.DO_NOTHING, db_column="c_id")
+    i_id = models.ForeignKey(UserInterworking, on_delete=models.DO_NOTHING, db_column="i_id")
 
     class Meta:
         managed = False
@@ -123,9 +123,9 @@ class WatchingLog(models.Model):
 
 
 class WishList(models.Model):
-    id = models.CharField(primary_key=True, max_length=100)
-    c_id = models.ForeignKey(Contents, models.DO_NOTHING)
-    i_id = models.ForeignKey(UserInterworking, models.DO_NOTHING)
+    id = models.IntegerField(primary_key=True)
+    c_id = models.ForeignKey(Contents, on_delete=models.DO_NOTHING, db_column="c_id")
+    i_id = models.ForeignKey(UserInterworking, on_delete=models.DO_NOTHING, db_column="i_id")
 
     class Meta:
         managed = False

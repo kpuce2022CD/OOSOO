@@ -45,4 +45,7 @@ urlpatterns = [
 
     path('search_test/', SearchTestAPI.as_view()),
     path('search_title/', SearchTitleAPI.as_view()),
+
+    path('user_wishlist/', UserWishListAPI.as_view()),
+    path('user_watchinglog/', UserWatchingLogAPI.as_view()),
 ]
