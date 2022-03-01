@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:backgroundTint="#000000"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         bind:imageUrl="@{item.image}" />
 
 </androidx.cardview.widget.CardView>

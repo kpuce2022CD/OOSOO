@@ -35,7 +35,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recy_platform_search"
                 android:layout_width="wrap_content"
-                android:layout_height="24dp"
+                android:layout_height="30dp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_content_search"
                 app:layout_constraintEnd_toEndOf="@+id/img_content_search" />
 

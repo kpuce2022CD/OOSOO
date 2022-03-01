@@ -39,6 +39,9 @@ class RetrofitBuilder {
     val callSearchTitle = retrofit.create(SearchTitleAPI::class.java)
     // 검색 테스트용
     val callSearchTest = retrofit.create(SearchTestAPI::class.java)
+
+    val callUserWishList = retrofit.create(UserWishListAPI::class.java)
+    val callUserWatchingLog = retrofit.create(UserWatchingLogAPI::class.java)
 }
 
 interface ContentsAPI {
@@ -118,7 +121,20 @@ interface SearchTitleAPI {
     fun getSearchTitle(@FieldMap params: HashMap<String, String>): Call<List<ContentInfo>>
 }
 
+//검색 테스트용
 interface SearchTestAPI {
     @GET("api/search_test/")
     fun getSearchTest(): Call<List<ContentInfo>>
+}
+
+interface UserWishListAPI {
+    @FormUrlEncoded
+    @POST("api/user_wishlist/")
+    fun getWishList(@FieldMap params: HashMap<String, String>): Call<List<ContentInfo>>
+}
+
+interface UserWatchingLogAPI {
+    @FormUrlEncoded
+    @POST("api/user_watchinglog/")
+    fun getWatchingLog(@FieldMap params: HashMap<String, String>): Call<List<ContentInfo>>
 }
