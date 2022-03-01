@@ -12,6 +12,9 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.PagerFragmentStateAdapter
+import kr.ac.kpu.oosoosoo.login.LoginActivity
+import kr.ac.kpu.oosoosoo.search.SearchActivity
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class HomeFragment : Fragment() {
@@ -34,13 +37,13 @@ class HomeFragment : Fragment() {
 
         //홈화면 검색 돋보기 버튼
         view.btn_home_search.setOnClickListener {
-            requireContext().toast("Search Click")
+            requireContext().startActivity<SearchActivity>()
         }
 
         //홈화면 로그인 버튼
-        view.top_btn_layout.setOnClickListener{
+        view.btn_home_login.setOnClickListener{
             //로그인 시 이미지 변환 필요
-            requireContext().toast("Login Click")
+            requireContext().startActivity<LoginActivity>()
         }
 
         return view
