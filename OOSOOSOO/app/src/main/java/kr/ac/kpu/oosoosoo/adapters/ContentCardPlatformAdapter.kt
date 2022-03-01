@@ -30,7 +30,7 @@ class ContentCardPlatformAdapter(context: Context, platformListData: ArrayList<S
                 "watcha" -> itemView.card_platform_icon.setImageResource(R.drawable.watcha_logo)
                 "wavve" -> itemView.card_platform_icon.setImageResource(R.drawable.wavve_logo)
                 "tving" -> itemView.card_platform_icon.setImageResource(R.drawable.tving_logo)
-                "disney" -> itemView.card_platform_icon.setImageResource(R.drawable.disney_logo)
+                "disney plus" -> itemView.card_platform_icon.setImageResource(R.drawable.disney_logo)
                 "naver" -> itemView.card_platform_icon.setImageResource(R.drawable.naver_logo)
             }
 

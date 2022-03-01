@@ -32,6 +32,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recy_platform_search"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/img_content_search"
+                app:layout_constraintEnd_toEndOf="@+id/img_content_search" />
+
             <TextView
                 android:id="@+id/tv_content_search"
                 android:layout_width="0dp"
