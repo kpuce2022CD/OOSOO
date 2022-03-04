@@ -19,6 +19,7 @@ import kr.ac.kpu.oosoosoo.watcha.WatchaWishesActivity
 import kr.ac.kpu.oosoosoo.wavve.WavveWatchingActivity
 import kr.ac.kpu.oosoosoo.wavve.WavveWishesActivity
 import org.jetbrains.anko.startActivity
+import com.kakao.sdk.common.util.Utility
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +31,11 @@ class MainActivity : AppCompatActivity() {
             { Log.i("AWS AmplifyQuickstart", "Auth session = $it") },
             { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }
         )
+
+        btn_hash.setOnClickListener {
+            var keyHash = Utility.getKeyHash(this)
+            Log.d("Kakao", keyHash)
+        }
 
         btn_main.setOnClickListener { view ->
             when (radioGroup.checkedRadioButtonId) {

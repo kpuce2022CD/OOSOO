@@ -67,4 +67,7 @@ dependencies {
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+
+    // Kakao Login
+    implementation "com.kakao.sdk:v2-user:2.8.6"
 }
