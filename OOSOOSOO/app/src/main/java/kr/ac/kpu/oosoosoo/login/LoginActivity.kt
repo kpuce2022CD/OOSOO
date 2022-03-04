@@ -1,17 +1,28 @@
 package kr.ac.kpu.oosoosoo.login
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.amplifyframework.core.Amplify
+import com.google.gson.JsonObject
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
+import com.navercorp.nid.NaverIdLoginSDK
+import com.navercorp.nid.NaverIdLoginSDK.oauthLoginCallback
+import com.navercorp.nid.oauth.NidOAuthLogin
+import com.navercorp.nid.oauth.OAuthLoginCallback
+import kotlinx.android.synthetic.main.activity_interworking.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import org.jetbrains.anko.startActivity
+import org.json.JSONObject
+import org.json.JSONTokener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,11 +32,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        signup_btn.setOnClickListener {
-            startActivity<SignupActivity>()
-        }
-
         val call = RetrofitBuilder().callLogin  //Retrofit Call
+        val naver_call = RetrofitBuilder().NaverProfile // Naver Retrofit
 
         //파라미터 email, pwd
         login_btn.setOnClickListener {
@@ -123,8 +131,65 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
-
-
         }
+        naver_login_btn.setOnClickListener {
+            val naver_client_id = "cWHgfLAMEk_ytHCxktHu"
+            val naver_client_secret = "kJidBtWGGT"
+            val naver_client_name = "OOSOOSOO 네이버 로그인"
+
+            NaverIdLoginSDK.initialize(this, naver_client_id, naver_client_secret, naver_client_name)
+
+            oauthLoginCallback = object : OAuthLoginCallback {
+                override fun onSuccess() {
+                    Log.d("naver_login", "네이버 로그인 성공" )
+                    //var RefreshToken = NaverIdLoginSDK.getRefreshToken().toString()
+                    var AccessToken = NaverIdLoginSDK.getAccessToken().toString()
+                    var State = NaverIdLoginSDK.getState().toString()
+
+                    naver_call.getNaverProfile(AccessToken).enqueue(object : Callback<List<String>> {
+                        override fun onFailure(call: Call<List<String>>, t: Throwable) {
+                            Log.d("naver_login", "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요." )
+                        }
+
+                        override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
+
+                            /*val jsonObject = JSONTokener(response.toString()).nextValue() as JSONObject
+
+                            val n_email = jsonObject.getString("response/email")
+                            val n_nickname = jsonObject.getString("response/nickname")
+                            val n_gender = jsonObject.getString("response/gender")
+                            val n_birthyear = jsonObject.getString("response/birthyear")
+                            val n_birthday = jsonObject.getString("response/birthday")
+                            val n_phoneNum = jsonObject.getString("response/moblie")
+
+                            Log.d("naver_login", "이메일 $n_email\n닉네임 $n_nickname\n성별 $n_gender\n 생년월일 $n_birthyear $n_birthday \n전화번호 $n_phoneNum")
+                        */}
+                    })
+
+                    Toast.makeText(this@LoginActivity,"$State",Toast.LENGTH_LONG).show()
+
+                    // 네이버 로그인 인증이 성공했을 때 수행할 코드 추가
+
+                }
+                override fun onFailure(httpStatus: Int, message: String) {
+                    val errorCode = NaverIdLoginSDK.getLastErrorCode().code
+                    val errorDescription = NaverIdLoginSDK.getLastErrorDescription()
+                    Toast.makeText(this@LoginActivity,"errorCode:$errorCode, errorDesc:$errorDescription",Toast.LENGTH_SHORT).show()
+                }
+                override fun onError(errorCode: Int, message: String) {
+                    onFailure(errorCode, message)
+                }
+            }
+            NaverIdLoginSDK.authenticate(this@LoginActivity, oauthLoginCallback)
+        }
+
+        n_logout_btn.setOnClickListener {
+            NaverIdLoginSDK.logout()
+        }
+
     }
+}
+
+private fun NidOAuthLogin.callDeleteTokenApi() {
+    TODO("Not yet implemented")
 }

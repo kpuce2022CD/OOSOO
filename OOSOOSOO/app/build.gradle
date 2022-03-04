@@ -70,4 +70,7 @@ dependencies {
 
     // Kakao Login
     implementation "com.kakao.sdk:v2-user:2.8.6"
+
+    //Naver Login
+    implementation 'com.navercorp.nid:oauth:5.0.1'
 }

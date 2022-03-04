@@ -23,6 +23,12 @@ class RetrofitBuilder {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
+    val naverProfile = Retrofit.Builder()
+        .baseUrl("http://openapi.naver.com/")
+        .client(okHttpClient)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
     val callContents = retrofit.create(ContentsAPI::class.java)
     val callNetflixWishes = retrofit.create(NetflixWishAPI::class.java)
     val callNetflixWatching = retrofit.create(NetflixWatchingAPI::class.java)
@@ -42,6 +48,8 @@ class RetrofitBuilder {
 
     val callUserWishList = retrofit.create(UserWishListAPI::class.java)
     val callUserWatchingLog = retrofit.create(UserWatchingLogAPI::class.java)
+
+    val NaverProfile = naverProfile.create(NaverProfileAPI::class.java)
 }
 
 interface ContentsAPI {
@@ -137,4 +145,11 @@ interface UserWatchingLogAPI {
     @FormUrlEncoded
     @POST("api/user_watchinglog/")
     fun getWatchingLog(@FieldMap params: HashMap<String, String>): Call<List<ContentInfo>>
+}
+
+interface NaverProfileAPI {
+    @GET("v1/nid/me")
+    fun getNaverProfile(
+        @Header("Authorization") token : String
+    ): Call<List<String>>//Call<List<ProfileInfo>>
 }
