@@ -5,11 +5,14 @@ import android.util.Log
 import com.amplifyframework.AmplifyException
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
 import com.amplifyframework.core.Amplify
+import com.kakao.sdk.common.KakaoSdk
+import kr.ac.kpu.oosoosoo.R
 
-class AWSAmplifyApp : Application() {
+class OOSOOSOOApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        // AWS Amplify
         try {
             Amplify.addPlugin(AWSCognitoAuthPlugin())
             Amplify.configure(applicationContext)
@@ -17,5 +20,8 @@ class AWSAmplifyApp : Application() {
         } catch (error: AmplifyException) {
             Log.e("AWS Amplify", "Could not initialize Amplify", error)
         }
+
+        // Kakao SDK 초기화
+        KakaoSdk.init(this, resources.getString(R.string.kakao_app_key))
     }
 }
