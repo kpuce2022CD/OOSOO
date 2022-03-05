@@ -18,13 +18,10 @@ import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jetbrains.anko.startActivity
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Headers
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
@@ -139,7 +136,6 @@ class LoginActivity : AppCompatActivity() {
 
             oauthLoginCallback = object : OAuthLoginCallback {
                 override fun onSuccess() {
-                    Log.d("naver_login", "네이버 로그인 성공" )
                     val accessToken = NaverIdLoginSDK.getAccessToken().toString()
 
                     val url = "https://openapi.naver.com/v1/nid/me"
@@ -160,16 +156,67 @@ class LoginActivity : AppCompatActivity() {
                         override fun onFailure(call: okhttp3.Call, e: IOException) {
                             Log.d("naver_login_call", "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요." )
                         }
-
                         override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
                             val profile = response.body?.string()
+                            val call = RetrofitBuilder().callLogin  //Retrofit Call
 
-                            Log.d("naver_login_call", profile.toString())
-                            // 네이버 로그인 인증이 성공했을 때 수행할 코드 추가
+                            val naverProfile = NaverProfileInfo(
+                                resultcode = JSONObject(profile).getString("resultcode"),
+                                message = JSONObject(profile).getString("message"),
+                                response = JSONObject(profile).getJSONObject("response")
+                            )
+
+                            var input = HashMap<String, String>()
+                            input["email"] = naverProfile.response.getString("email")
+                            input["pwd"] = naverProfile.response.getString("id")
+
+                            call.getSignIn(input).enqueue(object : Callback<Boolean> {
+                                override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                                    Log.d("naver Login", t.message.toString())
+                                    signin_tv.text = "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요."
+                                }
+                                override fun onResponse(call: Call<Boolean>, response: Response<Boolean> ) {
+                                    val body : Boolean? = response.body()
+                                    Log.d("naver Login", "통신 성공")
+                                    signin_tv.text = ""
+
+                                    Log.d("naver Login", body.toString())
+                                    if (body != null) { // DB에 로그인 요청 리턴값이 null이 아닐 때
+                                        signin_tv.text = "$body"
+                                        if (body == true){ // DB에 유저 정보가 있을 경우
+                                            Amplify.Auth.signIn(naverProfile.response.getString("email"), naverProfile.response.getString("id"),
+                                                { result ->
+                                                    if (result.isSignInComplete) {
+                                                        Log.i("AWSAuth + naver", "Sign in succeeded")
+                                                    } else {
+                                                        Log.i("AWSAuth + naver", "Sign in not complete")
+                                                    }
+                                                },
+                                                { Log.e("AWSAuth + naver", "Failed to sign in", it) }
+                                            )
+                                        } else { // 신규 회원인 경우
+                                            var gender = naverProfile.response.getString("gender")
+                                            var gender_boolean = false
+                                            if(gender == "M"){
+                                                gender_boolean = true
+                                            } else if (gender == "F"){
+                                                gender_boolean = false
+                                            }
+                                            startActivity<SignupActivity>(
+                                                "name" to naverProfile.response.getString("name"),
+                                                "email" to input["email"],
+                                                "pwd" to input["pwd"],
+                                                "nickname" to naverProfile.response.getString("nickname"),
+                                                //"gender" to gender_boolean.toString(),
+                                                "phoen_num" to naverProfile.response.getString("mobile"),
+                                                "birthday" to naverProfile.response.getString("birthyear")
+                                            )
+                                        }
+                                    }
+                                }
+                            })
                         }
-
                     })
-
                 }
                 override fun onFailure(httpStatus: Int, message: String) {
                     val errorCode = NaverIdLoginSDK.getLastErrorCode().code

@@ -44,6 +44,7 @@ class RetrofitBuilder {
     val callUserWishList = retrofit.create(UserWishListAPI::class.java)
     val callUserWatchingLog = retrofit.create(UserWatchingLogAPI::class.java)
 
+
 }
 
 interface ContentsAPI {

@@ -25,6 +25,17 @@ class SignupActivity : AppCompatActivity() {
 
         var gender_checked = 0
 
+        //인텐트로 넘어온 값들 미리 editText에 입력
+        edt_name.setText(intent.getStringExtra("name"))
+        edt_email.setText(intent.getStringExtra("email"))
+        edt_pwd.setText(intent.getStringExtra("pwd"))
+        edt_nickname.setText(intent.getStringExtra("nickname"))
+        edt_phone.setText(intent.getStringExtra("mobile"))
+        edt_birth.setText(intent.getStringExtra("birthday"))
+
+        val platform_name = intent.getStringExtra("platform")
+        val user_email = intent.getStringExtra("u_email")
+
         radio_gender.setOnCheckedChangeListener{ _, checkedId ->
             when(checkedId){
                 R.id.radio_male -> gender_checked = 1
