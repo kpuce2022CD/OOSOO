@@ -31,7 +31,7 @@ class InterworkingActivity : AppCompatActivity() {
         val platform_name = intent.getStringExtra("platform")
         val user_email = intent.getStringExtra("u_email")
 
-        if (platform_name == "netfilx") {
+        if (platform_name == "netflix") {
             platform_img.setImageResource(R.drawable.netfilx_logo)
         } else if (platform_name == "watcha") {
             platform_img.setImageResource(R.drawable.watcha_logo)
