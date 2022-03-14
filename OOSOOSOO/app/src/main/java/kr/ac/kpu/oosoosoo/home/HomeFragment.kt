@@ -11,6 +11,7 @@ import com.amplifyframework.core.Amplify
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import kr.ac.kpu.oosoosoo.MainActivity
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.PagerFragmentStateAdapter
 import kr.ac.kpu.oosoosoo.login.LoginActivity
@@ -86,6 +87,9 @@ class HomeFragment : Fragment() {
             )
         }
 
+        view.btn_test_main.setOnClickListener {
+            requireActivity().startActivity<MainActivity>()
+        }
         return view
     }
 
@@ -107,6 +111,8 @@ class HomeFragment : Fragment() {
                 Log.d("ViewPagerFragment", "Page ${position+1}")
             }
         })
+
+        viewPager_home.isUserInputEnabled = false
 
         // TabLayout attach
         TabLayoutMediator(tabLayout_home, viewPager_home) { tab, position ->

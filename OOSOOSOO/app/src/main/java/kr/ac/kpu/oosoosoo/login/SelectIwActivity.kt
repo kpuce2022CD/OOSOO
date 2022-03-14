@@ -53,8 +53,9 @@ class SelectIwActivity : AppCompatActivity() {
                 startActivityForResult(to_iw_intent, 9898)
             }
 
-            si_next_btn.setOnClickListener {
+            iw_next_btn.setOnClickListener {
                 //다음 화면 정해야함 어느 화면으로 넘기기
+                finish() //데모 테스트
             }
 
         } else {

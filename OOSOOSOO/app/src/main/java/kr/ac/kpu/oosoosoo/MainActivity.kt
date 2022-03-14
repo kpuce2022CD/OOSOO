@@ -21,6 +21,7 @@ import kr.ac.kpu.oosoosoo.wavve.WavveWishesActivity
 import org.jetbrains.anko.startActivity
 import com.kakao.sdk.common.util.Utility
 
+//이전 테스트용 메인화면(삭제 예정)
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,10 +33,6 @@ class MainActivity : AppCompatActivity() {
             { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }
         )
 
-        btn_hash.setOnClickListener {
-            var keyHash = Utility.getKeyHash(this)
-            Log.d("Kakao", keyHash)
-        }
 
         btn_main.setOnClickListener { view ->
             when (radioGroup.checkedRadioButtonId) {
@@ -51,17 +48,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        btn_to_login.setOnClickListener {
-            startActivity<LoginActivity>()
-        }
-
-        btn_to_search.setOnClickListener {
-            startActivity<SearchActivity>()
-        }
-
-        btn_to_home.setOnClickListener {
-            startActivity<HomeActivity>()
-        }
+        btn_main_back.setOnClickListener{ finish() }
 
         //radio_netflix_add_wish.paintFlags = radio_wavve_watching.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
     }
