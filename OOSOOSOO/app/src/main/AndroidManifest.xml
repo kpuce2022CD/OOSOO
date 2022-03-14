@@ -15,16 +15,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OOSOOSOO"
         android:usesCleartextTraffic="true">
-        <activity android:name=".contents.ContentDetailActivity" />
         <activity
-            android:name=".home.HomeActivity"
-            android:exported="true" >
+            android:name=".IntroAnimationActivity"
+            android:exported="true"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".contents.ContentDetailActivity" />
+        <activity
+            android:name=".home.HomeActivity"
+            android:exported="false"/>
         <activity
             android:name=".search.SearchActivity"
             android:windowSoftInputMode="adjustNothing" />
@@ -57,8 +61,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity android:name=".contents.ContentsActivity" />
         <activity android:name=".login.InterworkingActivity" />
         <activity android:name=".login.SelectIwActivity" />
@@ -67,11 +70,13 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
+                <data
+                    android:host="oauth"
                     android:scheme="kakao8ce3019b12edf840a093214b167c96f4" />
             </intent-filter>
         </activity>
