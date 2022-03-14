@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.activity_interworking.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
@@ -29,7 +30,7 @@ class InterworkingActivity : AppCompatActivity() {
 
         //인텐트로 넘어온 값으로 화면 생성
         val platform_name = intent.getStringExtra("platform")
-        val user_email = intent.getStringExtra("u_email")
+        val user_email = Amplify.Auth.currentUser.userId
 
         if (platform_name == "netflix") {
             platform_img.setImageResource(R.drawable.netfilx_logo)

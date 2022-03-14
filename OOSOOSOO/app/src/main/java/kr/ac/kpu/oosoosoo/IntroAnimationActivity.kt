@@ -2,10 +2,14 @@ package kr.ac.kpu.oosoosoo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.activity_intro_animation.*
+import kotlinx.android.synthetic.main.fragment_home.view.*
 import kr.ac.kpu.oosoosoo.home.HomeActivity
+import kr.ac.kpu.oosoosoo.login.LoginActivity
 import org.jetbrains.anko.startActivity
 
 //Splash : Main으로 시작하기 전 애니메이션을 통해 Intro를 담당
@@ -25,7 +29,16 @@ class IntroAnimationActivity : AppCompatActivity() {
             }
 
             override fun onAnimationEnd(p0: Animation?) {
-                startActivity<HomeActivity>()
+                Amplify.Auth.fetchAuthSession(
+                    {
+                        if (it.isSignedIn) {
+                            startActivity<HomeActivity>()
+                        } else {
+                            startActivity<LoginActivity>()
+                        }
+                    },
+                    { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }
+                )
                 finish()
             }
 

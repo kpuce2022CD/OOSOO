@@ -5,8 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.activity_select_interworking.*
 import kr.ac.kpu.oosoosoo.R
+import kr.ac.kpu.oosoosoo.home.HomeActivity
+import org.jetbrains.anko.startActivity
 
 
 class SelectIwActivity : AppCompatActivity() {
@@ -14,52 +17,40 @@ class SelectIwActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_interworking)
 
-        if (intent.hasExtra("email")){
-            val user_email = intent.getStringExtra("email")
-            u_email_tv.text = "유저 이메일: " + user_email.toString()
 
-            netfilx_btn.setOnClickListener {
-                val to_iw_intent = Intent(this, InterworkingActivity::class.java)
-                to_iw_intent.putExtra("platform", "netflix")
-                to_iw_intent.putExtra("u_email", user_email)
-                startActivityForResult(to_iw_intent, 9898)
-            }
+        netfilx_btn.setOnClickListener {
+            val to_iw_intent = Intent(this, InterworkingActivity::class.java)
+            to_iw_intent.putExtra("platform", "netflix")
+            startActivityForResult(to_iw_intent, 9898)
+        }
 
-            watcha_btn.setOnClickListener {
-                val to_iw_intent = Intent(this, InterworkingActivity::class.java)
-                to_iw_intent.putExtra("platform", "watcha")
-                to_iw_intent.putExtra("u_email", user_email)
-                startActivityForResult(to_iw_intent, 9898)
-            }
+        watcha_btn.setOnClickListener {
+            val to_iw_intent = Intent(this, InterworkingActivity::class.java)
+            to_iw_intent.putExtra("platform", "watcha")
+            startActivityForResult(to_iw_intent, 9898)
+        }
 
-            wavve_btn.setOnClickListener {
-                val to_iw_intent = Intent(this, InterworkingActivity::class.java)
-                to_iw_intent.putExtra("platform", "wavve")
-                to_iw_intent.putExtra("u_email", user_email)
-                startActivityForResult(to_iw_intent, 9898)
-            }
+        wavve_btn.setOnClickListener {
+            val to_iw_intent = Intent(this, InterworkingActivity::class.java)
+            to_iw_intent.putExtra("platform", "wavve")
+            startActivityForResult(to_iw_intent, 9898)
+        }
 
-            tving_btn.setOnClickListener {
-                val to_iw_intent = Intent(this, InterworkingActivity::class.java)
-                to_iw_intent.putExtra("platform", "tving")
-                to_iw_intent.putExtra("u_email", user_email)
-                startActivityForResult(to_iw_intent, 9898)
-            }
+        tving_btn.setOnClickListener {
+            val to_iw_intent = Intent(this, InterworkingActivity::class.java)
+            to_iw_intent.putExtra("platform", "tving")
+            startActivityForResult(to_iw_intent, 9898)
+        }
 
-            disney_btn.setOnClickListener {
-                val to_iw_intent = Intent(this, InterworkingActivity::class.java)
-                to_iw_intent.putExtra("platform", "disney")
-                to_iw_intent.putExtra("u_email", user_email)
-                startActivityForResult(to_iw_intent, 9898)
-            }
+        disney_btn.setOnClickListener {
+            val to_iw_intent = Intent(this, InterworkingActivity::class.java)
+            to_iw_intent.putExtra("platform", "disney")
+            startActivityForResult(to_iw_intent, 9898)
+        }
 
-            iw_next_btn.setOnClickListener {
-                //다음 화면 정해야함 어느 화면으로 넘기기
-                finish() //데모 테스트
-            }
-
-        } else {
-            Toast.makeText(this, "유저 아이디 전달 실패", Toast.LENGTH_LONG).show()
+        iw_next_btn.setOnClickListener {
+            startActivity<HomeActivity>()
+            finish()
         }
 
     }

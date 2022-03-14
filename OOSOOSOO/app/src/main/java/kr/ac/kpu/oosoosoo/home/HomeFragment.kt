@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
         }
 
         view.btn_test_main.setOnClickListener {
-            requireActivity().startActivity<MainActivity>()
+            requireContext().startActivity<MainActivity>()
         }
         return view
     }

@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.connection.NaverHeaderInterceptor
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
+import kr.ac.kpu.oosoosoo.home.HomeActivity
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jetbrains.anko.startActivity
@@ -56,6 +57,7 @@ class LoginActivity : AppCompatActivity() {
                             { result ->
                                 if (result.isSignInComplete) {
                                     Log.i("AWSAuthQuickstart", "Sign in succeeded")
+                                    startActivity<SelectIwActivity>()
                                 } else {
                                     Log.i("AWSAuthQuickstart", "Sign in not complete")
                                 }
