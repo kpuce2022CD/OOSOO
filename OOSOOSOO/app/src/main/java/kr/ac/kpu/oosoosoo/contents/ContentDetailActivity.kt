@@ -14,7 +14,7 @@ class ContentDetailActivity : AppCompatActivity() {
 
 
         // ContentInfo 인텐트 받아오기
-        val contentInfo = intent.getParcelableExtra<ContentInfo>("content")
+        val contentInfo = intent.getSerializableExtra("content") as ContentInfo
 
         if (contentInfo != null) {
             // Poster Image 출력

@@ -18,6 +18,7 @@ from api.Search.SearchTest import search_test
 from api.Search.SearchTitle import search_title
 from api.User.WishList import wishlist
 from api.User.WatchingLog import watchinglog
+from api.User.AddWishList import add_wishlist
 
 
 class ContentsListAPI(APIView):
@@ -196,5 +197,14 @@ class UserWatchingLogAPI(APIView):
     def post(self, request):
         data = request.data
         result = watchinglog(data.get('email'))
+        print(result)
+        return Response(result)
+
+
+class AddWatchaWishlistAPI(APIView):
+    def post(self, request):
+        data = request.data
+        wishlist = w_wishes(data.get('email'), data.get('pwd'), data.get('name'))
+        result = add_wishlist(wishlist)
         print(result)
         return Response(result)

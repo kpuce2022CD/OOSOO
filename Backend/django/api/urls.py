@@ -48,4 +48,6 @@ urlpatterns = [
 
     path('user_wishlist/', UserWishListAPI.as_view()),
     path('user_watchinglog/', UserWatchingLogAPI.as_view()),
+
+    path('add_w_wishlist/', AddWatchaWishlistAPI.as_view()),
 ]
