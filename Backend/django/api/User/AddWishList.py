@@ -7,7 +7,7 @@ def add_wishlist(wishlist):
     contents = list()
 
     for title in wishlist:
-        content = Contents.objects.filter(title__contains=title).values()
+        content = Contents.objects.filter(title__startswith=title).values()
         if content.count() != 0:
             contents.append(content[0])
 
