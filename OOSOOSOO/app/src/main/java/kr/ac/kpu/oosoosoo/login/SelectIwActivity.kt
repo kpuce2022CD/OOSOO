@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.activity_select_interworking.*
+import kr.ac.kpu.oosoosoo.MainActivity
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.home.HomeActivity
 import org.jetbrains.anko.startActivity
@@ -49,7 +50,7 @@ class SelectIwActivity : AppCompatActivity() {
         }
 
         iw_next_btn.setOnClickListener {
-            startActivity<HomeActivity>()
+            startActivity<MainActivity>()
             finish()
         }
 

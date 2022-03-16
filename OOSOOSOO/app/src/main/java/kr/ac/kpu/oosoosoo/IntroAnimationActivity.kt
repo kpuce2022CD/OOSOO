@@ -32,7 +32,7 @@ class IntroAnimationActivity : AppCompatActivity() {
                 Amplify.Auth.fetchAuthSession(
                     {
                         if (it.isSignedIn) {
-                            startActivity<HomeActivity>()
+                            startActivity<MainActivity>()
                         } else {
                             startActivity<LoginActivity>()
                         }

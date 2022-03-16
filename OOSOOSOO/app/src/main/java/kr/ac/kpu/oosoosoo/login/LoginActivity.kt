@@ -8,14 +8,12 @@ import com.amplifyframework.core.Amplify
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.NaverIdLoginSDK.oauthLoginCallback
-import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
 import kotlinx.android.synthetic.main.activity_interworking.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.connection.NaverHeaderInterceptor
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
-import kr.ac.kpu.oosoosoo.home.HomeActivity
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jetbrains.anko.startActivity

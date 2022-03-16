@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">OOSOOSOO</string>
     <string name="kakao_app_key">8ce3019b12edf840a093214b167c96f4</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_trends">Trends</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_setting">Setting</string>
 </resources>

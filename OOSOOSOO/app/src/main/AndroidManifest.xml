@@ -16,6 +16,10 @@
         android:theme="@style/Theme.OOSOOSOO"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main" />
+        <activity
             android:name=".IntroAnimationActivity"
             android:exported="true"
             android:noHistory="true">
@@ -28,7 +32,7 @@
         <activity android:name=".contents.ContentDetailActivity" />
         <activity
             android:name=".home.HomeActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".search.SearchActivity"
             android:windowSoftInputMode="adjustNothing" />
@@ -60,8 +64,8 @@
             android:name=".netflix.NetflixWishesActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:name=".MainActivitySub"
+            android:exported="false" />
         <activity android:name=".contents.ContentsActivity" />
         <activity android:name=".login.InterworkingActivity" />
         <activity android:name=".login.SelectIwActivity" />
