@@ -17,6 +17,7 @@ import kr.ac.kpu.oosoosoo.adapters.PagerFragmentStateAdapter
 import kr.ac.kpu.oosoosoo.login.LoginActivity
 import kr.ac.kpu.oosoosoo.login.SelectIwActivity
 import kr.ac.kpu.oosoosoo.search.SearchActivity
+import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
@@ -37,18 +38,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater!!.inflate(R.layout.fragment_home, container, false)
-
-        Amplify.Auth.fetchAuthSession(
-            {
-                if (it.isSignedIn) {
-                    Log.d("AWS Auth E-Mail", Amplify.Auth.currentUser.username)
-                    view.btn_home_login.setImageResource(R.drawable.ic_baseline_user)
-                } else {
-                    view.btn_home_login.setImageResource(R.drawable.ic_baseline_login_24)
-                }
-            },
-            { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }
-        )
 
         //홈화면 검색 돋보기 버튼
         view.btn_home_search.setOnClickListener {

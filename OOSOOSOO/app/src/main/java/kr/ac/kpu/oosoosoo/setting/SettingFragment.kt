@@ -1,6 +1,7 @@
 package kr.ac.kpu.oosoosoo.setting
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -32,6 +33,7 @@ class SettingFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        Log.d("setting", "세팅 켜짐")
         return inflater.inflate(R.layout.fragment_setting, container, false)
     }
 
@@ -52,5 +54,10 @@ class SettingFragment : Fragment() {
                         putString(ARG_PARAM2, param2)
                     }
                 }
+    }
+
+    override fun onDestroy() {
+        Log.d("setting", "세팅 꺼짐")
+        super.onDestroy()
     }
 }
