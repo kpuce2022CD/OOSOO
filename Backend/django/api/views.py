@@ -90,62 +90,135 @@ class WishListAPI(APIView):
 class WatchaWishesListAPI(APIView):
     def post(self, request):
         data = request.data
-        result = w_wishes(data.get('email'), data.get('pwd'), data.get('name'))
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="watcha")
+
+        email = interworking[0].u_email
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        result = w_wishes(email, pwd, name)
+
         return Response(result)
 
 
 class WatchaWatchingsListAPI(APIView):
     def post(self, request):
         data = request.data
-        result = w_watchings(data.get('email'), data.get('pwd'), data.get('name'))
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="watcha")
+
+        email = interworking[0].u_email
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        result = w_watchings(email, pwd, name)
         return Response(result)
 
 
 class WatchaAddWishAPI(APIView):
     def post(self, request):
         data = request.data
-        result = w_addwish(data.get('email'), data.get('pwd'), data.get('name'), data.get('title'))
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="watcha")
+
+        email = interworking[0].u_email
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        result = w_addwish(email, pwd, name, data.get('title'))
         return Response(result)
 
 
 class NetflixWishesListAPI(APIView):
     def post(self, request):
         data = request.data
-        result = n_wishes(data.get('email'), data.get('pwd'), data.get('name'))
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="netflix")
+
+        email = interworking[0].u_email
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        result = n_wishes(email, pwd, name)
         return Response(result)
 
 
 class NetflixWatchingsListAPI(APIView):
     def post(self, request):
         data = request.data
-        result = n_watchings(data.get('email'), data.get('pwd'), data.get('name'))
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="netflix")
+
+        email = interworking[0].u_email
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        result = n_watchings(email, pwd, name)
         return Response(result)
 
 
 class NetflixAddWishAPI(APIView):
     def post(self, request):
         data = request.data
-        result = n_addwish(data.get('email'), data.get('pwd'), data.get('name'), data.get('title'))
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="netflix")
+
+        email = interworking[0].u_email
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        result = n_addwish(email, pwd, name, data.get('title'))
         return Response(result)
 
 
 class WavveWishesListAPI(APIView):
     def post(self, request):
         data = request.data
-        result = wav_wishes(data.get('email'), data.get('pwd'), data.get('name'))
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="wavve")
+
+        email = interworking[0].u_email
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        result = wav_wishes(email, pwd, name)
         return Response(result)
 
 
 class WavveWatchingsListAPI(APIView):
     def post(self, request):
         data = request.data
-        result = wav_watchings(data.get('email'), data.get('pwd'), data.get('name'))
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="wavve")
+
+        email = interworking[0].u_email
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        result = wav_watchings(email, pwd, name)
         return Response(result)
 
 class WavveAddWishAPI(APIView):
     def post(self, request):
         data = request.data
-        result = wav_addwish(data.get('email'), data.get('pwd'), data.get('name'), data.get('title'))
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="wavve")
+
+        email = interworking[0].u_email
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        result = wav_addwish(email, pwd, name, data.get('title'))
         return Response(result)
 
 
