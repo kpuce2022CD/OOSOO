@@ -15,15 +15,6 @@
         android:orientation="horizontal"
         android:padding="2dp">
 
-        <Button
-            android:id="@+id/btn_test_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="10dp"
-            android:text="이전 test"
-            android:textSize="12sp" />
-
         <Space
             android:layout_width="wrap_content"
             android:layout_height="50dp"

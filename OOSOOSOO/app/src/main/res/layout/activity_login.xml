@@ -76,7 +76,9 @@
         android:foregroundGravity="center|fill"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/naver_login_btn" />
 
     <TextView
         android:id="@+id/signin_tv"
@@ -93,11 +95,13 @@
     <com.navercorp.nid.oauth.view.NidOAuthLoginButton
         android:id="@+id/naver_login_btn"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_kakao"
         app:layout_constraintEnd_toEndOf="@+id/btn_kakao"
-        app:layout_constraintStart_toStartOf="@+id/btn_kakao" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/btn_kakao"
+        app:layout_constraintTop_toBottomOf="@+id/n_logout_btn" />
 
     <TextView
         android:id="@+id/test_tv"

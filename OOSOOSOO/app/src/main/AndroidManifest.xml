@@ -21,13 +21,13 @@
             android:label="@string/title_activity_main" />
         <activity
             android:name=".IntroAnimationActivity"
-            android:exported="true"
-            android:noHistory="true">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".contents.ContentDetailActivity" />
         <activity
@@ -36,37 +36,9 @@
         <activity
             android:name=".search.SearchActivity"
             android:windowSoftInputMode="adjustNothing" />
-        <activity
-            android:name=".watcha.WatchaAddWishActivity"
-            android:exported="false" />
         <activity android:name=".login.ConfirmSignUpActivity" />
-        <activity
-            android:name=".netflix.NetflixAddWishActivity"
-            android:exported="false" />
-        <activity
-            android:name=".wavve.WavveWishesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".wavve.WavveWatchingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".watcha.WatchaWishesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".watcha.WatchaWatchingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".netflix.NetflixWatchingActivity"
-            android:exported="false" />
         <activity android:name=".login.SignupActivity" />
         <activity android:name=".login.LoginActivity" />
-        <activity
-            android:name=".netflix.NetflixWishesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivitySub"
-            android:exported="false" />
-        <activity android:name=".contents.ContentsActivity" />
         <activity android:name=".login.InterworkingActivity" />
         <activity android:name=".login.SelectIwActivity" />
         <activity
