@@ -279,10 +279,16 @@ class UserWatchingLogAPI(APIView):
 class AddWatchaWishlistAPI(APIView):
     def post(self, request):
         data = request.data
-        wishlist = w_wishes(data.get('email'), data.get('pwd'), data.get('name'))
+
         load = load_interworking(data.get('email'))
         interworking = load.filter(platform="watcha")
-        result = add_wishlist(wishlist, interworking)
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        wishlist = w_wishes(email, pwd, name)
+        result = add_wishlist(wishlist, interworking[0])
         print(result)
         return Response(result)
 
@@ -290,9 +296,15 @@ class AddWatchaWishlistAPI(APIView):
 class AddWatchaWatchingLogAPI(APIView):
     def post(self, request):
         data = request.data
-        log = w_watchings(data.get('email'), data.get('pwd'), data.get('name'))
+
         load = load_interworking(data.get('email'))
         interworking = load.filter(platform="watcha")
-        result = add_watchinglog(log, interworking)
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        log = w_watchings(email, pwd, name)
+        result = add_watchinglog(log, interworking[0])
         print(result)
         return Response(result)
