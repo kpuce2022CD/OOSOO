@@ -29,6 +29,8 @@ class IntroAnimationActivity : AppCompatActivity() {
             }
 
             override fun onAnimationEnd(p0: Animation?) {
+                finish()
+                overridePendingTransition(R.anim.anim_frame_none, R.anim.anim_frame_vertical_exit)
                 Amplify.Auth.fetchAuthSession(
                     {
                         if (it.isSignedIn) {
@@ -39,7 +41,6 @@ class IntroAnimationActivity : AppCompatActivity() {
                     },
                     { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }
                 )
-                finish()
             }
 
             override fun onAnimationRepeat(p0: Animation?) {

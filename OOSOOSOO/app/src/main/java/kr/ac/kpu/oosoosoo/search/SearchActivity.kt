@@ -22,6 +22,8 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
+        overridePendingTransition(R.anim.anim_frame_horizon_enter, R.anim.anim_frame_none)
+
         val ottList = resources.getStringArray(R.array.ottList)
         val typeList = resources.getStringArray(R.array.typeList)
         val genreList = resources.getStringArray(R.array.genreList)
@@ -163,5 +165,12 @@ class SearchActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (isFinishing) {
+            overridePendingTransition(R.anim.anim_frame_none, R.anim.anim_frame_horizon_exit)
+        }
     }
 }
