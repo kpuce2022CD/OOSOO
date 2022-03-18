@@ -11,7 +11,7 @@ from django.db import models
 class Contents(models.Model):
     id = models.CharField(primary_key=True, max_length=100)
     _type = models.CharField(max_length=10)  # Field renamed because it started with '_'.
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=200)
     genre = models.CharField(max_length=100)
     production_countries = models.CharField(max_length=200)
     vote_count = models.IntegerField()
@@ -113,7 +113,7 @@ class UserInterworking(models.Model):
 
 
 class WatchingLog(models.Model):
-    id = models.CharField(primary_key=True, max_length=100)
+    id = models.IntegerField(primary_key=True)
     c_id = models.ForeignKey(Contents, on_delete=models.DO_NOTHING, db_column="c_id")
     i_id = models.ForeignKey(UserInterworking, on_delete=models.DO_NOTHING, db_column="i_id")
 

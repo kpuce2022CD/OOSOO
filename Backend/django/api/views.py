@@ -20,6 +20,7 @@ from api.User.WishList import wishlist
 from api.User.WatchingLog import watchinglog
 from api.User.AddWishList import add_wishlist
 from api.User.AddWatchingLog import add_watchinglog
+from api.User.LoadInterworking import load_interworking
 
 
 class ContentsListAPI(APIView):
@@ -206,7 +207,9 @@ class AddWatchaWishlistAPI(APIView):
     def post(self, request):
         data = request.data
         wishlist = w_wishes(data.get('email'), data.get('pwd'), data.get('name'))
-        result = add_wishlist(wishlist)
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="watcha")
+        result = add_wishlist(wishlist, interworking)
         print(result)
         return Response(result)
 
@@ -215,6 +218,8 @@ class AddWatchaWatchingLogAPI(APIView):
     def post(self, request):
         data = request.data
         log = w_watchings(data.get('email'), data.get('pwd'), data.get('name'))
-        result = add_watchinglog(log)
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="watcha")
+        result = add_watchinglog(log, interworking)
         print(result)
         return Response(result)
