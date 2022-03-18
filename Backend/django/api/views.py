@@ -94,7 +94,7 @@ class WatchaWishesListAPI(APIView):
         load = load_interworking(data.get('email'))
         interworking = load.filter(platform="watcha")
 
-        email = interworking[0].u_email
+        email = interworking[0].id
         pwd = interworking[0].passwd
         name = interworking[0].profile_name
 
@@ -110,7 +110,7 @@ class WatchaWatchingsListAPI(APIView):
         load = load_interworking(data.get('email'))
         interworking = load.filter(platform="watcha")
 
-        email = interworking[0].u_email
+        email = interworking[0].id
         pwd = interworking[0].passwd
         name = interworking[0].profile_name
 
@@ -125,7 +125,7 @@ class WatchaAddWishAPI(APIView):
         load = load_interworking(data.get('email'))
         interworking = load.filter(platform="watcha")
 
-        email = interworking[0].u_email
+        email = interworking[0].id
         pwd = interworking[0].passwd
         name = interworking[0].profile_name
 
@@ -140,7 +140,7 @@ class NetflixWishesListAPI(APIView):
         load = load_interworking(data.get('email'))
         interworking = load.filter(platform="netflix")
 
-        email = interworking[0].u_email
+        email = interworking[0].id
         pwd = interworking[0].passwd
         name = interworking[0].profile_name
 
@@ -155,7 +155,7 @@ class NetflixWatchingsListAPI(APIView):
         load = load_interworking(data.get('email'))
         interworking = load.filter(platform="netflix")
 
-        email = interworking[0].u_email
+        email = interworking[0].id
         pwd = interworking[0].passwd
         name = interworking[0].profile_name
 
@@ -170,7 +170,7 @@ class NetflixAddWishAPI(APIView):
         load = load_interworking(data.get('email'))
         interworking = load.filter(platform="netflix")
 
-        email = interworking[0].u_email
+        email = interworking[0].id
         pwd = interworking[0].passwd
         name = interworking[0].profile_name
 
@@ -185,7 +185,7 @@ class WavveWishesListAPI(APIView):
         load = load_interworking(data.get('email'))
         interworking = load.filter(platform="wavve")
 
-        email = interworking[0].u_email
+        email = interworking[0].id
         pwd = interworking[0].passwd
         name = interworking[0].profile_name
 
@@ -200,7 +200,7 @@ class WavveWatchingsListAPI(APIView):
         load = load_interworking(data.get('email'))
         interworking = load.filter(platform="wavve")
 
-        email = interworking[0].u_email
+        email = interworking[0].id
         pwd = interworking[0].passwd
         name = interworking[0].profile_name
 
@@ -214,7 +214,7 @@ class WavveAddWishAPI(APIView):
         load = load_interworking(data.get('email'))
         interworking = load.filter(platform="wavve")
 
-        email = interworking[0].u_email
+        email = interworking[0].id
         pwd = interworking[0].passwd
         name = interworking[0].profile_name
 
