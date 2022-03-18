@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.activity_intro_animation.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -13,7 +14,7 @@ import kr.ac.kpu.oosoosoo.login.LoginActivity
 import org.jetbrains.anko.startActivity
 
 //Splash : Main으로 시작하기 전 애니메이션을 통해 Intro를 담당
-class IntroAnimationActivity : AppCompatActivity() {
+class IntroAnimationActivity : BaseActivity(TransitionMode.VERTICAL) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro_animation)
@@ -29,18 +30,19 @@ class IntroAnimationActivity : AppCompatActivity() {
             }
 
             override fun onAnimationEnd(p0: Animation?) {
-                finish()
-                overridePendingTransition(R.anim.anim_frame_none, R.anim.anim_frame_vertical_exit)
                 Amplify.Auth.fetchAuthSession(
                     {
                         if (it.isSignedIn) {
+                            finish()
                             startActivity<MainActivity>()
                         } else {
+                            finish()
                             startActivity<LoginActivity>()
                         }
                     },
                     { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }
                 )
+
             }
 
             override fun onAnimationRepeat(p0: Animation?) {

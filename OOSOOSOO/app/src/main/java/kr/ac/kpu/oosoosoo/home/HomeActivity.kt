@@ -2,6 +2,7 @@ package kr.ac.kpu.oosoosoo.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kr.ac.kpu.oosoosoo.BaseActivity
 import kr.ac.kpu.oosoosoo.R
 
 class HomeActivity : AppCompatActivity() {

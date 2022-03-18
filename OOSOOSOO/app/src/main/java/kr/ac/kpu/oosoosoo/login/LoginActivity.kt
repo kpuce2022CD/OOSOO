@@ -11,6 +11,7 @@ import com.navercorp.nid.NaverIdLoginSDK.oauthLoginCallback
 import com.navercorp.nid.oauth.OAuthLoginCallback
 import kotlinx.android.synthetic.main.activity_interworking.*
 import kotlinx.android.synthetic.main.activity_login.*
+import kr.ac.kpu.oosoosoo.BaseActivity
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.connection.NaverHeaderInterceptor
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
@@ -24,7 +25,7 @@ import retrofit2.Response
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

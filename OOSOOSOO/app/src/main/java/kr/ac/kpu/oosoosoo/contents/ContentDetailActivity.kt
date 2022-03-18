@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_content_detail.*
+import kr.ac.kpu.oosoosoo.BaseActivity
 import kr.ac.kpu.oosoosoo.R
 
-class ContentDetailActivity : AppCompatActivity() {
+class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_content_detail)

@@ -8,6 +8,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_search.*
+import kr.ac.kpu.oosoosoo.BaseActivity
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.SearchContentsAdapter
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
@@ -17,12 +18,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : BaseActivity(TransitionMode.HORIZON) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
-
-        overridePendingTransition(R.anim.anim_frame_horizon_enter, R.anim.anim_frame_none)
 
         val ottList = resources.getStringArray(R.array.ottList)
         val typeList = resources.getStringArray(R.array.typeList)
@@ -165,12 +164,5 @@ class SearchActivity : AppCompatActivity() {
             }
         }
 
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        if (isFinishing) {
-            overridePendingTransition(R.anim.anim_frame_none, R.anim.anim_frame_horizon_exit)
-        }
     }
 }

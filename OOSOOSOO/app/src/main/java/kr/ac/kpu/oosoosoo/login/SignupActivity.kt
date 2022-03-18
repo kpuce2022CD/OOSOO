@@ -8,6 +8,7 @@ import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.auth.options.AuthSignUpOptions
 import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.activity_signup.*
+import kr.ac.kpu.oosoosoo.BaseActivity
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import org.jetbrains.anko.startActivity
