@@ -1,0 +1,414 @@
+Index: app/src/main/java/kr/ac/kpu/oosoosoo/RetrofitBuilder.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.ac.kpu.oosoosoo\r\n\r\nimport okhttp3.OkHttpClient\r\nimport org.json.JSONObject\r\nimport retrofit2.Call\r\nimport retrofit2.Retrofit\r\nimport retrofit2.converter.gson.GsonConverterFactory\r\nimport retrofit2.http.*\r\nimport java.util.*\r\nimport java.util.concurrent.TimeUnit\r\n\r\nclass RetrofitBuilder {\r\n\r\n    val okHttpClient = OkHttpClient.Builder()\r\n        .connectTimeout(1, TimeUnit.MINUTES)\r\n        .readTimeout(30, TimeUnit.SECONDS)\r\n        .writeTimeout(15, TimeUnit.SECONDS)\r\n        .build()\r\n\r\n    val retrofit = Retrofit.Builder()\r\n        .baseUrl(\"http://3.37.39.106/\")\r\n        .client(okHttpClient)\r\n        .addConverterFactory(GsonConverterFactory.create())\r\n        .build()\r\n\r\n    val callContents = retrofit.create(ContentsAPI::class.java)\r\n    val callNetflixWishes = retrofit.create(NetflixWishAPI::class.java)\r\n}\r\n\r\ninterface ContentsAPI {\r\n    @GET(\"api/contents\")\r\n    fun getContentInfo(): Call<List<ContentInfo>>\r\n}\r\n\r\ninterface NetflixWishAPI {\r\n    @FormUrlEncoded\r\n    @POST(\"api/n_wishes/\")\r\n    fun getNetflixWishes(@FieldMap params: HashMap<String, String>): Call<List<String>>\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/kr/ac/kpu/oosoosoo/RetrofitBuilder.kt b/app/src/main/java/kr/ac/kpu/oosoosoo/RetrofitBuilder.kt
+--- a/app/src/main/java/kr/ac/kpu/oosoosoo/RetrofitBuilder.kt	(revision 09b3717129cff09b095f66d45c345c9ef6adeca1)
++++ b/app/src/main/java/kr/ac/kpu/oosoosoo/RetrofitBuilder.kt	(date 1644326122838)
+@@ -25,6 +25,7 @@
+ 
+     val callContents = retrofit.create(ContentsAPI::class.java)
+     val callNetflixWishes = retrofit.create(NetflixWishAPI::class.java)
++    val callNetflixWatching = retrofit.create(NetflixWatchingAPI::class.java)
+ }
+ 
+ interface ContentsAPI {
+@@ -36,4 +37,10 @@
+     @FormUrlEncoded
+     @POST("api/n_wishes/")
+     fun getNetflixWishes(@FieldMap params: HashMap<String, String>): Call<List<String>>
++}
++
++interface NetflixWatchingAPI {
++    @FormUrlEncoded
++    @POST("api/n_watchings/")
++    fun getNetflixWatching(@FieldMap params: HashMap<String, String>): Call<List<String>>
+ }
+\ No newline at end of file
+Index: app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWishesActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.ac.kpu.oosoosoo\r\n\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport kotlinx.android.synthetic.main.activity_netflix_wishes.*\r\nimport org.json.JSONObject\r\nimport retrofit2.Call\r\nimport retrofit2.Callback\r\nimport retrofit2.Response\r\nimport kotlin.concurrent.thread\r\n\r\nclass NetflixWishesActivity : AppCompatActivity() {\r\n\r\n\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_netflix_wishes)\r\n\r\n        val call = RetrofitBuilder().callNetflixWishes  //Retrofit Call\r\n\r\n        btn_n_wish_request.setOnClickListener {\r\n\r\n            netflix_wishes_result_text.text = \"서버로부터 정보를 불러오는중..\"\r\n            var input = HashMap<String, String>()\r\n            input[\"email\"] = netflix_wish_email_edtext.text.toString()\r\n            input[\"pwd\"] = netflix_wish_passwd_edtext.text.toString()\r\n            input[\"name\"] = netflix_wish_profile_edtext.text.toString()\r\n\r\n            call.getNetflixWishes(input).enqueue(object : Callback<List<String>> {\r\n                override fun onFailure(call: Call<List<String>>, t: Throwable) {\r\n                    Log.d(\"netflix_wish\", t.message.toString())\r\n                    netflix_wishes_result_text.text = \"서버요청을 실패하였습니다. 입력한 정보를 확인해주세요.\"\r\n                }\r\n\r\n                override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {\r\n                    val body : List<String>? = response.body()\r\n                    Log.d(\"netflix_wish\", \"통신 성공\")\r\n                    netflix_wishes_result_text.text = \"\"\r\n\r\n                    Log.d(\"netflix_wish\", body.toString())\r\n                    if (body != null) {\r\n                        netflix_wishes_result_text.text = \"<${input[\"name\"]}님의 찜목록>\\n\"\r\n                        for(content in body) {\r\n                            netflix_wishes_result_text.append(content.toString())\r\n                            netflix_wishes_result_text.append(\"\\n\")\r\n                        }\r\n                    }\r\n\r\n                }\r\n\r\n\r\n            })\r\n\r\n        }\r\n\r\n        //돌아가기 버튼\r\n        btn_n_wish_back.setOnClickListener{\r\n            finish()\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWishesActivity.kt b/app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWishesActivity.kt
+--- a/app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWishesActivity.kt	(revision 09b3717129cff09b095f66d45c345c9ef6adeca1)
++++ b/app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWishesActivity.kt	(date 1644326122850)
+@@ -11,9 +11,6 @@
+ import kotlin.concurrent.thread
+ 
+ class NetflixWishesActivity : AppCompatActivity() {
+-
+-
+-
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_netflix_wishes)
+@@ -47,14 +44,10 @@
+                             netflix_wishes_result_text.append("\n")
+                         }
+                     }
+-
+                 }
+-
+-
+             })
+ 
+         }
+-
+         //돌아가기 버튼
+         btn_n_wish_back.setOnClickListener{
+             finish()
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AndroidLayouts\">\r\n    <shared>\r\n      <config>\r\n        <target>android-30</target>\r\n      </config>\r\n    </shared>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"NONE\" />\r\n  </component>\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ae67b715-e87f-4561-a21e-fb516145301b\" name=\"Default Changelist\" comment=\"Login Activity 생성\">\r\n      <change afterPath=\"$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/SignupActivity.kt\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/src/main/AndroidManifest.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/src/main/AndroidManifest.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/LoginActivity.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/LoginActivity.kt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExecutionTargetManager\" SELECTED_TARGET=\"device_and_snapshot_combo_box_target[VirtualDevicePath@C:\\Users\\Kim\\.android\\avd\\Pixel_2_API_30.avd]\" />\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"layoutResourceFile\" />\r\n        <option value=\"Kotlin Class\" />\r\n        <option value=\"resourceFile\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"24BdJWKFJYLxnAts1shiswRriEn\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <OptionsSetting value=\"false\" id=\"Update\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"android.sdk.path\" value=\"$USER_HOME$/AppData/Local/Android/Sdk\" />\r\n    <property name=\"dart.analysis.tool.window.visible\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"configurable.group.appearance\" />\r\n    <property name=\"show.migrate.to.gradle.popup\" value=\"false\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"android.template.-944699488\">\r\n      <recent name=\"kr.ac.kpu.oosoosoo\" />\r\n    </key>\r\n    <key name=\"android.template.-1269401511\">\r\n      <recent name=\"kr.ac.kpu.oosoosoo\" />\r\n    </key>\r\n    <key name=\"android.template.-327071526\">\r\n      <recent name=\"kr.ac.kpu.oosoosoo\" />\r\n    </key>\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\2022 Capston\\OOSOO\\OOSOOSOO\\app\\src\\main\\res\\layout\" />\r\n      <recent name=\"D:\\2022 Capston\\OOSOO\\OOSOOSOO\\app\\src\\main\\java\\kr\\ac\\kpu\\oosoosoo\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration default=\"true\" type=\"AndroidJUnit\" factoryName=\"Android JUnit\">\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$MODULE_DIR$\" />\r\n      <method v=\"2\">\r\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"app\" type=\"AndroidRunConfigurationType\" factoryName=\"Android App\" activateToolWindowBeforeRun=\"false\">\r\n      <module name=\"OOSOOSOO.app\" />\r\n      <option name=\"DEPLOY\" value=\"true\" />\r\n      <option name=\"DEPLOY_APK_FROM_BUNDLE\" value=\"false\" />\r\n      <option name=\"DEPLOY_AS_INSTANT\" value=\"false\" />\r\n      <option name=\"ARTIFACT_NAME\" value=\"\" />\r\n      <option name=\"PM_INSTALL_OPTIONS\" value=\"\" />\r\n      <option name=\"ALL_USERS\" value=\"false\" />\r\n      <option name=\"ALWAYS_INSTALL_WITH_PM\" value=\"false\" />\r\n      <option name=\"DYNAMIC_FEATURES_DISABLED_LIST\" value=\"\" />\r\n      <option name=\"ACTIVITY_EXTRA_FLAGS\" value=\"\" />\r\n      <option name=\"MODE\" value=\"default_activity\" />\r\n      <option name=\"CLEAR_LOGCAT\" value=\"false\" />\r\n      <option name=\"SHOW_LOGCAT_AUTOMATICALLY\" value=\"false\" />\r\n      <option name=\"SKIP_NOOP_APK_INSTALLATIONS\" value=\"true\" />\r\n      <option name=\"FORCE_STOP_RUNNING_APP\" value=\"true\" />\r\n      <option name=\"TARGET_SELECTION_MODE\" value=\"DEVICE_AND_SNAPSHOT_COMBO_BOX\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_CONFIGURATION_ID\" value=\"-1\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_PROJECT_ID\" value=\"\" />\r\n      <option name=\"DEBUGGER_TYPE\" value=\"Auto\" />\r\n      <Auto>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n      </Auto>\r\n      <Hybrid>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n      </Hybrid>\r\n      <Java />\r\n      <Native>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n      </Native>\r\n      <Profilers>\r\n        <option name=\"ADVANCED_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_CONFIGURATION_NAME\" value=\"Sample Java Methods\" />\r\n        <option name=\"STARTUP_NATIVE_MEMORY_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"NATIVE_MEMORY_SAMPLE_RATE_BYTES\" value=\"2048\" />\r\n      </Profilers>\r\n      <option name=\"DEEP_LINK\" value=\"\" />\r\n      <option name=\"ACTIVITY_CLASS\" value=\"\" />\r\n      <option name=\"SEARCH_ACTIVITY_IN_GLOBAL_SCOPE\" value=\"false\" />\r\n      <option name=\"SKIP_ACTIVITY_VALIDATION\" value=\"false\" />\r\n      <method v=\"2\">\r\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ae67b715-e87f-4561-a21e-fb516145301b\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1643107843717</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1643107843717</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Android Code 재업로드\">\r\n      <created>1643108497115</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1643108497115</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Android : ViewPager2 &amp; AdapterView 적용(가변 수량 컨텐츠 출력 가능)\">\r\n      <created>1643298410030</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1643298410030</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Android : POST방식 Test(Netflix Wishes)\">\r\n      <created>1643392268133</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1643392268133</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Login Activity 생성\">\r\n      <created>1644226806288</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1644226806288</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Android Code 재업로드\" />\r\n    <MESSAGE value=\"Android : ViewPager2 &amp; AdapterView 적용(가변 수량 컨텐츠 출력 가능)\" />\r\n    <MESSAGE value=\"Android : POST방식 Test(Netflix Wishes)\" />\r\n    <MESSAGE value=\"Login Activity 생성\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Login Activity 생성\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"141\" y=\"70\" key=\"MergeDialog\" timestamp=\"1644219366151\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"141\" y=\"70\" key=\"MergeDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1644219366151\" />\r\n    <state x=\"467\" y=\"210\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1644226810377\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"467\" y=\"210\" key=\"Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1644226810377\" />\r\n    <state x=\"1027\" y=\"404\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2\" timestamp=\"1644219378388\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"1027\" y=\"404\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1644219378388\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 09b3717129cff09b095f66d45c345c9ef6adeca1)
++++ b/.idea/workspace.xml	(date 1644326452906)
+@@ -30,19 +30,21 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="ae67b715-e87f-4561-a21e-fb516145301b" name="Default Changelist" comment="Login Activity 생성">
+-      <change afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/SignupActivity.kt" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWatchingActivity.kt" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_netflix_watching.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/LoginActivity.kt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWishesActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWishesActivity.kt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/RetrofitBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/RetrofitBuilder.kt" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
+-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\Kim\.android\avd\Pixel_2_API_30.avd]" />
++  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\ncclu\.android\avd\Pixel_4_API_30.avd]" />
+   <component name="ExternalProjectsData">
+     <projectState path="$PROJECT_DIR$">
+       <ProjectState />
+@@ -78,18 +80,21 @@
+     <property name="show.migrate.to.gradle.popup" value="false" />
+   </component>
+   <component name="RecentsManager">
+-    <key name="android.template.-944699488">
++    <key name="android.template.-1269401511">
+       <recent name="kr.ac.kpu.oosoosoo" />
+     </key>
+-    <key name="android.template.-1269401511">
++    <key name="CopyFile.RECENT_KEYS">
++      <recent name="D:\2022 Capston\OOSOO\OOSOOSOO\app\src\main\res\layout" />
++      <recent name="D:\2022 Capston\OOSOO\OOSOOSOO\app\src\main\java\kr\ac\kpu\oosoosoo" />
++    </key>
++    <key name="android.template.-327071526">
+       <recent name="kr.ac.kpu.oosoosoo" />
+     </key>
+-    <key name="android.template.-327071526">
++    <key name="android.template.-1892681688">
+       <recent name="kr.ac.kpu.oosoosoo" />
+     </key>
+-    <key name="CopyFile.RECENT_KEYS">
+-      <recent name="D:\2022 Capston\OOSOO\OOSOOSOO\app\src\main\res\layout" />
+-      <recent name="D:\2022 Capston\OOSOO\OOSOOSOO\app\src\main\java\kr\ac\kpu\oosoosoo" />
++    <key name="android.template.-944699488">
++      <recent name="kr.ac.kpu.oosoosoo" />
+     </key>
+   </component>
+   <component name="RunManager">
+@@ -218,18 +223,4 @@
+     <MESSAGE value="Login Activity 생성" />
+     <option name="LAST_COMMIT_MESSAGE" value="Login Activity 생성" />
+   </component>
+-  <component name="WindowStateProjectService">
+-    <state x="141" y="70" key="MergeDialog" timestamp="1644219366151">
+-      <screen x="0" y="0" width="1920" height="1040" />
+-    </state>
+-    <state x="141" y="70" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1644219366151" />
+-    <state x="467" y="210" key="Vcs.Push.Dialog.v2" timestamp="1644226810377">
+-      <screen x="0" y="0" width="1920" height="1040" />
+-    </state>
+-    <state x="467" y="210" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1644226810377" />
+-    <state x="1027" y="404" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1644219378388">
+-      <screen x="0" y="0" width="1920" height="1040" />
+-    </state>
+-    <state x="1027" y="404" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1644219378388" />
+-  </component>
+ </project>
+\ No newline at end of file
+Index: app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.ac.kpu.oosoosoo\r\n\r\nimport android.content.Intent\r\nimport android.graphics.Paint\r\nimport android.os.Bundle\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport kotlinx.android.synthetic.main.activity_main.*\r\nimport org.jetbrains.anko.startActivity\r\n\r\n\r\nclass MainActivity : AppCompatActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_main)\r\n\r\n        btn_main.setOnClickListener { view ->\r\n            when (radioGroup.checkedRadioButtonId) {\r\n                R.id.radio_contents -> startActivity(Intent(this, ContentsActivity::class.java))\r\n                R.id.radio_netflix_wish -> startActivity(Intent(this, NetflixWishesActivity::class.java))\r\n\r\n            }\r\n        }\r\n\r\n        btn_to_login.setOnClickListener {\r\n            startActivity<LoginActivity>()\r\n        }\r\n\r\n        radio_jjim.paintFlags = radio_jjim.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG\r\n        radio_review.paintFlags = radio_jjim.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG\r\n        radio_users.paintFlags = radio_jjim.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG\r\n        radio_watcha_watching.paintFlags = radio_jjim.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG\r\n        radio_watcha_wish.paintFlags = radio_jjim.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG\r\n\r\n\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt b/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt
+--- a/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt	(revision 09b3717129cff09b095f66d45c345c9ef6adeca1)
++++ b/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt	(date 1644326122861)
+@@ -17,7 +17,7 @@
+             when (radioGroup.checkedRadioButtonId) {
+                 R.id.radio_contents -> startActivity(Intent(this, ContentsActivity::class.java))
+                 R.id.radio_netflix_wish -> startActivity(Intent(this, NetflixWishesActivity::class.java))
+-
++                R.id.radio_netflix_watching -> startActivity<NetflixWatchingActivity>()
+             }
+         }
+ 
+Index: app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWatchingActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWatchingActivity.kt b/app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWatchingActivity.kt
+new file mode 100644
+--- /dev/null	(date 1644326122868)
++++ b/app/src/main/java/kr/ac/kpu/oosoosoo/NetflixWatchingActivity.kt	(date 1644326122868)
+@@ -0,0 +1,55 @@
++package kr.ac.kpu.oosoosoo
++
++import androidx.appcompat.app.AppCompatActivity
++import android.os.Bundle
++import android.util.Log
++import kotlinx.android.synthetic.main.activity_netflix_watching.*
++import org.json.JSONObject
++import retrofit2.Call
++import retrofit2.Callback
++import retrofit2.Response
++import kotlin.concurrent.thread
++
++class NetflixWatchingActivity : AppCompatActivity() {
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++        setContentView(R.layout.activity_netflix_watching)
++
++        val call = RetrofitBuilder().callNetflixWatching  //Retrofit Call
++
++        btn_n_watching_request.setOnClickListener {
++            netflix_watching_result_text.text = "서버로부터 정보를 불러오는중.."
++            var input = HashMap<String, String>()
++            input["email"] = netflix_watching_email_edtext.text.toString()
++            input["pwd"] = netflix_watching_passwd_edtext.text.toString()
++            input["name"] = netflix_watching_profile_edtext.text.toString()
++
++            call.getNetflixWatching(input).enqueue(object : Callback<List<String>> {
++                override fun onFailure(call: Call<List<String>>, t: Throwable) {
++                    Log.d("netflix_watching", t.message.toString())
++                    netflix_watching_result_text.text = "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요."
++                }
++
++                override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
++                    val body : List<String>? = response.body()
++                    Log.d("netflix_watching", "통신 성공")
++                    netflix_watching_result_text.text = ""
++
++                    Log.d("netflix_watching", body.toString())
++                    if (body != null) {
++                        netflix_watching_result_text.text = "<${input["name"]}님의 시청중인 목록>\n"
++                        for(content in body) {
++                            netflix_watching_result_text.append(content)
++                            netflix_watching_result_text.append("\n")
++                        }
++                    }
++                }
++            })
++        }
++
++        //돌아가기 버튼
++        btn_n_watching_back.setOnClickListener{
++            finish()
++        }
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_netflix_watching.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_netflix_watching.xml b/app/src/main/res/layout/activity_netflix_watching.xml
+new file mode 100644
+--- /dev/null	(date 1644326122874)
++++ b/app/src/main/res/layout/activity_netflix_watching.xml	(date 1644326122874)
+@@ -0,0 +1,126 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".NetflixWatchingActivity">
++
++    <TextView
++        android:id="@+id/main_title_netflix_watching"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:gravity="center"
++        android:text="Netflix 시청중인 목록"
++        android:textColor="@color/purple_700"
++        android:textSize="30sp"
++        android:textStyle="bold"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintLeft_toLeftOf="parent"
++        app:layout_constraintRight_toRightOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.023" />
++
++    <Button
++        android:id="@+id/btn_n_watching_back"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:backgroundTint="#777777"
++        android:text="돌아가기"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.5"
++        app:layout_constraintStart_toEndOf="@+id/btn_n_watching_request" />
++
++    <Button
++        android:id="@+id/btn_n_watching_request"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:backgroundTint="#333333"
++        android:text="요청하기"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toStartOf="@+id/btn_n_watching_back"
++        app:layout_constraintHorizontal_bias="0.5"
++        app:layout_constraintStart_toStartOf="parent" />
++
++    <EditText
++        android:id="@+id/netflix_watching_email_edtext"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="24dp"
++        android:ems="10"
++        android:hint="Email"
++        android:inputType="textPersonName"
++        android:textSize="18sp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.497"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/textView2" />
++
++    <EditText
++        android:id="@+id/netflix_watching_passwd_edtext"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:hint="Password"
++        android:inputType="textPersonName|textPassword"
++        android:textSize="18sp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.497"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/netflix_watching_email_edtext" />
++
++    <EditText
++        android:id="@+id/netflix_watching_profile_edtext"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:hint="ProfileName"
++        android:inputType="textPersonName"
++        android:textSize="18sp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.497"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/netflix_watching_passwd_edtext" />
++
++    <TextView
++        android:id="@+id/textView2"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
++        android:gravity="center"
++        android:text="Netflix 정보를 입력해주세요. \n (Test)"
++        android:textColor="#000000"
++        android:textSize="16sp"
++        android:textStyle="bold"
++        app:layout_constraintBottom_toTopOf="@+id/netflix_watching_email_edtext"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/main_title_netflix_watching" />
++
++    <ScrollView
++        android:layout_width="409dp"
++        android:layout_height="410dp"
++        android:layout_marginTop="2dp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/netflix_watching_profile_edtext">
++
++        <androidx.constraintlayout.widget.ConstraintLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content">
++
++            <TextView
++                android:id="@+id/netflix_watching_result_text"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:textColor="#3F51B5"
++                android:textSize="16sp"
++                android:textStyle="bold"
++                app:layout_constraintBottom_toBottomOf="parent"
++                app:layout_constraintEnd_toEndOf="parent"
++                app:layout_constraintStart_toStartOf="parent"
++                app:layout_constraintTop_toTopOf="parent" />
++        </androidx.constraintlayout.widget.ConstraintLayout>
++    </ScrollView>
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"kr.ac.kpu.oosoosoo\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:hardwareAccelerated=\"true\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.OOSOOSOO\"\r\n        android:usesCleartextTraffic=\"true\">\r\n        <activity android:name=\".SignupActivity\"></activity>\r\n        <activity android:name=\".LoginActivity\" />\r\n        <activity\r\n            android:name=\".NetflixWishesActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity android:name=\".ContentsActivity\" />\r\n        <activity android:name=\".ReviewActivity\" />\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 09b3717129cff09b095f66d45c345c9ef6adeca1)
++++ b/app/src/main/AndroidManifest.xml	(date 1644326122878)
+@@ -14,7 +14,10 @@
+         android:supportsRtl="true"
+         android:theme="@style/Theme.OOSOOSOO"
+         android:usesCleartextTraffic="true">
+-        <activity android:name=".SignupActivity"></activity>
++        <activity
++            android:name=".NetflixWatchingActivity"
++            android:exported="false" />
++        <activity android:name=".SignupActivity" />
+         <activity android:name=".LoginActivity" />
+         <activity
+             android:name=".NetflixWishesActivity"
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.33240740740740743\" />\r\n        <entry key=\"..\\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/app_gradient_background.xml\" value=\"0.33240740740740743\" />\r\n        <entry key=\"..\\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.33240740740740743\" />\r\n        <entry key=\"..\\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_contents.xml\" value=\"0.21\" />\r\n        <entry key=\"..\\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_main.xml\" value=\"0.36614583333333334\" />\r\n        <entry key=\"..\\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_netflix_wishes.xml\" value=\"0.36614583333333334\" />\r\n        <entry key=\"..\\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_review.xml\" value=\"0.36614583333333334\" />\r\n        <entry key=\"..\\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/content_item.xml\" value=\"0.33\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 09b3717129cff09b095f66d45c345c9ef6adeca1)
++++ b/.idea/misc.xml	(date 1644326122882)
+@@ -7,7 +7,9 @@
+         <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/app_gradient_background.xml" value="0.33240740740740743" />
+         <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/ic_launcher_background.xml" value="0.33240740740740743" />
+         <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_contents.xml" value="0.21" />
++        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_login.xml" value="0.36614583333333334" />
+         <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
++        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_netflix_watching.xml" value="0.36614583333333334" />
+         <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_netflix_wishes.xml" value="0.36614583333333334" />
+         <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_review.xml" value="0.36614583333333334" />
+         <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/content_item.xml" value="0.33" />

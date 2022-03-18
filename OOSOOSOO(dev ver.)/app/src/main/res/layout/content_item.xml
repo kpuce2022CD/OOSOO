@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/content_id_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="ID : "
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/content_genre_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:text="장르 : "
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_title" />
+
+            <TextView
+                android:id="@+id/content_number_of_seasons_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="시즌 : "
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_production_countries_text" />
+
+            <TextView
+                android:id="@+id/content_release_date_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:text="방영시작 : "
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_number_of_seasons_text" />
+
+            <TextView
+                android:id="@+id/content_flatrate_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:text="구독 : "
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_overview" />
+
+            <TextView
+                android:id="@+id/content_rent_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="대여 : "
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_flatrate_text" />
+
+            <TextView
+                android:id="@+id/content_buy_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="구매 : "
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_rent_text" />
+
+            <TextView
+                android:id="@+id/content_runtime_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="런타임 : "
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_release_date_text" />
+
+            <TextView
+                android:id="@+id/content_production_countries_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="국가 : "
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_genre_text" />
+
+            <TextView
+                android:id="@+id/content_number_of_episodes_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="에피소드 : "
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/content_number_of_seasons"
+                app:layout_constraintTop_toBottomOf="@+id/content_production_countries_text" />
+
+            <TextView
+                android:id="@+id/content_vote_average"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="평점"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/content_genre_text"
+                app:layout_constraintStart_toEndOf="@+id/imageView" />
+
+            <TextView
+                android:id="@+id/content_vote_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="평점"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/content_genre_text"
+                app:layout_constraintStart_toEndOf="@+id/content_vote_average" />
+
+            <TextView
+                android:id="@+id/content_genre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="장르"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/content_genre_text"
+                app:layout_constraintTop_toBottomOf="@+id/content_title" />
+
+            <TextView
+                android:id="@+id/content_number_of_seasons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="시즌"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/content_number_of_seasons_text"
+                app:layout_constraintTop_toBottomOf="@+id/content_production_countries" />
+
+            <TextView
+                android:id="@+id/content_release_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="방영시작일(개봉일)"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/content_release_date_text"
+                app:layout_constraintTop_toBottomOf="@+id/content_number_of_seasons" />
+
+            <TextView
+                android:id="@+id/content_flatrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="구독서비스 리스트"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/content_flatrate_text"
+                app:layout_constraintTop_toBottomOf="@+id/content_overview" />
+
+            <TextView
+                android:id="@+id/content_rent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="대여서비스 리스트"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/content_rent_text"
+                app:layout_constraintTop_toBottomOf="@+id/content_flatrate" />
+
+            <TextView
+                android:id="@+id/content_buy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="구매서비스 리스트"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/content_buy_text"
+                app:layout_constraintTop_toBottomOf="@+id/content_rent" />
+
+            <TextView
+                android:id="@+id/content_runtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="런타임(분)"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/content_runtime_text"
+                app:layout_constraintTop_toBottomOf="@+id/content_release_date" />
+
+            <TextView
+                android:id="@+id/content_production_countries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="국가"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/content_production_countries_text"
+                app:layout_constraintTop_toBottomOf="@+id/content_genre" />
+
+            <TextView
+                android:id="@+id/content_number_of_episodes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="에피소드"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/content_number_of_episodes_text"
+                app:layout_constraintTop_toBottomOf="@+id/content_production_countries" />
+
+            <TextView
+                android:id="@+id/content_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="컨텐츠 ID 필드"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="20sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.689"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/content_id_text"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/content_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="컨텐츠 이름"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_id_text" />
+
+            <TextView
+                android:id="@+id/content_overview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:maxEms="20"
+                android:text="컨텐츠 내용 설명"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_runtime" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/content_genre_text"
+                app:layout_constraintStart_toEndOf="@+id/content_title"
+                app:srcCompat="@android:drawable/btn_star_big_on" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

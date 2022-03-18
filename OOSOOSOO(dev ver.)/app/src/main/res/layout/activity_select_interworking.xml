@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="이용중인 플랫폼을 선택해주세요."
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/iw_next_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/netfilx_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/netfilx_logo" />
+
+    <ImageButton
+        android:id="@+id/watcha_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/watcha_logo" />
+
+    <ImageButton
+        android:id="@+id/wavve_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/wavve_logo" />
+
+    <ImageButton
+        android:id="@+id/tving_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iw_n_tv"
+        app:srcCompat="@drawable/tving_logo" />
+
+    <ImageButton
+        android:id="@+id/disney_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iw_w_tv"
+        app:srcCompat="@drawable/disney_logo" />
+
+    <TextView
+        android:id="@+id/iw_n_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="연동x"
+        app:layout_constraintStart_toStartOf="@+id/netfilx_btn"
+        app:layout_constraintTop_toBottomOf="@+id/netfilx_btn" />
+
+    <TextView
+        android:id="@+id/iw_w_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="연동x"
+        app:layout_constraintStart_toStartOf="@+id/watcha_btn"
+        app:layout_constraintTop_toBottomOf="@+id/watcha_btn" />
+
+    <TextView
+        android:id="@+id/iw_wav_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="연동x"
+        app:layout_constraintStart_toStartOf="@+id/wavve_btn"
+        app:layout_constraintTop_toBottomOf="@+id/wavve_btn" />
+
+    <TextView
+        android:id="@+id/iw_t_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="연동x"
+        app:layout_constraintStart_toStartOf="@+id/tving_btn"
+        app:layout_constraintTop_toBottomOf="@+id/tving_btn" />
+
+    <TextView
+        android:id="@+id/iw_d_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="연동x"
+        app:layout_constraintStart_toStartOf="@+id/disney_btn"
+        app:layout_constraintTop_toBottomOf="@+id/disney_btn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

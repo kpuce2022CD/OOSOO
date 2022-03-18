@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.33240740740740743" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/app_gradient_background.xml" value="0.33240740740740743" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/ic_baseline_arrow_left_24.xml" value="0.26666666666666666" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/ic_baseline_navigate_next_24.xml" value="0.2972222222222222" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/ic_launcher_background.xml" value="0.33240740740740743" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/outliner.xml" value="0.2630208333333333" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/rect_corner.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/drawable/test.xml" value="0.2916666666666667" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_confirm_sign_up.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_content_detail.xml" value="0.23072916666666668" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_contents.xml" value="0.22" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_home.xml" value="0.23333333333333334" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_interworking.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_intro_animation.xml" value="0.25" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_login.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_main_sub.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_netflix_add_wish.xml" value="0.25" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_netflix_watching.xml" value="0.1" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_netflix_wishes.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_review.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_search.xml" value="0.23333333333333334" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_select_interworking.xml" value="0.23072916666666668" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_signup.xml" value="0.24270833333333333" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_watcha_add_wish.xml" value="0.23333333333333334" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_watcha_watching.xml" value="0.25" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_watcha_wishes.xml" value="0.278125" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_wavve_watching.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/activity_wavve_wishes.xml" value="0.3515625" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/content_item.xml" value="0.33" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/fragment_dashboard.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/fragment_home_genre.xml" value="0.21354166666666666" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/fragment_home_plat_form.xml" value="0.2046875" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/fragment_home_platform.xml" value="0.20104166666666667" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/fragment_item_list.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/fragment_setting.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/fragment_trends.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/recy_item_content_card.xml" value="0.27708333333333335" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/recy_item_content_row.xml" value="0.27708333333333335" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/recy_item_platform_icon.xml" value="0.25" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/recy_item_search.xml" value="0.23333333333333334" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/spinner_item.xml" value="0.23072916666666668" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/tab_home_genre.xml" value="0.17603850050658562" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/tab_home_platform.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/layout/user_content_item.xml" value="0.2046875" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2046875" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/ncclu/AndroidStudioProjects/OOSOO/OOSOOSOO/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.26458333333333334" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

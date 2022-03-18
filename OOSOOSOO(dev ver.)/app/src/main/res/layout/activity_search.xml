@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:context=".search.SearchActivity">
+
+    <EditText
+        android:id="@+id/edt_search"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/rect_corner"
+        android:ems="10"
+        android:hint="검색어를 입력하세요"
+        android:inputType="textPersonName"
+        android:paddingLeft="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:foreground="@android:drawable/ic_menu_search"
+        android:foregroundGravity="center"
+        android:foregroundTint="#FFFFFF"
+        android:gravity="center"
+        app:iconGravity="top"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <Spinner
+        android:id="@+id/spinner_ott"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/line_gray1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <View
+        android:id="@+id/line_gray1"
+        android:layout_width="3dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#5E5E5E"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner_ott"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_type"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/spinner_ott"
+        app:layout_constraintTop_toTopOf="@+id/spinner_ott" />
+
+    <Spinner
+        android:id="@+id/spinner_type"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/line_gray2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/line_gray1"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <View
+        android:id="@+id/line_gray2"
+        android:layout_width="3dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#5E5E5E"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner_type"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_genre"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/spinner_type"
+        app:layout_constraintTop_toTopOf="@+id/spinner_type" />
+
+    <Spinner
+        android:id="@+id/spinner_genre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/line_gray2"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recy_search"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_type" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
