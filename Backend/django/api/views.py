@@ -308,3 +308,71 @@ class AddWatchaWatchingLogAPI(APIView):
         result = add_watchinglog(log, interworking[0])
         print(result)
         return Response(result)
+
+
+class AddNetflixWishlistAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="netflix")
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        wishlist = n_wishes(email, pwd, name)
+        result = add_wishlist(wishlist, interworking[0])
+        print(result)
+        return Response(result)
+
+
+class AddNetflixWatchingLogAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="netflix")
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        log = n_watchings(email, pwd, name)
+        result = add_watchinglog(log, interworking[0])
+        print(result)
+        return Response(result)
+
+
+class AddWavveWishlistAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="wavve")
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        wishlist = wav_wishes(email, pwd, name)
+        result = add_wishlist(wishlist, interworking[0])
+        print(result)
+        return Response(result)
+
+
+class AddWavveWatchingLogAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="wavve")
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        log = wav_watchings(email, pwd, name)
+        result = add_watchinglog(log, interworking[0])
+        print(result)
+        return Response(result)
