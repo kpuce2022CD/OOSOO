@@ -17,7 +17,8 @@ try:
     contents_query = "SELECT * FROM contents"
     cursor.execute(contents_query)
     data = cursor.fetchall()
-    print(data[0])
+    for i in range(0, 20):
+        print("id = " + str(data[i]["id"]) + ",  title = " + str(data[i]["title"]) + ",  vote_average = " + str(data[i]["vote_average"]))
 
     contents = pd.DataFrame(data)
     print(contents)
