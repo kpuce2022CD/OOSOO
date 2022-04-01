@@ -8,16 +8,16 @@ try:
         user="eoeo0326",
         password="2017150009",
         host="oosoords.cqo7bp08tx6h.ap-northeast-2.rds.amazonaws.com",
-        port=3306
+        port=3306,
+        db="oosooDB"
     )
 
-    cursor = conn.cursor()
+    cursor = conn.cursor(dictionary=True)
 
-    use_db_query = "use oosooDB"
     contents_query = "SELECT * FROM contents"
-    cursor.execute(use_db_query)
     cursor.execute(contents_query)
     data = cursor.fetchall()
+    print(data[0])
 
     contents = pd.DataFrame(data)
     print(contents)
