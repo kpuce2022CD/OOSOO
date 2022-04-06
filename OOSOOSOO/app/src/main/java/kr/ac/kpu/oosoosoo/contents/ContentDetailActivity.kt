@@ -1,18 +1,19 @@
 package kr.ac.kpu.oosoosoo.contents
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_content_detail.*
 import kr.ac.kpu.oosoosoo.BaseActivity
+import kr.ac.kpu.oosoosoo.MainActivity
 import kr.ac.kpu.oosoosoo.R
+import org.jetbrains.anko.startActivity
 
 class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_content_detail)
-
 
         // ContentInfo 인텐트 받아오기
         val contentInfo = intent.getSerializableExtra("content") as ContentInfo
@@ -40,6 +41,18 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
                 tv_date_genre.text = tv_date_genre.text.toString() + genre[genre.size - 2]
             }
 
+            // 평점
+            tv_ratingbar.text = "평점 " + contentInfo.vote_average!!.toString()
+            ib_rating.setColorFilter(Color.YELLOW)
+
+            // 평가하기 기능
+            ib_rating.setOnClickListener {
+                startActivity<RatingActivity>(
+                    "contentInfo" to contentInfo
+                )
+            }
+
+
             // Overview
             val overview = contentInfo.overview?.split(". ")
             if (overview != null) {
@@ -65,8 +78,6 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
                     }
                 }
             }
-
         }
-
     }
 }

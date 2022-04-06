@@ -30,6 +30,7 @@
 
         </activity>
         <activity android:name=".contents.ContentDetailActivity" />
+        <activity android:name=".contents.RatingActivity" />
         <activity
             android:name=".home.HomeActivity"
             android:exported="false" />

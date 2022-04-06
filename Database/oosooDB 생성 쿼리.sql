@@ -49,7 +49,7 @@ CREATE TABLE user_interworking(
 );
 
 CREATE TABLE contents_review(
-	id INT NOT NULL PRIMARY KEY,
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	c_id varchar(100) NOT NULL,
 	u_email VARCHAR(50) NOT NULL,
 	_like BOOLEAN NOT NULL,
