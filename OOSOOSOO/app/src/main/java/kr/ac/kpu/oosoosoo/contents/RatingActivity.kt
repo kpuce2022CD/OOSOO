@@ -21,7 +21,7 @@ class RatingActivity : AppCompatActivity() {
 
         val call = RetrofitBuilder().callRating  //Retrofit Call
 
-        var like = true
+        var like = 0
 
         if (i_contentInfo != null) {
             tv_rating_title.text = i_contentInfo.title + " 리뷰 남기기"
@@ -32,8 +32,8 @@ class RatingActivity : AppCompatActivity() {
 
             rg_rating.setOnCheckedChangeListener { radioGroup, i ->
                 when(i){
-                    R.id.rg_like -> like = true
-                    R.id.rg_hate -> like = false
+                    R.id.rg_like -> like = 1
+                    R.id.rg_hate -> like = 0
                 }
             }
 
