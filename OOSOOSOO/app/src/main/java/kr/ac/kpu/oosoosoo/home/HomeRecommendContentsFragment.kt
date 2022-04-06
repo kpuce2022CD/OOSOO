@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_home_platform.*
+import kotlinx.android.synthetic.main.fragment_home_recommend_contents.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.ContentCardListAdapter
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
@@ -16,7 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomePlatformFragment : Fragment() {
+class HomeRecommendContentsFragment : Fragment() {
     companion object {
         const val ROW_MAX_NUM = 20
     }
@@ -28,7 +28,7 @@ class HomePlatformFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home_platform, container, false)
+        return inflater.inflate(R.layout.fragment_home_recommend_contents, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

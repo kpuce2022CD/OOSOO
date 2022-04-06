@@ -22,8 +22,8 @@ import org.jetbrains.anko.toast
 class HomeFragment : Fragment() {
 
     private val tabTitleArray = arrayOf(
-        "플랫폼별",
-        "장르별"
+        "사용자 추천 컨텐츠",
+        "찜 & 보고있는 컨텐츠"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,8 +82,8 @@ class HomeFragment : Fragment() {
         val pagerAdapter = PagerFragmentStateAdapter(requireActivity())
 
         // ***Fragment 추가***
-        pagerAdapter.addFragment(HomePlatformFragment())
-        pagerAdapter.addFragment(HomeGenreFragment())
+        pagerAdapter.addFragment(HomeRecommendContentsFragment())
+        pagerAdapter.addFragment(HomeUserContentsFragment())
 
         // 어댑터 연결
         viewPager_home.adapter = pagerAdapter
