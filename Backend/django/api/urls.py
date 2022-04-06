@@ -55,4 +55,6 @@ urlpatterns = [
     path('add_n_watchinglog/', AddWatchaWatchingLogAPI.as_view()),
     path('add_wav_wishlist/', AddWatchaWishlistAPI.as_view()),
     path('add_wav_watchinglog/', AddWatchaWatchingLogAPI.as_view()),
+
+    path('rating/', RatingAPI.as_view()),
 ]
