@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FAF6F6"
     tools:context=".contents.ContentDetailActivity">
 
     <ScrollView
@@ -58,20 +59,19 @@
                 android:id="@+id/line_gray"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
-                android:layout_marginTop="5dp"
                 android:background="#5E5E5E"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_date_genre" />
+                app:layout_constraintTop_toBottomOf="@+id/ib_rating" />
 
             <TextView
                 android:id="@+id/tv_overview_detail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:maxLines="3"
                 android:ellipsize="end"
+                android:maxLines="3"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/line_gray" />
@@ -88,6 +88,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_overview_detail"
                 app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/tv_ratingbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="rating"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/ib_rating"
+                app:layout_constraintTop_toTopOf="@+id/ib_rating" />
+
+            <ImageButton
+                android:id="@+id/ib_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="140dp"
+                android:layout_marginTop="3dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_date_genre"
+                app:srcCompat="@drawable/ic_baseline_stars_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

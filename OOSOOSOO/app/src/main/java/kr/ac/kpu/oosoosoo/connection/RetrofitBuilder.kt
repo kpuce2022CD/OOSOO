@@ -44,6 +44,7 @@ class RetrofitBuilder {
     val callUserWishList = retrofit.create(UserWishListAPI::class.java)
     val callUserWatchingLog = retrofit.create(UserWatchingLogAPI::class.java)
 
+    val callRating = retrofit.create(RatingAPI::class.java)
 
 }
 
@@ -140,4 +141,10 @@ interface UserWatchingLogAPI {
     @FormUrlEncoded
     @POST("api/user_watchinglog/")
     fun getWatchingLog(@FieldMap params: HashMap<String, String>): Call<List<ContentInfo>>
+}
+
+interface RatingAPI {
+    @FormUrlEncoded
+    @POST("api/rating/")
+    fun getRating(@FieldMap params: HashMap<String, String>): Call<Boolean>
 }
