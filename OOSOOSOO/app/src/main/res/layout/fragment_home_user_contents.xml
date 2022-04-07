@@ -8,8 +8,8 @@
     android:layout_gravity="center">
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginEnd="1dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
