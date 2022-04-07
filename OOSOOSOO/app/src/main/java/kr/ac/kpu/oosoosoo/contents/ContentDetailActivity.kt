@@ -1,5 +1,6 @@
 package kr.ac.kpu.oosoosoo.contents
 
+import android.app.AlertDialog
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View

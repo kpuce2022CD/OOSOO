@@ -11,6 +11,9 @@ import java.time.LocalDateTime
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 class RatingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +24,7 @@ class RatingActivity : AppCompatActivity() {
 
         val call = RetrofitBuilder().callRating  //Retrofit Call
 
-        var like = 0
+        var like = -1
 
         if (i_contentInfo != null) {
             tv_rating_title.text = i_contentInfo.title + " 리뷰 남기기"
@@ -40,16 +43,17 @@ class RatingActivity : AppCompatActivity() {
             // 평가하기 버튼 클릭리스너
             btn_rating.setOnClickListener {
                 if (tv_rating2.text != "" && edt_review.text.toString() != "") {
-                    //에러나는중
-                    var rating = tv_rating2.text.toString().toFloat() * 2
+                    val currentTime : Long = System.currentTimeMillis() + 32400000
+                    val dataFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                    var rating = tv_rating2.text.toString().toFloat()
+
                     var input = HashMap<String, String>()
                     input["c_id"] = i_contentInfo.id.toString()
-                    input["u_email"] = Amplify.Auth.currentUser.userId
+                    input["u_email"] = Amplify.Auth.currentUser.username
                     input["_like"] = like.toString()
                     input["rating"] = rating.toString()
                     input["review"] = edt_review.text.toString()
-                    input["_datetime"] = LocalDateTime.now().toString()
-                    Log.d("rating2", "${input["c_id"]}, ${input["u_email"]}, ${input["_like"]}, ${input["rating"]}, ${input["review"]}, ${input["_datetime"]}" )
+                    input["_datetime"] = dataFormat.format(currentTime)//stringTime//LocalDateTime.now().toString()
 
                     call.getRating(input).enqueue(object : Callback<Boolean> {
                         override fun onFailure(call: Call<Boolean>, t: Throwable) {
@@ -76,6 +80,8 @@ class RatingActivity : AppCompatActivity() {
                     tv_rating_result.text = "평점을 매겨 주세요"
                 } else if (edt_review.text.toString() == ""){
                     tv_rating_result.text = "리뷰를 작성해주세요"
+                } else if (like < 0){
+                    tv_rating_result.text = "좋아요 또는 싫어요를 선택해주세요"
                 }
             }
         }
