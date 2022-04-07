@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.fragment_home_user_contents.*
@@ -48,7 +49,7 @@ class HomeUserContentsFragment : Fragment() {
         val contentCardRowList : MutableList<CardListData> = ArrayList() //한 행의 컨텐츠 리스트
 
         home_genre_cardList_recyclerview.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+            LinearLayoutManager(activity, GridLayoutManager.VERTICAL, false)
 
         //찜목록 출력 api
         callWishList.getWishList(input).enqueue(object : Callback<List<ContentInfo>> {
@@ -67,14 +68,14 @@ class HomeUserContentsFragment : Fragment() {
                     }
                 }
 
-                for(contentsRow in contentsArrayList.chunked(ROW_MAX_NUM)) {
-                    contentCardRowList.add(
-                        CardListData(
-                            "${userEmail}의 찜목록",
-                            ArrayList(contentsRow)
-                        )
+                //for(contentsRow in contentsArrayList.chunked(ROW_MAX_NUM)) { : 정해진 갯수만큼 나누기
+                contentCardRowList.add(
+                    CardListData(
+                        "${userEmail}의 찜목록",
+                        ArrayList(contentsArrayList)
                     )
-                }
+                )
+
                 //부모 어댑터 지정(수직방향)
                 home_genre_cardList_recyclerview.adapter =
                     ContentCardListAdapter(context!!, ArrayList(contentCardRowList))
@@ -103,14 +104,14 @@ class HomeUserContentsFragment : Fragment() {
                     }
                 }
 
-                for(contentsRow in contentsArrayList.chunked(ROW_MAX_NUM)) {
-                    contentCardRowList.add(
-                        CardListData(
-                            "${userEmail}의 시청목록",
-                            ArrayList(contentsRow)
-                        )
+                //for(contentsRow in contentsArrayList.chunked(ROW_MAX_NUM)) {   : 정해진 갯수대로 나누기
+                contentCardRowList.add(
+                    CardListData(
+                        "${userEmail}의 시청목록",
+                        ArrayList(contentsArrayList)
                     )
-                }
+                )
+
                 //부모 어댑터 지정(수직방향)
                 home_genre_cardList_recyclerview.adapter =
                     ContentCardListAdapter(context!!, ArrayList(contentCardRowList))
