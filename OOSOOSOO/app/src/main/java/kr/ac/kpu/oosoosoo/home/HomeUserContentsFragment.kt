@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.fragment_home_user_contents.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.ContentCardListAdapter
@@ -17,6 +18,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class HomeUserContentsFragment : Fragment() {
+
+    var userEmail = Amplify.Auth.currentUser.username
+
     companion object {
         const val ROW_MAX_NUM = 20
     }
@@ -34,12 +38,91 @@ class HomeUserContentsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val call = RetrofitBuilder().callSearchTest
+
+        var input = HashMap<String, String>()
+        input["email"] = userEmail
+
+        val callWishList = RetrofitBuilder().callUserWishList
+        val callWatchingLog = RetrofitBuilder().callUserWatchingLog
         val contentsArrayList : MutableList<ContentInfo> = ArrayList() //모든 컨텐츠 리스트
         val contentCardRowList : MutableList<CardListData> = ArrayList() //한 행의 컨텐츠 리스트
 
         home_genre_cardList_recyclerview.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+
+        //찜목록 출력 api
+        callWishList.getWishList(input).enqueue(object : Callback<List<ContentInfo>> {
+
+            override fun onResponse(
+                call: Call<List<ContentInfo>>,
+                response: Response<List<ContentInfo>>
+            ) {
+                val contents = response.body()
+                Log.d("Load WishList", "$contents")
+
+                if (contents != null) {
+                    for (content in contents) {
+                        //Log.d("User Wishlist Contents", content.toString())
+                        contentsArrayList.add(content)   //Contents 리스트 셋팅
+                    }
+                }
+
+                for(contentsRow in contentsArrayList.chunked(ROW_MAX_NUM)) {
+                    contentCardRowList.add(
+                        CardListData(
+                            "${userEmail}의 찜목록",
+                            ArrayList(contentsRow)
+                        )
+                    )
+                }
+                //부모 어댑터 지정(수직방향)
+                home_genre_cardList_recyclerview.adapter =
+                    ContentCardListAdapter(context!!, ArrayList(contentCardRowList))
+                home_genre_cardList_recyclerview.adapter!!.notifyDataSetChanged()
+            }
+
+            override fun onFailure(call: Call<List<ContentInfo>>, t: Throwable) {
+                Log.d("home_genre_contents", t.message.toString())
+            }
+        })
+
+        //시청목록 출력 api
+        callWatchingLog.getWatchingLog(input).enqueue(object : Callback<List<ContentInfo>> {
+
+            override fun onResponse(
+                call: Call<List<ContentInfo>>,
+                response: Response<List<ContentInfo>>
+            ) {
+                val contents = response.body()
+                Log.d("Load Watching Log", "$contents")
+
+                if (contents != null) {
+                    for (content in contents) {
+                        //Log.d("User Watching Log Contents", content.toString())
+                        contentsArrayList.add(content)   //Contents 리스트 셋팅
+                    }
+                }
+
+                for(contentsRow in contentsArrayList.chunked(ROW_MAX_NUM)) {
+                    contentCardRowList.add(
+                        CardListData(
+                            "${userEmail}의 시청목록",
+                            ArrayList(contentsRow)
+                        )
+                    )
+                }
+                //부모 어댑터 지정(수직방향)
+                home_genre_cardList_recyclerview.adapter =
+                    ContentCardListAdapter(context!!, ArrayList(contentCardRowList))
+                home_genre_cardList_recyclerview.adapter!!.notifyDataSetChanged()
+            }
+
+            override fun onFailure(call: Call<List<ContentInfo>>, t: Throwable) {
+                Log.d("home_genre_contents", t.message.toString())
+            }
+        })
+
+        /*단순 출력 테스트 코드
         call.getSearchTest().enqueue(object : Callback<List<ContentInfo>> {
 
             override fun onResponse(
@@ -74,7 +157,7 @@ class HomeUserContentsFragment : Fragment() {
             override fun onFailure(call: Call<List<ContentInfo>>, t: Throwable) {
                 Log.d("home_genre_contents", t.message.toString())
             }
-        })
+        })*/
 
     }
 
