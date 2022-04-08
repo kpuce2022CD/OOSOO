@@ -35,7 +35,7 @@ class HomeActivity : BaseActivity() {
         )
     }
 
-    public fun addFragment(fragment: Fragment){
+    public fun replaceFragment(fragment: Fragment){
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragment).commit()

@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
                 {
                     if (it.isSignedIn) {
                         Log.d("AWS Auth E-Mail", Amplify.Auth.currentUser.username)
-                        (activity as HomeActivity).addFragment(UserInfoFragment())
+                        (activity as HomeActivity).replaceFragment(UserInfoFragment())
                         //childFragmentManager.beginTransaction().add(R.id.container, UserInfoFragment()).commit()
                     } else {
                         requireContext().startActivity<LoginActivity>()
