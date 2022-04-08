@@ -5,10 +5,59 @@
     android:layout_height="match_parent"
     tools:context=".user.UserInfoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/userinfo_email_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이메일 : " />
+
+        <TextView
+            android:id="@+id/userinfo_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름 : " />
+
+        <TextView
+            android:id="@+id/userinfo_phone_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전화번호 : " />
+
+        <TextView
+            android:id="@+id/userinfo_nickname_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="닉네임 : " />
+
+        <TextView
+            android:id="@+id/userinfo_gender_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="성별 : " />
+
+        <TextView
+            android:id="@+id/userinfo_birthday_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="생년월일 : " />
+
+        <TextView
+            android:id="@+id/userinfo_job_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="직업 : " />
+
+        <TextView
+            android:id="@+id/userinfo_overview_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="소개 : " />
+    </LinearLayout>
+
 
 </FrameLayout>

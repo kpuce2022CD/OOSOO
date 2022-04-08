@@ -53,6 +53,7 @@ class HomeFragment : Fragment() {
                     if (it.isSignedIn) {
                         Log.d("AWS Auth E-Mail", Amplify.Auth.currentUser.username)
                         (activity as HomeActivity).addFragment(UserInfoFragment())
+                        //childFragmentManager.beginTransaction().add(R.id.container, UserInfoFragment()).commit()
                     } else {
                         requireContext().startActivity<LoginActivity>()
                     }
@@ -82,19 +83,6 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-
-        Amplify.Auth.fetchAuthSession(
-            {
-                if (it.isSignedIn) {
-                    Log.d("AWS Auth E-Mail", Amplify.Auth.currentUser.username)
-                    btn_home_login.setImageResource(R.drawable.ic_baseline_user)
-                } else {
-                    btn_home_login.setImageResource(R.drawable.ic_baseline_login_24)
-                }
-            },
-            { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }
-        )
 
         val pagerAdapter = PagerFragmentStateAdapter(requireActivity())
 
