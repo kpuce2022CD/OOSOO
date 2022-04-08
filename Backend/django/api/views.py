@@ -22,6 +22,7 @@ from api.User.AddWishList import add_wishlist
 from api.User.AddWatchingLog import add_watchinglog
 from api.User.LoadInterworking import load_interworking
 from api.User.Rating import Rating
+from api.User.UserInfo import userinfo
 
 
 class ContentsListAPI(APIView):
@@ -372,8 +373,16 @@ class AddWavveWatchingLogAPI(APIView):
         result = add_watchinglog(log, interworking[0])
         return Response(result)
 
+
 class RatingAPI(APIView):
     def post(self, request):
         data = request.data
         result = Rating(data.get('c_id'), data.get('u_email'), data.get('_like'), data.get('rating'), data.get('review'), data.get('_datetime'))
+        return Response(result)
+
+
+class UserInfoAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = userinfo(data.get('email'))
         return Response(result)
