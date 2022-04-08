@@ -290,7 +290,6 @@ class AddWatchaWishlistAPI(APIView):
 
         wishlist = w_wishes(email, pwd, name)
         result = add_wishlist(wishlist, interworking[0])
-        print(result)
         return Response(result)
 
 
@@ -307,7 +306,6 @@ class AddWatchaWatchingLogAPI(APIView):
 
         log = w_watchings(email, pwd, name)
         result = add_watchinglog(log, interworking[0])
-        print(result)
         return Response(result)
 
 
@@ -324,7 +322,6 @@ class AddNetflixWishlistAPI(APIView):
 
         wishlist = n_wishes(email, pwd, name)
         result = add_wishlist(wishlist, interworking[0])
-        print(result)
         return Response(result)
 
 
@@ -341,7 +338,6 @@ class AddNetflixWatchingLogAPI(APIView):
 
         log = n_watchings(email, pwd, name)
         result = add_watchinglog(log, interworking[0])
-        print(result)
         return Response(result)
 
 
@@ -358,7 +354,6 @@ class AddWavveWishlistAPI(APIView):
 
         wishlist = wav_wishes(email, pwd, name)
         result = add_wishlist(wishlist, interworking[0])
-        print(result)
         return Response(result)
 
 
@@ -375,7 +370,6 @@ class AddWavveWatchingLogAPI(APIView):
 
         log = wav_watchings(email, pwd, name)
         result = add_watchinglog(log, interworking[0])
-        print(result)
         return Response(result)
 
 class RatingAPI(APIView):
