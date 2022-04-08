@@ -6,17 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat.invalidateOptionsMenu
 import androidx.viewpager2.widget.ViewPager2
 import com.amplifyframework.core.Amplify
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import kr.ac.kpu.oosoosoo.MainActivity
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.PagerFragmentStateAdapter
 import kr.ac.kpu.oosoosoo.login.LoginActivity
 import kr.ac.kpu.oosoosoo.login.SelectIwActivity
 import kr.ac.kpu.oosoosoo.search.SearchActivity
+import kr.ac.kpu.oosoosoo.user.UserInfoFragment
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
@@ -45,11 +47,12 @@ class HomeFragment : Fragment() {
 
         //홈화면 로그인 버튼
         view.btn_home_login.setOnClickListener{
+
             Amplify.Auth.fetchAuthSession(
                 {
                     if (it.isSignedIn) {
                         Log.d("AWS Auth E-Mail", Amplify.Auth.currentUser.username)
-                        // 로그인 되어있을시 유저 정보 출력화면으로 이동하도록 변경 필요
+                        (activity as HomeActivity).addFragment(UserInfoFragment())
                     } else {
                         requireContext().startActivity<LoginActivity>()
                     }
@@ -116,5 +119,6 @@ class HomeFragment : Fragment() {
             tab.text = tabTitleArray[position]
         }.attach()
     }
+
 
 }

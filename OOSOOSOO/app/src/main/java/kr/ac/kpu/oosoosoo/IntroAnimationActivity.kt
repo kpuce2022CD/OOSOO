@@ -34,7 +34,7 @@ class IntroAnimationActivity : BaseActivity(TransitionMode.VERTICAL) {
                     {
                         if (it.isSignedIn) {
                             finish()
-                            startActivity<MainActivity>()
+                            startActivity<HomeActivity>()
                         } else {
                             finish()
                             startActivity<LoginActivity>()

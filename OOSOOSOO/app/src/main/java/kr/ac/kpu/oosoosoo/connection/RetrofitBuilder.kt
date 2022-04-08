@@ -1,6 +1,7 @@
 package kr.ac.kpu.oosoosoo.connection
 
 import kr.ac.kpu.oosoosoo.contents.ContentInfo
+import kr.ac.kpu.oosoosoo.user.UserInfo
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -45,6 +46,7 @@ class RetrofitBuilder {
     val callUserWatchingLog = retrofit.create(UserWatchingLogAPI::class.java)
 
     val callRating = retrofit.create(RatingAPI::class.java)
+    val callUserInfo = retrofit.create(UserInfoAPI::class.java)
 
 }
 
@@ -147,4 +149,10 @@ interface RatingAPI {
     @FormUrlEncoded
     @POST("api/rating/")
     fun getRating(@FieldMap params: HashMap<String, String>): Call<Boolean>
+}
+
+interface UserInfoAPI {
+    @FormUrlEncoded
+    @POST("api/userinfo/")
+    fun getUserInfo(@FieldMap params: HashMap<String, String>): Call<UserInfo>
 }
