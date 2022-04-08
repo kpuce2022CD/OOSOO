@@ -40,7 +40,7 @@ class Users(models.Model):
     phone_number = models.CharField(max_length=20)
     nickname = models.CharField(max_length=20)
     gender = models.IntegerField()
-    age = models.IntegerField()
+    birthday = models.CharField(max_length=10, blank=True, null=True)
     job = models.CharField(max_length=20, blank=True, null=True)
     overview = models.CharField(max_length=200, blank=True, null=True)
     coin = models.IntegerField(blank=True, null=True)

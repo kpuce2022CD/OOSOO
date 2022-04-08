@@ -50,7 +50,14 @@ def w_wishes(email, pwd, name):
             break
         last_height = new_height
 
+    time.sleep(3)
+    driver.implicitly_wait(5)
+
     wishes = driver.find_elements_by_class_name('css-1ponucs')
+
+    time.sleep(3)
+    driver.implicitly_wait(5)
+
     print("< Wishlist >")
     for wish in wishes:
         if wish.text != "":

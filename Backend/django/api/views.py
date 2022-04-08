@@ -22,6 +22,7 @@ from api.User.AddWishList import add_wishlist
 from api.User.AddWatchingLog import add_watchinglog
 from api.User.LoadInterworking import load_interworking
 from api.User.Rating import Rating
+from api.User.UserInfo import userinfo
 
 
 class ContentsListAPI(APIView):
@@ -290,7 +291,6 @@ class AddWatchaWishlistAPI(APIView):
 
         wishlist = w_wishes(email, pwd, name)
         result = add_wishlist(wishlist, interworking[0])
-        print(result)
         return Response(result)
 
 
@@ -307,7 +307,6 @@ class AddWatchaWatchingLogAPI(APIView):
 
         log = w_watchings(email, pwd, name)
         result = add_watchinglog(log, interworking[0])
-        print(result)
         return Response(result)
 
 
@@ -324,7 +323,6 @@ class AddNetflixWishlistAPI(APIView):
 
         wishlist = n_wishes(email, pwd, name)
         result = add_wishlist(wishlist, interworking[0])
-        print(result)
         return Response(result)
 
 
@@ -341,7 +339,6 @@ class AddNetflixWatchingLogAPI(APIView):
 
         log = n_watchings(email, pwd, name)
         result = add_watchinglog(log, interworking[0])
-        print(result)
         return Response(result)
 
 
@@ -358,7 +355,6 @@ class AddWavveWishlistAPI(APIView):
 
         wishlist = wav_wishes(email, pwd, name)
         result = add_wishlist(wishlist, interworking[0])
-        print(result)
         return Response(result)
 
 
@@ -375,11 +371,18 @@ class AddWavveWatchingLogAPI(APIView):
 
         log = wav_watchings(email, pwd, name)
         result = add_watchinglog(log, interworking[0])
-        print(result)
         return Response(result)
+
 
 class RatingAPI(APIView):
     def post(self, request):
         data = request.data
         result = Rating(data.get('c_id'), data.get('u_email'), data.get('_like'), data.get('rating'), data.get('review'), data.get('_datetime'))
+        return Response(result)
+
+
+class UserInfoAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = userinfo(data.get('email'))
         return Response(result)
