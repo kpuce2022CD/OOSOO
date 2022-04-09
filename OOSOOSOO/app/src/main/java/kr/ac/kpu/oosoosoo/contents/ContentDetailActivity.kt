@@ -43,7 +43,7 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
             }
 
             // 평점
-            tv_ratingbar.text = "평점 " + contentInfo.vote_average!!.toString()
+            tv_ratingbar.text = "평균 평점<" + contentInfo.vote_average!!.toString() + ">"
             ib_rating.setColorFilter(Color.YELLOW)
 
             // 평가하기 기능

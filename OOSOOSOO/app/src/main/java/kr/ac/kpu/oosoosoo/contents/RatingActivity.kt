@@ -24,34 +24,28 @@ class RatingActivity : AppCompatActivity() {
 
         val call = RetrofitBuilder().callRating  //Retrofit Call
 
-        var like = -1
+        var like = 0
+
+        var rating_point = 0.0f
 
         if (i_contentInfo != null) {
-            tv_rating_title.text = i_contentInfo.title + " 리뷰 남기기"
+            tv_rating_title.text = i_contentInfo.title + "\n리뷰 남기기"
 
             ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
-                tv_rating2.text = "${rating * 2}"
-            }
-
-            rg_rating.setOnCheckedChangeListener { radioGroup, i ->
-                when(i){
-                    R.id.rg_like -> like = 1
-                    R.id.rg_hate -> like = 0
-                }
+                rating_point = rating * 2
             }
 
             // 평가하기 버튼 클릭리스너
             btn_rating.setOnClickListener {
-                if (tv_rating2.text != "" && edt_review.text.toString() != "") {
+                if (rating_point != 0.0f && edt_review.text.toString() != "") {
                     val currentTime : Long = System.currentTimeMillis() + 32400000
                     val dataFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-                    var rating = tv_rating2.text.toString().toFloat()
 
                     var input = HashMap<String, String>()
                     input["c_id"] = i_contentInfo.id.toString()
                     input["u_email"] = Amplify.Auth.currentUser.username
                     input["_like"] = like.toString()
-                    input["rating"] = rating.toString()
+                    input["rating"] = rating_point.toString()
                     input["review"] = edt_review.text.toString()
                     input["_datetime"] = dataFormat.format(currentTime)//stringTime//LocalDateTime.now().toString()
 
@@ -76,12 +70,10 @@ class RatingActivity : AppCompatActivity() {
                             }
                         }
                     })
-                } else if (tv_rating2.text == "") {
+                } else if (rating_point == 0.0f) {
                     tv_rating_result.text = "평점을 매겨 주세요"
                 } else if (edt_review.text.toString() == ""){
                     tv_rating_result.text = "리뷰를 작성해주세요"
-                } else if (like < 0){
-                    tv_rating_result.text = "좋아요 또는 싫어요를 선택해주세요"
                 }
             }
         }

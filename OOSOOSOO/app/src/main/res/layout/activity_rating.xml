@@ -12,46 +12,25 @@
         android:layout_marginTop="16dp"
         android:text="영화제목"
         android:textSize="20sp"
+        android:gravity="center"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RatingBar
         android:id="@+id/ratingBar"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        android:layout_marginTop="24dp"
         android:isIndicator="false"
         android:numStars="5"
         android:rating="5"
         android:stepSize="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rg_rating" />
-
-    <RadioGroup
-        android:id="@+id/rg_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rating_title">
-
-        <RadioButton
-            android:id="@+id/rg_like"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="좋아요" />
-
-        <RadioButton
-            android:id="@+id/rg_hate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="싫어요" />
-    </RadioGroup>
+        app:layout_constraintTop_toBottomOf="@+id/tv_rating_title" />
 
     <TextView
         android:id="@+id/textView5"
