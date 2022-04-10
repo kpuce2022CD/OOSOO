@@ -11,12 +11,18 @@ def CallReview(c_id, u_email):
         cur.execute(use_db_query)
         cur.execute(select_query)
         result = cur.fetchall()
+        result_list = list()
+        for _like, rating, review, _datetime in result:
+            result_list.append(_like)
+            result_list.append(rating)
+            result_list.append(review)
+            result_list.append(_datetime)
 
     except mariadb.Error as e:
         print(f"failed: Error connecting to Mariadb: {e}")
         sys.exit(1)
-        result = False
+        result_list = []
 
     connection.close()
 
-    return result
+    return result_list

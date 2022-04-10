@@ -48,6 +48,8 @@ class RetrofitBuilder {
     val callRating = retrofit.create(RatingAPI::class.java)
     val callUserInfo = retrofit.create(UserInfoAPI::class.java)
 
+    val callReview = retrofit.create(CallReviewAPI::class.java)
+    val deleteReview = retrofit.create(DeleteReviewAPI::class.java)
 }
 
 interface ContentsAPI {
@@ -155,4 +157,16 @@ interface UserInfoAPI {
     @FormUrlEncoded
     @POST("api/userinfo/")
     fun getUserInfo(@FieldMap params: HashMap<String, String>): Call<UserInfo>
+}
+
+interface CallReviewAPI {
+    @FormUrlEncoded
+    @POST("api/call_review/")
+    fun callReview(@FieldMap params: HashMap<String, String>): Call<List<String>>
+}
+
+interface DeleteReviewAPI {
+    @FormUrlEncoded
+    @POST("api/delete_review/")
+    fun deleteReview(@FieldMap params: HashMap<String, String>): Call<Boolean>
 }

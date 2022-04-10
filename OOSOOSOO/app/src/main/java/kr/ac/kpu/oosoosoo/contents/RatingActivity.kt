@@ -22,7 +22,9 @@ class RatingActivity : AppCompatActivity() {
 
         val i_contentInfo = intent.getSerializableExtra("contentInfo") as ContentInfo
 
-        val call = RetrofitBuilder().callRating  //Retrofit Call
+        val call_rating = RetrofitBuilder().callRating  //평가하기 Retrofit call
+
+        val call_delete_review = RetrofitBuilder().deleteReview //리뷰 삭제하기 Retrofit call
 
         var like = 0
 
@@ -33,6 +35,35 @@ class RatingActivity : AppCompatActivity() {
 
             ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
                 rating_point = rating * 2
+            }
+
+            //리뷰 삭제하기 버튼 클릭리스너
+            btn_delete_review.setOnClickListener {
+                var input = HashMap<String, String>()
+                input["c_id"] = i_contentInfo.id.toString()
+                input["u_email"] = Amplify.Auth.currentUser.username
+
+                call_delete_review.deleteReview(input).enqueue(object : Callback<Boolean> {
+                    override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                        tv_rating_result.text = "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요."
+                        Log.d("review", t.message.toString())
+                    }
+
+                    override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                        val body: Boolean? = response.body()
+                        Log.d("rating2", "통신 성공")
+                        if (body.toString() == "null") {
+                            tv_rating_result.text = "서버 바디 = null"
+                        } else {
+                            if (body == true) {
+                                tv_rating_result.text = "삭제 완료!"
+                                finish()
+                            } else {
+                                tv_rating_result.text = "삭제 실패"
+                            }
+                        }
+                    }
+                })
             }
 
             // 평가하기 버튼 클릭리스너
@@ -49,7 +80,7 @@ class RatingActivity : AppCompatActivity() {
                     input["review"] = edt_review.text.toString()
                     input["_datetime"] = dataFormat.format(currentTime)//stringTime//LocalDateTime.now().toString()
 
-                    call.getRating(input).enqueue(object : Callback<Boolean> {
+                    call_rating.getRating(input).enqueue(object : Callback<Boolean> {
                         override fun onFailure(call: Call<Boolean>, t: Throwable) {
                             tv_rating_result.text = "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요."
                             Log.d("rating2", t.message.toString())

@@ -61,10 +61,11 @@
                 android:id="@+id/line_gray"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
+                android:layout_marginTop="2dp"
                 android:background="#5E5E5E"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ib_rating" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_my_rating" />
 
             <TextView
                 android:id="@+id/tv_overview_detail"
@@ -105,12 +106,22 @@
                 android:id="@+id/ib_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="140dp"
+                android:layout_marginStart="110dp"
                 android:layout_marginTop="3dp"
                 android:backgroundTint="#faf6f6"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_date_genre"
                 app:srcCompat="@drawable/ic_baseline_stars_24" />
+
+            <TextView
+                android:id="@+id/tv_my_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="내 평점"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ib_rating" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
