@@ -23,6 +23,8 @@ from api.User.AddWatchingLog import add_watchinglog
 from api.User.LoadInterworking import load_interworking
 from api.User.Rating import Rating
 from api.User.UserInfo import userinfo
+from api.User.CallReview import CallReview
+from api.User.DeleteReview import DeleteReview
 
 
 class ContentsListAPI(APIView):
@@ -385,4 +387,17 @@ class UserInfoAPI(APIView):
     def post(self, request):
         data = request.data
         result = userinfo(data.get('email'))
+        return Response(result)
+
+
+class CallReviewAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = CallReview(data.get('c_id'), data.get('u_email'))
+        return Response(result)
+
+class DeleteReviewAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = DeleteReview(data.get('c_id'), data.get('u_email'))
         return Response(result)

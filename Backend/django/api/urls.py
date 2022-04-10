@@ -58,4 +58,6 @@ urlpatterns = [
 
     path('rating/', RatingAPI.as_view()),
     path('userinfo/', UserInfoAPI.as_view()),
+    path('delete_review/', DeleteReviewAPI.as_view()),
+    path('call_review/', CallReviewAPI.as_view()),
 ]
