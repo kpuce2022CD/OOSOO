@@ -1,18 +1,23 @@
 package kr.ac.kpu.oosoosoo.contents
 
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.amplifyframework.core.Amplify
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_content_detail.*
 import kotlinx.android.synthetic.main.activity_rating.*
+import kotlinx.android.synthetic.main.activity_select_interworking.*
 import kr.ac.kpu.oosoosoo.BaseActivity
 import kr.ac.kpu.oosoosoo.MainActivity
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
+import kr.ac.kpu.oosoosoo.login.InterworkingActivity
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,6 +32,9 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
         val contentInfo = intent.getSerializableExtra("content") as ContentInfo
 
         val call = RetrofitBuilder().callReview  //Retrofit Call
+
+        var myRating = 0.0f
+        var myReview = ""
 
         if (contentInfo != null) {
             // Poster Image 출력
@@ -55,14 +63,13 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
             tv_ratingbar.text = "평균 평점<" + contentInfo.vote_average!!.toString() + ">"
             ib_rating.setColorFilter(Color.YELLOW)
 
-            //여기에서 서버에 요청해서 review정보들 불러와서 인텐트 넘겨주고, 인텐트 넘겨받고,
+            //서버에 요청해서 유저가 남긴 해당 컨텐츠 리뷰 정보 받아오기
             var input = HashMap<String, String>()
             input["c_id"] = contentInfo.id.toString()
             input["u_email"] = Amplify.Auth.currentUser.username
             Log.d("review", "${input["c_id"]}    ${input["u_email"]}")
 
             call.callReview(input).enqueue(object : Callback<List<String>> {
-                //에러 발생  Expected a string but was BEGIN_ARRAY at line 1 column 3 path $[0]
                 override fun onFailure(call: Call<List<String>>, t: Throwable) {
                     tv_my_rating.text = "${t.message.toString()}"
                     Log.d("review", t.message.toString())
@@ -74,8 +81,8 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
                     if (body!!.isEmpty()) { //빈 리스트로 뜸
                         tv_my_rating.text = "내 평점 없음"
                     } else {
-                        var myRating = body[1].toFloat()
-                        var myReview = body[2]
+                        myRating = body[1].toFloat()
+                        myReview = body[2]
                         Log.d("review", "내 평점: $myRating 내 리뷰: $myReview")
 
                         tv_my_rating.text = "내 평점: " + myRating.toString()
@@ -94,9 +101,11 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
 
             // 평가하기 기능
             ib_rating.setOnClickListener {
-                startActivity<RatingActivity>(
-                    "contentInfo" to contentInfo
-                )
+                val intent = Intent(this, RatingActivity::class.java)
+                intent.putExtra("contentInfo", contentInfo)
+                intent.putExtra("rating", myRating)
+                intent.putExtra("review", myReview)
+                startActivityForResult(intent, 118)
             }
 
             // 더보기 기능
@@ -112,6 +121,23 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
                             tv_overview_detail.maxLines = Int.MAX_VALUE
                             tv_viewmore_overview.visibility = View.GONE
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK){
+            when (requestCode) {
+                118 -> {
+                    var result_rating = data!!.getStringExtra("result_rating")
+                    var rating = data!!.getFloatExtra("rating", 0.0f)
+                    if(result_rating == "완료"){
+                        tv_my_rating.text = "내 평점: " + rating
+                    } else if(result_rating == "삭제"){
+                        tv_my_rating.text = "내 평점 없음"
                     }
                 }
             }

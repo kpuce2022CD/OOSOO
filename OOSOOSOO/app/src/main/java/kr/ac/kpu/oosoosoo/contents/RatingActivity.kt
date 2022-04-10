@@ -1,5 +1,7 @@
 package kr.ac.kpu.oosoosoo.contents
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -23,12 +25,14 @@ class RatingActivity : AppCompatActivity() {
         val i_contentInfo = intent.getSerializableExtra("contentInfo") as ContentInfo
 
         val call_rating = RetrofitBuilder().callRating  //평가하기 Retrofit call
-
         val call_delete_review = RetrofitBuilder().deleteReview //리뷰 삭제하기 Retrofit call
 
         var like = 0
 
-        var rating_point = 0.0f
+        var rating_point = intent.getFloatExtra("rating", 0.0f)
+        edt_review.setText(intent.getStringExtra("review"))
+
+        ratingBar.rating = rating_point / 2
 
         if (i_contentInfo != null) {
             tv_rating_title.text = i_contentInfo.title + "\n리뷰 남기기"
@@ -57,6 +61,10 @@ class RatingActivity : AppCompatActivity() {
                         } else {
                             if (body == true) {
                                 tv_rating_result.text = "삭제 완료!"
+                                val intent_result = Intent()
+                                val intent_msg = "삭제"
+                                intent_result.putExtra("result_rating", intent_msg)
+                                setResult(Activity.RESULT_OK, intent_result)
                                 finish()
                             } else {
                                 tv_rating_result.text = "삭제 실패"
@@ -93,7 +101,12 @@ class RatingActivity : AppCompatActivity() {
                                 tv_rating_result.text = "서버 바디 = null"
                             } else {
                                 if (body == true) {
+                                    val intent_result = Intent()
                                     tv_rating_result.text = "평가 및 리뷰 완료!"
+                                    val intent_msg = "완료"
+                                    intent_result.putExtra("result_rating", intent_msg)
+                                    intent_result.putExtra("rating", rating_point)
+                                    setResult(Activity.RESULT_OK, intent_result)
                                     finish()
                                 } else {
                                     tv_rating_result.text = "평가 실패"
