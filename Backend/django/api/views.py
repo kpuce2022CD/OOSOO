@@ -25,6 +25,7 @@ from api.User.Rating import Rating
 from api.User.UserInfo import userinfo
 from api.User.CallReview import CallReview
 from api.User.DeleteReview import DeleteReview
+from api.User.AllReview import AllReview
 
 
 class ContentsListAPI(APIView):
@@ -400,4 +401,10 @@ class DeleteReviewAPI(APIView):
     def post(self, request):
         data = request.data
         result = DeleteReview(data.get('c_id'), data.get('u_email'))
+        return Response(result)
+
+class AllReviewAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = AllReview(data.get('c_id'))
         return Response(result)
