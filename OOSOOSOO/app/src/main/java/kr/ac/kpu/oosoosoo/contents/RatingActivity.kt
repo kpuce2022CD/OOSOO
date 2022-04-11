@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
-class RatingActivity : AppCompatActivity() {
+class RatingActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rating)
@@ -31,6 +31,12 @@ class RatingActivity : AppCompatActivity() {
 
         var rating_point = intent.getFloatExtra("rating", 0.0f)
         edt_review.setText(intent.getStringExtra("review"))
+        val review_isExist = intent.getBooleanExtra("isExist", false)
+        if(review_isExist == true){
+            btn_rating.setEnabled(false)
+            edt_review.setEnabled(false)
+            tv_rating_result.text = "이미 작성한 리뷰가 있습니다."
+        }
 
         ratingBar.rating = rating_point / 2
 

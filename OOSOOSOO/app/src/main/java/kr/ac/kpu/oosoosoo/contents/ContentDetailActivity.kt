@@ -35,6 +35,7 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
 
         var myRating = 0.0f
         var myReview = ""
+        var isExist = false
 
         if (contentInfo != null) {
             // Poster Image 출력
@@ -83,6 +84,7 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
                     } else {
                         myRating = body[1].toFloat()
                         myReview = body[2]
+                        isExist = true
                         Log.d("review", "내 평점: $myRating 내 리뷰: $myReview")
 
                         tv_my_rating.text = "내 평점: " + myRating.toString()
@@ -105,6 +107,7 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
                 intent.putExtra("contentInfo", contentInfo)
                 intent.putExtra("rating", myRating)
                 intent.putExtra("review", myReview)
+                intent.putExtra("isExist", isExist)
                 startActivityForResult(intent, 118)
             }
 

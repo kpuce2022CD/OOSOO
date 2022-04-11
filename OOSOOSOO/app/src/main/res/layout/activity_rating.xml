@@ -36,11 +36,10 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="리뷰"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_rating2" />
 
@@ -51,8 +50,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="리뷰"
-        android:inputType="text"
+        android:hint="리뷰 작성 바랍니다."
+        android:maxLength="990"
+        android:inputType="textMultiLine"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/tv_rating2" />
 
@@ -93,4 +93,5 @@
         android:text="리뷰 삭제하기"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_rating_result" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
