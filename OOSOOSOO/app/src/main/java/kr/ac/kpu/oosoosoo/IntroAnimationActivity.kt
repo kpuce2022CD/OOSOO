@@ -14,7 +14,7 @@ import kr.ac.kpu.oosoosoo.login.LoginActivity
 import org.jetbrains.anko.startActivity
 
 //Splash : Main으로 시작하기 전 애니메이션을 통해 Intro를 담당
-class IntroAnimationActivity : BaseActivity(TransitionMode.VERTICAL) {
+class IntroAnimationActivity : BaseActivity(TransitionMode.HORIZON) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro_animation)
@@ -34,7 +34,6 @@ class IntroAnimationActivity : BaseActivity(TransitionMode.VERTICAL) {
                     {
                         if (it.isSignedIn) {
                             finish()
-                            startActivity<HomeActivity>()
                         } else {
                             finish()
                             startActivity<LoginActivity>()

@@ -18,5 +18,6 @@ class MainActivity : BaseActivity() {
         val navController = navHostFragment.navController
         nav_view.setupWithNavController(navController)  */
         startActivity<HomeActivity>()
+        finish()
     }
 }
