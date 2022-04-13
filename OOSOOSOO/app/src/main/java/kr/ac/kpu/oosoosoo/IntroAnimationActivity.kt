@@ -35,8 +35,8 @@ class IntroAnimationActivity : BaseActivity(TransitionMode.HORIZON) {
                         if (it.isSignedIn) {
                             finish()
                         } else {
-                            finish()
                             startActivity<LoginActivity>()
+                            finish()
                         }
                     },
                     { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }

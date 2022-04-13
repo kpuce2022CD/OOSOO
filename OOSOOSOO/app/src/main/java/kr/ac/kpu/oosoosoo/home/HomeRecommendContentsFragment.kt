@@ -17,8 +17,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class HomeRecommendContentsFragment : Fragment() {
+
+
     companion object {
-        const val ROW_MAX_NUM = 20
+        const val ROW_MAX_NUM = 100
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +35,11 @@ class HomeRecommendContentsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         val call = RetrofitBuilder().callSearchTest
+        var listAdapter : ContentCardListAdapter
         val contentsArrayList : MutableList<ContentInfo> = ArrayList() //모든 컨텐츠 리스트
-        val contentCardRowList : MutableList<CardListData> = ArrayList() //한 행의 컨텐츠 리스트
+        val contentCardRowList : MutableList<CardListData> = ArrayList()//한 행의 컨텐츠 리스트
 
         home_platform_cardList_recyclerview.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -73,9 +77,10 @@ class HomeRecommendContentsFragment : Fragment() {
                         )
                     )
                 }
+
+                listAdapter = ContentCardListAdapter(context!!, ArrayList(contentCardRowList))
                 //부모 어댑터 지정(수직방향)
-                home_platform_cardList_recyclerview.adapter =
-                    ContentCardListAdapter(context!!, ArrayList(contentCardRowList))
+                home_platform_cardList_recyclerview.adapter = listAdapter
                 home_platform_cardList_recyclerview.adapter!!.notifyDataSetChanged()
 
 
@@ -86,4 +91,6 @@ class HomeRecommendContentsFragment : Fragment() {
             }
         })
     }
+
+
 }

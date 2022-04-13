@@ -1,6 +1,7 @@
 package kr.ac.kpu.oosoosoo.adapters
 
 import android.content.Context
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +47,28 @@ class ContentCardAdapter(context: Context, cardListData: ArrayList<ContentInfo>?
         }
     }
 
+    //리스트에 데이터 추가하는 함수
+    fun addData(contentListData: ArrayList<ContentInfo>?) {
+        this.contentList!!.addAll(contentListData!!)
+        notifyDataSetChanged()
+    }
+
+    // 로딩 아이템 추가 함수
+    fun addLoadingView() {
+        Handler().post {
+            contentList!!.add(ContentInfo())
+            notifyItemInserted(contentList!!.size - 1)
+        }
+    }
+
+    // 로딩 아이템 삭제
+    fun removeLoadingView()  {
+        if (contentList!!.size != 0) {
+            contentList!!.removeAt(contentList!!.size - 1)
+            notifyItemRemoved(contentList!!.size)
+        }
+    }
+
     //출력할 xml파일 지정
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         LayoutInflater.from(parent.context).inflate(
@@ -68,5 +91,13 @@ class ContentCardAdapter(context: Context, cardListData: ArrayList<ContentInfo>?
     }
 
     override fun getItemCount(): Int = contentList!!.size
+
+    override fun getItemViewType(position: Int): Int {
+        return if (contentList!![position] == null) {
+            Constant.VIEW_TYPE_LOADING
+        } else {
+            Constant.VIEW_TYPE_ITEM
+        }
+    }
 
 }

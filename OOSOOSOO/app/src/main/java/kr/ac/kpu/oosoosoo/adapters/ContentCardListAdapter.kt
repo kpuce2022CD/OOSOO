@@ -1,6 +1,7 @@
 package kr.ac.kpu.oosoosoo.adapters
 
 import android.content.Context
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +11,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recy_item_content_row.view.*
 import kr.ac.kpu.oosoosoo.R
+import kr.ac.kpu.oosoosoo.adapters.Constant.VIEW_TYPE_ITEM
+import kr.ac.kpu.oosoosoo.adapters.Constant.VIEW_TYPE_LOADING
+import kr.ac.kpu.oosoosoo.contents.ContentInfo
 import kr.ac.kpu.oosoosoo.home.CardListData
 
 //부모 컨테이너 어댑터
 class ContentCardListAdapter(context: Context, cardRowData: ArrayList<CardListData>?): RecyclerView.Adapter<ContentCardListAdapter.ViewHolder>() {
+
+    lateinit var loadMoreContentCard: ArrayList<ContentInfo?>
+    lateinit var adapter: ContentCardAdapter
+    lateinit var scrollListener: RecyclerViewLoadMoreScroll
+    lateinit var mLayoutManager:RecyclerView.LayoutManager
 
     //출력할 하나의 item List
     private var contentRowList : ArrayList<CardListData> = cardRowData!!
@@ -41,13 +50,34 @@ class ContentCardListAdapter(context: Context, cardRowData: ArrayList<CardListDa
         //layout 파일에 값 출력
         fun bind(result: CardListData, adapter: ContentCardAdapter) {
             itemView.item_row_title.text = result.cardListTitle
-            //자식 어댑터 지정(수평방향)
-            itemView.card_recyclerview.layoutManager = GridLayoutManager(itemView.context, 2,GridLayoutManager.HORIZONTAL,false)
-            itemView.card_recyclerview.adapter = adapter
-            // 슬라이드 버튼 앞으로
-            //itemView.btn_swipe_next.bringToFront()
 
+            mLayoutManager = GridLayoutManager(itemView.context, 2,GridLayoutManager.HORIZONTAL,false)
+            //자식 어댑터 지정(수평방향)
+            itemView.card_recyclerview.layoutManager = mLayoutManager
+            itemView.card_recyclerview.setHasFixedSize(true)
+            itemView.card_recyclerview.adapter = adapter
+            (mLayoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return when (adapter.getItemViewType(position)) {
+                        VIEW_TYPE_ITEM -> 1
+                        VIEW_TYPE_LOADING -> 2
+                        else -> -1
+                    }
+                }
+            }
+
+            scrollListener = RecyclerViewLoadMoreScroll(mLayoutManager as GridLayoutManager)
+            scrollListener.setOnLoadMoreListener(object :
+                OnLoadMoreListener {
+                override fun onLoadMore() {
+                    //LoadMoreData()
+                }
+            })
+
+            itemView.card_recyclerview.addOnScrollListener(scrollListener)
         }
+
+
     }
 
     //출력할 xml파일 지정
@@ -56,14 +86,20 @@ class ContentCardListAdapter(context: Context, cardRowData: ArrayList<CardListDa
             R.layout.recy_item_content_row, parent,
             false
         )
+
     )
 
     //bind 과정
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val contentCardAdapter = ContentCardAdapter(context, contentRowList[position].cardItemList)
         holder.bind(contentRowList[position], contentCardAdapter)
+
+        adapter = contentCardAdapter
     }
 
     override fun getItemCount(): Int = contentRowList.size
 
+    private fun LoadMoreData() {
+
+    }
 }
