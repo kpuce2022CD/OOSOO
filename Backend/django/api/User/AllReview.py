@@ -6,7 +6,7 @@ def AllReview(c_id):
     try:
         cur = connection.cursor()
         use_db_query = "use oosooDB"
-        select_query = f"SELECT * FROM contents_review WHERE c_id = '{c_id}'"
+        select_query = f"SELECT * FROM contents_review WHERE c_id = '{c_id}' ORDER BY _like DESC"
 
         cur.execute(use_db_query)
         cur.execute(select_query)
