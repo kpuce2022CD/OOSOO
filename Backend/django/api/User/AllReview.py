@@ -2,6 +2,14 @@ import sys
 import mariadb
 from django.db import connection
 
+def dictfetchall(cursor):
+    "Return all rows from a cursor as a dict"
+    columns = [col[0] for col in cursor.description]
+    return [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
+
 def AllReview(c_id):
     try:
         cur = connection.cursor()
@@ -10,7 +18,7 @@ def AllReview(c_id):
 
         cur.execute(use_db_query)
         cur.execute(select_query)
-        result = cur.fetchall()
+        select_reviews = dictfetchall(cur)
 
     except mariadb.Error as e:
         print(f"failed: Error connecting to Mariadb: {e}")
@@ -19,4 +27,4 @@ def AllReview(c_id):
 
     connection.close()
 
-    return result
+    return select_reviews
