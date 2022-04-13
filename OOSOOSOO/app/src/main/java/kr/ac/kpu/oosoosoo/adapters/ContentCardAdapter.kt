@@ -47,28 +47,6 @@ class ContentCardAdapter(context: Context, cardListData: ArrayList<ContentInfo>?
         }
     }
 
-    //리스트에 데이터 추가하는 함수
-    fun addData(contentListData: ArrayList<ContentInfo>?) {
-        this.contentList!!.addAll(contentListData!!)
-        notifyDataSetChanged()
-    }
-
-    // 로딩 아이템 추가 함수
-    fun addLoadingView() {
-        Handler().post {
-            contentList!!.add(ContentInfo())
-            notifyItemInserted(contentList!!.size - 1)
-        }
-    }
-
-    // 로딩 아이템 삭제
-    fun removeLoadingView()  {
-        if (contentList!!.size != 0) {
-            contentList!!.removeAt(contentList!!.size - 1)
-            notifyItemRemoved(contentList!!.size)
-        }
-    }
-
     //출력할 xml파일 지정
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         LayoutInflater.from(parent.context).inflate(
@@ -80,25 +58,16 @@ class ContentCardAdapter(context: Context, cardListData: ArrayList<ContentInfo>?
     //bind 과정
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val platformList = ArrayList(contentList!![position].flatrate?.split(','))
-        val contentCardPlatformAdapter = ContentCardPlatformAdapter(context, platformList)
-        if(holder.itemViewType == Constant.VIEW_TYPE_ITEM) {
-            holder.bind(contentList!![position], context, contentCardPlatformAdapter)
-            holder.itemView.setOnClickListener {
-                context.startActivity<ContentDetailActivity>(
-                    "content" to contentList!![position]
-                )
-            }
+        val contentCardPlatformAdapter = ContentCardPlatformAdapter(context, platformList!!)
+        holder.bind(contentList!![position], context, contentCardPlatformAdapter)
+        holder.itemView.setOnClickListener {
+            context.startActivity<ContentDetailActivity>(
+                "content" to contentList!![position]
+            )
         }
+
     }
 
     override fun getItemCount(): Int = contentList!!.size
-
-    override fun getItemViewType(position: Int): Int {
-        return if (contentList!![position] == null) {
-            Constant.VIEW_TYPE_LOADING
-        } else {
-            Constant.VIEW_TYPE_ITEM
-        }
-    }
 
 }
