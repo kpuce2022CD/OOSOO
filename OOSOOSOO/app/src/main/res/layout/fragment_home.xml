@@ -27,8 +27,8 @@
             android:adjustViewBounds="true"
             android:backgroundTint="#FFFFFFFF"
             android:scaleType="fitCenter"
-            android:tint="#222931"
-            app:srcCompat="@android:drawable/ic_input_add" />
+            app:srcCompat="@android:drawable/ic_input_add"
+            app:tint="#222931" />
 
         <ImageButton
             android:id="@+id/btn_home_login"

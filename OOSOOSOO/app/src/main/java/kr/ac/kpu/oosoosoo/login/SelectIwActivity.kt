@@ -51,7 +51,7 @@ class SelectIwActivity : BaseActivity(TransitionMode.HORIZON) {
         }
 
         iw_next_btn.setOnClickListener {
-            startActivity<MainActivity>()
+            startActivity<HomeActivity>()
             finish()
         }
 

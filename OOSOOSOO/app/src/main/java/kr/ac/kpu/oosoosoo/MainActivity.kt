@@ -9,7 +9,7 @@ import org.jetbrains.anko.startActivity
 class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_main)
 
     /* 역할 HomeActivity로 이양함
 
@@ -17,7 +17,7 @@ class MainActivity : BaseActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         val navController = navHostFragment.navController
         nav_view.setupWithNavController(navController)  */
-        startActivity<HomeActivity>()
+        startActivity<IntroAnimationActivity>()
         finish()
     }
 }

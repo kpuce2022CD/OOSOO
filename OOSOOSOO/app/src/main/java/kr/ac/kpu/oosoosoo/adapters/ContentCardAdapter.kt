@@ -81,13 +81,14 @@ class ContentCardAdapter(context: Context, cardListData: ArrayList<ContentInfo>?
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val platformList = ArrayList(contentList!![position].flatrate?.split(','))
         val contentCardPlatformAdapter = ContentCardPlatformAdapter(context, platformList)
-        holder.bind(contentList!![position], context, contentCardPlatformAdapter)
-        holder.itemView.setOnClickListener {
-            context.startActivity<ContentDetailActivity>(
-                "content" to contentList!![position]
-            )
+        if(holder.itemViewType == Constant.VIEW_TYPE_ITEM) {
+            holder.bind(contentList!![position], context, contentCardPlatformAdapter)
+            holder.itemView.setOnClickListener {
+                context.startActivity<ContentDetailActivity>(
+                    "content" to contentList!![position]
+                )
+            }
         }
-
     }
 
     override fun getItemCount(): Int = contentList!!.size

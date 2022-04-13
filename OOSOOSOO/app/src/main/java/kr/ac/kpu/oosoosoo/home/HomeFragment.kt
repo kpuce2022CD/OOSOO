@@ -9,10 +9,8 @@ import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import com.amplifyframework.core.Amplify
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
-import kr.ac.kpu.oosoosoo.MainActivity
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.PagerFragmentStateAdapter
 import kr.ac.kpu.oosoosoo.login.LoginActivity
@@ -23,7 +21,6 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class HomeFragment : Fragment() {
-
 
     private val tabTitleArray = arrayOf(
         "사용자 추천 컨텐츠",

@@ -33,6 +33,7 @@ class IntroAnimationActivity : BaseActivity(TransitionMode.HORIZON) {
                 Amplify.Auth.fetchAuthSession(
                     {
                         if (it.isSignedIn) {
+                            startActivity<HomeActivity>()
                             finish()
                         } else {
                             startActivity<LoginActivity>()

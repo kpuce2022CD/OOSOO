@@ -50,9 +50,9 @@ class ContentCardListAdapter(context: Context, cardRowData: ArrayList<CardListDa
         //layout 파일에 값 출력
         fun bind(result: CardListData, adapter: ContentCardAdapter) {
             itemView.item_row_title.text = result.cardListTitle
-
-            mLayoutManager = GridLayoutManager(itemView.context, 2,GridLayoutManager.HORIZONTAL,false)
             //자식 어댑터 지정(수평방향)
+            mLayoutManager = GridLayoutManager(itemView.context, 2,GridLayoutManager.HORIZONTAL,false)
+
             itemView.card_recyclerview.layoutManager = mLayoutManager
             itemView.card_recyclerview.setHasFixedSize(true)
             itemView.card_recyclerview.adapter = adapter

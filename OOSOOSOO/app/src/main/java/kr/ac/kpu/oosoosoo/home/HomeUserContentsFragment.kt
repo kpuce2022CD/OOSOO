@@ -20,8 +20,6 @@ import retrofit2.Response
 
 class HomeUserContentsFragment : Fragment() {
 
-    var userEmail = Amplify.Auth.currentUser.username
-
     companion object {
         const val ROW_MAX_NUM = 20
     }
@@ -40,8 +38,14 @@ class HomeUserContentsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        var userEmail : String? = null
         var input = HashMap<String, String>()
-        input["email"] = userEmail
+
+        try {
+            userEmail = Amplify.Auth.currentUser.username
+        } finally { }
+
+        input["email"] = userEmail!!
 
         val callWishList = RetrofitBuilder().callUserWishList
         val callWatchingLog = RetrofitBuilder().callUserWatchingLog
@@ -60,6 +64,8 @@ class HomeUserContentsFragment : Fragment() {
             ) {
                 val contents = response.body()
                 Log.d("Load WishList", "$contents")
+
+                contentsArrayList.clear() //초기화
 
                 if (contents != null) {
                     for (content in contents) {
@@ -96,6 +102,8 @@ class HomeUserContentsFragment : Fragment() {
             ) {
                 val contents = response.body()
                 Log.d("Load Watching Log", "$contents")
+
+                contentsArrayList.clear() //초기화
 
                 if (contents != null) {
                     for (content in contents) {
