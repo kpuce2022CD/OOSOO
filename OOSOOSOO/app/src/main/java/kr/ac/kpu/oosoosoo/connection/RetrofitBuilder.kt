@@ -1,6 +1,7 @@
 package kr.ac.kpu.oosoosoo.connection
 
 import kr.ac.kpu.oosoosoo.contents.ContentInfo
+import kr.ac.kpu.oosoosoo.contents.ReviewInfo
 import kr.ac.kpu.oosoosoo.user.UserInfo
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -50,6 +51,7 @@ class RetrofitBuilder {
 
     val callReview = retrofit.create(CallReviewAPI::class.java)
     val deleteReview = retrofit.create(DeleteReviewAPI::class.java)
+    val callAllReview = retrofit.create(CallAllReviewAPI::class.java)
 }
 
 interface ContentsAPI {
@@ -169,4 +171,10 @@ interface DeleteReviewAPI {
     @FormUrlEncoded
     @POST("api/delete_review/")
     fun deleteReview(@FieldMap params: HashMap<String, String>): Call<Boolean>
+}
+
+interface CallAllReviewAPI{
+    @FormUrlEncoded
+    @POST("api/all_review/")
+    fun allReview(@FieldMap params: HashMap<String, String>): Call<ArrayList<ReviewInfo>>
 }
