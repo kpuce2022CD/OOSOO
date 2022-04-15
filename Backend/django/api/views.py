@@ -26,6 +26,7 @@ from api.User.UserInfo import userinfo
 from api.User.CallReview import CallReview
 from api.User.DeleteReview import DeleteReview
 from api.User.AllReview import AllReview
+from api.User.LikeReview import CallReviewLike
 
 
 class ContentsListAPI(APIView):
@@ -407,4 +408,10 @@ class AllReviewAPI(APIView):
     def post(self, request):
         data = request.data
         result = AllReview(data.get('c_id'))
+        return Response(result)
+
+class LikeReviewAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = CallReviewLike(data.get('id'), data.get('_like'), data.get('islike'))
         return Response(result)
