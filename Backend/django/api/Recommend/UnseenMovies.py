@@ -20,6 +20,7 @@ def unseen_movies(email, movies):
     seen_tmdb = seen_contents_df['id'].to_frame()
     seen_tmdb['tmdbId'] = seen_tmdb.id.str.split('_').str[1]
     seen_tmdb = seen_tmdb['tmdbId'].to_frame()
+    seen_tmdb = seen_tmdb.astype({'tmdbId': 'int64'})
     print(seen_tmdb)
 
     movies_tmdb = movies['tmdbId'].to_frame()
