@@ -3,10 +3,9 @@ from api.models import ContentsReview
 import pandas as pd
 
 
-def unseen_movies(email):
+def unseen_movies(email, movies):
     contents_id = list()
 
-    contents = Contents.objects.filter(_type='movie').values()
     review = ContentsReview.objects.filter(u_email=email)
 
     for seen in review:
@@ -15,16 +14,18 @@ def unseen_movies(email):
 
     seen_contents = Contents.objects.filter(id__in=contents_id).values()
 
-    contents_df = pd.DataFrame(list(contents))
     seen_contents_df = pd.DataFrame(list(seen_contents))
     print(seen_contents_df)
 
-    unseen_contents_df = pd.concat([contents_df, seen_contents_df]).drop_duplicates(keep=False)
-    print(unseen_contents_df)
+    seen_tmdb = seen_contents_df['id'].to_frame()
+    seen_tmdb['tmdbId'] = seen_tmdb.id.str.split('_').str[1]
+    seen_tmdb = seen_tmdb['tmdbId'].to_frame()
+    print(seen_tmdb)
 
-    unseen_tmdbid = unseen_contents_df['id'].to_frame()
-    unseen_tmdbid['tmdbId'] = unseen_tmdbid.id.str.split('_').str[1]
-    unseen_tmdbid = unseen_tmdbid['tmdbId'].to_frame()
-    print(unseen_tmdbid)
+    movies_tmdb = movies['tmdbId'].to_frame()
+    print(movies_tmdb)
 
-    return unseen_tmdbid.to_dict('list')['tmdbId']
+    unseen_tmdb = pd.concat([movies_tmdb, seen_tmdb, seen_tmdb]).drop_duplicates(keep=False)
+    print(unseen_tmdb)
+
+    return unseen_tmdb.to_dict('list')['tmdbId']

@@ -427,7 +427,8 @@ class LikeReviewAPI(APIView):
 class UnseenMovieListAPI(APIView):
     def post(self, request):
         data = request.data
-        unseen = unseen_movies(data.get('email'))
+        ratings, movies = load_dataset()
+        unseen = unseen_movies(data.get('email'), movies)
         return Response(unseen)
 
 
@@ -451,9 +452,9 @@ class RecommendAPI(APIView):
 
         algo = load_algo()
         userId = data.get('email')
-        unseen = unseen_movies(userId)
         ratings, movies = load_dataset()
+        unseen = unseen_movies(userId, movies)
 
-        recommend = recommend_movie_list(algo, userId, unseen, movies, 100)
+        recommend = recommend_movie_list(algo, userId, unseen, movies, 20)
 
         return Response(recommend)

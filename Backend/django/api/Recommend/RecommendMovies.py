@@ -22,7 +22,7 @@ def recommend_movie_list(algo, userId, unseen_movies, movies, top_n=10):
 
     for pred in top_predictions:
         tmdb_id = int(pred.iid)
-        movie_title = movies[movies["tmdbId"] == tmdb_id]["title"].tolist()
+        movie_title = movies[movies["tmdbId"] == tmdb_id]["title"].tolist()[0]
         movie_rating = pred.est
 
         print(f"{tmdb_id} - {movie_title}: {movie_rating:.2f}")
