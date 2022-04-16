@@ -15,6 +15,7 @@ import kr.ac.kpu.oosoosoo.BaseActivity
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.connection.NaverHeaderInterceptor
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
+import kr.ac.kpu.oosoosoo.home.HomeActivity
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jetbrains.anko.startActivity
@@ -56,7 +57,7 @@ class LoginActivity : BaseActivity() {
                             { result ->
                                 if (result.isSignInComplete) {
                                     Log.i("AWSAuthQuickstart", "Sign in succeeded")
-                                    startActivity<SelectIwActivity>()
+                                    startActivity<HomeActivity>()
                                 } else {
                                     Log.i("AWSAuthQuickstart", "Sign in not complete")
                                 }
@@ -230,10 +231,10 @@ class LoginActivity : BaseActivity() {
             }
             NaverIdLoginSDK.authenticate(this@LoginActivity, oauthLoginCallback)
         }
-
+        /*네이버 로그아웃 버튼 나중에 로그아웃 페이지에 넣어야됨
         n_logout_btn.setOnClickListener {
             NaverIdLoginSDK.logout()
-        }
+        }*/
 
     }
 }

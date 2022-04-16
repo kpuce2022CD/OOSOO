@@ -8,8 +8,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Kakao" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
@@ -34,33 +33,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae67b715-e87f-4561-a21e-fb516145301b" name="Default Changelist" comment="홈 화면 Interworking 추가 버튼 생성 &amp; 로그인 버튼 아이콘 변경되도록 수정">
-      <change afterPath="$PROJECT_DIR$/../.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Backend/.idea/Backend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Backend/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Backend/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Backend/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Backend/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Backend/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Backend/django/.idea/django.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Backend/django/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Backend/django/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Backend/django/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Backend/django/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Backend/django/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+    <list default="true" id="ae67b715-e87f-4561-a21e-fb516145301b" name="Default Changelist" comment="리뷰 좋아요 기능 안드로이드 코드 추가">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/OOSOO.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/OOSOO.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/login/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kr/ac/kpu/oosoosoo/login/LoginActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\Kim\.android\avd\Pixel_2_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\user\.android\avd\Pixel_4_API_29_Q.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -97,10 +85,12 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Class" />
         <option value="valueResourceFile" />
-        <option value="layoutResourceFile" />
         <option value="resourceFile" />
+        <option value="Kotlin Data Class" />
+        <option value="layoutResourceFile" />
+        <option value="layoutResourceFile_vertical" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -117,13 +107,19 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="VirtualDevicePath@C:\Users\user\.android\avd\Pixel_4_API_29_Q.avd" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2022-03-07T11:40:16.721877700Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Dependencies" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.updates" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -176,31 +172,8 @@
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Hybrid>
+      <option name="DEBUGGER_TYPE" value="Java" />
       <Java />
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Native>
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_PROFILING_ENABLED" value="false" />
@@ -388,7 +361,84 @@
       <option name="project" value="LOCAL" />
       <updated>1646157420411</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="네이버 간편로그인 코드 추가(수정 필요)">
+      <created>1646431472759</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1646431472759</updated>
+    </task>
+    <task id="LOCAL-00025" summary="네이버 간편로그인 코드 수정">
+      <created>1646487353729</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1646487353729</updated>
+    </task>
+    <task id="LOCAL-00026" summary="평가 및 리뷰 안드로이드 코드 추가">
+      <created>1649253999864</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1649253999864</updated>
+    </task>
+    <task id="LOCAL-00027" summary="RatingActivity.kt 코드 수정">
+      <created>1649257200565</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1649257200565</updated>
+    </task>
+    <task id="LOCAL-00028" summary="안드로이드 평가, 리뷰 기능 코드 수정">
+      <created>1649325479578</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1649325479578</updated>
+    </task>
+    <task id="LOCAL-00029" summary="안드로이드 평가, 리뷰 수정1">
+      <created>1649522537403</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1649522537403</updated>
+    </task>
+    <task id="LOCAL-00030" summary="안드로이드 평가, 리뷰 수정2">
+      <created>1649607773897</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1649607773897</updated>
+    </task>
+    <task id="LOCAL-00031" summary="평가, 리뷰 액티비티 다이얼로그로 변경&#10;(예외처리)">
+      <created>1649657793889</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1649657793889</updated>
+    </task>
+    <task id="LOCAL-00032" summary="theme Dialog 추가">
+      <created>1649670381102</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1649670381102</updated>
+    </task>
+    <task id="LOCAL-00033" summary="ContentsDetail에 평가 및 리뷰 코멘트 추가">
+      <created>1649941923967</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1649941923967</updated>
+    </task>
+    <task id="LOCAL-00034" summary="리뷰 좋아요 기능 안드로이드 코드 추가">
+      <created>1649999590386</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1649999590386</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -404,15 +454,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Android Code 재업로드" />
-    <MESSAGE value="Android : ViewPager2 &amp; AdapterView 적용(가변 수량 컨텐츠 출력 가능)" />
-    <MESSAGE value="Android : POST방식 Test(Netflix Wishes)" />
-    <MESSAGE value="Login Activity 생성" />
-    <MESSAGE value="AWS Amplify - Android 연동" />
-    <MESSAGE value="AWS Cognito 회원가입, 이메일 인증 코드 작성" />
-    <MESSAGE value="AWS Cognito 로그인 기능 추가" />
-    <MESSAGE value="Main Theme 변경" />
-    <MESSAGE value="검색 Activity 생성, 컨텐츠 목록 RecyclerView Adapter 생성" />
     <MESSAGE value="Search Test REST API 호출 RetrofitBuilder에 추가" />
     <MESSAGE value="검색 화면 영화 리스트 출력" />
     <MESSAGE value="검색 필터링 spinner 추가" />
@@ -427,12 +468,32 @@
     <MESSAGE value="Home -&gt; 검색 Activity, 로그인 Activity 버튼 이벤트 추가" />
     <MESSAGE value="홈 화면 Interworking 추가 버튼 생성 &amp; 로그인 버튼 아이콘 변경되도록 수정" />
     <MESSAGE value="RetrofitBuilder wishlist, watchinglog 추가 &amp; 검색결과 플랫폼 출력 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="RetrofitBuilder wishlist, watchinglog 추가 &amp; 검색결과 플랫폼 출력 수정" />
+    <MESSAGE value="네이버 간편로그인 코드 추가(수정 필요)" />
+    <MESSAGE value="네이버 간편로그인 코드 수정" />
+    <MESSAGE value="평가 및 리뷰 안드로이드 코드 추가" />
+    <MESSAGE value="RatingActivity.kt 코드 수정" />
+    <MESSAGE value="안드로이드 평가, 리뷰 기능 코드 수정" />
+    <MESSAGE value="안드로이드 평가, 리뷰 수정1" />
+    <MESSAGE value="안드로이드 평가, 리뷰 수정2" />
+    <MESSAGE value="평가, 리뷰 액티비티 다이얼로그로 변경&#10;(예외처리)" />
+    <MESSAGE value="theme Dialog 추가" />
+    <MESSAGE value="ContentsDetail에 평가 및 리뷰 코멘트 추가" />
+    <MESSAGE value="리뷰 좋아요 기능 안드로이드 코드 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="리뷰 좋아요 기능 안드로이드 코드 추가" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1136" y="239" key="#com.intellij.ide.util.MemberChooser" timestamp="1646034864945">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="436" y="252" key="#PSD" timestamp="1646378429316">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="436" y="252" key="#PSD/0.0.1536.824@0.0.1536.824" timestamp="1646378429316" />
+    <state x="499" y="167" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1649250857165">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="167" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1649250857165" />
+    <state x="909" y="189" key="#com.intellij.ide.util.MemberChooser" timestamp="1649844582343">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="909" y="189" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1649844582343" />
     <state x="1136" y="239" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/0.1080.1280.760@0.0.1920.1040" timestamp="1646034864945" />
     <state x="1136" y="239" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1646030575229" />
     <state x="1120" y="312" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1645518442024">
@@ -443,49 +504,61 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="275" y="131" width="1234" height="748" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1645791281441" />
-    <state x="790" y="278" key="AndroidCreateResourceFileDialog" timestamp="1645793745874">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="592" y="294" key="AndroidCreateResourceFileDialog" timestamp="1649939436433">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="592" y="294" key="AndroidCreateResourceFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1649939436433" />
     <state x="790" y="278" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1645793745874" />
-    <state x="574" y="124" width="1234" height="748" key="DiffContextDialog" timestamp="1645719928037">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="459" y="98" width="988" height="593" key="DiffContextDialog" timestamp="1649936383096">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="459" y="98" width="988" height="593" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1649936383096" />
     <state x="574" y="124" width="1234" height="748" key="DiffContextDialog/0.0.1920.1040/0.1080.1280.760@0.0.1920.1040" timestamp="1645719928037" />
     <state x="830" y="223" key="FileChooserDialogImpl" timestamp="1646155153711">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="830" y="223" key="FileChooserDialogImpl/0.0.1920.1040/0.1080.1280.760@0.0.1920.1040" timestamp="1646155153711" />
-    <state width="1064" height="280" key="GridCell.Tab.0.bottom" timestamp="1646374890502">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="73" key="GridCell.Tab.0.bottom" timestamp="1650123012026">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state width="1493" height="73" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1650123012026" />
     <state width="1488" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040/0.1080.1280.760@0.0.1920.1040" timestamp="1646157436595" />
     <state width="1877" height="252" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.800.1240@0.0.1920.1040" timestamp="1645091311067" />
     <state width="1064" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1646374890502" />
-    <state width="1064" height="280" key="GridCell.Tab.0.center" timestamp="1646374890502">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="73" key="GridCell.Tab.0.center" timestamp="1650123012025">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state width="1493" height="73" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1650123012025" />
     <state width="1488" height="279" key="GridCell.Tab.0.center/0.0.1920.1040/0.1080.1280.760@0.0.1920.1040" timestamp="1646157436595" />
     <state width="1877" height="252" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.800.1240@0.0.1920.1040" timestamp="1645091311067" />
     <state width="1064" height="280" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1646374890502" />
-    <state width="1064" height="280" key="GridCell.Tab.0.left" timestamp="1646374890502">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="73" key="GridCell.Tab.0.left" timestamp="1650123012025">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state width="1493" height="73" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1650123012025" />
     <state width="1488" height="279" key="GridCell.Tab.0.left/0.0.1920.1040/0.1080.1280.760@0.0.1920.1040" timestamp="1646157436595" />
     <state width="1877" height="252" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.800.1240@0.0.1920.1040" timestamp="1645091311067" />
     <state width="1064" height="280" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1646374890502" />
-    <state width="1064" height="280" key="GridCell.Tab.0.right" timestamp="1646374890502">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="73" key="GridCell.Tab.0.right" timestamp="1650123012026">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state width="1493" height="73" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1650123012026" />
     <state width="1488" height="279" key="GridCell.Tab.0.right/0.0.1920.1040/0.1080.1280.760@0.0.1920.1040" timestamp="1646157436595" />
     <state width="1877" height="252" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.800.1240@0.0.1920.1040" timestamp="1645091311067" />
     <state width="1064" height="280" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1646374890502" />
-    <state x="141" y="70" key="MergeDialog" timestamp="1644330855021">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="113" y="55" key="MergeDialog" timestamp="1646462475142">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="113" y="55" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1646462475142" />
     <state x="141" y="70" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1644330855021" />
-    <state x="472" y="208" key="Vcs.Push.Dialog.v2" timestamp="1646157425152">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="277" y="57" key="SettingsEditor" timestamp="1649936083185">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1649936083185" />
+    <state x="378" y="165" key="Vcs.Push.Dialog.v2" timestamp="1649999595161">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="378" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1649999595161" />
     <state x="472" y="208" key="Vcs.Push.Dialog.v2/0.0.1920.1040/0.1080.1280.760@0.0.1920.1040" timestamp="1646157425152" />
     <state x="439" y="196" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.800.1240@0.0.1920.1040" timestamp="1645091373360" />
     <state x="467" y="210" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1646128153640" />
@@ -497,5 +570,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1027" y="404" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1644219378388" />
+    <state x="762" y="0" width="781" height="830" key="dock-window-1" timestamp="1649938332245">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="762" y="0" width="781" height="830" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1649938332245" />
+    <state x="762" y="0" width="781" height="830" key="dock-window-2" timestamp="1649994375719">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="762" y="0" width="781" height="830" key="dock-window-2/0.0.1536.824@0.0.1536.824" timestamp="1649994375719" />
+    <state x="370" y="20" width="922" height="804" key="find.popup" timestamp="1650120813487">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="370" y="20" width="922" height="804" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1650120813487" />
+    <state x="430" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1649843349478">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="430" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1649843349478" />
   </component>
 </project>
