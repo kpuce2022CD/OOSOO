@@ -62,4 +62,9 @@ urlpatterns = [
     path('call_review/', CallReviewAPI.as_view()),
     path('all_review/', AllReviewAPI.as_view()),
     path('like_review/', LikeReviewAPI.as_view()),
+
+    path('unseen_movies/', UnseenMovieListAPI.as_view()),
+    path('load_algo/', LoadAlgoAPI.as_view()),
+    path('load_dataset/', LoadDatasetAPI.as_view()),
+    path('recommend/', RecommendAPI.as_view()),
 ]

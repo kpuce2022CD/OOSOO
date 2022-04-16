@@ -27,6 +27,10 @@ from api.User.CallReview import CallReview
 from api.User.DeleteReview import DeleteReview
 from api.User.AllReview import AllReview
 from api.User.LikeReview import CallReviewLike
+from api.Recommend.UnseenMovies import unseen_movies
+from api.Recommend.LoadAlgo import load_algo
+from api.Recommend.LoadDataset import load_dataset
+from api.Recommend.RecommendMovies import recommend_movie_list
 
 
 class ContentsListAPI(APIView):
@@ -398,11 +402,13 @@ class CallReviewAPI(APIView):
         result = CallReview(data.get('c_id'), data.get('u_email'))
         return Response(result)
 
+
 class DeleteReviewAPI(APIView):
     def post(self, request):
         data = request.data
         result = DeleteReview(data.get('c_id'), data.get('u_email'))
         return Response(result)
+
 
 class AllReviewAPI(APIView):
     def post(self, request):
@@ -410,8 +416,44 @@ class AllReviewAPI(APIView):
         result = AllReview(data.get('c_id'))
         return Response(result)
 
+
 class LikeReviewAPI(APIView):
     def post(self, request):
         data = request.data
         result = CallReviewLike(data.get('id'), data.get('_like'), data.get('islike'))
         return Response(result)
+
+
+class UnseenMovieListAPI(APIView):
+    def post(self, request):
+        data = request.data
+        unseen = unseen_movies(data.get('email'))
+        return Response(unseen)
+
+
+class LoadAlgoAPI(APIView):
+    def post(self, request):
+        data = request.data
+        algo = load_algo()
+        return Response(algo)
+
+
+class LoadDatasetAPI(APIView):
+    def post(self, request):
+        data = request.data
+        ratings, movies = load_dataset()
+        return Response(movies)
+
+
+class RecommendAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        algo = load_algo()
+        userId = data.get('email')
+        unseen = unseen_movies(userId)
+        ratings, movies = load_dataset()
+
+        recommend = recommend_movie_list(algo, userId, unseen, movies, 100)
+
+        return Response(recommend)
