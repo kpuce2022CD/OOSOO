@@ -1,3 +1,4 @@
+from api.models import Contents
 
 
 def recommend_movie_list(algo, userId, unseen_movies, movies, top_n=10):
@@ -26,6 +27,10 @@ def recommend_movie_list(algo, userId, unseen_movies, movies, top_n=10):
         movie_rating = pred.est
 
         print(f"{tmdb_id} - {movie_title}: {movie_rating:.2f}")
-        recommend_list.append({'tmdbId': tmdb_id, 'title': movie_title, 'est_rating': movie_rating})
+
+        db_cid = 'm_' + str(tmdb_id)
+        content = Contents.objects.filter(id=db_cid).values()
+
+        recommend_list.append({'recommend': content, 'est_rating': movie_rating})
 
     return recommend_list
