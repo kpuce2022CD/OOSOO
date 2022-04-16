@@ -41,7 +41,7 @@ class HomeRecommendContentsFragment : Fragment() {
         val contentsArrayList : MutableList<ContentInfo> = ArrayList() //모든 컨텐츠 리스트
         val contentCardRowList : MutableList<CardListData> = ArrayList()//한 행의 컨텐츠 리스트
 
-        home_platform_cardList_recyclerview.layoutManager =
+        home_recommend_cardList_recyclerview.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
         /* [로직 요약]
@@ -80,8 +80,8 @@ class HomeRecommendContentsFragment : Fragment() {
 
                 listAdapter = ContentCardListAdapter(context!!, ArrayList(contentCardRowList))
                 //부모 어댑터 지정(수직방향)
-                home_platform_cardList_recyclerview.adapter = listAdapter
-                home_platform_cardList_recyclerview.adapter!!.notifyDataSetChanged()
+                home_recommend_cardList_recyclerview.adapter = listAdapter
+                home_recommend_cardList_recyclerview.adapter!!.notifyDataSetChanged()
 
 
             }

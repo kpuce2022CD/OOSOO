@@ -52,46 +52,8 @@ class HomeUserContentsFragment : Fragment() {
         val contentsArrayList : MutableList<ContentInfo> = ArrayList() //모든 컨텐츠 리스트
         val contentCardRowList : MutableList<CardListData> = ArrayList() //한 행의 컨텐츠 리스트
 
-        home_genre_cardList_recyclerview.layoutManager =
+        home_usercontent_cardList_recyclerview.layoutManager =
             LinearLayoutManager(activity, GridLayoutManager.VERTICAL, false)
-
-        //찜목록 출력 api
-        callWishList.getWishList(input).enqueue(object : Callback<List<ContentInfo>> {
-
-            override fun onResponse(
-                call: Call<List<ContentInfo>>,
-                response: Response<List<ContentInfo>>
-            ) {
-                val contents = response.body()
-                Log.d("Load WishList", "$contents")
-
-                contentsArrayList.clear() //초기화
-
-                if (contents != null) {
-                    for (content in contents) {
-                        //Log.d("User Wishlist Contents", content.toString())
-                        contentsArrayList.add(content)   //Contents 리스트 셋팅
-                    }
-                }
-
-                //for(contentsRow in contentsArrayList.chunked(ROW_MAX_NUM)) { : 정해진 갯수만큼 나누기
-                contentCardRowList.add(
-                    CardListData(
-                        "${userEmail}의 찜목록",
-                        ArrayList(contentsArrayList)
-                    )
-                )
-
-                //부모 어댑터 지정(수직방향)
-                home_genre_cardList_recyclerview.adapter =
-                    ContentCardListAdapter(context!!, ArrayList(contentCardRowList))
-                home_genre_cardList_recyclerview.adapter!!.notifyDataSetChanged()
-            }
-
-            override fun onFailure(call: Call<List<ContentInfo>>, t: Throwable) {
-                Log.d("home_genre_contents", t.message.toString())
-            }
-        })
 
         //시청목록 출력 api
         callWatchingLog.getWatchingLog(input).enqueue(object : Callback<List<ContentInfo>> {
@@ -121,9 +83,9 @@ class HomeUserContentsFragment : Fragment() {
                 )
 
                 //부모 어댑터 지정(수직방향)
-                home_genre_cardList_recyclerview.adapter =
+                home_usercontent_cardList_recyclerview.adapter =
                     ContentCardListAdapter(context!!, ArrayList(contentCardRowList))
-                home_genre_cardList_recyclerview.adapter!!.notifyDataSetChanged()
+                home_usercontent_cardList_recyclerview.adapter!!.notifyDataSetChanged()
             }
 
             override fun onFailure(call: Call<List<ContentInfo>>, t: Throwable) {
@@ -131,42 +93,45 @@ class HomeUserContentsFragment : Fragment() {
             }
         })
 
-        /*단순 출력 테스트 코드
-        call.getSearchTest().enqueue(object : Callback<List<ContentInfo>> {
+        //찜목록 출력 api
+        callWishList.getWishList(input).enqueue(object : Callback<List<ContentInfo>> {
 
             override fun onResponse(
                 call: Call<List<ContentInfo>>,
                 response: Response<List<ContentInfo>>
             ) {
                 val contents = response.body()
-                var movieIndex = 1
-                Log.d("home_genre_contents", "통신 성공")
+                Log.d("Load WishList", "$contents")
+
+                contentsArrayList.clear() //초기화
 
                 if (contents != null) {
                     for (content in contents) {
-                        Log.d("home_genre_contents", content.toString())
+                        //Log.d("User Wishlist Contents", content.toString())
                         contentsArrayList.add(content)   //Contents 리스트 셋팅
                     }
                 }
 
-                for(contentsRow in contentsArrayList.chunked(ROW_MAX_NUM)) {
-                    contentCardRowList.add(
-                        CardListData(
-                            "Movie ${movieIndex++}",
-                            ArrayList(contentsRow)
-                        )
+                //for(contentsRow in contentsArrayList.chunked(ROW_MAX_NUM)) { : 정해진 갯수만큼 나누기
+                contentCardRowList.add(
+                    CardListData(
+                        "${userEmail}의 찜목록",
+                        ArrayList(contentsArrayList)
                     )
-                }
+                )
+
                 //부모 어댑터 지정(수직방향)
-                home_genre_cardList_recyclerview.adapter =
+                home_usercontent_cardList_recyclerview.adapter =
                     ContentCardListAdapter(context!!, ArrayList(contentCardRowList))
-                home_genre_cardList_recyclerview.adapter!!.notifyDataSetChanged()
+                home_usercontent_cardList_recyclerview.adapter!!.notifyDataSetChanged()
             }
 
             override fun onFailure(call: Call<List<ContentInfo>>, t: Throwable) {
                 Log.d("home_genre_contents", t.message.toString())
             }
-        })*/
+        })
+
+
 
     }
 
