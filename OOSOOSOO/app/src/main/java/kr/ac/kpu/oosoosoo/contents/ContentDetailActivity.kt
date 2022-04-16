@@ -7,7 +7,9 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.amplifyframework.core.Amplify
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_content_detail.*
@@ -31,7 +33,9 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
         // ContentInfo 인텐트 받아오기
         val contentInfo = intent.getSerializableExtra("content") as ContentInfo
 
-        val call = RetrofitBuilder().callReview  //Retrofit Call
+        val call = RetrofitBuilder().callReview  // 유저가 쓴 해당 컨텐츠에 대한 리뷰 Retrofit Call
+        
+        val callReview = RetrofitBuilder().callAllReview  // 해당 컨텐츠에 대한 모든 리뷰 Retrofit Call
 
         var myRating = 0.0f
         var myReview = ""
@@ -79,7 +83,7 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
                     val body: List<String>? = response.body()
                     Log.d("review", "통신 성공")
 
-                    if (body!!.isEmpty()) { //빈 리스트로 뜸
+                    if (body!!.isEmpty()) { //빈 리스트로 뜬다면
                         tv_my_rating.text = "내 평점 없음"
                     } else {
                         myRating = body[1].toFloat()
@@ -91,6 +95,33 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
                     }
                 }
             })
+            
+            // 컨텐츠에 달린 리뷰들 서버에 요청해서 모두 불러오기
+            var input2 = HashMap<String, String>()
+            input2["c_id"] = contentInfo.id.toString()
+            callReview.allReview(input2).enqueue(object : Callback<ArrayList<ReviewInfo>>{
+                override fun onFailure(call: Call<ArrayList<ReviewInfo>>, t: Throwable) {
+                    tv_review_title.text = "${t.message.toString()}"
+                    Log.d("review", "모든 리뷰 요청 실패" + t.message.toString())
+                }
+                override fun onResponse(call: Call<ArrayList<ReviewInfo>>, response: Response<ArrayList<ReviewInfo>>) {
+                    val reviewList : ArrayList<ReviewInfo> = response.body() as ArrayList<ReviewInfo>
+                    Log.d("review", reviewList.toString())
+                    if (reviewList!!.isEmpty()){
+                        tv_review_title.text = "리뷰 없음"
+                    } else {
+                        tv_review_title.text = "${contentInfo.title}에 대한 모든 리뷰"
+                        //ContentsReviewAdapter(this@ContentDetailActivity, reviewList)
+                        var adt = ContentsReviewAdapter(this@ContentDetailActivity,reviewList)
+                        var manager01 = LinearLayoutManager(this@ContentDetailActivity,LinearLayoutManager.HORIZONTAL,false)
+                        var rv = card_review_recyclerview.apply{
+                            adapter = adt
+                            layoutManager = manager01
+                        }
+                    }
+                }
+            })
+        
 
             // Overview
             val overview = contentInfo.overview?.split(". ")

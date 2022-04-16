@@ -33,9 +33,8 @@ class RatingActivity : Activity() {
         edt_review.setText(intent.getStringExtra("review"))
         val review_isExist = intent.getBooleanExtra("isExist", false)
         if(review_isExist == true){
-            btn_rating.setEnabled(false)
-            edt_review.setEnabled(false)
             tv_rating_result.text = "이미 작성한 리뷰가 있습니다."
+            btn_rating.text = "평가 수정하기"
         }
 
         ratingBar.rating = rating_point / 2
