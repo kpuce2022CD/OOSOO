@@ -35,6 +35,8 @@
             android:name=".contents.RatingActivity"
             android:theme="@style/Theme.OOSOOSOO.Dialog" />
         <activity
+            android:name=".user.UserReviewActivity"/>
+        <activity
             android:name=".home.HomeActivity"
             android:exported="false" />
         <activity

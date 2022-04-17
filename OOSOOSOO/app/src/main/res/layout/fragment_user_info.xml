@@ -63,6 +63,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="돌아가기" />
+
+        <Button
+            android:id="@+id/btn_myReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="내 리뷰 보기" />
     </LinearLayout>
 
 

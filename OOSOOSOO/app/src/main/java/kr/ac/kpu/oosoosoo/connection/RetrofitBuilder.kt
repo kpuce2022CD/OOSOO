@@ -1,6 +1,7 @@
 package kr.ac.kpu.oosoosoo.connection
 
 import kr.ac.kpu.oosoosoo.contents.ContentInfo
+import kr.ac.kpu.oosoosoo.contents.ContentsReviewInfo
 import kr.ac.kpu.oosoosoo.contents.RecommendContentInfo
 import kr.ac.kpu.oosoosoo.contents.ReviewInfo
 import kr.ac.kpu.oosoosoo.user.UserInfo
@@ -45,6 +46,7 @@ class RetrofitBuilder {
     val deleteReview = retrofit.create(DeleteReviewAPI::class.java)
     val callAllReview = retrofit.create(CallAllReviewAPI::class.java)
     val likeReview = retrofit.create(LikeReviewAPI::class.java)
+    val myReview = retrofit.create(MyReviewAPI::class.java)
 }
 
 interface RecommendContentsAPI {
@@ -129,4 +131,10 @@ interface LikeReviewAPI {
     @FormUrlEncoded
     @POST("api/like_review/")
     fun likeReview(@FieldMap params: HashMap<String, String>): Call<Boolean>
+}
+
+interface MyReviewAPI{
+    @FormUrlEncoded
+    @POST("api/my_review/")
+    fun myReview(@FieldMap params: HashMap<String, String>): Call<ArrayList<ContentsReviewInfo>>
 }

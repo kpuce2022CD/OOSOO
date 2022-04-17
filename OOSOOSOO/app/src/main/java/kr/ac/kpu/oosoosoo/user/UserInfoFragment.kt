@@ -13,6 +13,7 @@ import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import kr.ac.kpu.oosoosoo.home.HomeActivity
 import kr.ac.kpu.oosoosoo.home.HomeFragment
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +36,11 @@ class UserInfoFragment : Fragment() {
             homeActivity.removeFragment(this)
             homeActivity.replaceFragment(HomeFragment())
         }
+
+        view.btn_myReview.setOnClickListener {
+            requireContext().startActivity<UserReviewActivity>()
+        }
+
         return view
     }
 
