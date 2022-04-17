@@ -31,6 +31,7 @@ from api.Recommend.UnseenMovies import unseen_movies
 from api.Recommend.LoadAlgo import load_algo
 from api.Recommend.LoadDataset import load_dataset
 from api.Recommend.RecommendMovies import recommend_movie_list
+from api.User.MyReview import MyReview
 
 
 class ContentsListAPI(APIView):
@@ -436,3 +437,9 @@ class RecommendAPI(APIView):
         recommend = recommend_movie_list(algo, userId, unseen, movies, 200)
 
         return Response(recommend)
+
+class MyReviewAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = MyReview(data.get('u_email'))
+        return Response(result)
