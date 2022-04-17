@@ -1,30 +1,13 @@
-import sys
-import mariadb
-from django.db import connection
+from api.models import Contents
+from api.models import ContentsReview
 
-def dictfetchall(cursor):
-    "Return all rows from a cursor as a dict"
-    columns = [col[0] for col in cursor.description]
-    return [
-        dict(zip(columns, row))
-        for row in cursor.fetchall()
-    ]
+def MyReview(email):
+    list_review = list()
 
-def MyReview(u_email):
-    try:
-        cur = connection.cursor()
-        use_db_query = "use oosooDB"
-        select_query = f"SELECT * FROM contents_review WHERE u_email = '{u_email}' ORDER BY _datetime DESC"
+    review = ContentsReview.objects.filter(u_email=email).values()
 
-        cur.execute(use_db_query)
-        cur.execute(select_query)
-        my_reviews = dictfetchall(cur)
+    for re in review:
+        content = Contents.objects.filter(id=re['c_id_id']).values()
+        list_review.append({'review': re, 'title': content})
 
-    except mariadb.Error as e:
-        print(f"failed: Error connecting to Mariadb: {e}")
-        sys.exit(1)
-        my_reviews = []
-
-    connection.close()
-
-    return my_reviews
+    return list_review

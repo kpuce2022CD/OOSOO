@@ -438,8 +438,9 @@ class RecommendAPI(APIView):
 
         return Response(recommend)
 
+
 class MyReviewAPI(APIView):
     def post(self, request):
         data = request.data
-        result = MyReview(data.get('u_email'))
+        result = MyReview(data.get('email'))
         return Response(result)
