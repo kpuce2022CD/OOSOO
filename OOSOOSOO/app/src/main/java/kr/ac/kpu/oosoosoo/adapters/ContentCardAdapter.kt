@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.recy_item_content_card.view.*
 import kr.ac.kpu.oosoosoo.R
-import kr.ac.kpu.oosoosoo.adapters.Constant.VIEW_TYPE_ITEM
-import kr.ac.kpu.oosoosoo.adapters.Constant.VIEW_TYPE_LOADING
 import kr.ac.kpu.oosoosoo.contents.ContentDetailActivity
 import kr.ac.kpu.oosoosoo.contents.ContentInfo
 import org.jetbrains.anko.startActivity

@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_home_user_contents.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.ContentCardListAdapter
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
+import kr.ac.kpu.oosoosoo.contents.CardListData
 import kr.ac.kpu.oosoosoo.contents.ContentInfo
 import retrofit2.Call
 import retrofit2.Callback
@@ -84,12 +85,12 @@ class HomeUserContentsFragment : Fragment() {
 
                 //부모 어댑터 지정(수직방향)
                 home_usercontent_cardList_recyclerview.adapter =
-                    ContentCardListAdapter(context!!, ArrayList(contentCardRowList))
+                    ContentCardListAdapter(context!!, ArrayList(contentCardRowList),spanCount = 2)
                 home_usercontent_cardList_recyclerview.adapter!!.notifyDataSetChanged()
             }
 
             override fun onFailure(call: Call<List<ContentInfo>>, t: Throwable) {
-                Log.d("home_genre_contents", t.message.toString())
+                Log.d("home_user_contents", t.message.toString())
             }
         })
 
@@ -127,12 +128,11 @@ class HomeUserContentsFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<ContentInfo>>, t: Throwable) {
-                Log.d("home_genre_contents", t.message.toString())
+                Log.d("home_user_contents", t.message.toString())
             }
         })
 
 
 
     }
-
 }
