@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.fragment_home_recommend_contents.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.ContentCardListAdapter
@@ -14,6 +15,7 @@ import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import kr.ac.kpu.oosoosoo.contents.CardListData
 import kr.ac.kpu.oosoosoo.contents.ContentInfo
 import kr.ac.kpu.oosoosoo.contents.ContentListDetailActivity
+import kr.ac.kpu.oosoosoo.contents.RecommendContentInfo
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,7 +26,7 @@ class HomeRecommendContentsFragment : Fragment() {
     val contentCardRowList : MutableList<CardListData> = ArrayList()//한 행의 컨텐츠 리스트
 
     companion object {
-        const val ROW_MAX_NUM = 100
+        const val ROW_MAX_NUM = 20
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,34 +43,33 @@ class HomeRecommendContentsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val call = RetrofitBuilder().callSearchTest
+        val call = RetrofitBuilder().callRecommendContents
         var listAdapter : ContentCardListAdapter
 
 
         home_recommend_cardList_recyclerview.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
-        /* [로직 요약]
-         1. contentsArrayList에 모든 컨텐츠 저장
-         2. 1줄에 20개씩 분할
-         3. for문을 통해 CardListData 생성 후 RowList에 추가
-         4. 어댑터 지정
-         */
-        call.getSearchTest().enqueue(object : Callback<List<ContentInfo>> {
+        var input = HashMap<String, String>()
+        input["email"] = Amplify.Auth.currentUser.username
 
+        //추천된 컨텐츠 출력
+        call.getRecommendContents(input).enqueue(object : Callback<List<RecommendContentInfo>> {
             override fun onResponse(
-                call: Call<List<ContentInfo>>,
-                response: Response<List<ContentInfo>>
+                call: Call<List<RecommendContentInfo>>,
+                response: Response<List<RecommendContentInfo>>
             ) {
-                val contents = response.body()
+                val recommenededContentsList = response.body()
                 var movieIndex = 1
                 Log.d("home_recommend_contents", "통신 성공")
-
-                if (contents != null) {
-                    for (content in contents) {
-                        Log.d("home_recommend_contents", content.toString())
-                        contentsArrayList.add(content)   //Contents 리스트 셋팅
-
+                Log.d("home_recommend_contents", recommenededContentsList.toString())
+                if (recommenededContentsList != null) {
+                    for (recommendedContent in recommenededContentsList) {
+                        if(recommendedContent.recommend!!.isEmpty()) continue
+                        else {
+                            Log.d("home_recommend_contents", recommendedContent.toString())
+                            contentsArrayList.add(recommendedContent.recommend!![0])   //Contents 리스트 셋팅
+                        }
                     }
                 }
 
@@ -90,7 +91,7 @@ class HomeRecommendContentsFragment : Fragment() {
 
             }
 
-            override fun onFailure(call: Call<List<ContentInfo>>, t: Throwable) {
+            override fun onFailure(call: Call<List<RecommendContentInfo>>, t: Throwable) {
                 Log.d("home_recommend_contents", t.message.toString())
             }
         })

@@ -1,14 +1,11 @@
 package kr.ac.kpu.oosoosoo.contents
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amplifyframework.core.Amplify
 import com.bumptech.glide.Glide
@@ -16,11 +13,9 @@ import kotlinx.android.synthetic.main.activity_content_detail.*
 import kotlinx.android.synthetic.main.activity_rating.*
 import kotlinx.android.synthetic.main.activity_select_interworking.*
 import kr.ac.kpu.oosoosoo.BaseActivity
-import kr.ac.kpu.oosoosoo.MainActivity
 import kr.ac.kpu.oosoosoo.R
+import kr.ac.kpu.oosoosoo.adapters.ContentsReviewAdapter
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
-import kr.ac.kpu.oosoosoo.login.InterworkingActivity
-import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

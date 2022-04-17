@@ -1,4 +1,4 @@
-package kr.ac.kpu.oosoosoo.contents
+package kr.ac.kpu.oosoosoo.adapters
 
 import android.content.Context
 import android.util.Log
@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recy_item_review_card.view.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
+import kr.ac.kpu.oosoosoo.contents.ReviewInfo
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

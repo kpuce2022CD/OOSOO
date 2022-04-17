@@ -1,6 +1,7 @@
 package kr.ac.kpu.oosoosoo.connection
 
 import kr.ac.kpu.oosoosoo.contents.ContentInfo
+import kr.ac.kpu.oosoosoo.contents.RecommendContentInfo
 import kr.ac.kpu.oosoosoo.contents.ReviewInfo
 import kr.ac.kpu.oosoosoo.user.UserInfo
 import okhttp3.OkHttpClient
@@ -25,16 +26,7 @@ class RetrofitBuilder {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-
-    val callContents = retrofit.create(ContentsAPI::class.java)
-    val callNetflixWishes = retrofit.create(NetflixWishAPI::class.java)
-    val callNetflixWatching = retrofit.create(NetflixWatchingAPI::class.java)
-    val callNetflixAddWish = retrofit.create(NetflixAddWishAPI::class.java)
-    val callWatchaWishes = retrofit.create(WatchaWishAPI::class.java)
-    val callWatchaWatching = retrofit.create(WatchaWatchingAPI::class.java)
-    val callWatchaAddWish = retrofit.create(WatchaAddWishAPI::class.java)
-    val callWavveWishes = retrofit.create(WavveWishAPI::class.java)
-    val callWavveWatching = retrofit.create(WavveWatchingAPI::class.java)
+    val callRecommendContents = retrofit.create(RecommendContentsAPI::class.java)
     val callLogin = retrofit.create(SignInAPI::class.java)
     val callSignUp = retrofit.create(SignUpAPI::class.java)
     val callInterworking = retrofit.create(InterworkingAPI::class.java)
@@ -55,57 +47,10 @@ class RetrofitBuilder {
     val likeReview = retrofit.create(LikeReviewAPI::class.java)
 }
 
-interface ContentsAPI {
-    @GET("api/contents/")
-    fun getContentInfo(): Call<List<ContentInfo>>
-}
-
-interface NetflixWishAPI {
+interface RecommendContentsAPI {
     @FormUrlEncoded
-    @POST("api/n_wishes/")
-    fun getNetflixWishes(@FieldMap params: HashMap<String, String>): Call<List<String>>
-}
-
-interface NetflixWatchingAPI {
-    @FormUrlEncoded
-    @POST("api/n_watchings/")
-    fun getNetflixWatching(@FieldMap params: HashMap<String, String>): Call<List<String>>
-}
-
-interface NetflixAddWishAPI {
-    @FormUrlEncoded
-    @POST("api/n_addwish/")
-    fun getNetflixAddWish(@FieldMap params: HashMap<String, String>): Call<String>
-}
-
-interface WatchaWishAPI {
-    @FormUrlEncoded
-    @POST("api/w_wishes/")
-    fun getWatchaWishes(@FieldMap params: HashMap<String, String>): Call<List<String>>
-}
-
-interface WatchaWatchingAPI {
-    @FormUrlEncoded
-    @POST("api/w_watchings/")
-    fun getWatchaWatching(@FieldMap params: HashMap<String, String>): Call<List<String>>
-}
-
-interface WatchaAddWishAPI {
-    @FormUrlEncoded
-    @POST("api/w_addwish/")
-    fun getWatchaAddWish(@FieldMap params: HashMap<String, String>): Call<String>
-}
-
-interface WavveWishAPI {
-    @FormUrlEncoded
-    @POST("api/wav_wishes/")
-    fun getWavveWishes(@FieldMap params: HashMap<String, String>): Call<List<String>>
-}
-
-interface WavveWatchingAPI {
-    @FormUrlEncoded
-    @POST("api/wav_watchings/")
-    fun getWavveWatching(@FieldMap params: HashMap<String, String>): Call<List<String>>
+    @POST("api/recommend/")
+    fun getRecommendContents(@FieldMap params: HashMap<String, String>): Call<List<RecommendContentInfo>>
 }
 
 interface SignInAPI {
