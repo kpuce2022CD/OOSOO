@@ -8,6 +8,7 @@ def MyReview(email):
 
     for re in review:
         content = Contents.objects.filter(id=re['c_id_id']).values()
-        list_review.append({'review': re, 'title': content})
+        for cont in content:
+            list_review.append({'review': re, 'contents': cont})
 
     return list_review
