@@ -1,6 +1,4 @@
-package kr.ac.kpu.oosoosoo.home
-
-import kr.ac.kpu.oosoosoo.contents.ContentInfo
+package kr.ac.kpu.oosoosoo.contents
 
 data class CardListData(
     var cardListTitle: String?,
