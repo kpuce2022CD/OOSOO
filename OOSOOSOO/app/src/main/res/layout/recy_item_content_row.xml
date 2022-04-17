@@ -23,19 +23,15 @@
             android:textColor="@color/black"
             android:textSize="18sp" />
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
         <TextView
             android:id="@+id/item_row_view_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:lines="1"
-            android:text="전체보기"
-            android:textColor="@android:color/holo_blue_light" />
+            android:padding="4dp"
+            android:text="전체보기 >"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="12sp" />
 
     </LinearLayout>
 
