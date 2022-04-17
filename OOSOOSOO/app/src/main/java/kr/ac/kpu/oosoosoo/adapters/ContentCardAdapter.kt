@@ -1,7 +1,6 @@
 package kr.ac.kpu.oosoosoo.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +45,8 @@ class ContentCardAdapter(context: Context, cardListData: ArrayList<ContentInfo>?
             //플랫폼 어댑터 지정(수평방향)
             itemView.platform_recyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL,false)
             itemView.platform_recyclerview.adapter = adapter
+
+
         }
     }
 

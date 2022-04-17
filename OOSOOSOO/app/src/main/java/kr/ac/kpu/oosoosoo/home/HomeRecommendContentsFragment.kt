@@ -82,7 +82,7 @@ class HomeRecommendContentsFragment : Fragment() {
                     )
                 }
 
-                listAdapter = ContentCardListAdapter(context!!, ArrayList(contentCardRowList))
+                listAdapter = ContentCardListAdapter(context!!, ArrayList(contentCardRowList), spanCount = 1)
                 //부모 어댑터 지정(수직방향)
                 home_recommend_cardList_recyclerview.adapter = listAdapter
                 home_recommend_cardList_recyclerview.adapter!!.notifyDataSetChanged()
