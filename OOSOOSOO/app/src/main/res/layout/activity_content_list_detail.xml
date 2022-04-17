@@ -46,14 +46,20 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.06" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/content_list_detail_recyclerview"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/content_list_detail_guideline"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/content_list_detail_guideline">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/content_list_detail_recyclerview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
