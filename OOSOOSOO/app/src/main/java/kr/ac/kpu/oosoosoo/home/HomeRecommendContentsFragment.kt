@@ -65,11 +65,8 @@ class HomeRecommendContentsFragment : Fragment() {
                 Log.d("home_recommend_contents", recommenededContentsList.toString())
                 if (recommenededContentsList != null) {
                     for (recommendedContent in recommenededContentsList) {
-                        if(recommendedContent.recommend!!.isEmpty()) continue
-                        else {
-                            Log.d("home_recommend_contents", recommendedContent.toString())
-                            contentsArrayList.add(recommendedContent.recommend!![0])   //Contents 리스트 셋팅
-                        }
+                        Log.d("home_recommend_contents", recommendedContent.toString())
+                        contentsArrayList.add(recommendedContent.recommend!!)   //Contents 리스트 셋팅
                     }
                 }
 
