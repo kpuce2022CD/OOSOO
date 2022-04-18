@@ -3,6 +3,7 @@ package kr.ac.kpu.oosoosoo.login
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.auth.options.AuthSignUpOptions
@@ -62,25 +63,24 @@ class SignupActivity : AppCompatActivity() {
                 input["phone_num"] != "" && input["nickname"] != "" && input["gender"] != "" && input["birthday"] != "" ){
                     //정규식 예외처리
                     if(!Patterns.EMAIL_ADDRESS.matcher(input["email"]).matches()){
-                        signup_tv.text = "이메일 형식이 아닙니다."
+                        Toast.makeText(this, "이메일 형식이 아닙니다.", Toast.LENGTH_LONG).show()
                     } else if (input["pwd"]?.length!! < 8){
-                        signup_tv.text = "비밀번호는 최소 8자리 이상이어야 합니다."
+                        Toast.makeText(this, "비밀번호는 최소 8자리 이상이어야 합니다.", Toast.LENGTH_LONG).show()
                     } else if (!Pattern.matches("^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$", input["phone_num"])){
-                        signup_tv.text = "핸드폰 번호 형식이 아닙니다."
+                        Toast.makeText(this, "핸드폰 번호 형식이 아닙니다.", Toast.LENGTH_LONG).show()
                     } else {
                         call.getSignUp(input).enqueue(object : Callback<Boolean> {
                             override fun onFailure(call: Call<Boolean>, t: Throwable) {
                                 Log.d("log_signup", t.message.toString())
-                                signup_tv.text = "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요."
+                                Toast.makeText(this@SignupActivity, "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요.", Toast.LENGTH_LONG).show()
                             }
                             override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
                                 val body : Boolean? = response.body()
                                 Log.d("log_signup", "통신 성공")
-                                signup_tv.text = "통신 성공"
 
                                 Log.d("log_signup", body.toString())
                                 if (body == true) {
-                                    signup_tv.text = "회원가입 성공 $body"
+                                    Toast.makeText(this@SignupActivity, "회원가입 성공", Toast.LENGTH_LONG).show()
                                     val options = AuthSignUpOptions.builder()
                                         .userAttribute(AuthUserAttributeKey.email(), edt_email.text.toString())
                                         .build()
@@ -88,7 +88,8 @@ class SignupActivity : AppCompatActivity() {
                                         {
                                             Log.i("AWSAuthQuickStart", "Sign up succeeded: $it")
                                             startActivity<ConfirmSignUpActivity>(
-                                                "email" to edt_email.text.toString()
+                                                "email" to edt_email.text.toString(),
+                                                "pwd" to edt_pwd.text.toString()
                                             )
                                         },
                                         {
@@ -96,14 +97,13 @@ class SignupActivity : AppCompatActivity() {
                                         }
                                     )
                                 } else {
-                                    signup_tv.text = "회원가입 $body"
                                 }
                             }
                         })
                     }
             }
             else{
-                signup_tv.text = "필수 입력!!"
+                Toast.makeText(this, "필수 입력 칸을 다 채워야합니다.", Toast.LENGTH_LONG).show()
             }
 
 
