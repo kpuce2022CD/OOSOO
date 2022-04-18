@@ -236,5 +236,8 @@ class LoginActivity : BaseActivity() {
             NaverIdLoginSDK.logout()
         }*/
 
+        signup_btn.setOnClickListener {
+            startActivity<SignupActivity>()
+        }
     }
 }
