@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="250dp"
     android:layout_height="120dp"
-    android:orientation="vertical"
-    android:layout_margin="4dp">
+    android:layout_margin="4dp"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -13,12 +13,16 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/rect_corner"
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_review_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
                 android:text="리뷰 쓴 사람"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
@@ -28,44 +32,31 @@
                 android:id="@+id/tv_review_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="리뷰 한 글"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_review_user" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/ddabong" />
-
-            <Button
-                android:id="@+id/btn_like_click"
-                android:layout_width="65dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="2dp"
+            <TextView
+                android:id="@+id/tv_review_like"
+                android:layout_width="22dp"
+                android:layout_height="18dp"
                 android:layout_marginBottom="2dp"
-                android:gravity="left"
-                android:text="좋아요"
-                android:textSize="10sp"
+                android:text="10"
+                android:textColor="@color/black"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_review_like"
-                android:layout_width="45dp"
-                android:layout_height="18dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginBottom="10dp"
-                android:text="좋아요 수"
-                android:textColor="@color/black"
-                android:textSize="10sp"
+            <ImageButton
+                android:id="@+id/btn_like_click"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:foreground="@drawable/ddabong"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView" />
+                app:layout_constraintEnd_toStartOf="@+id/tv_review_like"
+                app:srcCompat="@drawable/ddabong" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
