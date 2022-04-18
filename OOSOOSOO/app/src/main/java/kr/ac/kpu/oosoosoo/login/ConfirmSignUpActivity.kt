@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.activity_confirm_sign_up.*
+import kotlinx.android.synthetic.main.activity_login.*
 import kr.ac.kpu.oosoosoo.R
+import kr.ac.kpu.oosoosoo.home.HomeActivity
 import org.jetbrains.anko.startActivity
 
 class ConfirmSignUpActivity : AppCompatActivity() {
@@ -15,6 +17,7 @@ class ConfirmSignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_confirm_sign_up)
 
         val email = intent.getStringExtra("email")
+        val pwd = intent.getStringExtra("pwd")
 
         btn_confirm.setOnClickListener {
             Amplify.Auth.confirmSignUp(
@@ -25,6 +28,18 @@ class ConfirmSignUpActivity : AppCompatActivity() {
                         runOnUiThread {
                             tv_confirm.text = "인증 성공!"
                             tv_confirm.setTextColor(Color.BLUE)
+
+                            Amplify.Auth.signIn(email, pwd,
+                                { result ->
+                                    if (result.isSignInComplete) {
+                                        Log.i("AWSAuthQuickstart", "Sign in succeeded")
+                                    } else {
+                                        Log.i("AWSAuthQuickstart", "Sign in not complete")
+                                    }
+                                },
+                                { Log.e("AuthQuickstart", "Failed to sign in", it) }
+                            )
+
                             btn_confirm_next.isEnabled = true
                         }
                     } else {
