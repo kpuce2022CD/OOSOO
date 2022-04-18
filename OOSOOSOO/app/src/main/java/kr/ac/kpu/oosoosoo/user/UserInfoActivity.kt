@@ -2,50 +2,21 @@ package kr.ac.kpu.oosoosoo.user
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.amplifyframework.core.Amplify
-import kotlinx.android.synthetic.main.fragment_user_info.*
-import kotlinx.android.synthetic.main.fragment_user_info.view.*
+import kotlinx.android.synthetic.main.activity_user_info.*
+import kr.ac.kpu.oosoosoo.BaseActivity
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
-import kr.ac.kpu.oosoosoo.home.HomeActivity
-import kr.ac.kpu.oosoosoo.home.HomeFragment
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserInfoFragment : Fragment() {
-
+class UserInfoActivity : BaseActivity(TransitionMode.NONE) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }
+        setContentView(R.layout.activity_user_info)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        val view = inflater.inflate(R.layout.fragment_user_info, container, false)
-
-        view.btn_userinfo_back.setOnClickListener {
-            val homeActivity = activity as HomeActivity
-            homeActivity.removeFragment(this)
-            homeActivity.replaceFragment(HomeFragment())
-        }
-
-        view.btn_myReview.setOnClickListener {
-            requireContext().startActivity<UserReviewActivity>()
-        }
-
-        return view
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         val call = RetrofitBuilder().callUserInfo
         var input = HashMap<String, String>()
 
@@ -59,16 +30,16 @@ class UserInfoFragment : Fragment() {
                 Log.d("UserInfo", "통신 성공")
 
                 if (userInfo != null) {
-                    userinfo_email_text.append(userInfo.email)
+                    userinfo_email_text.text = userInfo.email
                     userinfo_name_text.append(userInfo.name)
-                    userinfo_nickname_text.append(userInfo.nickname)
+                    userinfo_nickname_text.text =userInfo.nickname
                     userinfo_phone_text.append(userInfo.phone_number)
                     userinfo_job_text.append(userInfo.job)
                     userinfo_birthday_text.append(userInfo.birthday)
                     if(userInfo.gender == 1) {
-                        userinfo_gender_text.append("남자")
+                        userinfo_gender_imageView.setImageDrawable(getDrawable(R.drawable.ic_male_16))
                     } else {
-                        userinfo_gender_text.append("여자")
+                        userinfo_gender_imageView.setImageDrawable(getDrawable(R.drawable.ic_female_16))
                     }
                     userinfo_overview_text.append(userInfo.overview)
                 }
@@ -79,11 +50,13 @@ class UserInfoFragment : Fragment() {
                 Log.d("User Info Fail", t.message.toString())
             }
         })
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
+        btn_userinfo_back.setOnClickListener {
+            finish()
+        }
 
-        parentFragmentManager.beginTransaction().remove(this)
+        btn_myReview.setOnClickListener {
+            startActivity<UserReviewActivity>()
+        }
     }
 }

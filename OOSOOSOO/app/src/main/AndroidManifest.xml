@@ -16,6 +16,9 @@
         android:theme="@style/Theme.OOSOOSOO"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".user.UserInfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".contents.ContentListDetailActivity"
             android:exported="false" />
         <activity
@@ -34,8 +37,7 @@
         <activity
             android:name=".contents.RatingActivity"
             android:theme="@style/Theme.OOSOOSOO.Dialog" />
-        <activity
-            android:name=".user.UserReviewActivity"/>
+        <activity android:name=".user.UserReviewActivity" />
         <activity
             android:name=".home.HomeActivity"
             android:exported="false" />

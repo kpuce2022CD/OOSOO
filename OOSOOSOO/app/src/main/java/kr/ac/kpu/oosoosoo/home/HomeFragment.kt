@@ -16,7 +16,7 @@ import kr.ac.kpu.oosoosoo.adapters.PagerFragmentStateAdapter
 import kr.ac.kpu.oosoosoo.login.LoginActivity
 import kr.ac.kpu.oosoosoo.login.SelectIwActivity
 import kr.ac.kpu.oosoosoo.search.SearchActivity
-import kr.ac.kpu.oosoosoo.user.UserInfoFragment
+import kr.ac.kpu.oosoosoo.user.UserInfoActivity
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
                 {
                     if (it.isSignedIn) {
                         Log.d("AWS Auth E-Mail", Amplify.Auth.currentUser.username)
-                        (activity as HomeActivity).replaceFragment(UserInfoFragment())
+                        requireContext().startActivity<UserInfoActivity>()
                         //childFragmentManager.beginTransaction().add(R.id.container, UserInfoFragment()).commit()
                     } else {
                         requireContext().startActivity<LoginActivity>()
