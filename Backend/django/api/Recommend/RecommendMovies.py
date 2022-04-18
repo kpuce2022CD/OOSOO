@@ -30,7 +30,10 @@ def recommend_movie_list(algo, userId, unseen_movies, movies, top_n=10):
 
         db_cid = 'm_' + str(tmdb_id)
         content = Contents.objects.filter(id=db_cid).values()
+        print("count : " + str(content.count()))
 
-        recommend_list.append({'recommend': content, 'est_rating': movie_rating})
+        if content.count() != 0:
+            for cont in content:
+                recommend_list.append({'recommend': cont, 'est_rating': movie_rating})
 
     return recommend_list
