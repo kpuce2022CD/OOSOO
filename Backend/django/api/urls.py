@@ -63,6 +63,7 @@ urlpatterns = [
     path('all_review/', AllReviewAPI.as_view()),
     path('like_review/', LikeReviewAPI.as_view()),
     path('my_review/', MyReviewAPI.as_view()),
+    path('my_interworking/', MyInterworkingAPI.as_view()),
 
     path('recommend/', RecommendAPI.as_view()),
 ]

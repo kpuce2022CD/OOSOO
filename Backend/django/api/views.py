@@ -32,6 +32,7 @@ from api.Recommend.LoadAlgo import load_algo
 from api.Recommend.LoadDataset import load_dataset
 from api.Recommend.RecommendMovies import recommend_movie_list
 from api.User.MyReview import MyReview
+from api.User.MyInterworking import MyInterworking
 
 
 class ContentsListAPI(APIView):
@@ -444,3 +445,11 @@ class MyReviewAPI(APIView):
         data = request.data
         result = MyReview(data.get('email'))
         return Response(result)
+
+class MyInterworkingAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = MyInterworking(data.get('email'))
+        return Response(result)
+
+
