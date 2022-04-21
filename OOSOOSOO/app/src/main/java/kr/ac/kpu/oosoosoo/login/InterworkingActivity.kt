@@ -4,6 +4,7 @@ package kr.ac.kpu.oosoosoo.login
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -30,7 +31,7 @@ class InterworkingActivity : AppCompatActivity() {
 
         //인텐트로 넘어온 값으로 화면 생성
         val platform_name = intent.getStringExtra("platform")
-        val user_email = Amplify.Auth.currentUser.userId
+        val user_email = Amplify.Auth.currentUser.username
 
         if (platform_name == "netflix") {
             platform_img.setImageResource(R.drawable.netfilx_logo)
@@ -55,11 +56,12 @@ class InterworkingActivity : AppCompatActivity() {
             if (i_id_edt.length() != 0 && i_pwd_edt.length() != 0 && i_profileName_edt.length() != 0){
 
                 var input = HashMap<String, String>()
-                input["u_email"] = user_email.toString()
+                input["u_email"] = user_email
                 input["platform"] = platform_name.toString()
                 input["id"] = i_id_edt.text.toString()
                 input["passwd"] = i_pwd_edt.text.toString()
                 input["profile_name"] = i_profileName_edt.text.toString()
+                Log.d("interworking", input["u_email"] + input["platform"] + input["id"] + input["passwd"] + input["profile_name"])
 
                 call.getInterworking(input).enqueue(object : Callback<Boolean> {
                     override fun onFailure(call: Call<Boolean>, t: Throwable) {
