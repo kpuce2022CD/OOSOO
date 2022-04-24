@@ -16,9 +16,9 @@ import java.util.concurrent.TimeUnit
 class RetrofitBuilder {
 
     val okHttpClient = OkHttpClient.Builder()
-        .connectTimeout(1, TimeUnit.MINUTES)
-        .readTimeout(1, TimeUnit.MINUTES)
-        .writeTimeout(1, TimeUnit.MINUTES)
+        .connectTimeout(3, TimeUnit.MINUTES)
+        .readTimeout(3, TimeUnit.MINUTES)
+        .writeTimeout(3, TimeUnit.MINUTES)
         .build()
 
     val retrofit = Retrofit.Builder()
@@ -48,6 +48,9 @@ class RetrofitBuilder {
     val likeReview = retrofit.create(LikeReviewAPI::class.java)
     val myReview = retrofit.create(MyReviewAPI::class.java)
     val myInterworking = retrofit.create(MyInterworkingAPI::class.java)
+
+    val callAddWatchaWishlist = retrofit.create(AddWatchaWishlistAPI::class.java)
+    val callAddWatchaWatchingLog = retrofit.create(AddWatchaWatchingLogAPI::class.java)
 }
 
 interface RecommendContentsAPI {
@@ -144,4 +147,16 @@ interface MyInterworkingAPI {
     @FormUrlEncoded
     @POST("api/my_interworking/")
     fun callMyInterworking(@FieldMap params: HashMap<String, String>): Call<List<String>>
+}
+
+interface AddWatchaWishlistAPI {
+    @FormUrlEncoded
+    @POST("api/add_w_wishlist/")
+    fun callAddWatchaWishlist(@FieldMap params: HashMap<String, String>): Call<String>
+}
+
+interface AddWatchaWatchingLogAPI {
+    @FormUrlEncoded
+    @POST("api/add_w_wishlist/")
+    fun callAddWatchaWatchingLog(@FieldMap params: HashMap<String, String>): Call<String>
 }
