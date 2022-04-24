@@ -446,10 +446,9 @@ class MyReviewAPI(APIView):
         result = MyReview(data.get('email'))
         return Response(result)
 
+
 class MyInterworkingAPI(APIView):
     def post(self, request):
         data = request.data
         result = MyInterworking(data.get('email'))
         return Response(result)
-
-

@@ -16,4 +16,4 @@ def add_watchinglog(log, interworking):
                 contents.append(content.values()[0])
                 WatchingLog.objects.create(c_id=content[0], i_id=interworking)
 
-    return contents
+    return "success"
