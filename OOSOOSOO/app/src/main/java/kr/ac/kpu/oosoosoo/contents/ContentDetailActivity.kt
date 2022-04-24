@@ -21,16 +21,17 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
+
+    val call = RetrofitBuilder().callReview  // 유저가 쓴 해당 컨텐츠에 대한 리뷰 Retrofit Call
+    val callReview = RetrofitBuilder().callAllReview  // 해당 컨텐츠에 대한 모든 리뷰 Retrofit Call
+    // ContentInfo 인텐트 받아오기
+    lateinit var contentInfo : ContentInfo
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_content_detail)
 
-        // ContentInfo 인텐트 받아오기
-        val contentInfo = intent.getSerializableExtra("content") as ContentInfo
-
-        val call = RetrofitBuilder().callReview  // 유저가 쓴 해당 컨텐츠에 대한 리뷰 Retrofit Call
-        
-        val callReview = RetrofitBuilder().callAllReview  // 해당 컨텐츠에 대한 모든 리뷰 Retrofit Call
+        contentInfo = intent.getSerializableExtra("content") as ContentInfo
 
         var myRating = 0.0f
         var myReview = ""
@@ -90,33 +91,9 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
                     }
                 }
             })
-            
-            // 컨텐츠에 달린 리뷰들 서버에 요청해서 모두 불러오기
-            var input2 = HashMap<String, String>()
-            input2["c_id"] = contentInfo.id.toString()
-            callReview.allReview(input2).enqueue(object : Callback<ArrayList<ReviewInfo>>{
-                override fun onFailure(call: Call<ArrayList<ReviewInfo>>, t: Throwable) {
-                    tv_review_title.text = "${t.message.toString()}"
-                    Log.d("review", "모든 리뷰 요청 실패" + t.message.toString())
-                }
-                override fun onResponse(call: Call<ArrayList<ReviewInfo>>, response: Response<ArrayList<ReviewInfo>>) {
-                    val reviewList : ArrayList<ReviewInfo> = response.body() as ArrayList<ReviewInfo>
-                    Log.d("review", reviewList.toString())
-                    if (reviewList!!.isEmpty()){
-                        tv_review_title.text = "리뷰 없음"
-                    } else {
-                        tv_review_title.text = "${contentInfo.title}에 대한 모든 리뷰"
-                        //ContentsReviewAdapter(this@ContentDetailActivity, reviewList)
-                        var adt = ContentsReviewAdapter(this@ContentDetailActivity,reviewList)
-                        var manager01 = LinearLayoutManager(this@ContentDetailActivity,LinearLayoutManager.HORIZONTAL,false)
-                        var rv = card_review_recyclerview.apply{
-                            adapter = adt
-                            layoutManager = manager01
-                        }
-                    }
-                }
-            })
-        
+
+            callAllReview()
+
 
             // Overview
             val overview = contentInfo.overview?.split(". ")
@@ -168,8 +145,38 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
                     } else if(result_rating == "삭제"){
                         tv_my_rating.text = "내 평점 없음"
                     }
+                    callAllReview()
                 }
             }
         }
     }
+
+    private fun callAllReview() {
+        // 컨텐츠에 달린 리뷰들 서버에 요청해서 모두 불러오기
+        var input2 = HashMap<String, String>()
+        input2["c_id"] = contentInfo.id.toString()
+        callReview.allReview(input2).enqueue(object : Callback<ArrayList<ReviewInfo>>{
+            override fun onFailure(call: Call<ArrayList<ReviewInfo>>, t: Throwable) {
+                tv_review_title.text = "${t.message.toString()}"
+                Log.d("review", "모든 리뷰 요청 실패" + t.message.toString())
+            }
+            override fun onResponse(call: Call<ArrayList<ReviewInfo>>, response: Response<ArrayList<ReviewInfo>>) {
+                val reviewList : ArrayList<ReviewInfo> = response.body() as ArrayList<ReviewInfo>
+                Log.d("review", reviewList.toString())
+                if (reviewList!!.isEmpty()){
+                    tv_review_title.text = "리뷰 없음"
+                } else {
+                    tv_review_title.text = "${contentInfo.title}에 대한 모든 리뷰"
+                    //ContentsReviewAdapter(this@ContentDetailActivity, reviewList)
+                    var adt = ContentsReviewAdapter(this@ContentDetailActivity,reviewList)
+                    var manager01 = LinearLayoutManager(this@ContentDetailActivity,LinearLayoutManager.HORIZONTAL,false)
+                    card_review_recyclerview.apply{
+                        adapter = adt
+                        layoutManager = manager01
+                    }
+                }
+            }
+        })
+    }
+
 }
