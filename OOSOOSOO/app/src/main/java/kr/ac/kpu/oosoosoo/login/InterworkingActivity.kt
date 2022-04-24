@@ -75,81 +75,83 @@ class InterworkingActivity : AppCompatActivity() {
                 Log.d("interworking", input["u_email"] + input["platform"] + input["id"] + input["passwd"] + input["profile_name"])
 
                 call.getInterworking(input).enqueue(object : Callback<Boolean> {
-                    override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                        i_result_tv.text = "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요."
-                        // 로딩 다이얼로그 종료
-                        loadingDialog.dismiss()
-                    }
-
                     override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
                         val body : Boolean? = response.body()
                         if (body.toString() == "null") {
                             i_result_tv.text = "서버 body = null"
+                            // 로딩 다이얼로그 종료
+                            loadingDialog.dismiss()
                         } else {
                             if(body == true) {
                                 val intent_result = Intent()
                                 i_result_tv.text = "$platform_name 에 연동 로그인 성공!"
                                 val intent_msg = platform_name
 
-                                // AddWatcha 호출
-                                if (platform_name == "watcha") {
-                                    var input_email = HashMap<String, String>()
-                                    input_email["email"] = user_email
-
-                                    callAddWatchaWishlist.callAddWatchaWishlist(input_email).enqueue(object : Callback<String> {
-                                        override fun onResponse(call: Call<String>, response: Response<String>) {
-                                            val body_wishlist : String? = response.body()
-                                            if (body_wishlist.toString() == "null") {
-                                                i_result_tv.text = "서버 body = null"
-                                            } else {
-                                                if (body_wishlist.toString() == "success") {
-                                                    toast("AddWatchaWishlist 성공").show()
-
-                                                    callAddWatchaWatchingLog.callAddWatchaWatchingLog(input_email).enqueue(object : Callback<String> {
-                                                        override fun onResponse(call: Call<String>, response: Response<String>) {
-                                                            val body_watchinglog : String? = response.body()
-                                                            if (body_watchinglog.toString() == "null") {
-                                                                i_result_tv.text = "서버 body = null"
-                                                            } else {
-                                                                if (body_watchinglog.toString() == "success") {
-                                                                    toast("AddWatchaWatchingLog 성공").show()
-
-                                                                    // 로딩 다이얼로그 종료
-                                                                    loadingDialog.dismiss()
-
-                                                                    intent_result.putExtra("result", intent_msg)
-                                                                    setResult(Activity.RESULT_OK, intent_result)
-                                                                    finish()
-                                                                }
-                                                            }
-                                                        }
-
-                                                        override fun onFailure(call: Call<String>, t: Throwable) {
-                                                            i_result_tv.text = "서버요청을 실패하였습니다. OTT Watching Log 연동 중 문제가 발생하였습니다."
-                                                            // 로딩 다이얼로그 종료
-                                                            loadingDialog.dismiss()
-                                                        }
-
-                                                    })
-                                                }
-                                            }
-                                        }
-
-                                        override fun onFailure(call: Call<String>, t: Throwable) {
-                                            i_result_tv.text = "서버요청을 실패하였습니다. OTT Wishlist 연동 중 문제가 발생하였습니다."
-                                            // 로딩 다이얼로그 종료
-                                            loadingDialog.dismiss()
-                                        }
-
-                                    })
-
-                                }
+                                intent_result.putExtra("result", intent_msg)
+                                setResult(Activity.RESULT_OK, intent_result)
                             } else {
                                 i_result_tv.text = "*$platform_name 에 연동 로그인 실패*"
                             }
                         }
                     }
+
+                    override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                        i_result_tv.text = "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요."
+                        // 로딩 다이얼로그 종료
+                        loadingDialog.dismiss()
+                    }
                 })
+
+                // AddWatcha 호출
+                if (platform_name == "watcha") {
+                    var input_email = HashMap<String, String>()
+                    input_email["email"] = user_email
+
+                    callAddWatchaWishlist.callAddWatchaWishlist(input_email).enqueue(object : Callback<String> {
+                        override fun onResponse(call: Call<String>, response: Response<String>) {
+                            val body_wishlist : String? = response.body()
+                            if (body_wishlist.toString() == "null") {
+                                i_result_tv.text = "서버 body = null"
+                                // 로딩 다이얼로그 종료
+                                loadingDialog.dismiss()
+                            } else {
+                                if (body_wishlist.toString() == "success") {
+                                    toast("AddWatchaWishlist 성공").show()
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<String>, t: Throwable) {
+                            i_result_tv.text = "서버요청을 실패하였습니다. OTT Wishlist 연동 중 문제가 발생하였습니다."
+                            // 로딩 다이얼로그 종료
+                            loadingDialog.dismiss()
+                        }
+                    })
+
+                    callAddWatchaWatchingLog.callAddWatchaWatchingLog(input_email).enqueue(object : Callback<String> {
+                        override fun onResponse(call: Call<String>, response: Response<String>) {
+                            val body_watchinglog : String? = response.body()
+                            if (body_watchinglog.toString() == "null") {
+                                i_result_tv.text = "서버 body = null"
+                                // 로딩 다이얼로그 종료
+                                loadingDialog.dismiss()
+                            } else {
+                                if (body_watchinglog.toString() == "success") {
+                                    toast("AddWatchaWatchingLog 성공").show()
+
+                                    // 로딩 다이얼로그 종료
+                                    loadingDialog.dismiss()
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<String>, t: Throwable) {
+                            i_result_tv.text = "서버요청을 실패하였습니다. OTT Watching Log 연동 중 문제가 발생하였습니다."
+                            // 로딩 다이얼로그 종료
+                            loadingDialog.dismiss()
+                        }
+                    })
+                }
 
             } else {
                 toast("에디트텍스트에 모든 정보 입력해주세요.").show()
