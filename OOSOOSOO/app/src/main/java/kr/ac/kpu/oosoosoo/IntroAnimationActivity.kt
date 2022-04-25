@@ -2,6 +2,7 @@ package kr.ac.kpu.oosoosoo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -22,27 +23,19 @@ class IntroAnimationActivity : BaseActivity(TransitionMode.HORIZON) {
         val titleAnim = AnimationUtils.loadAnimation(this, R.anim.anim_intro_title)
         val iconAnim = AnimationUtils.loadAnimation(this, R.anim.anim_intro_icon)
 
+        startLoading()
+
         intro_icon.startAnimation(iconAnim)
         intro_title.startAnimation(titleAnim)
 
         titleAnim.setAnimationListener(object : Animation.AnimationListener{
             override fun onAnimationStart(p0: Animation?) {
+
             }
 
             override fun onAnimationEnd(p0: Animation?) {
-                Amplify.Auth.fetchAuthSession(
-                    {
-                        if (it.isSignedIn) {
-                            startActivity<HomeActivity>()
-                            finish()
-                        } else {
-                            startActivity<LoginActivity>()
-                            finish()
-                        }
-                    },
-                    { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }
-                )
 
+                finish()
             }
 
             override fun onAnimationRepeat(p0: Animation?) {
@@ -50,4 +43,9 @@ class IntroAnimationActivity : BaseActivity(TransitionMode.HORIZON) {
 
         })
     }
+    private fun startLoading(){
+
+    }
+
+
 }
