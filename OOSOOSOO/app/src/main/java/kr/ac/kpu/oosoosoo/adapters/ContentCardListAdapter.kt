@@ -59,7 +59,10 @@ class ContentCardListAdapter(context: Context, cardRowData: ArrayList<CardListDa
         holder.itemView.item_row_view_all.setOnClickListener(ViewRowDetailListener(context, contentRow))
     }
 
-    override fun getItemCount(): Int = contentRowList.size
+    override fun getItemCount(): Int {
+        return if (contentRowList.size > 20) 20
+        else contentRowList.size
+    }
 
     //Content Row의 제목이나 "전체보기" 버튼 클릭 리스너
     inner class ViewRowDetailListener(context: Context, contentCardRowList: CardListData) : View.OnClickListener{

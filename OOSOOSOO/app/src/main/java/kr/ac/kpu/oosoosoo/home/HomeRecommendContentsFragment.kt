@@ -14,12 +14,13 @@ import kr.ac.kpu.oosoosoo.adapters.ContentCardListAdapter
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import kr.ac.kpu.oosoosoo.contents.CardListData
 import kr.ac.kpu.oosoosoo.contents.ContentInfo
-import kr.ac.kpu.oosoosoo.contents.ContentListDetailActivity
 import kr.ac.kpu.oosoosoo.contents.RecommendContentInfo
-import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class HomeRecommendContentsFragment : Fragment() {
     val contentsArrayList : MutableList<ContentInfo> = ArrayList() //모든 컨텐츠 리스트
@@ -46,7 +47,6 @@ class HomeRecommendContentsFragment : Fragment() {
         val call = RetrofitBuilder().callRecommendContents
         var listAdapter : ContentCardListAdapter
 
-
         home_recommend_cardList_recyclerview.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
@@ -60,27 +60,41 @@ class HomeRecommendContentsFragment : Fragment() {
                 response: Response<List<RecommendContentInfo>>
             ) {
                 val recommenededContentsList = response.body()
-                var movieIndex = 1
+                var genreList= ArrayList<String>()
+
+
                 Log.d("home_recommend_contents", "통신 성공")
-                Log.d("home_recommend_contents", recommenededContentsList.toString())
+
+
                 if (recommenededContentsList != null) {
                     for (recommendedContent in recommenededContentsList) {
                         Log.d("home_recommend_contents", recommendedContent.toString())
                         contentsArrayList.add(recommendedContent.recommend!!)   //Contents 리스트 셋팅
+                        genreList = (genreList + (recommendedContent!!.recommend!!.genre?.substringBefore(" ")!!
+                            .split(",")!!.distinct() as ArrayList<String>)).distinct() as ArrayList<String>
+                        genreList.removeAll { it.trim()=="" }
+                    }
+                    Log.d("testgenre",genreList.toString())
+
+                    for(genre in genreList){
+                        val contentFilteredByGenre = ArrayList<ContentInfo>()
+                        for(content in contentsArrayList) {
+                            if(content.genre!!.contains(genre)) {
+                                contentFilteredByGenre.add(content)
+                            }
+                        }
+                        contentFilteredByGenre.shuffle()
+                        contentCardRowList.add(
+                            CardListData(
+                                genre,
+                                contentFilteredByGenre
+                            )
+                        )
                     }
                 }
 
 
-                for(contentsRow in contentsArrayList.chunked(ROW_MAX_NUM)) {
-                    contentCardRowList.add(
-                        CardListData(
-                            "Movie ${movieIndex++}",
-                            ArrayList(contentsRow)
-                        )
-                    )
-                }
-
-                listAdapter = ContentCardListAdapter(context!!, ArrayList(contentCardRowList), spanCount = 1)
+                listAdapter = ContentCardListAdapter(context!!, ArrayList(contentCardRowList.shuffled()), spanCount = 1)
                 //부모 어댑터 지정(수직방향)
                 home_recommend_cardList_recyclerview.adapter = listAdapter
                 home_recommend_cardList_recyclerview.adapter!!.notifyDataSetChanged()

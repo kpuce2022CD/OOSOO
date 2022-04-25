@@ -35,15 +35,4 @@ class HomeActivity : BaseActivity() {
         nav_view.setupWithNavController(navController)
 
     }
-    public fun replaceFragment(fragment: Fragment){
-        val fragmentManager = supportFragmentManager
-        val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment).commit()
-    }
-
-    public fun removeFragment(fragment: Fragment){
-        val fragmentManager = supportFragmentManager
-        val transaction = fragmentManager.beginTransaction()
-        transaction.remove(fragment).commit()
-    }
 }
