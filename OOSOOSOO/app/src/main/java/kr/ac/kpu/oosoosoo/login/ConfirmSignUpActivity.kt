@@ -55,6 +55,7 @@ class ConfirmSignUpActivity : AppCompatActivity() {
         }
 
         btn_confirm_next.setOnClickListener {
+            startActivity<HomeActivity>()
             startActivity<SelectIwActivity>(
                 "email" to email
             )
