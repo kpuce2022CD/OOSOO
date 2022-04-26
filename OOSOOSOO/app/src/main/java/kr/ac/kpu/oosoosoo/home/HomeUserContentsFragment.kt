@@ -47,6 +47,10 @@ class HomeUserContentsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
         var userEmail : String? = null
         var input = HashMap<String, String>()
 
@@ -57,10 +61,7 @@ class HomeUserContentsFragment : Fragment() {
         input["email"] = userEmail!!
 
         val callInterworking = RetrofitBuilder().myInterworking
-        val callWishList = RetrofitBuilder().callUserWishList
-        val callWatchingLog = RetrofitBuilder().callUserWatchingLog
-        val contentsArrayList : MutableList<ContentInfo> = ArrayList() //모든 컨텐츠 리스트
-        val contentCardRowList : MutableList<CardListData> = ArrayList() //한 행의 컨텐츠 리스트
+
 
         home_usercontent_alert_imageView.setImageDrawable(resources.getDrawable(R.drawable.crying))
         callInterworking.callMyInterworking(input).enqueue(object: Callback<List<String>> {
@@ -82,8 +83,10 @@ class HomeUserContentsFragment : Fragment() {
                 }
             }
         })
-
-
+        val callWishList = RetrofitBuilder().callUserWishList
+        val callWatchingLog = RetrofitBuilder().callUserWatchingLog
+        val contentsArrayList : MutableList<ContentInfo> = ArrayList() //모든 컨텐츠 리스트
+        val contentCardRowList : MutableList<CardListData> = ArrayList() //한 행의 컨텐츠 리스트
         //시청목록 출력 api
         callWatchingLog.getWatchingLog(input).enqueue(object : Callback<List<ContentInfo>> {
 
@@ -153,7 +156,7 @@ class HomeUserContentsFragment : Fragment() {
 
                 //부모 어댑터 지정(수직방향)
                 home_usercontent_cardList_recyclerview.adapter =
-                    ContentCardListAdapter(context!!, ArrayList(contentCardRowList))
+                    ContentCardListAdapter(context!!, ArrayList(contentCardRowList), spanCount = 2)
                 home_usercontent_cardList_recyclerview.adapter!!.notifyDataSetChanged()
             }
 
@@ -161,8 +164,5 @@ class HomeUserContentsFragment : Fragment() {
                 Log.d("home_user_contents", t.message.toString())
             }
         })
-
-
-
     }
 }

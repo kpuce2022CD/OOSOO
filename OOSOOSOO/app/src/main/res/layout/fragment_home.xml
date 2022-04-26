@@ -37,7 +37,7 @@
             android:adjustViewBounds="true"
             android:backgroundTint="#FFFFFFFF"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_baseline_login_24" />
+            app:srcCompat="@drawable/ic_baseline_user" />
 
         <ImageButton
             android:id="@+id/btn_home_search"
