@@ -1,5 +1,6 @@
 package kr.ac.kpu.oosoosoo.home
 
+import android.graphics.drawable.Drawable
 import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.amplifyframework.core.Amplify
+import kotlinx.android.synthetic.main.activity_select_interworking.*
 import kotlinx.android.synthetic.main.fragment_home_user_contents.*
 import kotlinx.android.synthetic.main.recy_item_content_row.*
 import kotlinx.android.synthetic.main.recy_item_content_row.view.*
@@ -54,13 +56,33 @@ class HomeUserContentsFragment : Fragment() {
 
         input["email"] = userEmail!!
 
+        val callInterworking = RetrofitBuilder().myInterworking
         val callWishList = RetrofitBuilder().callUserWishList
         val callWatchingLog = RetrofitBuilder().callUserWatchingLog
         val contentsArrayList : MutableList<ContentInfo> = ArrayList() //모든 컨텐츠 리스트
         val contentCardRowList : MutableList<CardListData> = ArrayList() //한 행의 컨텐츠 리스트
 
-        home_usercontent_cardList_recyclerview.layoutManager =
-            LinearLayoutManager(activity, GridLayoutManager.VERTICAL, false)
+        home_usercontent_alert_imageView.setImageDrawable(resources.getDrawable(R.drawable.crying))
+        callInterworking.callMyInterworking(input).enqueue(object: Callback<List<String>> {
+            override fun onFailure(call: Call<List<String>>, t: Throwable){
+                Log.d("interworking", t.message.toString())
+            }
+            override fun onResponse(call: Call<List<String>>, response: Response<List<String>>){
+                val body: List<String>? = response.body()
+                Log.d("interworking", "통신 성공")
+
+                if(body!!.isEmpty()){
+                    home_usercontent_alert_cardView.visibility = View.VISIBLE
+                    home_usercontent_cardList_recyclerview.visibility = View.GONE
+                } else {
+                    home_usercontent_cardList_recyclerview.visibility = View.VISIBLE
+                    home_usercontent_alert_cardView.visibility = View.GONE
+                    home_usercontent_cardList_recyclerview.layoutManager =
+                        LinearLayoutManager(activity, GridLayoutManager.VERTICAL, false)
+                }
+            }
+        })
+
 
         //시청목록 출력 api
         callWatchingLog.getWatchingLog(input).enqueue(object : Callback<List<ContentInfo>> {
