@@ -157,6 +157,6 @@ interface AddWatchaWishlistAPI {
 
 interface AddWatchaWatchingLogAPI {
     @FormUrlEncoded
-    @POST("api/add_w_wishlist/")
+    @POST("api/add_w_watchinglog/")
     fun callAddWatchaWatchingLog(@FieldMap params: HashMap<String, String>): Call<String>
 }
