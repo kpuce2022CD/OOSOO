@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.recy_item_content_row.*
 import kotlinx.android.synthetic.main.recy_item_content_row.view.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.contents.CardListData
@@ -55,8 +56,26 @@ class ContentCardListAdapter(context: Context, cardRowData: ArrayList<CardListDa
         val contentRow = contentRowList[position]
         val contentCardAdapter = ContentCardAdapter(context, contentRow.cardItemList)
         holder.bind(contentRow, contentCardAdapter)
-        holder.itemView.item_row_title.setOnClickListener(ViewRowDetailListener(context, contentRow))
-        holder.itemView.item_row_view_all.setOnClickListener(ViewRowDetailListener(context, contentRow))
+        if(contentRow.cardItemList!!.isNotEmpty()) {
+            holder.itemView.card_row_alert_textview.visibility = View.GONE
+            holder.itemView.item_row_view_all.visibility = View.VISIBLE
+            holder.itemView.item_row_title.setOnClickListener(
+                ViewRowDetailListener(
+                    context,
+                    contentRow
+                )
+            )
+            holder.itemView.item_row_view_all.setOnClickListener(
+                ViewRowDetailListener(
+                    context,
+                    contentRow
+                )
+            )
+        } else {
+            holder.itemView.card_row_alert_textview.visibility = View.VISIBLE
+            holder.itemView.card_row_alert_textview.text = "<목록을 불러올 수 없습니다>"
+            holder.itemView.item_row_view_all.visibility = View.GONE
+        }
     }
 
     override fun getItemCount(): Int {

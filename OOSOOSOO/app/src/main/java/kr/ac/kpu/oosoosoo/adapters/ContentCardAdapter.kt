@@ -24,9 +24,6 @@ class ContentCardAdapter(context: Context, cardListData: ArrayList<ContentInfo>?
 
     val context : Context = context
 
-    //해당 컨텐츠 플랫폼 리스트
-    var platformList : ArrayList<String>? = null
-
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         init {
@@ -58,6 +55,7 @@ class ContentCardAdapter(context: Context, cardListData: ArrayList<ContentInfo>?
 
     //bind 과정
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         val platformList = ArrayList(contentList!![position].flatrate?.split(','))
         val contentCardPlatformAdapter = ContentCardPlatformAdapter(context, platformList)
         holder.bind(contentList!![position], context, contentCardPlatformAdapter)
@@ -67,6 +65,7 @@ class ContentCardAdapter(context: Context, cardListData: ArrayList<ContentInfo>?
             )
         }
     }
+
 
     override fun getItemCount(): Int {
         return contentList!!.size
