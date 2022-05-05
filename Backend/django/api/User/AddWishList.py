@@ -16,4 +16,4 @@ def add_wishlist(wishlist, interworking):
                 contents.append(content.values()[0])
                 WishList.objects.create(c_id=content[0], i_id=interworking)
 
-    return "success"
+    return True

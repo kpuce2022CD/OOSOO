@@ -4,7 +4,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import time
 
-def w_login(email, pwd, name, driver):
+
+async def w_login(email, pwd, name, driver):
     # 실행할 웹페이지 불러오기(왓챠 로그인 화면)
     driver.get("https://watcha.com/sign_in")
 

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import *
+import asyncio
 from api.Watcha.Wishes import w_wishes
 from api.Watcha.Watchings import w_watchings
 from api.Watcha.AddWish import w_addwish
@@ -299,7 +300,7 @@ class AddWatchaWishlistAPI(APIView):
         pwd = interworking[0].passwd
         name = interworking[0].profile_name
 
-        wishlist = w_wishes(email, pwd, name)
+        wishlist = asyncio.run(w_wishes(email, pwd, name))
         result = add_wishlist(wishlist, interworking[0])
         return Response(result)
 
@@ -315,7 +316,7 @@ class AddWatchaWatchingLogAPI(APIView):
         pwd = interworking[0].passwd
         name = interworking[0].profile_name
 
-        log = w_watchings(email, pwd, name)
+        log = asyncio.run(w_watchings(email, pwd, name))
         result = add_watchinglog(log, interworking[0])
         return Response(result)
 

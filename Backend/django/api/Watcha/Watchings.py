@@ -6,9 +6,10 @@ from selenium.webdriver.common.by import By
 from pyvirtualdisplay import Display
 from api.Watcha.Login import w_login
 import time
+import asyncio
 
 
-def w_watchings(email, pwd, name):
+async def w_watchings(email, pwd, name):
     #display = Display(visible=0, size=(1920, 1080))  # PyCharm 테스트시 주석처리
     #display.start()  # PyCharm 테스트시 주석처리
 
@@ -22,7 +23,7 @@ def w_watchings(email, pwd, name):
     driver = webdriver.Chrome(path, chrome_options=options)
 
     # 왓챠 로그인
-    w_login(email, pwd, name, driver)
+    await asyncio.wait([w_login(email, pwd, name, driver)])
 
     # ----------------------------------------------------------------------------------------------------------------------#
 
