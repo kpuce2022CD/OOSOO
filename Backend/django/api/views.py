@@ -220,6 +220,7 @@ class WavveWatchingsListAPI(APIView):
         result = wav_watchings(email, pwd, name)
         return Response(result)
 
+
 class WavveAddWishAPI(APIView):
     def post(self, request):
         data = request.data
@@ -245,14 +246,17 @@ class SignInAPI(APIView):
 class SignUpAPI(APIView):
     def post(self, request):
         data = request.data
-        result = signUp(data.get('email'), data.get('pwd'), data.get('name'), data.get('phone_num'), data.get('nickname'), data.get('gender'), data.get('birthday'), data.get('job'), data.get('overview'))
+        result = signUp(data.get('email'), data.get('pwd'), data.get('name'), data.get('phone_num'),
+                        data.get('nickname'), data.get('gender'), data.get('birthday'), data.get('job'),
+                        data.get('overview'))
         return Response(result)
 
 
 class InterworkingAPI(APIView):
     def post(self, request):
         data = request.data
-        result = Interworking(data.get('u_email'), data.get('platform'), data.get('id'), data.get('passwd'), data.get('profile_name'))
+        result = Interworking(data.get('u_email'), data.get('platform'), data.get('id'), data.get('passwd'),
+                              data.get('profile_name'))
         return Response(result)
 
 
@@ -294,14 +298,15 @@ class AddWatchaWishlistAPI(APIView):
         data = request.data
 
         load = load_interworking(data.get('email'))
-        interworking = load.filter(platform="watcha")
+        interworking = load.get(platform="watcha")
 
-        email = interworking[0].id
-        pwd = interworking[0].passwd
-        name = interworking[0].profile_name
+        email = interworking.id
+        pwd = interworking.passwd
+        name = interworking.profile_name
 
         wishlist = asyncio.run(w_wishes(email, pwd, name))
-        result = add_wishlist(wishlist, interworking[0])
+        result = add_wishlist(wishlist, interworking)
+
         return Response(result)
 
 
@@ -310,14 +315,15 @@ class AddWatchaWatchingLogAPI(APIView):
         data = request.data
 
         load = load_interworking(data.get('email'))
-        interworking = load.filter(platform="watcha")
+        interworking = load.get(platform="watcha")
 
-        email = interworking[0].id
-        pwd = interworking[0].passwd
-        name = interworking[0].profile_name
+        email = interworking.id
+        pwd = interworking.passwd
+        name = interworking.profile_name
 
         log = asyncio.run(w_watchings(email, pwd, name))
-        result = add_watchinglog(log, interworking[0])
+        result = add_watchinglog(log, interworking)
+
         return Response(result)
 
 
@@ -326,14 +332,15 @@ class AddNetflixWishlistAPI(APIView):
         data = request.data
 
         load = load_interworking(data.get('email'))
-        interworking = load.filter(platform="netflix")
+        interworking = load.get(platform="netflix")
 
-        email = interworking[0].id
-        pwd = interworking[0].passwd
-        name = interworking[0].profile_name
+        email = interworking.id
+        pwd = interworking.passwd
+        name = interworking.profile_name
 
         wishlist = n_wishes(email, pwd, name)
-        result = add_wishlist(wishlist, interworking[0])
+        result = add_wishlist(wishlist, interworking)
+
         return Response(result)
 
 
@@ -342,14 +349,15 @@ class AddNetflixWatchingLogAPI(APIView):
         data = request.data
 
         load = load_interworking(data.get('email'))
-        interworking = load.filter(platform="netflix")
+        interworking = load.get(platform="netflix")
 
-        email = interworking[0].id
-        pwd = interworking[0].passwd
-        name = interworking[0].profile_name
+        email = interworking.id
+        pwd = interworking.passwd
+        name = interworking.profile_name
 
         log = n_watchings(email, pwd, name)
-        result = add_watchinglog(log, interworking[0])
+        result = add_watchinglog(log, interworking)
+
         return Response(result)
 
 
@@ -358,14 +366,15 @@ class AddWavveWishlistAPI(APIView):
         data = request.data
 
         load = load_interworking(data.get('email'))
-        interworking = load.filter(platform="wavve")
+        interworking = load.get(platform="wavve")
 
-        email = interworking[0].id
-        pwd = interworking[0].passwd
-        name = interworking[0].profile_name
+        email = interworking.id
+        pwd = interworking.passwd
+        name = interworking.profile_name
 
         wishlist = wav_wishes(email, pwd, name)
-        result = add_wishlist(wishlist, interworking[0])
+        result = add_wishlist(wishlist, interworking)
+
         return Response(result)
 
 
@@ -374,21 +383,23 @@ class AddWavveWatchingLogAPI(APIView):
         data = request.data
 
         load = load_interworking(data.get('email'))
-        interworking = load.filter(platform="wavve")
+        interworking = load.get(platform="wavve")
 
-        email = interworking[0].id
-        pwd = interworking[0].passwd
-        name = interworking[0].profile_name
+        email = interworking.id
+        pwd = interworking.passwd
+        name = interworking.profile_name
 
         log = wav_watchings(email, pwd, name)
-        result = add_watchinglog(log, interworking[0])
+        result = add_watchinglog(log, interworking)
+
         return Response(result)
 
 
 class RatingAPI(APIView):
     def post(self, request):
         data = request.data
-        result = Rating(data.get('c_id'), data.get('u_email'), data.get('_like'), data.get('rating'), data.get('review'), data.get('_datetime'))
+        result = Rating(data.get('c_id'), data.get('u_email'), data.get('_like'), data.get('rating'),
+                        data.get('review'), data.get('_datetime'))
         return Response(result)
 
 
