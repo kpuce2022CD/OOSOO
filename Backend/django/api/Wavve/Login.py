@@ -15,11 +15,11 @@ def wav_login(email, pwd, name, driver):
     # 로그인 액션체인
     id_box = driver.find_element_by_css_selector('#app > div.body > main > div > div.join-sns-box > form > fieldset > ul.input-wrap01 > li:nth-child(1) > label > input')
     passwd_box = driver.find_element_by_css_selector('#app > div.body > main > div > div.join-sns-box > form > fieldset > ul.input-wrap01 > li:nth-child(2) > label > input')
-    login_auto_button = driver.find_element_by_css_selector('#app > div.body > main > div > div.join-sns-box > form > fieldset > ul.checkbox-wrap01 > li:nth-child(2) > label')
+    #login_auto_button = driver.find_element_by_css_selector('#app > div.body > main > div > div.join-sns-box > form > fieldset > ul.checkbox-wrap01 > li:nth-child(2) > label')
     login_button = driver.find_element_by_css_selector('#app > div.body > main > div > div.join-sns-box > form > fieldset > div > a')
 
     login_act = ActionChains(driver)
-    login_act.send_keys_to_element(id_box, email).send_keys_to_element(passwd_box, pwd).click(login_auto_button).click(login_button).perform()
+    login_act.send_keys_to_element(id_box, email).send_keys_to_element(passwd_box, pwd).click(login_button).perform()
 
     time.sleep(3)
     driver.implicitly_wait(5)
@@ -39,3 +39,4 @@ def wav_login(email, pwd, name, driver):
 
     time.sleep(3)
     driver.implicitly_wait(5)
+
