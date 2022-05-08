@@ -12,6 +12,9 @@ from api.Netflix.AddWish import n_addwish
 from api.Wavve.Wishes import wav_wishes
 from api.Wavve.Watchings import wav_watchings
 from api.Wavve.AddWish import wav_addwish
+from api.Tving.Watchings import t_watchings
+from api.Tving.Wishes import t_wishes
+from api.Tving.AddWish import t_addwish
 from api.Sign.SignIn import signIn
 from api.Sign.SignUp import signUp
 from api.Sign.Interworking import Interworking
@@ -234,6 +237,47 @@ class WavveAddWishAPI(APIView):
         result = wav_addwish(email, pwd, name, data.get('title'))
         return Response(result)
 
+class TvingWishesListAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="tving")
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        result = t_wishes(email, pwd, name)
+        return Response(result)
+
+class TvingWatchingsListAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="tving")
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        result = t_watchings(email, pwd, name)
+        return Response(result)
+
+class TvingAddWishAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="tving")
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        result = t_addwish(email, pwd, name, data.get('title'), data.get('type'))
+        return Response(result)
 
 class SignInAPI(APIView):
     def post(self, request):
@@ -381,6 +425,36 @@ class AddWavveWatchingLogAPI(APIView):
         name = interworking[0].profile_name
 
         log = wav_watchings(email, pwd, name)
+        result = add_watchinglog(log, interworking[0])
+        return Response(result)
+
+class AddTvingWishListAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="tving")
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        wishlist = t_wishes(email, pwd, name)
+        result = add_wishlist(wishlist, interworking[0])
+        return Response(result)
+
+class AddTvingWatchingLogAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="tving")
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        log = t_watchings(email, pwd, name)
         result = add_watchinglog(log, interworking[0])
         return Response(result)
 

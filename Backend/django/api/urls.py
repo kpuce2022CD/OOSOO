@@ -39,6 +39,10 @@ urlpatterns = [
     path('wav_watchings/', WavveWatchingsListAPI.as_view()),
     path('wav_addwish/', WavveAddWishAPI.as_view()),
 
+    path('t_wishes/', TvingWishesListAPI.as_view()),
+    path('t_watchings/', TvingWatchingsListAPI.as_view()),
+    path('t_addwish/', TvingAddWishAPI.as_view()),
+
     path('sign_in/', SignInAPI.as_view()),
     path('sign_up/', SignUpAPI.as_view()),
     path('interworking/', InterworkingAPI.as_view()),
@@ -55,6 +59,8 @@ urlpatterns = [
     path('add_n_watchinglog/', AddWatchaWatchingLogAPI.as_view()),
     path('add_wav_wishlist/', AddWatchaWishlistAPI.as_view()),
     path('add_wav_watchinglog/', AddWatchaWatchingLogAPI.as_view()),
+    path('add_t_wishlist/', AddTvingWishListAPI.as_view()),
+    path('add_t_watchinglog/', AddTvingWatchingLogAPI.as_view()),
 
     path('rating/', RatingAPI.as_view()),
     path('userinfo/', UserInfoAPI.as_view()),
