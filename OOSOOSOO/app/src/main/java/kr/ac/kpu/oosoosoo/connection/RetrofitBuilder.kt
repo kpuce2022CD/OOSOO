@@ -152,11 +152,11 @@ interface MyInterworkingAPI {
 interface AddWatchaWishlistAPI {
     @FormUrlEncoded
     @POST("api/add_w_wishlist/")
-    fun callAddWatchaWishlist(@FieldMap params: HashMap<String, String>): Call<String>
+    fun callAddWatchaWishlist(@FieldMap params: HashMap<String, String>): Call<Boolean>
 }
 
 interface AddWatchaWatchingLogAPI {
     @FormUrlEncoded
     @POST("api/add_w_watchinglog/")
-    fun callAddWatchaWatchingLog(@FieldMap params: HashMap<String, String>): Call<String>
+    fun callAddWatchaWatchingLog(@FieldMap params: HashMap<String, String>): Call<Boolean>
 }
