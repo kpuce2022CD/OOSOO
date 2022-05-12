@@ -21,25 +21,6 @@
             android:layout_weight="1" />
 
         <ImageButton
-            android:id="@+id/btn_home_add_platform"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:backgroundTint="#FFFFFFFF"
-            android:scaleType="fitCenter"
-            app:srcCompat="@android:drawable/ic_input_add"
-            app:tint="#222931" />
-
-        <ImageButton
-            android:id="@+id/btn_home_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:backgroundTint="#FFFFFFFF"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_baseline_user" />
-
-        <ImageButton
             android:id="@+id/btn_home_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

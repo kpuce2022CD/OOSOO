@@ -20,9 +20,7 @@ class HomeActivity : BaseActivity() {
         Amplify.Auth.fetchAuthSession(
             {
                 if (it.isSignedIn) {
-                    btn_home_login.setImageResource(R.drawable.ic_baseline_user)
                 } else {
-                    btn_home_login.setImageResource(R.drawable.ic_baseline_login_24)
                     finish()
                 }
             },

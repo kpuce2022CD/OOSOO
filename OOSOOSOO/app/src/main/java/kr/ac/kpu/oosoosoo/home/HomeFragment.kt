@@ -42,39 +42,6 @@ class HomeFragment : Fragment() {
             requireContext().startActivity<SearchActivity>()
         }
 
-        //홈화면 로그인 버튼
-        view.btn_home_login.setOnClickListener{
-
-            Amplify.Auth.fetchAuthSession(
-                {
-                    if (it.isSignedIn) {
-                        Log.d("AWS Auth E-Mail", Amplify.Auth.currentUser.username)
-                        requireContext().startActivity<UserInfoActivity>()
-                        //childFragmentManager.beginTransaction().add(R.id.container, UserInfoFragment()).commit()
-                    } else {
-                        requireContext().startActivity<LoginActivity>()
-                    }
-                },
-                { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }
-            )
-        }
-
-        //홈화면 플랫폼 추가 버튼
-        view.btn_home_add_platform.setOnClickListener{
-            Amplify.Auth.fetchAuthSession(
-                {
-                    if (it.isSignedIn) {
-                        Log.d("AWS Auth E-Mail", Amplify.Auth.currentUser.username)
-                        requireContext().startActivity<SelectIwActivity>(
-                            "email" to Amplify.Auth.currentUser.username
-                        )
-                    } else {
-                        requireContext().toast("로그인 후 이용해주세요!")
-                    }
-                },
-                { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }
-            )
-        }
         return view
     }
 

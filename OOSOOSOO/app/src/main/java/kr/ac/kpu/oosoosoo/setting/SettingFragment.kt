@@ -6,7 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat.finishAffinity
+import com.amplifyframework.auth.options.AuthSignOutOptions
+import com.amplifyframework.core.Amplify
+import kotlinx.android.synthetic.main.fragment_setting.view.*
 import kr.ac.kpu.oosoosoo.R
+import kr.ac.kpu.oosoosoo.home.HomeActivity
+import kr.ac.kpu.oosoosoo.home.HomeFragment
+import kr.ac.kpu.oosoosoo.login.LoginActivity
+import kr.ac.kpu.oosoosoo.login.SelectIwActivity
+import kr.ac.kpu.oosoosoo.user.UserInfoActivity
+import kr.ac.kpu.oosoosoo.user.UserReviewActivity
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -33,8 +46,59 @@ class SettingFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        val view: View = inflater!!.inflate(R.layout.fragment_setting, container, false)
+
+
+
+        view.btn_settings_mypage.setOnClickListener {
+            requireContext().startActivity<UserInfoActivity>()
+        }
+
+        view.btn_settings_review.setOnClickListener {
+            requireContext().startActivity<UserReviewActivity>()
+        }
+
+        //OTT 플랫폼 연동 버튼
+        view.btn_settings_interworking.setOnClickListener {
+
+            Amplify.Auth.fetchAuthSession(
+                {
+                    if (it.isSignedIn) {
+                        Log.d("AWS Auth E-Mail", Amplify.Auth.currentUser.username)
+                        requireContext().startActivity<SelectIwActivity>(
+                            "email" to Amplify.Auth.currentUser.username
+                        )
+                    } else {
+                        requireContext().toast("로그인 후 이용해주세요!")
+                    }
+                },
+                { error -> Log.e("AWS AmplifyQuickstart", "Failed to fetch auth session", error) }
+            )
+        }
+
+        view.btn_settings_guide.setOnClickListener {
+
+        }
+
+        //로그아웃하고 앱 재실행
+        view.btn_settings_logout.setOnClickListener {
+            val options = AuthSignOutOptions.builder()
+                .globalSignOut(true)
+                .build()
+            Amplify.Auth.signOut(options,
+                { Log.i("AuthQuickstart", "Signed out globally") },
+                { Log.e("AuthQuickstart", "Sign out failed", it) }
+            )
+            activity?.finishAffinity()
+            requireContext().startActivity<LoginActivity>()
+        }
+
+        view.btn_settings_withdraw.setOnClickListener {
+
+        }
+
         Log.d("setting", "세팅 켜짐")
-        return inflater.inflate(R.layout.fragment_setting, container, false)
+        return view
     }
 
     companion object {

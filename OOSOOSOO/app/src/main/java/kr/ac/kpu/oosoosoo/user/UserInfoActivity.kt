@@ -54,9 +54,5 @@ class UserInfoActivity : BaseActivity(TransitionMode.NONE) {
         btn_userinfo_back.setOnClickListener {
             finish()
         }
-
-        btn_myReview.setOnClickListener {
-            startActivity<UserReviewActivity>()
-        }
     }
 }
