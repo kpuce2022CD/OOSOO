@@ -73,4 +73,6 @@ urlpatterns = [
     path('my_interworking/', MyInterworkingAPI.as_view()),
 
     path('recommend/', RecommendAPI.as_view()),
+    path('delete_user/', DeleteUserAPI.as_view()),
+    path('update_user/', UpdateUserAPI.as_view()),
 ]

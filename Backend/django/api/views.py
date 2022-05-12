@@ -37,6 +37,8 @@ from api.Recommend.LoadDataset import load_dataset
 from api.Recommend.RecommendMovies import recommend_movie_list
 from api.User.MyReview import MyReview
 from api.User.MyInterworking import MyInterworking
+from api.User.DeleteUser import deleteUser
+from api.User.UpdateUser import updateUser
 
 
 class ContentsListAPI(APIView):
@@ -537,4 +539,18 @@ class MyInterworkingAPI(APIView):
     def post(self, request):
         data = request.data
         result = MyInterworking(data.get('email'))
+        return Response(result)
+
+class DeleteUserAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = deleteUser(data.get('email'))
+        return Response(result)
+
+class UpdateUserAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = updateUser(data.get('email'), data.get('pwd'), data.get('name'), data.get('phone_num'),
+                        data.get('nickname'), data.get('gender'), data.get('birthday'), data.get('job'),
+                        data.get('overview'))
         return Response(result)
