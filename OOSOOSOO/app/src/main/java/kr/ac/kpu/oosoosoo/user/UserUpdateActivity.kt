@@ -5,16 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
-import com.amplifyframework.auth.AuthUserAttributeKey
-import com.amplifyframework.auth.options.AuthSignUpOptions
 import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.activity_signup.*
-import kotlinx.android.synthetic.main.activity_user_info.*
 import kr.ac.kpu.oosoosoo.BaseActivity
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
-import kr.ac.kpu.oosoosoo.login.ConfirmSignUpActivity
-import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
