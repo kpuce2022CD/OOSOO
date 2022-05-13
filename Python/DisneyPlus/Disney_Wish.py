@@ -43,4 +43,4 @@ except:
 
 print(wishlist)
 
-#driver.quit()
+driver.quit()
