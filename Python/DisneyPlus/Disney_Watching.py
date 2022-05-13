@@ -29,17 +29,20 @@ watching_list = []
 html = driver.page_source
 soup = BeautifulSoup(html, 'html.parser')
 
-watchings = soup.select('#home-collection > div:nth-child(6) > div > div > div > div > div > div')
+try:
+    watchings = soup.select('#home-collection > div:nth-child(6) > div > div > div > div > div > div')
 
-#cross-classify type : 분류
-for watching in watchings:
-    movie = watching.find("div", attrs={"data-program-type": "movie"})
-    episode = watching.find("div", attrs={"data-program-type" : "episode"})
+    #cross-classify type : 분류
+    for watching in watchings:
+        movie = watching.find("div", attrs={"data-program-type": "movie"})
+        episode = watching.find("div", attrs={"data-program-type" : "episode"})
 
-    if movie:
-        watching_list.append(movie.select('#asset-metadata > h5')[0].text)
-    elif episode:
-        watching_list.append(episode.select('#asset-metadata > p')[0].text)
-
-print(watching_list)
+        if movie:
+            watching_list.append(movie.select('#asset-metadata > h5')[0].text)
+        elif episode:
+            watching_list.append(episode.select('#asset-metadata > p')[0].text)
+except:
+    print("데이터 로드에 오류가 발생했습니다.")
+finally:
+    print(watching_list)
 driver.quit()
