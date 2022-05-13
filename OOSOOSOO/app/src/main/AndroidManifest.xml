@@ -48,6 +48,7 @@
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".login.InterworkingActivity" />
         <activity android:name=".login.SelectIwActivity" />
+        <activity android:name=".user.UserUpdateActivity"/>
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">

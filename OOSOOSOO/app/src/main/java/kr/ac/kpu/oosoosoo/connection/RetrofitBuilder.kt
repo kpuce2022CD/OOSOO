@@ -51,6 +51,9 @@ class RetrofitBuilder {
 
     val callAddWatchaWishlist = retrofit.create(AddWatchaWishlistAPI::class.java)
     val callAddWatchaWatchingLog = retrofit.create(AddWatchaWatchingLogAPI::class.java)
+
+    val updateUser = retrofit.create(UpdateuserAPI::class.java)
+    val deleteUser = retrofit.create(DeleteuserAPI::class.java)
 }
 
 interface RecommendContentsAPI {
@@ -159,4 +162,16 @@ interface AddWatchaWatchingLogAPI {
     @FormUrlEncoded
     @POST("api/add_w_watchinglog/")
     fun callAddWatchaWatchingLog(@FieldMap params: HashMap<String, String>): Call<Boolean>
+}
+
+interface UpdateuserAPI {
+    @FormUrlEncoded
+    @POST("api/update_user/")
+    fun updateUser(@FieldMap params: HashMap<String, String>): Call<Boolean>
+}
+
+interface DeleteuserAPI {
+    @FormUrlEncoded
+    @POST("api/delete_user/")
+    fun deleteUser(@FieldMap params: HashMap<String, String>): Call<Boolean>
 }

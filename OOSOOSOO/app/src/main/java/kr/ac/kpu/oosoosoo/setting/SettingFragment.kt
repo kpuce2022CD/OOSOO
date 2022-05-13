@@ -6,19 +6,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat.finishAffinity
+import android.widget.Toast
 import com.amplifyframework.auth.options.AuthSignOutOptions
 import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.fragment_setting.view.*
 import kr.ac.kpu.oosoosoo.R
-import kr.ac.kpu.oosoosoo.home.HomeActivity
-import kr.ac.kpu.oosoosoo.home.HomeFragment
+import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import kr.ac.kpu.oosoosoo.login.LoginActivity
 import kr.ac.kpu.oosoosoo.login.SelectIwActivity
 import kr.ac.kpu.oosoosoo.user.UserInfoActivity
 import kr.ac.kpu.oosoosoo.user.UserReviewActivity
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Response
+import retrofit2.Callback
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -94,7 +96,35 @@ class SettingFragment : Fragment() {
         }
 
         view.btn_settings_withdraw.setOnClickListener {
+            val call_delete = RetrofitBuilder().deleteUser
 
+            Amplify.Auth.deleteUser(
+                { Log.i("AuthQuickStart", "Delete user succeeded") },
+                { Log.e("AuthQuickStart", "Delete user failed with error", it) }
+            )
+
+            var input = HashMap<String, String>()
+            input["email"] = Amplify.Auth.currentUser.username
+            Log.d("user_withdraw", "${input["email"]}")
+
+            call_delete.deleteUser(input).enqueue(object: Callback<Boolean> {
+                override fun onFailure(call: Call<Boolean>, t: Throwable){
+                    Log.d("user_withdraw", t.message.toString())
+                    Toast.makeText(requireContext(), "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요.", Toast.LENGTH_LONG).show()
+                }
+                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>){
+                    val body: Boolean? = response.body()
+                    Log.d("user_withdraw", "통신 성공")
+                    if(body == true){
+                        Toast.makeText(requireContext(), "회원탈퇴 완료", Toast.LENGTH_LONG).show()
+                        activity?.finishAffinity()
+                        requireContext().startActivity<LoginActivity>()
+                    } else {
+                        Toast.makeText(requireContext(), "회원탈퇴 실패", Toast.LENGTH_LONG).show()
+                    }
+
+                }
+            })
         }
 
         Log.d("setting", "세팅 켜짐")

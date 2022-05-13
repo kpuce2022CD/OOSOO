@@ -7,6 +7,7 @@ import kotlinx.android.synthetic.main.activity_user_info.*
 import kr.ac.kpu.oosoosoo.BaseActivity
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
+import kr.ac.kpu.oosoosoo.home.HomeActivity
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -53,6 +54,10 @@ class UserInfoActivity : BaseActivity(TransitionMode.NONE) {
 
         btn_userinfo_back.setOnClickListener {
             finish()
+        }
+
+        btn_update_user.setOnClickListener {
+            startActivity<UserUpdateActivity>()
         }
     }
 }
