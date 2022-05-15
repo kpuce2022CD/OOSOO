@@ -43,6 +43,10 @@ urlpatterns = [
     path('t_watchings/', TvingWatchingsListAPI.as_view()),
     path('t_addwish/', TvingAddWishAPI.as_view()),
 
+    path('d_wishes/', DisneyWishesListAPI.as_view()),
+    path('d_watchings/', DisneyWatchingsListAPI.as_view()),
+    path('d_addwish/', DisneyAddWishAPI.as_view()),
+
     path('sign_in/', SignInAPI.as_view()),
     path('sign_up/', SignUpAPI.as_view()),
     path('interworking/', InterworkingAPI.as_view()),
@@ -61,6 +65,8 @@ urlpatterns = [
     path('add_wav_watchinglog/', AddWavveWatchingLogAPI.as_view()),
     path('add_t_wishlist/', AddTvingWishListAPI.as_view()),
     path('add_t_watchinglog/', AddTvingWatchingLogAPI.as_view()),
+    path('add_d_wishlist/', AddDisneyWishListAPI.as_view()),
+    path('add_d_watchinglog/', AddDisneyWatchingLogAPI.as_view()),
 
 
     path('rating/', RatingAPI.as_view()),

@@ -15,6 +15,9 @@ from api.Wavve.AddWish import wav_addwish
 from api.Tving.Watchings import t_watchings
 from api.Tving.Wishes import t_wishes
 from api.Tving.AddWish import t_addwish
+from api.DisneyPlus.Watchings import d_watchings
+from api.DisneyPlus.Wishes import d_wishes
+from api.DisneyPlus.AddWish import d_addwish
 from api.Sign.SignIn import signIn
 from api.Sign.SignUp import signUp
 from api.Sign.Interworking import Interworking
@@ -240,6 +243,7 @@ class WavveAddWishAPI(APIView):
         result = wav_addwish(email, pwd, name, data.get('title'))
         return Response(result)
 
+
 class TvingWishesListAPI(APIView):
     def post(self, request):
         data = request.data
@@ -253,6 +257,7 @@ class TvingWishesListAPI(APIView):
 
         result = t_wishes(email, pwd, name)
         return Response(result)
+
 
 class TvingWatchingsListAPI(APIView):
     def post(self, request):
@@ -268,6 +273,7 @@ class TvingWatchingsListAPI(APIView):
         result = t_watchings(email, pwd, name)
         return Response(result)
 
+
 class TvingAddWishAPI(APIView):
     def post(self, request):
         data = request.data
@@ -281,6 +287,52 @@ class TvingAddWishAPI(APIView):
 
         result = t_addwish(email, pwd, name, data.get('title'), data.get('type'))
         return Response(result)
+
+
+class DisneyWishesListAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="disney")
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        result = d_wishes(email, pwd, name)
+        return Response(result)
+
+
+class DisneyWatchingsListAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="disney")
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        result = d_watchings(email, pwd, name)
+        return Response(result)
+
+
+class DisneyAddWishAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="disney")
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        result = d_addwish(email, pwd, name, data.get('title'))
+        return Response(result)
+
 
 class SignInAPI(APIView):
     def post(self, request):
@@ -440,6 +492,7 @@ class AddWavveWatchingLogAPI(APIView):
 
         return Response(result)
 
+
 class AddTvingWishListAPI(APIView):
     def post(self, request):
         data = request.data
@@ -455,6 +508,7 @@ class AddTvingWishListAPI(APIView):
         result = add_wishlist(wishlist, interworking[0])
         return Response(result)
 
+
 class AddTvingWatchingLogAPI(APIView):
     def post(self, request):
         data = request.data
@@ -467,6 +521,38 @@ class AddTvingWatchingLogAPI(APIView):
         name = interworking[0].profile_name
 
         log = t_watchings(email, pwd, name)
+        result = add_watchinglog(log, interworking[0])
+        return Response(result)
+
+
+class AddDisneyWishListAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="disney")
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        wishlist = d_wishes(email, pwd, name)
+        result = add_wishlist(wishlist, interworking[0])
+        return Response(result)
+
+
+class AddDisneyWatchingLogAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        interworking = load.filter(platform="disney")
+
+        email = interworking[0].id
+        pwd = interworking[0].passwd
+        name = interworking[0].profile_name
+
+        log = d_watchings(email, pwd, name)
         result = add_watchinglog(log, interworking[0])
         return Response(result)
 
@@ -541,16 +627,18 @@ class MyInterworkingAPI(APIView):
         result = MyInterworking(data.get('email'))
         return Response(result)
 
+
 class DeleteUserAPI(APIView):
     def post(self, request):
         data = request.data
         result = deleteUser(data.get('email'))
         return Response(result)
 
+
 class UpdateUserAPI(APIView):
     def post(self, request):
         data = request.data
         result = updateUser(data.get('email'), data.get('pwd'), data.get('name'), data.get('phone_num'),
-                        data.get('nickname'), data.get('gender'), data.get('birthday'), data.get('job'),
-                        data.get('overview'))
+                            data.get('nickname'), data.get('gender'), data.get('birthday'), data.get('job'),
+                            data.get('overview'))
         return Response(result)
