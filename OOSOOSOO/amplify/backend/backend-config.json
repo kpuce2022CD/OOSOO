@@ -3,7 +3,17 @@
     "oosoosood71ac398": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "oosoosood71ac398PostConfirmation",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ],
       "customAuth": false,
       "frontendAuthConfig": {
         "socialProviders": [],
@@ -25,6 +35,13 @@
           "EMAIL"
         ]
       }
+    }
+  },
+  "function": {
+    "oosoosood71ac398PostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   }
 }
