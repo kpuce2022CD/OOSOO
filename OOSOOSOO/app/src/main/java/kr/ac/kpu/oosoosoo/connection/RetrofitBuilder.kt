@@ -173,5 +173,5 @@ interface UpdateuserAPI {
 interface DeleteuserAPI {
     @FormUrlEncoded
     @POST("api/delete_user/")
-    fun deleteUser(@FieldMap params: HashMap<String, String>): Call<Boolean>
+    fun deleteUser(@FieldMap params: HashMap<String, String>): Call<String>
 }

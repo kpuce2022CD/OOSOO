@@ -107,15 +107,15 @@ class SettingFragment : Fragment() {
             input["email"] = Amplify.Auth.currentUser.username
             Log.d("user_withdraw", "${input["email"]}")
 
-            call_delete.deleteUser(input).enqueue(object: Callback<Boolean> {
-                override fun onFailure(call: Call<Boolean>, t: Throwable){
+            call_delete.deleteUser(input).enqueue(object: Callback<String> {
+                override fun onFailure(call: Call<String>, t: Throwable){
                     Log.d("user_withdraw", t.message.toString())
                     Toast.makeText(requireContext(), "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요.", Toast.LENGTH_LONG).show()
                 }
-                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>){
-                    val body: Boolean? = response.body()
+                override fun onResponse(call: Call<String>, response: Response<String>){
+                    val body: String? = response.body()
                     Log.d("user_withdraw", "통신 성공")
-                    if(body == true){
+                    if(body == "Success"){
                         Toast.makeText(requireContext(), "회원탈퇴 완료", Toast.LENGTH_LONG).show()
                         activity?.finishAffinity()
                         requireContext().startActivity<LoginActivity>()
