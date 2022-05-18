@@ -15,13 +15,6 @@
     "categories": {
       "auth": {
         "oosoosood71ac398": {}
-      },
-      "function": {
-        "oosoosood71ac398PostConfirmation": {
-          "GROUP": "everyone",
-          "deploymentBucketName": "amplify-oosoosoo-dev-225132-deployment",
-          "s3Key": "amplify-builds/oosoosood71ac398PostConfirmation-36656971776736577558-build.zip"
-        }
       }
     }
   }
