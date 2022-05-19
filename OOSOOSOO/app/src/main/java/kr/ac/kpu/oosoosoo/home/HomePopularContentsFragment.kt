@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amplifyframework.core.Amplify
-import kotlinx.android.synthetic.main.fragment_home_recommend_contents.*
+import kotlinx.android.synthetic.main.fragment_home_popular_contents.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.ContentCardListAdapter
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
@@ -22,7 +22,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-class HomeRecommendContentsFragment : Fragment() {
+class HomePopularContentsFragment : Fragment() {
     val contentsArrayList : MutableList<ContentInfo> = ArrayList() //모든 컨텐츠 리스트
     val contentCardRowList : MutableList<CardListData> = ArrayList()//한 행의 컨텐츠 리스트
 
@@ -37,7 +37,7 @@ class HomeRecommendContentsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_home_recommend_contents, container, false)
+        val view = inflater.inflate(R.layout.fragment_home_popular_contents, container, false)
         return view
     }
 
@@ -47,7 +47,7 @@ class HomeRecommendContentsFragment : Fragment() {
         val call = RetrofitBuilder().callRecommendContents
         var listAdapter : ContentCardListAdapter
 
-        home_recommend_cardList_recyclerview.layoutManager =
+        home_popular_cardList_recyclerview.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
         var input = HashMap<String, String>()
@@ -74,7 +74,6 @@ class HomeRecommendContentsFragment : Fragment() {
                             .split(",")!!.distinct() as ArrayList<String>)).distinct() as ArrayList<String>
                         genreList.removeAll { it.trim()=="" }
                     }
-                    Log.d("testgenre",genreList.toString())
 
                     for(genre in genreList){
                         val contentFilteredByGenre = ArrayList<ContentInfo>()
@@ -94,10 +93,10 @@ class HomeRecommendContentsFragment : Fragment() {
                 }
 
 
-                listAdapter = ContentCardListAdapter(context!!, ArrayList(contentCardRowList.shuffled()), spanCount = 1)
+                listAdapter = ContentCardListAdapter(context!!, ArrayList(contentCardRowList.shuffled()), spanCount = 2)
                 //부모 어댑터 지정(수직방향)
-                home_recommend_cardList_recyclerview.adapter = listAdapter
-                home_recommend_cardList_recyclerview.adapter!!.notifyDataSetChanged()
+                home_popular_cardList_recyclerview.adapter = listAdapter
+                home_popular_cardList_recyclerview.adapter!!.notifyDataSetChanged()
 
 
             }
