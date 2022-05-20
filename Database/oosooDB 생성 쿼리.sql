@@ -20,7 +20,8 @@ CREATE TABLE contents(
 	now_status VARCHAR(100),
 	flatrate VARCHAR(100), 
 	rent VARCHAR(100), 
-	buy VARCHAR(100)
+	buy VARCHAR(100),
+    link VARCHAR(1000)
 );
 
 CREATE TABLE users(
