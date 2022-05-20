@@ -27,6 +27,7 @@ class Contents(models.Model):
     flatrate = models.CharField(max_length=100, blank=True, null=True)
     rent = models.CharField(max_length=100, blank=True, null=True)
     buy = models.CharField(max_length=100, blank=True, null=True)
+    link = models.CharField(max_length=1000, blank=True, null=True)
 
     class Meta:
         managed = False
