@@ -81,4 +81,6 @@ urlpatterns = [
     path('recommend/', RecommendAPI.as_view()),
     path('delete_user/', DeleteUserAPI.as_view()),
     path('update_user/', UpdateUserAPI.as_view()),
+
+    path('contents_link/', ContentsLinkAPI.as_view()),
 ]

@@ -42,6 +42,7 @@ from api.User.MyReview import MyReview
 from api.User.MyInterworking import MyInterworking
 from api.User.DeleteUser import deleteUser
 from api.User.UpdateUser import updateUser
+from api.Contents.contents_link import Contents_link
 
 
 class ContentsListAPI(APIView):
@@ -641,4 +642,10 @@ class UpdateUserAPI(APIView):
         result = updateUser(data.get('email'), data.get('pwd'), data.get('name'), data.get('phone_num'),
                             data.get('nickname'), data.get('gender'), data.get('birthday'), data.get('job'),
                             data.get('overview'))
+        return Response(result)
+
+class ContentsLinkAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = Contents_link(data.get('c_id'))
         return Response(result)
