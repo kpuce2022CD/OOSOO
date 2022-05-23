@@ -53,7 +53,7 @@ class HomePopularContentsFragment : Fragment() {
         var input = HashMap<String, String>()
         input["email"] = Amplify.Auth.currentUser.username
 
-        //추천된 컨텐츠 출력
+        //인기 컨텐츠 출력
         call.getRecommendContents(input).enqueue(object : Callback<List<RecommendContentInfo>> {
             override fun onResponse(
                 call: Call<List<RecommendContentInfo>>,
