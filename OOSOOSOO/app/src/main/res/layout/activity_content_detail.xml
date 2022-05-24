@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAF6F6"
+    android:background="#5E5E5E"
     tools:context=".contents.ContentDetailActivity">
 
     <ScrollView
@@ -139,7 +139,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+                app:layout_constraintTop_toBottomOf="@+id/layout_ott">
 
                 <TextView
                     android:id="@+id/tv_review_title"
@@ -176,8 +176,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout3"
-                android:layout_width="wrap_content"
+                android:id="@+id/layout_ott"
+                android:layout_width="250dp"
                 android:layout_height="90dp"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical"
@@ -186,7 +186,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/line_gray2">
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/tv_goto_ott"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -196,20 +196,22 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:id="@+id/linearLayout2"
+                    android:id="@+id/layout_ott2"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
+                    android:layout_gravity="center"
                     android:layout_marginTop="8dp"
-                    android:background="#FFF59D"
+                    android:background="#5E5E5E"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/btn__detail_netflix"
+                        android:id="@+id/btn_detail_netflix"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_margin="8dp"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         app:srcCompat="@drawable/netflix_logo_40dp" />
 
                     <ImageButton
@@ -218,6 +220,7 @@
                         android:layout_height="40dp"
                         android:layout_margin="8dp"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         app:srcCompat="@drawable/watcha_logo_40dp" />
 
                     <ImageButton
@@ -226,6 +229,7 @@
                         android:layout_height="40dp"
                         android:layout_margin="8dp"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         app:srcCompat="@drawable/wavve_logo_40dp" />
 
                     <ImageButton
@@ -234,6 +238,7 @@
                         android:layout_height="40dp"
                         android:layout_margin="8dp"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         app:srcCompat="@drawable/tving_logo_40dp" />
 
                     <ImageButton
@@ -242,6 +247,7 @@
                         android:layout_height="40dp"
                         android:layout_margin="8dp"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         app:srcCompat="@drawable/disney_logo_40dp" />
                 </LinearLayout>
             </LinearLayout>

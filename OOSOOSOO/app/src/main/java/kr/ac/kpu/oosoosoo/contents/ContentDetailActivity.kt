@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.amplifyframework.core.Amplify
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_content_detail.*
-import kotlinx.android.synthetic.main.activity_rating.*
-import kotlinx.android.synthetic.main.activity_select_interworking.*
 import kr.ac.kpu.oosoosoo.BaseActivity
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.ContentsReviewAdapter
@@ -63,6 +61,30 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
             // 평점
             tv_ratingbar.text = "평균 평점<" + contentInfo.vote_average!!.toString() + ">"
             ib_rating.setColorFilter(Color.YELLOW)
+
+            //구독
+            var flat_data = contentInfo.flatrate.toString()
+            Log.d("kim", flat_data)
+
+            if(flat_data.contains("Disney Plus")) {
+                btn_detail_disney.visibility = View.VISIBLE
+            }
+            if(flat_data.contains("Netflix")) {
+                btn_detail_netflix.visibility = View.VISIBLE
+            }
+            if(flat_data.contains("wavve")) {
+                btn_detail_wavve.visibility = View.VISIBLE
+            }
+            if (flat_data.contains("Watcha")) {
+                btn_detail_watcha.visibility = View.VISIBLE
+            }
+            if (flat_data.contains("tving")) {
+                btn_detail_tving.visibility = View.VISIBLE
+            }
+            if (flat_data == "") {
+                layout_ott.visibility = View.GONE
+                layout_ott2.visibility = View.GONE
+            }
 
             //서버에 요청해서 유저가 남긴 해당 컨텐츠 리뷰 정보 받아오기
             var input = HashMap<String, String>()

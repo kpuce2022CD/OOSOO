@@ -20,5 +20,6 @@ data class ContentInfo (
     val now_status : String?  = null,   //방영중인 상태(TV용)
     val flatrate : String?  = null,     //구독 서비스(리스트)
     val rent : String?  = null,         //대여 서비스(리스트)
-    val buy : String?  = null           //구매 서비스(리스트)
+    val buy : String?  = null,          //구매 서비스(리스트)
+    val link : String? = null,          //TMDB 링크
 ) : Serializable
