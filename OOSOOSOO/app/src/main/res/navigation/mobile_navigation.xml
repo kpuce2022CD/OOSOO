@@ -19,13 +19,21 @@
         android:id="@+id/navigation_dashboard"
         android:name="kr.ac.kpu.oosoosoo.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_self"
+            app:destination="@id/navigation_dashboard" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_trends"
         android:name="kr.ac.kpu.oosoosoo.recommends.TrendsFragment"
         android:label="@string/title_trends"
-        tools:layout="@layout/fragment_recommends" />
+        tools:layout="@layout/fragment_recommends" >
+        <action
+            android:id="@+id/action_navigation_trends_self"
+            app:destination="@id/navigation_trends" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_setting"

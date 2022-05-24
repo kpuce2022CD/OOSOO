@@ -68,7 +68,6 @@ class HomePopularContentsFragment : Fragment() {
 
                 if (recommenededContentsList != null) {
                     for (recommendedContent in recommenededContentsList) {
-                        Log.d("home_recommend_contents", recommendedContent.toString())
                         contentsArrayList.add(recommendedContent.recommend!!)   //Contents 리스트 셋팅
                         genreList = (genreList + (recommendedContent!!.recommend!!.genre?.substringBefore(" ")!!
                             .split(",")!!.distinct() as ArrayList<String>)).distinct() as ArrayList<String>

@@ -49,7 +49,6 @@ class ContentCardPlatformAdapter(context: Context, platformListData: ArrayList<S
     //bind 과정
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(platformList!![position])
-        Log.d("platformList", platformList!!.toString())
     }
 
     override fun getItemCount(): Int = platformList!!.size

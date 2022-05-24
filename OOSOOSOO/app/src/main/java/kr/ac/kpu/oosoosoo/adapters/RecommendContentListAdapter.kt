@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.recy_item_content_card.view.*
 import kotlinx.android.synthetic.main.recy_item_recommend_card.view.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.contents.ContentDetailActivity
@@ -38,18 +37,9 @@ class RecommendContentListAdapter(context: Context, recommendListData: ArrayList
             Glide.with(context)
                 .load(url)
                 .centerInside()
+                .override(1000,1200)
                 .into(itemView.recy_item_recommend_card_imageView)
-            if(adapterPosition==0 || adapterPosition == contentList!!.size-1){
-                itemView.recy_item_recommend_card_frame.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
 
-                val displayMetrics = context.resources.displayMetrics
-                val screenWidth = displayMetrics.widthPixels
-                var mLayoutParam : RecyclerView.LayoutParams =  itemView.recy_item_recommend_card_frame.layoutParams as RecyclerView.LayoutParams
-                if(adapterPosition == 0)
-                    mLayoutParam.leftMargin = (screenWidth - itemView.recy_item_recommend_card_frame.measuredWidthAndState)/2
-                else
-                    mLayoutParam.rightMargin = (screenWidth - itemView.recy_item_recommend_card_frame.measuredWidthAndState)/2
-            }
             itemView.recy_item_recommend_card_title.text = result.title
 
             //플랫폼 어댑터 지정(수평방향)
@@ -74,6 +64,20 @@ class RecommendContentListAdapter(context: Context, recommendListData: ArrayList
                 "content" to contentList!![position]
             )
         }
+        /* 좌우 컨텐츠 보이기 - 현재 position에 중복이 발생하여 원인 찾은 후 반영 예정
+         * if(position == 0 || position == contentList!!.size - 1) { */
+        holder.itemView.recy_item_recommend_card_frame.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+        val displayMetrics = context.resources.displayMetrics
+        val screenWidth = displayMetrics.widthPixels
+        var mLayoutParam : RecyclerView.LayoutParams =  holder.itemView.recy_item_recommend_card_frame.layoutParams as RecyclerView.LayoutParams
+        mLayoutParam.leftMargin = (screenWidth - holder.itemView.recy_item_recommend_card_frame.measuredWidthAndState)/2
+            /*if(position == 0) {
+                mLayoutParam.leftMargin = (screenWidth - holder.itemView.recy_item_recommend_card_frame.measuredWidthAndState)/2
+            } else {
+                mLayoutParam.rightMargin = (screenWidth - holder.itemView.recy_item_recommend_card_frame.measuredWidthAndState)/2
+            }
+        } */
+
     }
 
 
