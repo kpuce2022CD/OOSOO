@@ -108,7 +108,6 @@ CREATE TABLE people(
 	id INT NOT NULL PRIMARY KEY,
 	name VARCHAR(50) NOT NULL,
 	birthday VARCHAR(20) NOT NULL,
-    gender BOOLEAN NOT NULL,
     department VARCHAR(20) NOT NULL,
     popularity FLOAT NOT NULL,
     profile_path VARCHAR(50) NOT NULL
