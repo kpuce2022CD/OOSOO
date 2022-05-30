@@ -131,3 +131,29 @@ class WishList(models.Model):
     class Meta:
         managed = False
         db_table = 'wish_list'
+
+
+class People(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=50)
+    birthday = models.CharField(max_length=20)
+    gender = models.IntegerField()
+    department = models.CharField(max_length=20)
+    popularity = models.FloatField()
+    profile_path = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'people'
+
+
+class ContentsCredits(models.Model):
+    id = models.IntegerField(primary_key=True)
+    c_id = models.ForeignKey(Contents, on_delete=models.DO_NOTHING, db_column="c_id")
+    p_id = models.ForeignKey(People, on_delete=models.DO_NOTHING, db_column="p_id")
+    job = models.CharField(max_length=20)
+    role = models.CharField(max_length=20, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'contents_credits'

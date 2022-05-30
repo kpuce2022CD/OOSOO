@@ -104,4 +104,24 @@ CREATE TABLE watching_log(
 	FOREIGN KEY(i_id) REFERENCES user_interworking(i_id)
 );
 
+CREATE TABLE people(
+	id INT NOT NULL PRIMARY KEY,
+	name VARCHAR(50) NOT NULL,
+	birthday VARCHAR(20) NOT NULL,
+    gender BOOLEAN NOT NULL,
+    department VARCHAR(20) NOT NULL,
+    popularity FLOAT NOT NULL,
+    profile_path VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE contents_credits(
+	id INT NOT NULL PRIMARY KEY,
+    c_id VARCHAR(100) NOT NULL,
+    p_id INT NOT NULL,
+    job VARCHAR(20) NOT NULL,
+    role VARCHAR(20),
+    FOREIGN KEY(c_id) REFERENCES contents(id),
+    FOREIGN KEY(p_id) REFERENCES people(id)
+);
+
 ALTER TABLE contents ADD FULLTEXT(title);
