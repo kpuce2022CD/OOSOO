@@ -1,4 +1,4 @@
-import requests     # aiohttp로 대체
+# import requests     # aiohttp로 대체
 import aiohttp
 import mariadb
 import json
@@ -16,12 +16,12 @@ conn = mariadb.connect(
 
 async def get_people(num):
     try:
-        url = "https://api.themoviedb.org/3/person/" + str(
+        url = "http://api.themoviedb.org/3/person/" + str(
             num) + "?api_key=315914a9c98a6d7345c3dc4ec25aa2c4&language=ko-KR"
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as response:
                 people_json = json.loads(await response.text())
-                if people_json['popularity'] > 2.0 \
+                if people_json['popularity'] > 3.0 \
                         and (people_json['known_for_department'] == 'Acting' or people_json['known_for_department'] == 'Directing'):
                     print('id : ' + str(people_json['id']))
                     id = people_json['id']
@@ -53,12 +53,10 @@ start = time.time()
 
 
 # latest = 3569716
-# 0 ~ 999
-for i in range(0, 10):
+# 0 ~ 3569800
+for i in range(0, 35698):
     tasks = [get_people(k) for k in range(i*100, i*100+100)]
     asyncio.run(asyncio.wait(tasks))
-    #print('\nsleep 20sec\n')
-    #time.sleep(5)
 
 end = time.time()
 print(f'async : {end - start}')
