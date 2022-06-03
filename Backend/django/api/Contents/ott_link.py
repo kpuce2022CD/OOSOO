@@ -24,10 +24,6 @@ def netflix_url(title, driver): #제목으로 netflix에 있는 해당 컨텐츠
         first_content = driver.find_element(By.XPATH, '//*[@id="row-0"]/div/div/div/div/div/div[1]')
         first_content.click()
 
-        btn_watch = driver.find_element(By.XPATH,
-                                        '//*[@id="appMountPoint"]/div/div/div[1]/div[2]/div/div[1]/div[4]/div/div[1]/div[1]/a/button')
-        btn_watch.click()
-
         time.sleep(2)
         return driver.current_url
     except:
@@ -52,14 +48,6 @@ def disney_url(title, driver): #제목으로 disney plus에 있는 해당 컨텐
         time.sleep(2)
         driver.implicitly_wait(5)
 
-        # 시청 버튼 예외 처리 - 해당 콘텐츠 디테일의 줄 수에 따라 버튼의 XPATH가 바뀜
-        try:
-            btn_watch = driver.find_element(By.XPATH,
-                                            '//*[@id="details_index"]/div/article/div[3]/div/div[2]/button[1]')
-        except:
-            btn_watch = driver.find_element(By.XPATH, '//*[@id="details_index"]/div/article/div[3]/div/div[3]/button')
-
-        btn_watch.click()
         time.sleep(2)
         driver.implicitly_wait(5)
 
@@ -133,16 +121,6 @@ def watcha_url(title, driver, c_type): #제목으로 watcha에 있는 해당 컨
             time.sleep(5)
             driver.implicitly_wait(5)
 
-        time.sleep(2)
-        driver.implicitly_wait(5)
-
-        btn_watch = driver.find_element(By.XPATH,
-                                        '//*[@id="root"]/div[1]/main/div[1]/header[1]/div/div/section/div[1]/a')
-        btn_watch.click()
-
-        time.sleep(2)
-        driver.implicitly_wait(5)
-
         return driver.current_url
 
     except:
@@ -167,12 +145,6 @@ def tving_url(title, driver, c_type): #제목으로 tving에 있는 해당 컨�
         first_content = driver.find_element(By.XPATH,
                                             '//*[@id="__next"]/main/section/div/div/section/section/div[2]/div[1]')
         first_content.click()
-        time.sleep(2)
-        driver.implicitly_wait(5)
-
-        btn_watch = driver.find_element(By.XPATH,
-                                        '//*[@id="__next"]/main/section/article/article/div[2]/div[2]/div[2]/button')
-        btn_watch.click()
         time.sleep(2)
         driver.implicitly_wait(5)
 
