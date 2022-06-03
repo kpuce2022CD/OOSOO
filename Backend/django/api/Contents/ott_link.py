@@ -179,26 +179,29 @@ def ott_link(email, title, c_type, platform):
         n_login(i['id'], i['passwd'], i['profile_name'], driver)
 
         link = netflix_url(title, driver)
+        driver.quit()
         return link
 
     elif platform == "disney":
         d_login(i['id'], i['passwd'], i['profile_name'], driver)
         link = disney_url(title, driver)
+        driver.quit()
         return link
 
     elif platform == "wavve":
         wav_login(i['id'], i['passwd'], i['profile_name'], driver)
         link = wavve_url(title, driver, c_type)
+        driver.quit()
         return link
 
     elif platform == "watcha":
         wat_login(i['id'], i['passwd'], i['profile_name'], driver)
         link = watcha_url(title, driver, c_type)
+        driver.quit()
         return link
 
     elif platform == "tving":
         t_login(i['id'], i['passwd'], i['profile_name'], driver)
         link = tving_url(title, driver, c_type)
+        driver.quit()
         return link
-
-    driver.quit()
