@@ -32,11 +32,11 @@ def netflix_url(title, driver): #제목으로 netflix에 있는 해당 컨텐츠
 
 
 def disney_url(title, driver): #제목으로 disney plus에 있는 해당 컨텐츠 시청 url 리턴
-    driver.get('https://www.disneyplus.com/ko-kr/home/')
-    time.sleep(2)
-    driver.implicitly_wait(5)
-
     try:
+        driver.get('https://www.disneyplus.com/ko-kr/home/')
+        time.sleep(2)
+        driver.implicitly_wait(5)
+
         btn_search = driver.find_element(By.XPATH, '//*[@id="nav-list"]/span[2]')
         btn_search.click()
 
@@ -45,9 +45,6 @@ def disney_url(title, driver): #제목으로 disney plus에 있는 해당 컨텐
 
         content = driver.find_element(By.XPATH, '//*[@id="section_index"]/div/div/div[2]/section/div/div/div[1]/a')
         content.click()
-        time.sleep(2)
-        driver.implicitly_wait(5)
-
         time.sleep(2)
         driver.implicitly_wait(5)
 
