@@ -190,7 +190,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="시청하러 가기"
+                    android:text="컨텐츠로 이동하기"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />

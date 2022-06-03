@@ -54,6 +54,7 @@ class RetrofitBuilder {
 
     val updateUser = retrofit.create(UpdateuserAPI::class.java)
     val deleteUser = retrofit.create(DeleteuserAPI::class.java)
+    val callOTTLink = retrofit.create(CallOTTLinkAPI::class.java)
 }
 
 interface RecommendContentsAPI {
@@ -174,4 +175,10 @@ interface DeleteuserAPI {
     @FormUrlEncoded
     @POST("api/delete_user/")
     fun deleteUser(@FieldMap params: HashMap<String, String>): Call<String>
+}
+
+interface CallOTTLinkAPI {
+    @FormUrlEncoded
+    @POST("api/ott_link/")
+    fun callottlink(@FieldMap params: HashMap<String, String>): Call<String>
 }

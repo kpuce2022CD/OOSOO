@@ -3,6 +3,7 @@ package kr.ac.kpu.oosoosoo.contents
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,14 +15,17 @@ import kr.ac.kpu.oosoosoo.BaseActivity
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.ContentsReviewAdapter
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
+import kr.ac.kpu.oosoosoo.dialog.LoadingDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
 
-    val call = RetrofitBuilder().callReview  // 유저가 쓴 해당 컨텐츠에 대한 리뷰 Retrofit Call
+    val call = RetrofitBuilder().callReview           // 유저가 쓴 해당 컨텐츠에 대한 리뷰 Retrofit Call
     val callReview = RetrofitBuilder().callAllReview  // 해당 컨텐츠에 대한 모든 리뷰 Retrofit Call
+    val callLink = RetrofitBuilder().callOTTLink      // 요청한 OTT에서 해당 컨텐츠 시청 링크 Retrofit Call
+
     // ContentInfo 인텐트 받아오기
     lateinit var contentInfo : ContentInfo
 
@@ -34,6 +38,7 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
         var myRating = 0.0f
         var myReview = ""
         var isExist = false
+        var link = ""
 
         if (contentInfo != null) {
             // Poster Image 출력
@@ -85,6 +90,9 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
                 layout_ott.visibility = View.GONE
                 layout_ott2.visibility = View.GONE
             }
+
+            //링크
+            link = contentInfo.link.toString()
 
             //서버에 요청해서 유저가 남긴 해당 컨텐츠 리뷰 정보 받아오기
             var input = HashMap<String, String>()
@@ -152,6 +160,27 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
                     }
                 }
             }
+
+            // OTT 연동
+            btn_detail_netflix.setOnClickListener {
+                callOTTLink("netflix")
+            }
+
+            btn_detail_tving.setOnClickListener {
+                callOTTLink("tving")
+            }
+
+            btn_detail_watcha.setOnClickListener {
+                callOTTLink("watcha")
+            }
+
+            btn_detail_wavve.setOnClickListener {
+                callOTTLink("wavve")
+            }
+
+            btn_detail_disney.setOnClickListener {
+                callOTTLink("disney")
+            }
         }
     }
 
@@ -171,6 +200,36 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
                 }
             }
         }
+    }
+
+    private fun callOTTLink(platform: String){
+        val loadingDialog = LoadingDialog(this@ContentDetailActivity)
+        loadingDialog.show()
+        var input3 = HashMap<String, String>()
+        input3["email"] = Amplify.Auth.currentUser.username
+        input3["title"] = contentInfo.title.toString()
+        input3["c_type"] = contentInfo._type.toString()
+        input3["platform"] = platform
+
+        callLink.callottlink(input3).enqueue(object : Callback<String>{
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Log.d("detail_link", "링크 요청 실패" + t.message.toString())
+            }
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                val body = response.body().toString()
+                if (body == "x"){
+                    loadingDialog.dismiss()
+                    Log.d("detail_link", "$platform" + "에 없는 컨텐츠입니다.")
+                } else {
+                    loadingDialog.dismiss()
+                    Log.d("detail_link", body)
+                    if (body != null){
+                        var intent = Intent(Intent.ACTION_VIEW, Uri.parse(body))
+                        startActivity(intent)
+                    }
+                }
+            }
+        })
     }
 
     private fun callAllReview() {
