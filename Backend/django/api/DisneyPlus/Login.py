@@ -7,12 +7,12 @@ def d_login(email, pwd, name, driver):
     driver.implicitly_wait(10)
 
     # 로그인 자동화
-    driver.find_element(By.NAME, 'email').send_keys(email)
-    driver.find_element(By.NAME, 'dssLoginSubmit').click()
+    driver.find_element(By.XPATH, '//*[@id="email"]').send_keys(email)
+    driver.find_element(By.XPATH, '//*[@id="dssLogin"]/div[1]/button').click()
     driver.implicitly_wait(5)
 
-    driver.find_element(By.NAME, 'password').send_keys(pwd)
-    driver.find_element(By.NAME, 'dssLoginSubmit').click()
+    driver.find_element(By.XPATH, '//*[@id="password"]').send_keys(pwd)
+    driver.find_element(By.XPATH, '//*[@id="dssLogin"]/div/button').click()
     driver.implicitly_wait(5)
 
     # 리스트 출력 후 선택 방식
