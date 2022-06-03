@@ -36,3 +36,4 @@ def t_login(email, pwd, name, driver):
 
     time.sleep(3)
     driver.implicitly_wait(5)
+    driver.save_screenshot("screenshot_tving.png")
