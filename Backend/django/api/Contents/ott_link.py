@@ -14,10 +14,11 @@ from api.Watcha.Login_2 import wat_login
 from api.Wavve.Login import wav_login
 
 def netflix_url(title, driver): #제목으로 netflix에 있는 해당 컨텐츠 시청 url 리턴
-    url_home = "https://www.netflix.com/kr/"
-    driver.get(url_home)
 
     try:
+        url_home = "https://www.netflix.com/kr/"
+        driver.get(url_home)
+
         URL = "https://www.netflix.com/search?q=" + title
         driver.get(URL)
 
@@ -27,6 +28,7 @@ def netflix_url(title, driver): #제목으로 netflix에 있는 해당 컨텐츠
         time.sleep(2)
         return driver.current_url
     except:
+        driver.quit()
         return "x"
 
 
@@ -39,9 +41,13 @@ def disney_url(title, driver): #제목으로 disney plus에 있는 해당 컨텐
 
         btn_search = driver.find_element(By.XPATH, '//*[@id="nav-list"]/span[2]')
         btn_search.click()
+        time.sleep(2)
+        driver.implicitly_wait(5)
 
         input_bar = driver.find_element(By.XPATH, '//*[@id="search-input"]')
         input_bar.send_keys(title)
+        time.sleep(2)
+        driver.implicitly_wait(5)
 
         content = driver.find_element(By.XPATH, '//*[@id="section_index"]/div/div/div[2]/section/div/div/div[1]/a')
         content.click()
@@ -50,16 +56,14 @@ def disney_url(title, driver): #제목으로 disney plus에 있는 해당 컨텐
 
         return driver.current_url
 
-    except:
+    except :
+        driver.quit()
         return "x"
 
-
 def wavve_url(title, driver, c_type): #제목으로 wavve에 있는 해당 컨텐츠 시청 url 리턴
-
-    xbox = driver.find_element(By.XPATH, '//*[@id="contents"]/div[1]/section/div[1]')
-    xbox.click()
-
     try:
+        xbox = driver.find_element(By.XPATH, '//*[@id="contents"]/div[1]/section/div[1]')
+        xbox.click()
         ##Content = TV일 때
         if c_type == "tv":
             tv_search_url = "https://www.wavve.com/search/search?category=program&searchWord=" + title
@@ -87,6 +91,7 @@ def wavve_url(title, driver, c_type): #제목으로 wavve에 있는 해당 컨�
         return driver.current_url
 
     except:
+        driver.quit()
         return "x"
 
 
@@ -96,31 +101,32 @@ def watcha_url(title, driver, c_type): #제목으로 watcha에 있는 해당 컨
         if c_type == "tv":
             tv_search_url = "https://watcha.com/browse/search?query=" + title + "&filter=tv_search"
             driver.get(tv_search_url)
-            time.sleep(5)
+            time.sleep(3)
             driver.implicitly_wait(5)
 
             tv_content = driver.find_element(By.XPATH,
                                              '//*[@id="root"]/div[1]/main/div[1]/section/div[1]/ul/li[1]/article[1]/a')
             tv_content.click()
-            time.sleep(5)
+            time.sleep(3)
             driver.implicitly_wait(5)
 
         ##Content = Movie일 때
         elif c_type == "movie":
             movie_search_url = "https://watcha.com/browse/search?query=" + title + "&filter=movie_search"
             driver.get(movie_search_url)
-            time.sleep(5)
+            time.sleep(3)
             driver.implicitly_wait(5)
 
             movie_content = driver.find_element(By.XPATH,
                                                 '//*[@id="root"]/div[1]/main/div[1]/section/div/ul/li[1]/article[1]/a')
             movie_content.click()
-            time.sleep(5)
+            time.sleep(3)
             driver.implicitly_wait(5)
 
         return driver.current_url
 
     except:
+        driver.quit()
         return "x"
 
 
@@ -148,6 +154,7 @@ def tving_url(title, driver, c_type): #제목으로 tving에 있는 해당 컨�
         return driver.current_url
 
     except:
+        driver.quit()
         return "x"
 
 
@@ -173,32 +180,32 @@ def ott_link(email, title, c_type, platform):
             break
 
     if platform == "netflix":
-        n_login(i['id'], i['passwd'], i['profile_name'], driver)
+        n_login(user_interworking['id'], user_interworking['passwd'], user_interworking['profile_name'], driver)
 
         link = netflix_url(title, driver)
         driver.quit()
         return link
 
     elif platform == "disney":
-        d_login(i['id'], i['passwd'], i['profile_name'], driver)
+        d_login(user_interworking['id'], user_interworking['passwd'], user_interworking['profile_name'], driver)
         link = disney_url(title, driver)
         driver.quit()
         return link
 
     elif platform == "wavve":
-        wav_login(i['id'], i['passwd'], i['profile_name'], driver)
+        wav_login(user_interworking['id'], user_interworking['passwd'], user_interworking['profile_name'], driver)
         link = wavve_url(title, driver, c_type)
         driver.quit()
         return link
 
     elif platform == "watcha":
-        wat_login(i['id'], i['passwd'], i['profile_name'], driver)
+        wat_login(user_interworking['id'], user_interworking['passwd'], user_interworking['profile_name'], driver)
         link = watcha_url(title, driver, c_type)
         driver.quit()
         return link
 
     elif platform == "tving":
-        t_login(i['id'], i['passwd'], i['profile_name'], driver)
+        t_login(user_interworking['id'], user_interworking['passwd'], user_interworking['profile_name'], driver)
         link = tving_url(title, driver, c_type)
         driver.quit()
         return link
