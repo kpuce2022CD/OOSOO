@@ -148,7 +148,7 @@ class People(models.Model):
 
 
 class ContentsCredits(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.CharField(primary_key=True, max_length=50)
     c_id = models.ForeignKey(Contents, on_delete=models.DO_NOTHING, db_column="c_id")
     p_id = models.ForeignKey(People, on_delete=models.DO_NOTHING, db_column="p_id")
     job = models.CharField(max_length=20)
