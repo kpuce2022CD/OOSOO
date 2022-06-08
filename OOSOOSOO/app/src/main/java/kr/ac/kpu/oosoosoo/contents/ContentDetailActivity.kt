@@ -204,6 +204,8 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
 
     private fun callOTTLink(platform: String){
         val loadingDialog = LoadingDialog(this@ContentDetailActivity)
+        val regex = "(https|http)://www(.+)".toRegex()
+
         loadingDialog.show()
         var input3 = HashMap<String, String>()
         input3["email"] = Amplify.Auth.currentUser.username
@@ -217,15 +219,31 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
             }
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 val body = response.body().toString()
-                if (body == "x"){
+                Log.d("detail_link", "$body")
+                if (body == null){
                     loadingDialog.dismiss()
-                    Log.d("detail_link", "$platform" + "에 없는 컨텐츠입니다.")
+                    Log.d("detail_link", "서버 연결 실패")
                 } else {
-                    loadingDialog.dismiss()
                     Log.d("detail_link", body)
-                    if (body != null){
-                        var intent = Intent(Intent.ACTION_VIEW, Uri.parse(body))
-                        startActivity(intent)
+                    if (body == "interworking"){
+                        loadingDialog.dismiss()
+                        Log.d("detail_link", "$platform" + "에 대한 연동 정보가 없습니다.")
+                    } else if (body == "contents"){
+                        loadingDialog.dismiss()
+                        Log.d("detail_link", "$platform" + "에 해당 컨텐츠가 없습니다.")
+                    }  else {
+                            loadingDialog.dismiss()
+                            Log.d("detail_link", "$body")
+                            var intent = Intent(Intent.ACTION_VIEW, Uri.parse(body))
+                            startActivity(intent)
+                            /*else if (body.matches(regex)) {
+                               loadingDialog.dismiss()
+                               var intent = Intent(Intent.ACTION_VIEW, Uri.parse(body))
+                               startActivity(intent)
+                           } else {
+                               loadingDialog.dismiss()
+                               Log.d("detail_link", "url 정규표현식이 아님")
+                           }*/
                     }
                 }
             }
