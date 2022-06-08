@@ -152,7 +152,7 @@ class ContentsCredits(models.Model):
     c_id = models.ForeignKey(Contents, on_delete=models.DO_NOTHING, db_column="c_id")
     p_id = models.ForeignKey(People, on_delete=models.DO_NOTHING, db_column="p_id")
     job = models.CharField(max_length=20)
-    role = models.CharField(max_length=20, blank=True, null=True)
+    role = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
