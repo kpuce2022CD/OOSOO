@@ -7,7 +7,7 @@ services:
       python3 manage.py collectstatic --no-input &&
       python3 manage.py makemigrations && 
       python3 manage.py migrate && 
-      gunicorn Django.asgi:application --worker-class uvicorn.workers.UvicornWorker --workers 4 --timeout 100 --bind 0.0.0.0:8000 "
+      gunicorn Django.wsgi:application --timeout 100 --bind 0.0.0.0:8000 "
     expose:
       - "8000"
     volumes:
