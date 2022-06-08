@@ -118,7 +118,7 @@ CREATE TABLE contents_credits(
     c_id VARCHAR(100) NOT NULL,
     p_id INT NOT NULL,
     job VARCHAR(20) NOT NULL,
-    role VARCHAR(20),
+    role VARCHAR(100),
     FOREIGN KEY(c_id) REFERENCES contents(id),
     FOREIGN KEY(p_id) REFERENCES people(id)
 );

@@ -21,7 +21,7 @@ async def get_credit(c_id, _type):
             async with session.get(url) as response:
                 credits_json = json.loads(await response.text())
                 for cast in credits_json['cast']:
-                    if cast['popularity'] > 3.0 and cast['order'] <= 10:
+                    if cast['popularity'] > 3.0 and cast['order'] <= 20:
                         credit_id = cast['credit_id']
                         p_id = cast['id']
                         job = 'Actor'
@@ -81,13 +81,14 @@ try:
         print(c[0])
         count += 1
 
+    # m_1726 = 3051 (아이언맨)
     # latest = 35395
-    # 0 ~ 35389
-    for i in range(0, 3539):
-        tasks = [get_credit(contents[k][0], contents[k][1]) for k in range(i*10, i*10+10)]
+    # 0 ~ 35300
+    for i in range(0, 353):
+        tasks = [get_credit(contents[k][0], contents[k][1]) for k in range(i*100, i*100+100)]
         asyncio.run(asyncio.wait(tasks))
 
-    tasks = [get_credit(contents[k][0], contents[k][1]) for k in range(35390, 35396)]
+    tasks = [get_credit(contents[k][0], contents[k][1]) for k in range(35300, 35396)]
     asyncio.run(asyncio.wait(tasks))
 
 except Exception as e:
