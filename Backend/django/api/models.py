@@ -137,7 +137,6 @@ class People(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     birthday = models.CharField(max_length=20)
-    gender = models.IntegerField()
     department = models.CharField(max_length=20)
     popularity = models.FloatField()
     profile_path = models.CharField(max_length=50)

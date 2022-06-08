@@ -84,4 +84,6 @@ urlpatterns = [
 
     path('contents_link/', ContentsLinkAPI.as_view()),
     path('ott_link/', OTTLinkAPI.as_view()),
+
+    path('get_credits/', GetCreditsAPI.as_view()),
 ]

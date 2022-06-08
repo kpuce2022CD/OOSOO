@@ -44,6 +44,7 @@ from api.User.DeleteUser import deleteUser
 from api.User.UpdateUser import updateUser
 from api.Contents.contents_link import Contents_link
 from api.Contents.ott_link import ott_link
+from api.Contents.contents_credits import get_credits
 
 
 class ContentsListAPI(APIView):
@@ -645,14 +646,23 @@ class UpdateUserAPI(APIView):
                             data.get('overview'))
         return Response(result)
 
+
 class ContentsLinkAPI(APIView):
     def post(self, request):
         data = request.data
         result = Contents_link(data.get('c_id'))
         return Response(result)
 
+
 class OTTLinkAPI(APIView):
     def post(self, request):
         data = request.data
         result = ott_link(data.get('email'), data.get('title'), data.get('c_type'), data.get('platform'))
+        return Response(result)
+
+
+class GetCreditsAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = get_credits(data.get('c_id'))
         return Response(result)
