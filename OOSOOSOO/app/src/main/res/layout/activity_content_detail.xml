@@ -131,15 +131,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_overview_detail" />
 
+            <View
+                android:id="@+id/line_gray3"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="8dp"
+                android:background="#5E5E5E"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
             <LinearLayout
+                android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:layout_marginTop="9dp"
+                android:layout_marginTop="8dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_ott">
+                app:layout_constraintTop_toBottomOf="@+id/line_gray4">
 
                 <TextView
                     android:id="@+id/tv_review_title"
@@ -175,6 +186,16 @@
 
             </LinearLayout>
 
+            <View
+                android:id="@+id/line_gray4"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="8dp"
+                android:background="#5E5E5E"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_ott" />
+
             <LinearLayout
                 android:id="@+id/layout_ott"
                 android:layout_width="250dp"
@@ -183,7 +204,7 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/line_gray2">
+                app:layout_constraintTop_toBottomOf="@+id/line_gray3">
 
                 <TextView
                     android:id="@+id/tv_goto_ott"
@@ -250,6 +271,45 @@
                         android:visibility="gone"
                         app:srcCompat="@drawable/disney_logo_40dp" />
                 </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line_gray2">
+
+                <TextView
+                    android:id="@+id/tv_credits"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="감독 및 출연진"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="2dp"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/credits_recyclerview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

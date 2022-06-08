@@ -1,9 +1,6 @@
 package kr.ac.kpu.oosoosoo.connection
 
-import kr.ac.kpu.oosoosoo.contents.ContentInfo
-import kr.ac.kpu.oosoosoo.contents.ContentsReviewInfo
-import kr.ac.kpu.oosoosoo.contents.RecommendContentInfo
-import kr.ac.kpu.oosoosoo.contents.ReviewInfo
+import kr.ac.kpu.oosoosoo.contents.*
 import kr.ac.kpu.oosoosoo.user.UserInfo
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -55,6 +52,7 @@ class RetrofitBuilder {
     val updateUser = retrofit.create(UpdateuserAPI::class.java)
     val deleteUser = retrofit.create(DeleteuserAPI::class.java)
     val callOTTLink = retrofit.create(CallOTTLinkAPI::class.java)
+    val callCredits = retrofit.create(CallCreditsAPI::class.java)
 }
 
 interface RecommendContentsAPI {
@@ -181,4 +179,10 @@ interface CallOTTLinkAPI {
     @FormUrlEncoded
     @POST("api/ott_link/")
     fun callottlink(@FieldMap params: HashMap<String, String>): Call<String>
+}
+
+interface CallCreditsAPI {
+    @FormUrlEncoded
+    @POST("api/get_credits/")
+    fun callCredits(@FieldMap params: HashMap<String, String>): Call<ArrayList<CreditsInfo>>
 }

@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_content_detail.*
 import kr.ac.kpu.oosoosoo.BaseActivity
 import kr.ac.kpu.oosoosoo.R
+import kr.ac.kpu.oosoosoo.adapters.ContentsCreditAdapter
 import kr.ac.kpu.oosoosoo.adapters.ContentsReviewAdapter
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import kr.ac.kpu.oosoosoo.dialog.LoadingDialog
@@ -25,6 +26,7 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
     val call = RetrofitBuilder().callReview           // 유저가 쓴 해당 컨텐츠에 대한 리뷰 Retrofit Call
     val callReview = RetrofitBuilder().callAllReview  // 해당 컨텐츠에 대한 모든 리뷰 Retrofit Call
     val callLink = RetrofitBuilder().callOTTLink      // 요청한 OTT에서 해당 컨텐츠 시청 링크 Retrofit Call
+    val callCredits = RetrofitBuilder().callCredits   // 해당 컨텐츠에 대한 감독 및 출연진 Retrofit Call
 
     // ContentInfo 인텐트 받아오기
     lateinit var contentInfo : ContentInfo
@@ -124,6 +126,7 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
 
             callAllReview()
 
+            callCredit()
 
             // Overview
             val overview = contentInfo.overview?.split(". ")
@@ -270,6 +273,32 @@ class ContentDetailActivity : BaseActivity(TransitionMode.VERTICAL) {
                     var adt = ContentsReviewAdapter(this@ContentDetailActivity,reviewList)
                     var manager01 = LinearLayoutManager(this@ContentDetailActivity,LinearLayoutManager.HORIZONTAL,false)
                     card_review_recyclerview.apply{
+                        adapter = adt
+                        layoutManager = manager01
+                    }
+                }
+            }
+        })
+    }
+
+    private fun callCredit(){
+        var input = HashMap<String, String>()
+        input["c_id"] = contentInfo.id.toString()
+        callCredits.callCredits(input).enqueue(object : Callback<ArrayList<CreditsInfo>>{
+            override fun onFailure(call: Call<ArrayList<CreditsInfo>>, t: Throwable) {
+                tv_credits.text = "${t.message.toString()}"
+                Log.d("detail_credit", "Credits 요청 실패" + t.message.toString())
+            }
+            override fun onResponse(call: Call<ArrayList<CreditsInfo>>, response: Response<ArrayList<CreditsInfo>>) {
+                val creditsList : ArrayList<CreditsInfo> = response.body() as ArrayList<CreditsInfo>
+                Log.d("detail_credit", creditsList.toString())
+                if (creditsList!!.isEmpty()){
+                    tv_credits.text = "출연진 데이터 없음"
+                } else {
+                    tv_credits.text = "${contentInfo.title} 감독 및 출연진"
+                    var adt = ContentsCreditAdapter(this@ContentDetailActivity, creditsList)
+                    var manager01 = LinearLayoutManager(this@ContentDetailActivity,LinearLayoutManager.HORIZONTAL,false)
+                    credits_recyclerview.apply{
                         adapter = adt
                         layoutManager = manager01
                     }
