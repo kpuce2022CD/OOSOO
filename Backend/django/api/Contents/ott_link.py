@@ -1,11 +1,10 @@
 # selenium 불러오기
-import selenium.webdriver.remote.errorhandler
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
-import asyncio
 
+# 각각의 OTT 플랫폼 로그인 불러오기
 from api.models import UserInterworking
 from api.Netflix.Login import n_login
 from api.DisneyPlus.Login import d_login
@@ -14,7 +13,6 @@ from api.Watcha.Login_2 import wat_login
 from api.Wavve.Login import wav_login
 
 def netflix_url(title, driver): #제목으로 netflix에 있는 해당 컨텐츠 시청 url 리턴
-
     try:
         url_home = "https://www.netflix.com/kr/"
         driver.get(url_home)
@@ -29,16 +27,13 @@ def netflix_url(title, driver): #제목으로 netflix에 있는 해당 컨텐츠
         return driver.current_url
     except:
         driver.quit()
-        return "x"
+        return "contents"
 
 
 
 def disney_url(title, driver): #제목으로 disney plus에 있는 해당 컨텐츠 시청 url 리턴
+    #######################ERROR#######################
     try:
-        driver.get('https://www.disneyplus.com/ko-kr/home/')
-        time.sleep(2)
-        driver.implicitly_wait(5)
-
         btn_search = driver.find_element(By.XPATH, '//*[@id="nav-list"]/span[2]')
         btn_search.click()
         time.sleep(2)
@@ -49,16 +44,22 @@ def disney_url(title, driver): #제목으로 disney plus에 있는 해당 컨텐
         time.sleep(2)
         driver.implicitly_wait(5)
 
-        content = driver.find_element(By.XPATH, '//*[@id="section_index"]/div/div/div[2]/section/div/div/div[1]/a')
+        try:
+            content = driver.find_element(By.XPATH, '//*[@id="section_index"]/div/div/div[2]/section/div/div/div/a')
+        except:
+            content = driver.find_element(By.XPATH, '//*[@id="section_index"]/div/div/div[2]/section/div/div/div[1]/a')
         content.click()
         time.sleep(2)
         driver.implicitly_wait(5)
 
-        return driver.current_url
+        cu = driver.current_url
+        return cu
 
-    except :
+    except:
         driver.quit()
-        return "x"
+        return "contents"
+
+
 
 def wavve_url(title, driver, c_type): #제목으로 wavve에 있는 해당 컨텐츠 시청 url 리턴
     try:
@@ -92,7 +93,8 @@ def wavve_url(title, driver, c_type): #제목으로 wavve에 있는 해당 컨�
 
     except:
         driver.quit()
-        return "x"
+        return "contents"
+
 
 
 def watcha_url(title, driver, c_type): #제목으로 watcha에 있는 해당 컨텐츠 시청 url 리턴
@@ -127,7 +129,8 @@ def watcha_url(title, driver, c_type): #제목으로 watcha에 있는 해당 컨
 
     except:
         driver.quit()
-        return "x"
+        return "contents"
+
 
 
 def tving_url(title, driver, c_type): #제목으로 tving에 있는 해당 컨텐츠 시청
@@ -155,7 +158,8 @@ def tving_url(title, driver, c_type): #제목으로 tving에 있는 해당 컨�
 
     except:
         driver.quit()
-        return "x"
+        return "contents"
+
 
 
 def ott_link(email, title, c_type, platform):
@@ -179,9 +183,11 @@ def ott_link(email, title, c_type, platform):
             user_interworking = i
             break
 
+    if len(user_interworking) == 0:
+        return "interworking"
+
     if platform == "netflix":
         n_login(user_interworking['id'], user_interworking['passwd'], user_interworking['profile_name'], driver)
-
         link = netflix_url(title, driver)
         driver.quit()
         return link
