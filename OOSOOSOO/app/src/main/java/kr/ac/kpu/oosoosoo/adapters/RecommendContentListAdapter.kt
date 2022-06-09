@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_recommends.view.*
 import kotlinx.android.synthetic.main.recy_item_recommend_set.view.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.contents.*
