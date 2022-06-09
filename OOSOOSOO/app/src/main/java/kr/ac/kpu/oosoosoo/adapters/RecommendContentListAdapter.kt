@@ -1,87 +1,83 @@
 package kr.ac.kpu.oosoosoo.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.recy_item_recommend_card.view.*
+import kotlinx.android.synthetic.main.fragment_recommends.view.*
+import kotlinx.android.synthetic.main.recy_item_recommend_set.view.*
 import kr.ac.kpu.oosoosoo.R
-import kr.ac.kpu.oosoosoo.contents.ContentDetailActivity
-import kr.ac.kpu.oosoosoo.contents.ContentInfo
-import org.jetbrains.anko.startActivity
-
-
+import kr.ac.kpu.oosoosoo.contents.*
+import kotlin.math.max
 
 
 //자식 컨테이너 어댑터
-class RecommendContentListAdapter(context: Context, recommendListData: ArrayList<ContentInfo>?): RecyclerView.Adapter<RecommendContentListAdapter.ViewHolder>() {
-
+class RecommendContentListAdapter(context: Context, recommendSetListData: ArrayList<RecommendListData>?): RecyclerView.Adapter<RecommendContentListAdapter.ViewHolder>() {
     //출력할 하나의 item List
-    var contentList : ArrayList<ContentInfo>? = recommendListData
-
+    private var recommendSetList : ArrayList<RecommendListData> = recommendSetListData!!
     val context : Context = context
+
+
+    var onItemClick: ((RecommendListData) -> Unit)? = null
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         init {
-
+            itemView.setOnClickListener {
+                onItemClick?.invoke(recommendSetList[adapterPosition])
+            }
         }
+
         //layout 파일에 값 출력
-        fun bind(result: ContentInfo, context: Context, adapter: ContentCardPlatformAdapter) {
-            val url = "https://image.tmdb.org/t/p/original" + result.poster_path
+        fun bind(result: RecommendListData, adapter: RecommendContentAdapter) {
+            itemView.item_recommend_set_title.text = result.recommendListTitle
 
-            Glide.with(context)
-                .load(url)
-                .centerInside()
-                .override(1000,1200)
-                .into(itemView.recy_item_recommend_card_imageView)
+            itemView.recommend_set_recyclerview.layoutManager =
+                LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
 
-            itemView.recy_item_recommend_card_title.text = result.title
+            itemView.recommend_set_recyclerview.adapter = adapter
 
-            //플랫폼 어댑터 지정(수평방향)
-            itemView.recy_item_recommend_card_platform_recyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL,false)
-            itemView.recy_item_recommend_card_platform_recyclerview.adapter = adapter
+            itemView.recommend_set_recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE){
+                        var firstPos = (recyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+                        var secondPos = (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+
+                        var selectedPos = max(firstPos,secondPos)
+                        if(selectedPos!=-1){
+                            var viewItem = (recyclerView.layoutManager as LinearLayoutManager).findViewByPosition(selectedPos)
+                            viewItem?.run{
+                                var itemMargin = (recyclerView.measuredWidth-viewItem.measuredWidth)/2
+                                recyclerView.smoothScrollBy( this.x.toInt()-itemMargin , 0)
+                            }
+                        }
+                    }
+                }
+            })
         }
     }
 
     //출력할 xml파일 지정
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendContentListAdapter.ViewHolder = ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.recy_item_recommend_card, parent, false)
-    )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
+        LayoutInflater.from(parent.context).inflate(
+            R.layout.recy_item_recommend_set, parent,
+            false
+        )
 
+    )
 
     //bind 과정
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val platformList = ArrayList(contentList!![position].flatrate?.split(','))
-        val contentCardPlatformAdapter = ContentCardPlatformAdapter(context, platformList)
-        holder.bind(contentList!![position], context, contentCardPlatformAdapter)
-        holder.itemView.setOnClickListener {
-            context.startActivity<ContentDetailActivity>(
-                "content" to contentList!![position]
-            )
-        }
-        /* 좌우 컨텐츠 보이기 - 현재 position에 중복이 발생하여 원인 찾은 후 반영 예정
-         * if(position == 0 || position == contentList!!.size - 1) { */
-        holder.itemView.recy_item_recommend_card_frame.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
-        val displayMetrics = context.resources.displayMetrics
-        val screenWidth = displayMetrics.widthPixels
-        var mLayoutParam : RecyclerView.LayoutParams =  holder.itemView.recy_item_recommend_card_frame.layoutParams as RecyclerView.LayoutParams
-        mLayoutParam.leftMargin = (screenWidth - holder.itemView.recy_item_recommend_card_frame.measuredWidthAndState)/2
-            /*if(position == 0) {
-                mLayoutParam.leftMargin = (screenWidth - holder.itemView.recy_item_recommend_card_frame.measuredWidthAndState)/2
-            } else {
-                mLayoutParam.rightMargin = (screenWidth - holder.itemView.recy_item_recommend_card_frame.measuredWidthAndState)/2
-            }
-        } */
-
+        val recommendSet = recommendSetList[position]
+        val recommendContentListAdapter = RecommendContentAdapter(context, recommendSet.recommendItemList)
+        holder.bind(recommendSet, recommendContentListAdapter)
     }
 
-
     override fun getItemCount(): Int {
-        return contentList!!.size
+        return recommendSetList.size
     }
 }

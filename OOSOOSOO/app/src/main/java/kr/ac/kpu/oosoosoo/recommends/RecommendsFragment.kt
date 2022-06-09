@@ -17,8 +17,10 @@ import kotlinx.android.synthetic.main.recy_item_recommend_card.view.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.RecommendContentListAdapter
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
+import kr.ac.kpu.oosoosoo.contents.CardListData
 import kr.ac.kpu.oosoosoo.contents.ContentInfo
 import kr.ac.kpu.oosoosoo.contents.RecommendContentInfo
+import kr.ac.kpu.oosoosoo.contents.RecommendListData
 import kr.ac.kpu.oosoosoo.search.SearchActivity
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
@@ -27,7 +29,8 @@ import retrofit2.Response
 import kotlin.math.max
 
 class TrendsFragment : Fragment() {
-    val recommendContentsArrayList : MutableList<ContentInfo> = ArrayList() //모든 컨텐츠 리스트
+    val recommendContentsArrayList : ArrayList<ContentInfo> = ArrayList() //모든 컨텐츠 리스트
+    val recommendSetArrayList : MutableList<RecommendListData> = ArrayList()//한 행의 컨텐츠 리스트
 
     companion object {
         const val MAX_NUM = 30
@@ -60,14 +63,10 @@ class TrendsFragment : Fragment() {
         val call = RetrofitBuilder().callRecommendContents
 
         recommend_cardList_recyclerView.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
         var input = HashMap<String, String>()
         input["email"] = Amplify.Auth.currentUser.username
-
-        var recommendListAdapter : RecommendContentListAdapter
-
-
 
         //추천 컨텐츠 출력
         call.getRecommendContents(input).enqueue(object : Callback<List<RecommendContentInfo>> {
@@ -84,11 +83,16 @@ class TrendsFragment : Fragment() {
                         recommendContentsArrayList.add(recommendedContent.recommend!!)
                     }
                 }
+                for ((i, testRecommendedContentsList) in recommendContentsArrayList.chunked(20).withIndex()) {
+                    val recommendListSetData = RecommendListData("작품${i}과 유사한 컨텐츠", testRecommendedContentsList as ArrayList)
+                    recommendSetArrayList.add(recommendListSetData)
+                }
 
-                recommendListAdapter = RecommendContentListAdapter(context!!, ArrayList(recommendContentsArrayList))
+                val adapter = RecommendContentListAdapter(context!!, recommendSetArrayList as ArrayList<RecommendListData>)
 
-                recommend_cardList_recyclerView.adapter = recommendListAdapter
+                recommend_cardList_recyclerView.adapter = adapter
                 recommend_cardList_recyclerView.adapter!!.notifyDataSetChanged()
+
             }
 
             override fun onFailure(call: Call<List<RecommendContentInfo>>, t: Throwable) {
@@ -96,24 +100,6 @@ class TrendsFragment : Fragment() {
             }
         })
 
-        recommend_cardList_recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
 
-                if (newState == RecyclerView.SCROLL_STATE_IDLE){
-                    var firstPos = (recyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
-                    var secondPos = (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-
-                    var selectedPos = max(firstPos,secondPos)
-                    if(selectedPos!=-1){
-                        var viewItem = (recyclerView.layoutManager as LinearLayoutManager).findViewByPosition(selectedPos)
-                        viewItem?.run{
-                            var itemMargin = (recyclerView.measuredWidth-viewItem.measuredWidth)/2
-                            recyclerView.smoothScrollBy( this.x.toInt()-itemMargin , 0)
-                        }
-                    }
-                }
-            }
-        })
     }
 }

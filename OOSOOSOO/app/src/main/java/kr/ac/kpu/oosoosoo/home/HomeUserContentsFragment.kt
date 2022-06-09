@@ -112,7 +112,6 @@ class HomeUserContentsFragment : Fragment() {
                         ArrayList(contentsArrayList)
                     )
                 )
-
                 //부모 어댑터 지정(수직방향)
                 home_usercontent_cardList_recyclerview.adapter =
                     ContentCardListAdapter(

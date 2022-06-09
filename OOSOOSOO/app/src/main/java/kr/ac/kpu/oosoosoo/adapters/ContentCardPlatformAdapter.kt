@@ -26,11 +26,11 @@ class ContentCardPlatformAdapter(context: Context, platformListData: ArrayList<S
             var imgResource: Int? = 0
 
             when (result.lowercase().trim()) {
-                "netflix" -> itemView.card_platform_icon.setImageResource(R.drawable.netfilx_logo)
-                "watcha" -> itemView.card_platform_icon.setImageResource(R.drawable.watcha_logo)
-                "wavve" -> itemView.card_platform_icon.setImageResource(R.drawable.wavve_logo)
-                "tving" -> itemView.card_platform_icon.setImageResource(R.drawable.tving_logo)
-                "disney plus" -> itemView.card_platform_icon.setImageResource(R.drawable.disney_logo)
+                "netflix" -> itemView.card_platform_icon.setImageResource(R.drawable.netflix_logo_40dp)
+                "watcha" -> itemView.card_platform_icon.setImageResource(R.drawable.watcha_logo_40dp)
+                "wavve" -> itemView.card_platform_icon.setImageResource(R.drawable.wavve_logo_40dp)
+                "tving" -> itemView.card_platform_icon.setImageResource(R.drawable.tving_logo_40dp)
+                "disney plus" -> itemView.card_platform_icon.setImageResource(R.drawable.disney_logo_40dp)
                 "naver" -> itemView.card_platform_icon.setImageResource(R.drawable.naver_logo)
             }
 
@@ -49,6 +49,7 @@ class ContentCardPlatformAdapter(context: Context, platformListData: ArrayList<S
     //bind 과정
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(platformList!![position])
+        Log.d("test",platformList!![position])
     }
 
     override fun getItemCount(): Int = platformList!!.size

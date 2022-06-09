@@ -65,7 +65,6 @@ class HomePopularContentsFragment : Fragment() {
 
                 Log.d("home_recommend_contents", "통신 성공")
 
-
                 if (recommenededContentsList != null) {
                     for (recommendedContent in recommenededContentsList) {
                         contentsArrayList.add(recommendedContent.recommend!!)   //Contents 리스트 셋팅
