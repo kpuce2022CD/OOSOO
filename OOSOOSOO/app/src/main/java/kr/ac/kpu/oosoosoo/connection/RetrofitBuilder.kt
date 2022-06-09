@@ -53,6 +53,7 @@ class RetrofitBuilder {
     val deleteUser = retrofit.create(DeleteuserAPI::class.java)
     val callOTTLink = retrofit.create(CallOTTLinkAPI::class.java)
     val callCredits = retrofit.create(CallCreditsAPI::class.java)
+    val callPopular = retrofit.create(PopularContentAPI::class.java)
 }
 
 interface RecommendContentsAPI {
@@ -185,4 +186,9 @@ interface CallCreditsAPI {
     @FormUrlEncoded
     @POST("api/get_credits/")
     fun callCredits(@FieldMap params: HashMap<String, String>): Call<ArrayList<CreditsInfo>>
+}
+
+interface PopularContentAPI {
+    @GET("api/popular_contents/")
+    fun getPopularContents(): Call<List<ContentInfo>>
 }

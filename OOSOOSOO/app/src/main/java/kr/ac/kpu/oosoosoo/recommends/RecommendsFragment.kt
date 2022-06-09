@@ -88,6 +88,31 @@ class TrendsFragment : Fragment() {
                     recommendSetArrayList.add(recommendListSetData)
                 }
 
+                /* 장르별로 구분하기
+                for (recommendedContent in recommenededContentsList) {
+                        contentsArrayList.add(recommendedContent.recommend!!)   //Contents 리스트 셋팅
+                        genreList = (genreList + (recommendedContent!!.recommend!!.genre?.substringBefore(" ")!!
+                            .split(",")!!.distinct() as ArrayList<String>)).distinct() as ArrayList<String>
+                        genreList.removeAll { it.trim()=="" }
+                    }
+
+                    for(genre in genreList){
+                        val contentFilteredByGenre = ArrayList<ContentInfo>()
+                        for(content in contentsArrayList) {
+                            if(content.genre!!.contains(genre)) {
+                                contentFilteredByGenre.add(content)
+                            }
+                        }
+                        contentFilteredByGenre.shuffle()
+                        contentCardRowList.add(
+                            CardListData(
+                                genre,
+                                contentFilteredByGenre
+                            )
+                        )
+                    }
+                 */
+
                 val adapter = RecommendContentListAdapter(context!!, recommendSetArrayList as ArrayList<RecommendListData>)
 
                 recommend_cardList_recyclerView.adapter = adapter

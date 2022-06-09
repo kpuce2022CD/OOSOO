@@ -1,24 +1,16 @@
 package kr.ac.kpu.oosoosoo.home
 
-import android.graphics.drawable.Drawable
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.amplifyframework.core.Amplify
-import kotlinx.android.synthetic.main.activity_select_interworking.*
 import kotlinx.android.synthetic.main.fragment_home_user_contents.*
-import kotlinx.android.synthetic.main.recy_item_content_row.*
-import kotlinx.android.synthetic.main.recy_item_content_row.view.*
 import kr.ac.kpu.oosoosoo.R
-import kr.ac.kpu.oosoosoo.adapters.ContentCardAdapter
 import kr.ac.kpu.oosoosoo.adapters.ContentCardListAdapter
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import kr.ac.kpu.oosoosoo.contents.CardListData

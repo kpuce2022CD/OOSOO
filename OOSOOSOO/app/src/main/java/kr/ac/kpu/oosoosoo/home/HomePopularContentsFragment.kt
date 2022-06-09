@@ -7,23 +7,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.fragment_home_popular_contents.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.adapters.ContentCardListAdapter
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import kr.ac.kpu.oosoosoo.contents.CardListData
 import kr.ac.kpu.oosoosoo.contents.ContentInfo
-import kr.ac.kpu.oosoosoo.contents.RecommendContentInfo
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 class HomePopularContentsFragment : Fragment() {
     val contentsArrayList : MutableList<ContentInfo> = ArrayList() //모든 컨텐츠 리스트
+    val movieContentsList : MutableList<ContentInfo> = ArrayList() //영화 인기컨텐츠 리스트
+    val tvContentsList : MutableList<ContentInfo> = ArrayList() //tv시리즈 인기컨텐츠 리스트
     val contentCardRowList : MutableList<CardListData> = ArrayList()//한 행의 컨텐츠 리스트
 
     companion object {
@@ -44,54 +42,51 @@ class HomePopularContentsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val call = RetrofitBuilder().callRecommendContents
+        val call = RetrofitBuilder().callPopular
         var listAdapter : ContentCardListAdapter
 
         home_popular_cardList_recyclerview.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
-        var input = HashMap<String, String>()
-        input["email"] = Amplify.Auth.currentUser.username
-
         //인기 컨텐츠 출력
-        call.getRecommendContents(input).enqueue(object : Callback<List<RecommendContentInfo>> {
+        call.getPopularContents().enqueue(object : Callback<List<ContentInfo>> {
             override fun onResponse(
-                call: Call<List<RecommendContentInfo>>,
-                response: Response<List<RecommendContentInfo>>
+                call: Call<List<ContentInfo>>,
+                response: Response<List<ContentInfo>>
             ) {
-                val recommenededContentsList = response.body()
-                var genreList= ArrayList<String>()
+                val popularContentList = response.body()
+                Log.d("home_popular_contents", "통신 성공")
 
-
-                Log.d("home_recommend_contents", "통신 성공")
-
-                if (recommenededContentsList != null) {
-                    for (recommendedContent in recommenededContentsList) {
-                        contentsArrayList.add(recommendedContent.recommend!!)   //Contents 리스트 셋팅
-                        genreList = (genreList + (recommendedContent!!.recommend!!.genre?.substringBefore(" ")!!
-                            .split(",")!!.distinct() as ArrayList<String>)).distinct() as ArrayList<String>
-                        genreList.removeAll { it.trim()=="" }
+                if (popularContentList != null) {
+                    for (popularContent in popularContentList) {
+                        contentsArrayList.add(popularContent)
                     }
-
-                    for(genre in genreList){
-                        val contentFilteredByGenre = ArrayList<ContentInfo>()
-                        for(content in contentsArrayList) {
-                            if(content.genre!!.contains(genre)) {
-                                contentFilteredByGenre.add(content)
-                            }
+                    var type : String?
+                    for (popularContent in contentsArrayList) {
+                        type = popularContent._type
+                        if (type == "movie") {
+                            movieContentsList.add(popularContent)
+                        } else if (type == "tv") {
+                            tvContentsList.add(popularContent)
                         }
-                        contentFilteredByGenre.shuffle()
-                        contentCardRowList.add(
-                            CardListData(
-                                genre,
-                                contentFilteredByGenre
-                            )
-                        )
                     }
+
+                    contentCardRowList.add(
+                        CardListData(
+                            "인기 영화 컨텐츠",
+                            movieContentsList as ArrayList<ContentInfo>
+                        )
+                    )
+                    contentCardRowList.add(
+                        CardListData(
+                            "인기 TV 시리즈",
+                            tvContentsList as ArrayList<ContentInfo>
+                        )
+                    )
+
                 }
 
-
-                listAdapter = ContentCardListAdapter(context!!, ArrayList(contentCardRowList.shuffled()), spanCount = 2)
+                listAdapter = ContentCardListAdapter(context!!, ArrayList(contentCardRowList), spanCount = 2)
                 //부모 어댑터 지정(수직방향)
                 home_popular_cardList_recyclerview.adapter = listAdapter
                 home_popular_cardList_recyclerview.adapter!!.notifyDataSetChanged()
@@ -99,8 +94,8 @@ class HomePopularContentsFragment : Fragment() {
 
             }
 
-            override fun onFailure(call: Call<List<RecommendContentInfo>>, t: Throwable) {
-                Log.d("home_recommend_contents", t.message.toString())
+            override fun onFailure(call: Call<List<ContentInfo>>, t: Throwable) {
+                Log.d("home_popular_contents", t.message.toString())
             }
         })
     }
