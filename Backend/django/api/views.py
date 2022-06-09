@@ -45,6 +45,7 @@ from api.User.UpdateUser import updateUser
 from api.Contents.contents_link import Contents_link
 from api.Contents.ott_link import ott_link
 from api.Contents.contents_credits import get_credits
+from api.Contents.popular_contents import popular_contents
 
 
 class ContentsListAPI(APIView):
@@ -665,4 +666,9 @@ class GetCreditsAPI(APIView):
     def post(self, request):
         data = request.data
         result = get_credits(data.get('c_id'))
+        return Response(result)
+
+class PopularContentsListAPI(APIView):
+    def get(self, request):
+        result = popular_contents()
         return Response(result)
