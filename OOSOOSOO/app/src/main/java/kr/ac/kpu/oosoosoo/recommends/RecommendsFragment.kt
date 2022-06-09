@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.fragment_home_popular_contents.*
@@ -62,8 +63,8 @@ class TrendsFragment : Fragment() {
 
         val call = RetrofitBuilder().callRecommendContents
 
-        recommend_cardList_recyclerView.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recommend_cardList_recyclerView.orientation =
+            ViewPager2.ORIENTATION_VERTICAL
 
         var input = HashMap<String, String>()
         input["email"] = Amplify.Auth.currentUser.username

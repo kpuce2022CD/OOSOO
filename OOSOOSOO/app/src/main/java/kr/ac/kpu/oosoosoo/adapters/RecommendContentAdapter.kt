@@ -41,7 +41,6 @@ class RecommendContentAdapter(context: Context, recommendListData: ArrayList<Con
                 .into(itemView.recy_item_recommend_card_imageView)
 
             itemView.recy_item_recommend_card_title.text = result.title
-
             //플랫폼 어댑터 지정(수평방향)
             itemView.recy_item_recommend_card_platform_recyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL,false)
             itemView.recy_item_recommend_card_platform_recyclerview.adapter = adapter
