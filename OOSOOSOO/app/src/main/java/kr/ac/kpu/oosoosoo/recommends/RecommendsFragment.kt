@@ -30,7 +30,7 @@ import retrofit2.Response
 import kotlin.math.max
 
 class TrendsFragment : Fragment() {
-    val recommendContentsArrayList : ArrayList<ContentInfo> = ArrayList() //모든 컨텐츠 리스트
+    val recommendContentsArrayList : ArrayList<RecommendContentInfo> = ArrayList() //모든 컨텐츠 리스트
     val recommendSetArrayList : MutableList<RecommendListData> = ArrayList()//한 행의 컨텐츠 리스트
 
     companion object {
@@ -81,7 +81,7 @@ class TrendsFragment : Fragment() {
 
                 if (recommenededContentsList != null) {
                     for (recommendedContent in recommenededContentsList) {
-                        recommendContentsArrayList.add(recommendedContent.recommend!!)
+                        recommendContentsArrayList.add(recommendedContent)
                     }
                 }
                 for ((i, testRecommendedContentsList) in recommendContentsArrayList.chunked(20).withIndex()) {

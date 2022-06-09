@@ -12,16 +12,16 @@ import kotlinx.android.synthetic.main.recy_item_recommend_card.view.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.contents.ContentDetailActivity
 import kr.ac.kpu.oosoosoo.contents.ContentInfo
+import kr.ac.kpu.oosoosoo.contents.RecommendContentInfo
 import org.jetbrains.anko.startActivity
-
-
+import kotlin.math.round
 
 
 //자식 컨테이너 어댑터
-class RecommendContentAdapter(context: Context, recommendListData: ArrayList<ContentInfo>?): RecyclerView.Adapter<RecommendContentAdapter.ViewHolder>() {
+class RecommendContentAdapter(context: Context, recommendListData: ArrayList<RecommendContentInfo>?): RecyclerView.Adapter<RecommendContentAdapter.ViewHolder>() {
 
     //출력할 하나의 item List
-    var contentList : ArrayList<ContentInfo>? = recommendListData
+    var contentList : ArrayList<RecommendContentInfo>? = recommendListData
 
     val context : Context = context
 
@@ -31,8 +31,8 @@ class RecommendContentAdapter(context: Context, recommendListData: ArrayList<Con
 
         }
         //layout 파일에 값 출력
-        fun bind(result: ContentInfo, context: Context, adapter: ContentCardPlatformAdapter) {
-            val url = "https://image.tmdb.org/t/p/original" + result.poster_path
+        fun bind(result: RecommendContentInfo, context: Context, adapter: ContentCardPlatformAdapter) {
+            val url = "https://image.tmdb.org/t/p/original" + result.recommend!!.poster_path
 
             Glide.with(context)
                 .load(url)
@@ -40,7 +40,47 @@ class RecommendContentAdapter(context: Context, recommendListData: ArrayList<Con
                 .override(1000,1200)
                 .into(itemView.recy_item_recommend_card_imageView)
 
-            itemView.recy_item_recommend_card_title.text = result.title
+            itemView.recy_item_recommend_card_title.text = result.recommend!!.title
+
+            val estimateRating = round(result.est_rating!! * 100) / 100
+            itemView.recy_item_recommend_card_est_rating_score.text = estimateRating.toString()
+
+            if (estimateRating != null) {
+                if(estimateRating < 5.0) {
+                    itemView.recy_item_recommend_card_rating_star5.setImageResource(R.drawable.ic_rating_half_star_24)
+                }
+                if(estimateRating == 4.0) {
+                    itemView.recy_item_recommend_card_rating_star5.setImageResource(R.drawable.ic_rating_border_star_24)
+                }
+                if(estimateRating < 4.0) {
+                    itemView.recy_item_recommend_card_rating_star5.setImageResource(R.drawable.ic_rating_border_star_24)
+                    itemView.recy_item_recommend_card_rating_star4.setImageResource(R.drawable.ic_rating_half_star_24)
+                }
+                if(estimateRating == 3.0) {
+                    itemView.recy_item_recommend_card_rating_star4.setImageResource(R.drawable.ic_rating_border_star_24)
+                }
+                if(estimateRating < 3.0) {
+                    itemView.recy_item_recommend_card_rating_star4.setImageResource(R.drawable.ic_rating_border_star_24)
+                    itemView.recy_item_recommend_card_rating_star3.setImageResource(R.drawable.ic_rating_half_star_24)
+                }
+                if(estimateRating == 2.0) {
+                    itemView.recy_item_recommend_card_rating_star3.setImageResource(R.drawable.ic_rating_border_star_24)
+                }
+                if(estimateRating < 2.0) {
+                    itemView.recy_item_recommend_card_rating_star3.setImageResource(R.drawable.ic_rating_border_star_24)
+                    itemView.recy_item_recommend_card_rating_star2.setImageResource(R.drawable.ic_rating_half_star_24)
+                }
+                if(estimateRating == 1.0) {
+                    itemView.recy_item_recommend_card_rating_star2.setImageResource(R.drawable.ic_rating_border_star_24)
+                }
+                if(estimateRating < 1.0) {
+                    itemView.recy_item_recommend_card_rating_star2.setImageResource(R.drawable.ic_rating_border_star_24)
+                    itemView.recy_item_recommend_card_rating_star1.setImageResource(R.drawable.ic_rating_half_star_24)
+                }
+                if(estimateRating == 0.0) {
+                    itemView.recy_item_recommend_card_rating_star1.setImageResource(R.drawable.ic_rating_border_star_24)
+                }
+            }
             //플랫폼 어댑터 지정(수평방향)
             itemView.recy_item_recommend_card_platform_recyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL,false)
             itemView.recy_item_recommend_card_platform_recyclerview.adapter = adapter
@@ -55,7 +95,7 @@ class RecommendContentAdapter(context: Context, recommendListData: ArrayList<Con
 
     //bind 과정
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val platformList = ArrayList(contentList!![position].flatrate?.split(','))
+        val platformList = ArrayList(contentList!![position].recommend!!.flatrate?.split(','))
         val contentCardPlatformAdapter = ContentCardPlatformAdapter(context, platformList)
         holder.bind(contentList!![position], context, contentCardPlatformAdapter)
         holder.itemView.setOnClickListener {
