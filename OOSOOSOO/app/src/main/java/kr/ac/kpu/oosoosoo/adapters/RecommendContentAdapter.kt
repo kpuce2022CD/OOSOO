@@ -100,22 +100,15 @@ class RecommendContentAdapter(context: Context, recommendListData: ArrayList<Rec
         holder.bind(contentList!![position], context, contentCardPlatformAdapter)
         holder.itemView.setOnClickListener {
             context.startActivity<ContentDetailActivity>(
-                "content" to contentList!![position]
+                "content" to contentList!![position].recommend
             )
         }
-        /* 좌우 컨텐츠 보이기 - 현재 position에 중복이 발생하여 원인 찾은 후 반영 예정
-         * if(position == 0 || position == contentList!!.size - 1) { */
-        holder.itemView.recy_item_recommend_card_frame.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+       /* holder.itemView.recy_item_recommend_card_frame.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
         val displayMetrics = context.resources.displayMetrics
         val screenWidth = displayMetrics.widthPixels
         var mLayoutParam : RecyclerView.LayoutParams =  holder.itemView.recy_item_recommend_card_frame.layoutParams as RecyclerView.LayoutParams
-        mLayoutParam.leftMargin = (screenWidth - holder.itemView.recy_item_recommend_card_frame.measuredWidthAndState)/2
-        /*if(position == 0) {
-            mLayoutParam.leftMargin = (screenWidth - holder.itemView.recy_item_recommend_card_frame.measuredWidthAndState)/2
-        } else {
-            mLayoutParam.rightMargin = (screenWidth - holder.itemView.recy_item_recommend_card_frame.measuredWidthAndState)/2
-        }
-    } */
+        mLayoutParam.leftMargin = (screenWidth - holder.itemView.recy_item_recommend_card_frame.measuredWidthAndState)/2*/
+
 
     }
 

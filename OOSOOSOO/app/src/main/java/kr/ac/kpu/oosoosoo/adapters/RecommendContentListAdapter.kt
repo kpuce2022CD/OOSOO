@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.recy_item_recommend_set.view.*
 import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.contents.*
@@ -33,11 +34,26 @@ class RecommendContentListAdapter(context: Context, recommendSetListData: ArrayL
         fun bind(result: RecommendListData, adapter: RecommendContentAdapter) {
             itemView.item_recommend_set_title.text = result.recommendListTitle
 
-            itemView.recommend_set_recyclerview.layoutManager =
-                LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+            // 무한 횡스크롤 중 중앙 자동 맞춤 방식
+            // itemView.recommend_set_recyclerview.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+            // 하나씩 슬라이드 방식
+            itemView.recommend_set_recyclerview.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
             itemView.recommend_set_recyclerview.adapter = adapter
 
+            // 하나씩 슬라이드 방식 -> viewPager2 사용
+            val pageMarginPx = itemView.resources.getDimensionPixelOffset(R.dimen.pageMargin) // dimen 파일 안에 크기를 정의해두었다.
+            val pagerWidth = itemView.resources.getDimensionPixelOffset(R.dimen.pageWidth) // dimen 파일이 없으면 생성해야함
+            val screenWidth = itemView.resources.displayMetrics.widthPixels // 스마트폰의 너비 길이를 가져옴
+            val offsetPx = screenWidth - pageMarginPx - pagerWidth
+
+            itemView.recommend_set_recyclerview.setPageTransformer { page, position ->
+                page.translationX = position * -offsetPx
+            }
+
+            itemView.recommend_set_recyclerview.offscreenPageLimit = 1 // 몇 개의 페이지를 미리 로드 해둘것인지
+
+            /* 무한 횡스크롤 중 중앙 자동 맞춤 방식 -> recyclerview 사용
             itemView.recommend_set_recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener(){
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     super.onScrollStateChanged(recyclerView, newState)
@@ -56,7 +72,7 @@ class RecommendContentListAdapter(context: Context, recommendSetListData: ArrayL
                         }
                     }
                 }
-            })
+            })*/
         }
     }
 
