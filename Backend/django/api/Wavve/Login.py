@@ -16,7 +16,7 @@ def wav_login(email, pwd, name, driver):
 
     while(not login_with_cookie):
         if find_cookie:  # 쿠키 정보를 이용해 로그인
-            cookies = pickle.load(open('./api/Cookies/'+email+'_wav.pkl', "rb")) #여기서 쿠키에 그 사람이 있는지 확인하고 없으면 else로 넘겨야함.
+            cookies = pickle.load(open('./api/Cookies/'+email+'_wav.pkl', "rb"))
             driver.get(url)
             for c in cookies:
                 driver.add_cookie(c)

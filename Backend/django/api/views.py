@@ -46,7 +46,6 @@ from api.Contents.contents_link import Contents_link
 from api.Contents.ott_link import ott_link
 from api.Contents.contents_credits import get_credits
 from api.Contents.popular_contents import popular_contents
-from api.Wavve.wavve_cookie import wav_login_cookie
 
 
 class ContentsListAPI(APIView):
@@ -672,10 +671,4 @@ class GetCreditsAPI(APIView):
 class PopularContentsListAPI(APIView):
     def get(self, request):
         result = popular_contents()
-        return Response(result)
-
-class CookieAPI(APIView): ##플랫폼별 쿠키 테스트용
-    def post(self, request):
-        data = request.data
-        result = wav_login_cookie(data.get('email'), data.get('pwd'), data.get('name'))
         return Response(result)

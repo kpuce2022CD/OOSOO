@@ -87,5 +87,4 @@ urlpatterns = [
 
     path('get_credits/', GetCreditsAPI.as_view()),
     path('popular_contents/', PopularContentsListAPI.as_view()),
-    path('cookie/', CookieAPI.as_view()),
 ]
