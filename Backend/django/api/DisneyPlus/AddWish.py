@@ -18,6 +18,7 @@ def d_addwish(email, pwd, name, title):
     options.add_argument('--no-sandbox')
     options.add_argument('disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-blink-features=AutomationControlled')
     driver = webdriver.Chrome(path, chrome_options=options)
     driver.maximize_window()
 

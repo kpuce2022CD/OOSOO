@@ -20,37 +20,36 @@ def n_addwish(email, pwd, name, title):
     options.add_argument('--no-sandbox')
     options.add_argument('disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-blink-features=AutomationControlled')
     driver = webdriver.Chrome(path, chrome_options=options)
 
     # 넷플릭스 로그인
-    n_login(email, pwd, name, driver)
+    login = n_login(email, pwd, name, driver)
 
     # ----------------------------------------------------------------------------------------------------------------------#
 
     # 찜 목록에 추가
     # 컨텐츠 검색
-    url = "https://www.netflix.com/search?q=" + title
-    driver.get(url)
+    if login:
+        url = "https://www.netflix.com/search?q=" + title
+        driver.get(url)
 
-    time.sleep(3)
-    driver.implicitly_wait(5)
+        time.sleep(3)
+        driver.implicitly_wait(5)
 
-    results = driver.find_elements(By.CSS_SELECTOR, '#title-card-0-0 > div.ptrack-content > a > div.boxart-size-16x9.boxart-container.boxart-rounded')
+        results = driver.find_elements(By.CSS_SELECTOR, '#title-card-0-0 > div.ptrack-content > a > div.boxart-size-16x9.boxart-container.boxart-rounded')
 
-    for result in results:
-        if result.text == title:
-            result.click()
-            time.sleep(2)
-            driver.find_elements(By.CLASS_NAME, "ltr-79elbk")[0].click()
-            time.sleep(3)
-            driver.implicitly_wait(5)
 
-            driver.quit()
-            #display.stop()
+        results[0].click()
+        time.sleep(2)
+        driver.find_element(By.XPATH, "//*[@id='appMountPoint']/div/div/div[1]/div[2]/div/div[1]/div[4]/div/div[1]/div[2]/div[1]/div/button").click()
+        time.sleep(3)
+        driver.implicitly_wait(5)
 
-            return "success"
-        else:
-            continue
+        driver.quit()
+        #display.stop()
+
+        return "success"
 
     driver.quit()
     #display.stop()

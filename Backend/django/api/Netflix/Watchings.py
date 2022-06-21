@@ -20,28 +20,29 @@ def n_watchings(email, pwd, name):
     options.add_argument('--no-sandbox')
     options.add_argument('disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-blink-features=AutomationControlled')
     driver = webdriver.Chrome(path, chrome_options=options)
 
-    # 왓챠 로그인
-    n_login(email, pwd, name, driver)
+    # 넷플릭스 로그인
+    login = n_login(email, pwd, name, driver)
 
     # ----------------------------------------------------------------------------------------------------------------------#
 
     # 시청중인 목록 불러오기
     result = list()
+    if login:
+        driver.get("https://www.netflix.com/browse/continue-watching")
 
-    driver.get("https://www.netflix.com/browse/continue-watching")
+        time.sleep(3)
+        driver.implicitly_wait(5)
+        print(driver.current_url)
 
-    time.sleep(3)
-    driver.implicitly_wait(5)
-    print(driver.current_url)
+        watchings = driver.find_elements(By.CLASS_NAME, 'fallback-text')
 
-    watchings = driver.find_elements(By.CLASS_NAME, 'fallback-text')
-
-    print("< Watching List >")
-    for watch in watchings:
-        print(watch.text)
-        result.append(watch.text)
+        print("< Watching List >")
+        for watch in watchings:
+            print(watch.text)
+            result.append(watch.text)
 
     driver.quit()
     #display.stop()

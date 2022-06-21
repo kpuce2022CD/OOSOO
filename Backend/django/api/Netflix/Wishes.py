@@ -20,28 +20,30 @@ def n_wishes(email, pwd, name):
     options.add_argument('--no-sandbox')
     options.add_argument('disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-blink-features=AutomationControlled')
     driver = webdriver.Chrome(path, chrome_options=options)
 
     # 넷플릭스 로그인
-    n_login(email, pwd, name, driver)
+    login = n_login(email, pwd, name, driver)
 
     # ----------------------------------------------------------------------------------------------------------------------#
 
     # 찜 목록 불러오기
     result = list()
 
-    driver.get("https://www.netflix.com/browse/my-list")
+    if login:
+        driver.get("https://www.netflix.com/browse/my-list")
 
-    time.sleep(3)
-    driver.implicitly_wait(5)
+        time.sleep(3)
+        driver.implicitly_wait(5)
 
-    wishes = driver.find_elements(By.CLASS_NAME, 'fallback-text')
+        wishes = driver.find_elements(By.CLASS_NAME, 'fallback-text')
 
-    # 찜목록 출력
-    print("< Wishlist >")
-    for wish in wishes:
-        print(wish.text)
-        result.append(wish.text)
+        # 찜목록 출력
+        print("< Wishlist >")
+        for wish in wishes:
+            print(wish.text)
+            result.append(wish.text)
 
     driver.quit()
     #display.stop()
