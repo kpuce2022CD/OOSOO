@@ -2,6 +2,8 @@
 from selenium.webdriver.common.by import By
 import time
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 def d_login(email, pwd, name, driver):
     try:
@@ -10,13 +12,13 @@ def d_login(email, pwd, name, driver):
         driver.implicitly_wait(5)
 
         # 로그인 자동화
-        input_email = driver.find_element(By.CSS_SELECTOR, '#email')
+        input_email = WebDriverWait(driver, 16).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#email')))
         input_email.send_keys(email)
         input_email.send_keys(Keys.RETURN)
         time.sleep(3)
         driver.implicitly_wait(5)
 
-        input_pwd = driver.find_element(By.CSS_SELECTOR, '#password')
+        input_pwd = WebDriverWait(driver, 16).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#password')))
         input_pwd.send_keys(pwd)
         input_pwd.send_keys(Keys.RETURN)
         time.sleep(3)
@@ -32,6 +34,7 @@ def d_login(email, pwd, name, driver):
 
         time.sleep(2)
         driver.implicitly_wait(5)
+        return True
 
     except:
-        driver.quit()
+        return False
