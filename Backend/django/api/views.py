@@ -406,7 +406,7 @@ class AddWatchaWishlistAPI(APIView):
         pwd = interworking.passwd
         name = interworking.profile_name
 
-        wishlist = asyncio.run(w_wishes(email, pwd, name))
+        wishlist = w_wishes(email, pwd, name)
         result = add_wishlist(wishlist, interworking)
 
         return Response(result)
@@ -423,7 +423,7 @@ class AddWatchaWatchingLogAPI(APIView):
         pwd = interworking.passwd
         name = interworking.profile_name
 
-        log = asyncio.run(w_watchings(email, pwd, name))
+        log = w_watchings(email, pwd, name)
         result = add_watchinglog(log, interworking)
 
         return Response(result)
@@ -502,14 +502,14 @@ class AddTvingWishListAPI(APIView):
         data = request.data
 
         load = load_interworking(data.get('email'))
-        interworking = load.filter(platform="tving")
+        interworking = load.get(platform="tving")
 
-        email = interworking[0].id
-        pwd = interworking[0].passwd
-        name = interworking[0].profile_name
+        email = interworking.id
+        pwd = interworking.passwd
+        name = interworking.profile_name
 
         wishlist = t_wishes(email, pwd, name)
-        result = add_wishlist(wishlist, interworking[0])
+        result = add_wishlist(wishlist, interworking)
         return Response(result)
 
 
@@ -518,14 +518,14 @@ class AddTvingWatchingLogAPI(APIView):
         data = request.data
 
         load = load_interworking(data.get('email'))
-        interworking = load.filter(platform="tving")
+        interworking = load.get(platform="tving")
 
-        email = interworking[0].id
-        pwd = interworking[0].passwd
-        name = interworking[0].profile_name
+        email = interworking.id
+        pwd = interworking.passwd
+        name = interworking.profile_name
 
         log = t_watchings(email, pwd, name)
-        result = add_watchinglog(log, interworking[0])
+        result = add_watchinglog(log, interworking)
         return Response(result)
 
 
@@ -534,14 +534,14 @@ class AddDisneyWishListAPI(APIView):
         data = request.data
 
         load = load_interworking(data.get('email'))
-        interworking = load.filter(platform="disney")
+        interworking = load.get(platform="disney")
 
-        email = interworking[0].id
-        pwd = interworking[0].passwd
-        name = interworking[0].profile_name
+        email = interworking.id
+        pwd = interworking.passwd
+        name = interworking.profile_name
 
         wishlist = d_wishes(email, pwd, name)
-        result = add_wishlist(wishlist, interworking[0])
+        result = add_wishlist(wishlist, interworking)
         return Response(result)
 
 
@@ -550,14 +550,72 @@ class AddDisneyWatchingLogAPI(APIView):
         data = request.data
 
         load = load_interworking(data.get('email'))
-        interworking = load.filter(platform="disney")
+        interworking = load.get(platform="disney")
 
-        email = interworking[0].id
-        pwd = interworking[0].passwd
-        name = interworking[0].profile_name
+        email = interworking.id
+        pwd = interworking.passwd
+        name = interworking.profile_name
 
         log = d_watchings(email, pwd, name)
-        result = add_watchinglog(log, interworking[0])
+        result = add_watchinglog(log, interworking)
+        return Response(result)
+
+
+class AddWishListAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        platform = data.get('platform')
+        interworking = load.get(platform=platform)
+
+        email = interworking.id
+        pwd = interworking.passwd
+        name = interworking.profile_name
+
+        wishlist = None
+
+        if platform == "watcha":
+            wishlist = w_wishes(email, pwd, name)
+        elif platform == "netflix":
+            wishlist = n_wishes(email, pwd, name)
+        elif platform == "wavve":
+            wishlist = wav_wishes(email, pwd, name)
+        elif platform == "tving":
+            wishlist = t_wishes(email, pwd, name)
+        elif platform == "disney":
+            wishlist = d_wishes(email, pwd, name)
+
+        result = add_wishlist(wishlist, interworking)
+        return Response(result)
+
+
+class AddWatchingLogAPI(APIView):
+    def post(self, request):
+        data = request.data
+
+        load = load_interworking(data.get('email'))
+        platform = data.get('platform')
+        interworking = load.get(platform=platform)
+
+        email = interworking.id
+        pwd = interworking.passwd
+        name = interworking.profile_name
+
+        log = None
+
+        if platform == "watcha":
+            log = w_watchings(email, pwd, name)
+        elif platform == "netflix":
+            log = n_watchings(email, pwd, name)
+        elif platform == "wavve":
+            log = wav_watchings(email, pwd, name)
+        elif platform == "tving":
+            log = t_watchings(email, pwd, name)
+        elif platform == "disney":
+            log = d_watchings(email, pwd, name)
+
+        result = add_watchinglog(log, interworking)
         return Response(result)
 
 

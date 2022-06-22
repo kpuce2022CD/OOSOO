@@ -68,6 +68,9 @@ urlpatterns = [
     path('add_d_wishlist/', AddDisneyWishListAPI.as_view()),
     path('add_d_watchinglog/', AddDisneyWatchingLogAPI.as_view()),
 
+    path('add_wishlist/', AddWishListAPI.as_view()),
+    path('add_watchinglog/', AddWatchingLogAPI.as_view()),
+
 
     path('rating/', RatingAPI.as_view()),
     path('userinfo/', UserInfoAPI.as_view()),
