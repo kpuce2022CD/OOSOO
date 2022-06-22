@@ -29,7 +29,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlin.math.max
 
-class TrendsFragment : Fragment() {
+class RecommendsFragment : Fragment() {
     val recommendContentsArrayList : ArrayList<RecommendContentInfo> = ArrayList() //모든 컨텐츠 리스트
     val recommendSetArrayList : MutableList<RecommendListData> = ArrayList()//한 행의 컨텐츠 리스트
 
