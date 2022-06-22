@@ -46,20 +46,8 @@ class RetrofitBuilder {
     val myReview = retrofit.create(MyReviewAPI::class.java)
     val myInterworking = retrofit.create(MyInterworkingAPI::class.java)
 
-    val callAddWatchaWishlist = retrofit.create(AddWatchaWishlistAPI::class.java)
-    val callAddWatchaWatchingLog = retrofit.create(AddWatchaWatchingLogAPI::class.java)
-
-    val callAddNetflixWishlist = retrofit.create(AddNetflixWishlistAPI::class.java)
-    val callAddNetflixWatchingLog = retrofit.create(AddNetflixWatchingLogAPI::class.java)
-
-    val callAddWavveWishlist = retrofit.create(AddWavveWishlistAPI::class.java)
-    val callAddWavveWatchingLog = retrofit.create(AddWavveWatchingLogAPI::class.java)
-
-    val callAddTvingWishlist = retrofit.create(AddTvingWishlistAPI::class.java)
-    val callAddTvingWatchingLog = retrofit.create(AddTvingWatchingLogAPI::class.java)
-
-    val callAddDisneyWishlist = retrofit.create(AddDisneyWishlistAPI::class.java)
-    val callAddDisneyWatchingLog = retrofit.create(AddDisneyWatchingLogAPI::class.java)
+    val callAddWishlist = retrofit.create(AddWishlistAPI::class.java)
+    val callAddWatchingLog = retrofit.create(AddWatchingLogAPI::class.java)
 
     val updateUser = retrofit.create(UpdateuserAPI::class.java)
     val deleteUser = retrofit.create(DeleteuserAPI::class.java)
@@ -164,64 +152,16 @@ interface MyInterworkingAPI {
     fun callMyInterworking(@FieldMap params: HashMap<String, String>): Call<List<String>>
 }
 
-interface AddWatchaWishlistAPI {
+interface AddWishlistAPI {
     @FormUrlEncoded
-    @POST("api/add_w_wishlist/")
-    fun callAddWatchaWishlist(@FieldMap params: HashMap<String, String>): Call<Boolean>
+    @POST("api/add_wishlist/")
+    fun callAddWishlist(@FieldMap params: HashMap<String, String>): Call<Boolean>
 }
 
-interface AddWatchaWatchingLogAPI {
+interface AddWatchingLogAPI {
     @FormUrlEncoded
-    @POST("api/add_w_watchinglog/")
-    fun callAddWatchaWatchingLog(@FieldMap params: HashMap<String, String>): Call<Boolean>
-}
-
-interface AddNetflixWishlistAPI {
-    @FormUrlEncoded
-    @POST("api/add_n_wishlist/")
-    fun callAddWatchaWishlist(@FieldMap params: HashMap<String, String>): Call<Boolean>
-}
-
-interface AddNetflixWatchingLogAPI {
-    @FormUrlEncoded
-    @POST("api/add_n_watchinglog/")
-    fun callAddWatchaWatchingLog(@FieldMap params: HashMap<String, String>): Call<Boolean>
-}
-
-interface AddWavveWishlistAPI {
-    @FormUrlEncoded
-    @POST("api/add_wav_wishlist/")
-    fun callAddWatchaWishlist(@FieldMap params: HashMap<String, String>): Call<Boolean>
-}
-
-interface AddWavveWatchingLogAPI {
-    @FormUrlEncoded
-    @POST("api/add_wav_watchinglog/")
-    fun callAddWatchaWatchingLog(@FieldMap params: HashMap<String, String>): Call<Boolean>
-}
-
-interface AddTvingWishlistAPI {
-    @FormUrlEncoded
-    @POST("api/add_t_wishlist/")
-    fun callAddWatchaWishlist(@FieldMap params: HashMap<String, String>): Call<Boolean>
-}
-
-interface AddTvingWatchingLogAPI {
-    @FormUrlEncoded
-    @POST("api/add_t_watchinglog/")
-    fun callAddWatchaWatchingLog(@FieldMap params: HashMap<String, String>): Call<Boolean>
-}
-
-interface AddDisneyWishlistAPI {
-    @FormUrlEncoded
-    @POST("api/add_d_wishlist/")
-    fun callAddWatchaWishlist(@FieldMap params: HashMap<String, String>): Call<Boolean>
-}
-
-interface AddDisneyWatchingLogAPI {
-    @FormUrlEncoded
-    @POST("api/add_d_watchinglog/")
-    fun callAddWatchaWatchingLog(@FieldMap params: HashMap<String, String>): Call<Boolean>
+    @POST("api/add_watchinglog/")
+    fun callAddWatchingLog(@FieldMap params: HashMap<String, String>): Call<Boolean>
 }
 
 interface UpdateuserAPI {
