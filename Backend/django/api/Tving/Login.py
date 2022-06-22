@@ -15,13 +15,16 @@ def t_login(email, pwd, name, driver):
 
     while (not login_with_cookie):
         if find_cookie:  # 쿠키 정보를 이용해 로그인
-            cookies = pickle.load(
-                open('./api/Cookies/' + email + '_t.pkl', "rb"))
-            driver.get(url)
-            for c in cookies:
-                driver.add_cookie(c)
-            driver.get(url)
-            login_with_cookie = True
+            try:
+                cookies = pickle.load(
+                    open('./api/Cookies/' + email + '_t.pkl', "rb"))
+                driver.get(url)
+                for c in cookies:
+                    driver.add_cookie(c)
+                driver.get(url)
+                login_with_cookie = True
+            except:
+                return "login error"
 
         else:  # 쿠키가 없을 경우, 수동으로 로그인하여 쿠키 정보 보존
             try:
@@ -66,8 +69,6 @@ def t_login(email, pwd, name, driver):
                 if len(cookies) > 0:
                     find_cookie = True
             pickle.dump(cookies, open('./api/Cookies/' + email + '_t.pkl', "wb"))
-            driver.close()
-            driver.quit()
             return "normal login"
 
     return "cookie login"

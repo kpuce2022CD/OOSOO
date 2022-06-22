@@ -68,8 +68,6 @@ def wav_login(email, pwd, name, driver):
                 if len(cookies) > 0:
                     find_cookie = True
             pickle.dump(cookies, open('./api/Cookies/'+email+'_wav.pkl', "wb"))
-            driver.close()
-            driver.quit()
             return "normal login"
 
     return "cookie login"
