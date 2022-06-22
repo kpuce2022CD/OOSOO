@@ -10,7 +10,7 @@
     <ScrollView
         android:id="@+id/scroll_detail"
         android:layout_width="match_parent"
-        android:layout_height="724dp"
+        android:layout_height="match_parent"
         android:background="#faf6f6"
         android:backgroundTint="#faf6f6"
         app:layout_constraintEnd_toEndOf="parent"
