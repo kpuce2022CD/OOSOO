@@ -46,6 +46,7 @@ from api.Contents.contents_link import Contents_link
 from api.Contents.ott_link import ott_link
 from api.Contents.contents_credits import get_credits
 from api.Contents.popular_contents import popular_contents
+from api.User.DeleteInterworking import deleteInterworking
 
 
 class ContentsListAPI(APIView):
@@ -729,4 +730,10 @@ class GetCreditsAPI(APIView):
 class PopularContentsListAPI(APIView):
     def get(self, request):
         result = popular_contents()
+        return Response(result)
+
+class DeleteInterworkingAPI(APIView):
+    def post(self, request):
+        data = request.data
+        result = deleteInterworking(data.get('email'), data.get('platform'))
         return Response(result)
