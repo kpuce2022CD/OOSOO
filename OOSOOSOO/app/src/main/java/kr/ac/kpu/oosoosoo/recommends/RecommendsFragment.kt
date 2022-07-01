@@ -29,13 +29,18 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlin.math.max
 
-class TrendsFragment : Fragment() {
+class RecommendsFragment : Fragment() {
     val recommendContentsArrayList : ArrayList<RecommendContentInfo> = ArrayList() //모든 컨텐츠 리스트
     val recommendSetArrayList : MutableList<RecommendListData> = ArrayList()//한 행의 컨텐츠 리스트
 
     companion object {
         const val MAX_NUM = 30
+        val recommendSetTitleList = listOf("\uD83E\uDD29 베스트 추천 20", "\uD83D\uDE06 나와 비슷한 유저가 좋아한 콘텐츠 20",
+                "\uD83D\uDE0E 좋아할 수 있는 콘텐츠 20", "\uD83D\uDE00 볼만한 콘텐츠 20", "기타 추천 콘텐츠 1", "기타 추천 콘텐츠 2",
+                "기타 추천 콘텐츠 3", "기타 추천 콘텐츠 4", "기타 추천 콘텐츠 5", "기타 추천 콘텐츠 6", "기타 추천 콘텐츠 7")
     }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -56,10 +61,6 @@ class TrendsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-    }
-
-    override fun onResume() {
-        super.onResume()
 
         val call = RetrofitBuilder().callRecommendContents
 
@@ -85,7 +86,7 @@ class TrendsFragment : Fragment() {
                     }
                 }
                 for ((i, testRecommendedContentsList) in recommendContentsArrayList.chunked(20).withIndex()) {
-                    val recommendListSetData = RecommendListData("작품${i}과 유사한 컨텐츠", testRecommendedContentsList as ArrayList)
+                    val recommendListSetData = RecommendListData(recommendSetTitleList[i%10], testRecommendedContentsList as ArrayList)
                     recommendSetArrayList.add(recommendListSetData)
                 }
 
@@ -125,7 +126,18 @@ class TrendsFragment : Fragment() {
                 Log.d("home_recommend_contents", t.message.toString())
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
 
 
+
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("destroy", "꺼짐")
     }
 }
