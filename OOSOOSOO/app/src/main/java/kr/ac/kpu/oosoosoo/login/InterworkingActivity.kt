@@ -14,9 +14,7 @@ import kr.ac.kpu.oosoosoo.R
 import kr.ac.kpu.oosoosoo.connection.RetrofitBuilder
 import kr.ac.kpu.oosoosoo.dialog.LoadingDialog
 import org.jetbrains.anko.toast
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import java.io.IOException
 
 
 class InterworkingActivity : AppCompatActivity() {
@@ -25,9 +23,6 @@ class InterworkingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_interworking)
 
         val call = RetrofitBuilder().callInterworking  //Retrofit Call
-
-        val callAddWishlist = RetrofitBuilder().callAddWishlist
-        val callAddWatchingLog = RetrofitBuilder().callAddWatchingLog
 
         val loadingDialog = LoadingDialog(this@InterworkingActivity)
 
@@ -56,16 +51,13 @@ class InterworkingActivity : AppCompatActivity() {
         i_platformName_tv.text = platform_name
         i_id_tv.text = platform_name + " 아이디"
         i_pwd_tv.text = platform_name + " 비밀번호"
-        i_profileName_tv.text = platform_name + " 프로필 이름"
+        i_profileName_tv.text = platform_name + " 프로필명"
 
         //플랫폼 연동 시도
         i_login_btn.setOnClickListener {
             if (i_id_edt.length() != 0 && i_pwd_edt.length() != 0 && i_profileName_edt.length() != 0){
-
-                // 로딩 다이얼로그 표시
-                loadingDialog.show()
-
-                var input = HashMap<String, String>()
+                // 연동 로그인 정보
+                val input = HashMap<String, String>()
                 input["u_email"] = user_email
                 input["platform"] = platform_name.toString()
                 input["id"] = i_id_edt.text.toString()
@@ -73,105 +65,78 @@ class InterworkingActivity : AppCompatActivity() {
                 input["profile_name"] = i_profileName_edt.text.toString()
                 Log.d("interworking", input["u_email"] + input["platform"] + input["id"] + input["passwd"] + input["profile_name"])
 
-                CoroutineScope(Dispatchers.Main).launch {
-                    val inter = CoroutineScope(Dispatchers.IO).launch {
-                        val body = call.getInterworking(input).execute().body()
-                        if (body.toString() == "null") {
-                            runOnUiThread {
-                                i_result_tv1.text = "서버 body = null"
-                            }
-                            // 로딩 다이얼로그 종료
-                            loadingDialog.dismiss()
-                        } else {
-                            if(body == true) {
-                                val intent_result = Intent()
-                                runOnUiThread {
-                                    i_result_tv1.text = "$platform_name 에 연동 로그인 성공!"
-                                }
-                                val intent_msg = platform_name
 
-                                intent_result.putExtra("result", intent_msg)
-                                setResult(Activity.RESULT_OK, intent_result)
-                            } else {
-                                runOnUiThread {
-                                    i_result_tv1.text = "*$platform_name 에 연동 로그인 실패*"
+
+                // 로딩 다이얼로그 표시
+                loadingDialog.show()
+
+                // DB에 연동 정보 추가
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        val body = call.getInterworking(input).execute().body()
+                        if (body.toString() == "null") Log.d("Interworking", "서버 body = null")
+                        else {
+                            if(body != true) Log.d("Interworking", "$platform_name 에 연동 로그인 실패")
+                            else {
+                                val intent_result = Intent()
+                                Log.d("Interworking", "$platform_name 에 연동 로그인 성공!")
+
+                                // 플랫폼 로그인 정보
+                                val input_email = HashMap<String, String>()
+                                input_email["email"] = user_email
+                                input_email["platform"] = platform_name.toString()
+
+                                // 플랫폼 연동
+                                runBlocking {
+                                    launch { wishlistCall(input_email) }
+                                    launch { watchingLogCall(input_email) }
                                 }
-                                // 로딩 다이얼로그 종료
-                                loadingDialog.dismiss()
+
+                                intent_result.putExtra("result", platform_name)
+                                setResult(Activity.RESULT_OK, intent_result)
                             }
                         }
+                        // 로딩 다이얼로그 중지
+                        loadingDialog.dismiss()
+                        finish()
                     }
-
-                    inter.join()
-
-                    val wish_watch = CoroutineScope(Dispatchers.IO).launch {
-                        var input_email = HashMap<String, String>()
-                        input_email["email"] = user_email
-                        input_email["platform"] = platform_name.toString()
-
-                        callAddWishlist.callAddWishlist(input_email).enqueue(object : Callback<Boolean> {
-                            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                                val body_wishlist : Boolean? = response.body()
-                                if (body_wishlist.toString() == "null") {
-                                    i_result_tv2.text = "서버 body_wishlist = null"
-                                    // 로딩 다이얼로그 종료
-                                    loadingDialog.dismiss()
-                                } else {
-                                    if (body_wishlist == true) {
-                                        i_result_tv2.text = "AddWishlist 성공"
-                                    }
-                                    else {
-                                        i_result_tv2.text = "AddWishlist 실패"
-                                        // 로딩 다이얼로그 종료
-                                        loadingDialog.dismiss()
-                                    }
-                                }
-                            }
-
-                            override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                                i_result_tv2.text = "서버요청을 실패하였습니다. OTT Wishlist 연동 중 문제가 발생하였습니다."
-                                // 로딩 다이얼로그 종료
-                                loadingDialog.dismiss()
-                            }
-                        })
-
-                        callAddWatchingLog.callAddWatchingLog(input_email).enqueue(object : Callback<Boolean> {
-                            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                                val body_watchinglog : Boolean? = response.body()
-                                if (body_watchinglog.toString() == "null") {
-                                    i_result_tv3.text = "서버 body_watchinglog = null"
-                                    // 로딩 다이얼로그 종료
-                                    loadingDialog.dismiss()
-                                } else {
-                                    if (body_watchinglog == true) {
-                                        i_result_tv3.text = "AddWatchingLog 성공"
-
-                                        // 로딩 다이얼로그 종료
-                                        loadingDialog.dismiss()
-                                    }
-                                    else {
-                                        i_result_tv3.text = "AddWatchingLog 실패"
-                                        // 로딩 다이얼로그 종료
-                                        loadingDialog.dismiss()
-                                    }
-                                }
-                            }
-
-                            override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                                i_result_tv3.text = "서버요청을 실패하였습니다. OTT Watching Log 연동 중 문제가 발생하였습니다."
-                                // 로딩 다이얼로그 종료
-                                loadingDialog.dismiss()
-                            }
-                        })
-                    }
-
-                    wish_watch.join()
-
+                    catch (except : IOException) { Log.d("Interworking", except.toString()) }
+                    catch (except : RuntimeException) { Log.d("Interworking", except.toString()) }
                 }
-
-            } else {
-                toast("에디트텍스트에 모든 정보 입력해주세요.").show()
             }
+            else toast("에디트텍스트에 모든 정보를 입력해주세요.").show()
+        }
+
+    }
+
+    suspend fun wishlistCall(input_email: HashMap<String, String>) {
+        val callAddWishlist = RetrofitBuilder().callAddWishlist
+
+        val body_wishlist = withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
+            callAddWishlist.callAddWishlist(input_email).execute().body()
+        }
+
+        if (body_wishlist.toString() == "null") {
+            Log.d("Interworking", "서버 body_wishlist = null")
+        } else {
+            if (body_wishlist == true) Log.d("Interworking", "AddWishlist 성공")
+            else Log.d("Interworking", "AddWishlist 실패")
         }
     }
+
+    suspend fun watchingLogCall(input_email: HashMap<String, String>) {
+        val callAddWatchingLog = RetrofitBuilder().callAddWatchingLog
+
+        val body_watchinglog = withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
+            callAddWatchingLog.callAddWatchingLog(input_email).execute().body()
+        }
+
+        if (body_watchinglog.toString() == "null") {
+            Log.d("Interworking", "서버 body_watchinglog = null")
+        } else {
+            if (body_watchinglog == true) Log.d("Interworking", "AddWatchingLog 성공")
+            else Log.d("Interworking", "AddWatchingLog 실패")
+        }
+    }
+
 }

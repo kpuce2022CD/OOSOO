@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageButton
+        android:id="@+id/iw_back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -15,6 +25,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iw_back_btn" />
+
+    <ImageView
+        android:id="@+id/platform_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/netfilx_logo" />
 
     <TextView
         android:id="@+id/i_platformName_tv"
@@ -32,11 +52,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         android:text="플랫폼 아이디"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/i_platformName_tv" />
+
+    <EditText
+        android:id="@+id/i_id_edt"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="플랫폼 아이디"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/i_id_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/i_id_tv"
+        app:layout_constraintTop_toTopOf="@+id/i_id_tv" />
 
     <TextView
         android:id="@+id/i_pwd_tv"
@@ -49,113 +84,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/i_id_tv" />
 
+    <EditText
+        android:id="@+id/i_pwd_edt"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="플랫폼 비밀번호"
+        android:inputType="textPassword"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/i_pwd_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/i_pwd_tv"
+        app:layout_constraintTop_toTopOf="@+id/i_pwd_tv" />
+
     <TextView
         android:id="@+id/i_profileName_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="프로필 이름"
+        android:text="플랫폼 프로필명"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/i_pwd_tv" />
-
-    <Button
-        android:id="@+id/i_login_btn"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="로그인"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/i_profileName_tv" />
-
-    <EditText
-        android:id="@+id/i_id_edt"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="플랫폼 아이디"
-        android:inputType="textPersonName"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/i_id_tv" />
 
     <EditText
         android:id="@+id/i_profileName_edt"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="프로필 이름"
+        android:hint="플랫폼 프로필명"
         android:inputType="textPersonName"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/i_profileName_tv"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/i_profileName_tv"
         app:layout_constraintTop_toTopOf="@+id/i_profileName_tv" />
 
-    <ImageView
-        android:id="@+id/platform_img"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/i_login_btn"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
+        android:text="로그인"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/netfilx_logo" />
-
-    <ImageButton
-        android:id="@+id/iw_back_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
-
-    <TextView
-        android:id="@+id/i_result_tv1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Interworking 연동 결과"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/i_login_btn" />
-
-    <TextView
-        android:id="@+id/i_result_tv2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Wishlist 연동 결과"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/i_result_tv1" />
-
-    <TextView
-        android:id="@+id/i_result_tv3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Watching Log 연동 결과"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/i_result_tv2" />
-
-    <EditText
-        android:id="@+id/i_pwd_edt"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="플랫폼 비밀번호"
-        android:inputType="textPassword"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/i_pwd_tv" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
