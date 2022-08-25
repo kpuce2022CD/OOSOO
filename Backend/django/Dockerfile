@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED=0
 ENV PYTHONIOENCODING=utf-8
 
 # Chrome, xvfb 설치 & Chromedriver 다운로드
-RUN sed -i 's@archive.ubuntu.com@mirror.kakao.com@g' /etc/apt/sources.list
+# RUN sed -i 's@archive.ubuntu.com@mirror.kakao.com@g' /etc/apt/sources.list
 RUN apt-get update
 RUN wget -qP /tmp/ "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 RUN apt install /tmp/google-chrome-stable_current_amd64.deb -y

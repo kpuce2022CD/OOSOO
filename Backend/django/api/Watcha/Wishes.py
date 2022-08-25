@@ -28,7 +28,7 @@ def w_wishes(email, pwd, name):
     # '보고싶어요' 에 있는 항목들 불러오기
     result = list()
 
-    driver.get("https://watcha.com/wishes")
+    driver.get("https://watcha.com/library")
 
     time.sleep(3)
     driver.implicitly_wait(5)
@@ -52,7 +52,7 @@ def w_wishes(email, pwd, name):
     time.sleep(3)
     driver.implicitly_wait(5)
 
-    wishes = driver.find_elements_by_class_name('css-1ponucs')
+    wishes = driver.find_elements_by_class_name('css-45fv31')
 
     time.sleep(3)
     driver.implicitly_wait(5)
