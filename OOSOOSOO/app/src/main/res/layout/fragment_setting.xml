@@ -61,7 +61,7 @@
             android:text="로그아웃"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_settings_guide" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_settings_interworking" />
 
         <Button
             android:id="@+id/btn_settings_withdraw"
@@ -88,19 +88,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_settings_review" />
-
-        <Button
-            android:id="@+id/btn_settings_guide"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="left|center_vertical"
-            android:text="이용가이드"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_settings_interworking" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
