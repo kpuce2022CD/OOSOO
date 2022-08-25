@@ -4,6 +4,5 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_trends">Trends</string>
-    <string name="title_dashboard">Dashboard</string>
     <string name="title_setting">Setting</string>
 </resources>

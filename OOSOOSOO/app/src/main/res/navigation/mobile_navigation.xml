@@ -11,11 +11,6 @@
         android:label="@string/title_home" />
 
     <keep_state_fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="kr.ac.kpu.oosoosoo.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard" />
-
-    <keep_state_fragment
         android:id="@+id/navigation_trends"
         android:name="kr.ac.kpu.oosoosoo.recommends.TrendsFragment"
         android:label="@string/title_trends" />

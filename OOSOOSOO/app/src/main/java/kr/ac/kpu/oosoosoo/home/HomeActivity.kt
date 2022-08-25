@@ -9,13 +9,11 @@ import com.amplifyframework.core.Amplify
 import kotlinx.android.synthetic.main.activity_home.*
 import kr.ac.kpu.oosoosoo.BaseActivity
 import kr.ac.kpu.oosoosoo.R
-import kr.ac.kpu.oosoosoo.dashboard.DashboardFragment
 import kr.ac.kpu.oosoosoo.recommends.RecommendsFragment
 import kr.ac.kpu.oosoosoo.setting.SettingFragment
 
 private const val TAG_HOME_FRAGMENT = "home_fragment"
 private const val TAG_RECOMMEND_FRAGMENT = "recommend_fragment"
-private const val TAG_DASHBOARD_FRAGMENT = "dashboard_fragment"
 private const val TAG_SETTING_FRAGMENT = "setting_fragment"
 
 class HomeActivity : BaseActivity() {
@@ -40,10 +38,6 @@ class HomeActivity : BaseActivity() {
             when (item.itemId) {
                 R.id.navigation_home -> setFragment(TAG_HOME_FRAGMENT, HomeFragment())
                 R.id.navigation_trends -> setFragment(TAG_RECOMMEND_FRAGMENT, RecommendsFragment())
-                R.id.navigation_dashboard -> setFragment(
-                    TAG_DASHBOARD_FRAGMENT,
-                    DashboardFragment()
-                )
                 R.id.navigation_setting -> setFragment(TAG_SETTING_FRAGMENT, SettingFragment())
             }
 
@@ -78,7 +72,6 @@ class HomeActivity : BaseActivity() {
 
         val home = manager.findFragmentByTag(TAG_HOME_FRAGMENT)
         val records = manager.findFragmentByTag(TAG_RECOMMEND_FRAGMENT)
-        val community = manager.findFragmentByTag(TAG_DASHBOARD_FRAGMENT)
         val campaign = manager.findFragmentByTag(TAG_SETTING_FRAGMENT)
 
         // Hide all Fragment
@@ -87,9 +80,6 @@ class HomeActivity : BaseActivity() {
         }
         if (records != null) {
             ft.hide(records)
-        }
-        if (community != null) {
-            ft.hide(community)
         }
         if (campaign != null) {
             ft.hide(campaign)
@@ -103,11 +93,6 @@ class HomeActivity : BaseActivity() {
         if (tag == TAG_RECOMMEND_FRAGMENT) {
             if (records != null) {
                 ft.show(records)
-            }
-        }
-        if (tag == TAG_DASHBOARD_FRAGMENT) {
-            if (community != null) {
-                ft.show(community)
             }
         }
         if (tag == TAG_SETTING_FRAGMENT) {
