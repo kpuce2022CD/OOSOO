@@ -52,7 +52,8 @@ class LoginActivity : BaseActivity() {
 
                     Log.d("log_login", body.toString())
                     if (body != null) {
-                        signin_tv.text = "$body"
+                        if (body) signin_tv.text = "로그인 성공! 잠시만 기다려주세요."
+                        else signin_tv.text = "로그인 실패. 입력한 정보를 확인해주세요."
                         Amplify.Auth.signIn(login_email.text.toString(), login_pwd.text.toString(),
                             { result ->
                                 if (result.isSignInComplete) {
@@ -112,7 +113,8 @@ class LoginActivity : BaseActivity() {
 
                                     Log.d("Kakao Login", body.toString())
                                     if (body != null) {
-                                        signin_tv.text = "$body"
+                                        if (body) signin_tv.text = "로그인 성공! 잠시만 기다려주세요."
+                                        else signin_tv.text = "로그인 실패. 입력한 정보를 확인해주세요."
                                         Amplify.Auth.signIn(login_email.text.toString(), login_pwd.text.toString(),
                                             { result ->
                                                 if (result.isSignInComplete) {
@@ -184,7 +186,9 @@ class LoginActivity : BaseActivity() {
 
                                     Log.d("naver Login", body.toString())
                                     if (body != null) { // DB에 로그인 요청 리턴값이 null이 아닐 때
-                                        signin_tv.text = "$body"
+                                        if (body) signin_tv.text = "로그인 성공! 잠시만 기다려주세요."
+                                        else signin_tv.text = "로그인 실패. 입력한 정보를 확인해주세요."
+
                                         if (body == true){ // DB에 유저 정보가 있을 경우
                                             Amplify.Auth.signIn(naverProfile.response.getString("email"), naverProfile.response.getString("id"),
                                                 { result ->
