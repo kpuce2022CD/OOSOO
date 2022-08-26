@@ -1,6 +1,5 @@
 package kr.ac.kpu.oosoosoo.login
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -19,6 +18,7 @@ import kr.ac.kpu.oosoosoo.home.HomeActivity
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,18 +42,17 @@ class LoginActivity : BaseActivity() {
             call.getSignIn(input).enqueue(object : Callback<Boolean>{
                 override fun onFailure(call: Call<Boolean>, t: Throwable) {
                     Log.d("log_login", t.message.toString())
-                    signin_tv.text = "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요."
+                    toast("서버요청을 실패하였습니다. 입력한 정보를 확인해주세요.")
                 }
 
                 override fun onResponse(call: Call<Boolean>, response: Response<Boolean> ) {
                     val body : Boolean? = response.body()
                     Log.d("log_login", "통신 성공")
-                    signin_tv.text = ""
 
                     Log.d("log_login", body.toString())
                     if (body != null) {
-                        if (body) signin_tv.text = "로그인 성공! 잠시만 기다려주세요."
-                        else signin_tv.text = "로그인 실패. 입력한 정보를 확인해주세요."
+                        if (body) toast("로그인 성공! 잠시만 기다려주세요.")
+                        else toast("로그인 실패. 입력한 정보를 확인해주세요.")
                         Amplify.Auth.signIn(login_email.text.toString(), login_pwd.text.toString(),
                             { result ->
                                 if (result.isSignInComplete) {
@@ -97,7 +96,7 @@ class LoginActivity : BaseActivity() {
                             call.getSignIn(input).enqueue(object : Callback<Boolean>{
                                 override fun onFailure(call: Call<Boolean>, t: Throwable) {
                                     Log.d("Kakao Login", t.message.toString())
-                                    signin_tv.text = "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요."
+                                    toast("서버요청을 실패하였습니다. 입력한 정보를 확인해주세요.")
                                     startActivity<SignupActivity>(
                                         "email" to input["email"],
                                         "pwd" to input["pwd"],
@@ -109,12 +108,11 @@ class LoginActivity : BaseActivity() {
                                 override fun onResponse(call: Call<Boolean>, response: Response<Boolean> ) {
                                     val body : Boolean? = response.body()
                                     Log.d("Kakao Login", "통신 성공")
-                                    signin_tv.text = ""
 
                                     Log.d("Kakao Login", body.toString())
                                     if (body != null) {
-                                        if (body) signin_tv.text = "로그인 성공! 잠시만 기다려주세요."
-                                        else signin_tv.text = "로그인 실패. 입력한 정보를 확인해주세요."
+                                        if (body) toast("로그인 성공! 잠시만 기다려주세요.")
+                                        else toast("로그인 실패. 입력한 정보를 확인해주세요.")
                                         Amplify.Auth.signIn(login_email.text.toString(), login_pwd.text.toString(),
                                             { result ->
                                                 if (result.isSignInComplete) {
@@ -177,17 +175,16 @@ class LoginActivity : BaseActivity() {
                             call.getSignIn(input).enqueue(object : Callback<Boolean> {
                                 override fun onFailure(call: Call<Boolean>, t: Throwable) {
                                     Log.d("naver Login", t.message.toString())
-                                    signin_tv.text = "서버요청을 실패하였습니다. 입력한 정보를 확인해주세요."
+                                    toast("서버요청을 실패하였습니다. 입력한 정보를 확인해주세요.")
                                 }
                                 override fun onResponse(call: Call<Boolean>, response: Response<Boolean> ) {
                                     val body : Boolean? = response.body()
                                     Log.d("naver Login", "통신 성공")
-                                    signin_tv.text = ""
 
                                     Log.d("naver Login", body.toString())
                                     if (body != null) { // DB에 로그인 요청 리턴값이 null이 아닐 때
-                                        if (body) signin_tv.text = "로그인 성공! 잠시만 기다려주세요."
-                                        else signin_tv.text = "로그인 실패. 입력한 정보를 확인해주세요."
+                                        if (body) toast("로그인 성공! 잠시만 기다려주세요.")
+                                        else toast("로그인 실패. 입력한 정보를 확인해주세요.")
 
                                         if (body == true){ // DB에 유저 정보가 있을 경우
                                             Amplify.Auth.signIn(naverProfile.response.getString("email"), naverProfile.response.getString("id"),
