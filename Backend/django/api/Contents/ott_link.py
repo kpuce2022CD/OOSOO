@@ -101,26 +101,26 @@ def watcha_url(title, driver, c_type): #제목으로 watcha에 있는 해당 컨
     try:
         ##Content = TV일 때
         if c_type == "tv":
-            tv_search_url = "https://watcha.com/browse/search?query=" + title + "&filter=tv_search"
+            tv_search_url = "https://watcha.com/search?query=" + title + "&domain=tv"
             driver.get(tv_search_url)
             time.sleep(3)
             driver.implicitly_wait(5)
 
             tv_content = driver.find_element(By.XPATH,
-                                             '//*[@id="root"]/div[1]/main/div[1]/section/div[1]/ul/li[1]/article[1]/a')
+                                             '//*[@id="root"]/div[1]/main/div[1]/section/div[1]/div/ul/li[1]/article[1]/a')
             tv_content.click()
             time.sleep(3)
             driver.implicitly_wait(5)
 
         ##Content = Movie일 때
         elif c_type == "movie":
-            movie_search_url = "https://watcha.com/browse/search?query=" + title + "&filter=movie_search"
+            movie_search_url = "https://watcha.com/search?query=" + title + "&domain=movie"
             driver.get(movie_search_url)
             time.sleep(3)
             driver.implicitly_wait(5)
 
             movie_content = driver.find_element(By.XPATH,
-                                                '//*[@id="root"]/div[1]/main/div[1]/section/div/ul/li[1]/article[1]/a')
+                                                '//*[@id="root"]/div[1]/main/div[1]/section/div/div/ul/li/article[1]/a')
             movie_content.click()
             time.sleep(3)
             driver.implicitly_wait(5)
