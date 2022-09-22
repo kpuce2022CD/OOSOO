@@ -79,12 +79,11 @@ def wavve_url(title, driver, c_type): #제목으로 wavve에 있는 해당 컨�
             time.sleep(2)
             driver.implicitly_wait(5)
 
-        xbox2 = driver.find_element(By.XPATH, '//*[@id="contents"]/div[1]/div/a')
-        xbox2.click()
-        time.sleep(2)
-        driver.implicitly_wait(5)
+            search_box = driver.find_element(By.XPATH, '//*[@id="search"]')
+            search_box.send_keys(Keys.RETURN)
 
-        first_content = driver.find_element(By.XPATH, '//*[@id="contents"]/div[3]/div/div/div/div[2]/div[1]/a/div[1]')
+
+        first_content = driver.find_element(By.XPATH, '//*[@id="app"]/div[1]/section/div/div[1]')
         first_content.click()
         time.sleep(2)
         driver.implicitly_wait(5)
@@ -107,7 +106,7 @@ def watcha_url(title, driver, c_type): #제목으로 watcha에 있는 해당 컨
             driver.implicitly_wait(5)
 
             tv_content = driver.find_element(By.XPATH,
-                                             '//*[@id="root"]/div[1]/main/div[1]/section/div[1]/div/ul/li[1]/article[1]/a')
+                                             '//*[@id="root"]/div[1]/main/div[2]/section/div[1]/div/ul/li[1]')
             tv_content.click()
             time.sleep(3)
             driver.implicitly_wait(5)
@@ -120,7 +119,7 @@ def watcha_url(title, driver, c_type): #제목으로 watcha에 있는 해당 컨
             driver.implicitly_wait(5)
 
             movie_content = driver.find_element(By.XPATH,
-                                                '//*[@id="root"]/div[1]/main/div[1]/section/div/div/ul/li/article[1]/a')
+                                                '//*[@id="root"]/div[1]/main/div[2]/section/div[1]/div/ul/li[1]')
             movie_content.click()
             time.sleep(3)
             driver.implicitly_wait(5)
